@@ -1,0 +1,3298 @@
+{
+  "metadata": {
+    "total_requirements": 56,
+    "functional_requirements": 21,
+    "quality_requirements": 17,
+    "use_cases": 12,
+    "constraints": 2,
+    "performance_requirements": 4,
+    "incomplete_requirements": 13,
+    "pages_processed": 58
+  },
+  "grouped_requirements": {
+    "functional_requirements": [
+      {
+        "id": "FR1",
+        "title": "Download mobile application",
+        "description": "A user should be able to download the mobile application through either an application store or similar service on the mobile phone. The application should be free to download.",
+        "rationale": "In order for a user to download the mobile application.",
+        "dependencies": []
+      },
+      {
+        "id": "FR2",
+        "title": "Download and notify users of new releases",
+        "description": "When a new/updated version or release of the software is released, the user should check for these manually. The download of the new release should be done through the mobile phone in the same way as downloading the mobile application.",
+        "rationale": "In order for a user to download a new/updated release.",
+        "dependencies": [
+          "FR1"
+        ]
+      },
+      {
+        "id": "FR3",
+        "title": "User registration - Mobile application",
+        "description": "Given that a user has downloaded the mobile application, then the user should be able to register through the mobile application. The user must provide user-name, password and e-mail address. The user can choose to provide a regularly used phone number.",
+        "rationale": "In order for a user to register on the mobile application.",
+        "dependencies": [
+          "FR1"
+        ]
+      },
+      {
+        "id": "FR4",
+        "title": "User log-in - Mobile application",
+        "description": "Given that a user has registered, then the user should be able to log in to the mobile application. The log-in information will be stored on the phone and in the future the user should be logged in automatically.",
+        "rationale": "In order for a user to register on the mobile application.",
+        "dependencies": [
+          "FR1",
+          "FR3"
+        ]
+      },
+      {
+        "id": "FR5",
+        "title": "Retrieve password",
+        "description": "Given that a user has registered, then the user should be able to retrieve his/her password by e- mail.",
+        "rationale": "In order for a user to retrieve his/her password.",
+        "dependencies": [
+          "FR1"
+        ]
+      },
+      {
+        "id": "FR6",
+        "title": "Mobile application - Search",
+        "description": "Given that a user is logged in to the mobile application, then the first page that is shown should be the search page. The user should be able to search for a restaurant, according to several search options. The search options are Price, Destination, Restaurant type and Specific dish. There should also be a free- text search option. A user should be able to select multiple search options in one search.",
+        "rationale": "In order for a user to search for a restaurant.",
+        "dependencies": [
+          "FR4"
+        ]
+      },
+      {
+        "id": "FR7",
+        "title": "Mobile application - Search result in a map view",
+        "description": " Search results can be viewed on a map. On the map, the relevant and closest restaurants according to the user’s position are shown.  A specific pin will represent a specific restaurant location. On each pin there should be an information link.  There should be maximally 100 results displayed. The map view should have a default zoom.  The map view should include a button that, when selected, should display different filtering options in a filtering menu.",
+        "rationale": "The way results are displayed in a map.",
+        "dependencies": [
+          "FR6"
+        ]
+      },
+      {
+        "id": "FR8",
+        "title": "Mobile application - Search result in a list view",
+        "description": " Search results can be viewed in a list. Each element in the list represents a specific restaurant. Each element should include the restaurant name, telephone number, type of food, distance according to the user’s position, average price, a short two-line description, a link to the restaurant’s web-page and an information link.  There should be maximally 100 results displayed. If the result contains more restaurants than what can be displayed on the screen at one time, the user should be able to scroll through them.  When searching by price the restaurants should be sorted according to the following order: 1. average price 2. distance 3. restaurant type 4. specific dish  When searching by a search option, other than price, the restaurants should be sorted according to the following order: 1. distance 2. average price 3. restaurant type 4. specific dish  The list view should include a header with different selectable sorting options.  The list view should include a button that, when selected, should display different filtering options in a filtering menu.",
+        "rationale": "The way results should be displayed in a list.",
+        "dependencies": [
+          "FR6"
+        ]
+      },
+      {
+        "id": "FR9",
+        "title": "Mobile application - Navigation to restaurant",
+        "description": "A user should be able to select a pin on a map or an element on a list. When a selection is made, the location of the restaurant should be sent to the mobile phone’s GPS-navigation program. The user should then be navigated to the destination. When the destination is reached, a user should be able to go back to the search page on the mobile application.",
+        "rationale": "To navigate a user to a chosen restaurant.",
+        "dependencies": [
+          "FR7",
+          "FR8"
+        ]
+      },
+      {
+        "id": "FR10",
+        "title": "Mobile application - Switch result view",
+        "description": "A user should be able to switch between a map view and a list view for all search options. 12",
+        "rationale": "In order for a user to switch between result views.",
+        "dependencies": [
+          "FR7",
+          "FR8"
+        ]
+      },
+      {
+        "id": "FR11",
+        "title": "Mobile application - Selecting the information link",
+        "description": "A user should be able to select the information link, which is included on all result items. The link will direct the user to an information page, which includes a picture of the restaurant, the restaurant name, address, phone number, e-mail address, type of food, average price, restaurant description and a menu with name, description and price of the different dishes.",
+        "rationale": "In order to show information about the restaurants.",
+        "dependencies": [
+          "FR7",
+          "FR8"
+        ]
+      },
+      {
+        "id": "FR12",
+        "title": "Mobile application - Search by price",
+        "description": "A user should be able to input a maximum and a minimum price range. The result is displayed in a list view by default.",
+        "rationale": "In order for a user to search by price.",
+        "dependencies": [
+          "FR8"
+        ]
+      },
+      {
+        "id": "FR13",
+        "title": "Mobile application - Search by destination",
+        "description": "A user should be able to input a maximum and a minimum distance, according to his/her position. By default the minimum distance is set to 0 km and the maximum to 10 km. The user should be able to input a higher or lower maximum distance and a higher minimum distance than set by default. The result is displayed in a map view by default.",
+        "rationale": "In order for a user to search by destination.",
+        "dependencies": [
+          "FR7"
+        ]
+      },
+      {
+        "id": "FR14",
+        "title": "Accepted input for price and destination search",
+        "description": "Integers should be accepted as input when a user searches by price or destination. If the system receives an invalid input the user should be informed and prompted to insert an accepted input.",
+        "rationale": "In order for a user to search with valid input.",
+        "dependencies": [
+          "FR12",
+          "FR13"
+        ]
+      },
+      {
+        "id": "FR15",
+        "title": "Mobile application - Search by restaurant type 13",
+        "description": "A user should be able to select a restaurant type in a given list as input. The result is displayed in a map view by default.",
+        "rationale": "In order for a user to search by restaurant type.",
+        "dependencies": [
+          "FR7"
+        ]
+      },
+      {
+        "id": "FR16",
+        "title": "Mobile application - Search by specific dish",
+        "description": "A user should be able to select a specific dish in a given list as input. The result is displayed in a map view by default.",
+        "rationale": "In order for a user to search by specific dish.",
+        "dependencies": [
+          "FR7"
+        ]
+      },
+      {
+        "id": "FR17",
+        "title": "Mobile application - Free-text search",
+        "description": "A user should be able to conduct a search by providing either restaurant name, restaurant description, restaurant address, restaurant type or restaurant menu in the free-text search field. The result is displayed in a map view by default.",
+        "rationale": "In order for a user to search through the free-text search.",
+        "dependencies": [
+          "FR7"
+        ]
+      },
+      {
+        "id": "FR18",
+        "title": "Mobile application - No match found",
+        "description": "If no match is found the user should be informed but kept on the search page in order to get the possibility to conduct a new search right away.",
+        "rationale": "In order for user to conduct a new search if no match is found.",
+        "dependencies": [
+          "FR5"
+        ]
+      },
+      {
+        "id": "FR19",
+        "title": "Mobile application - Sorting results",
+        "description": "When viewing the results in a list, a user should be able to sort the results according to price, distance, restaurant type, specific dish or restaurant name.  When sorting by restaurant name, specific dish or restaurant type the results should be ordered alphabetically.  When sorting by price the results should be ordered from cheapest to most expensive.  When sorting by distance the results should be ordered from closets to furthest distance according to the user’s position. 14 When the sort button for a specific search option is clicked, then the order should be reversed and ordered in a descending matter. If the sort button is clicked again the order of the results should be reversed.",
+        "rationale": "In order for a user to sort results in a list.",
+        "dependencies": [
+          "FR8"
+        ]
+      },
+      {
+        "id": "FR20",
+        "title": "Mobile application - Filtering results",
+        "description": "When viewing the results in a list or a map, a user should be able to filter the results in a filtering menu. The filtering options include:  increasing or decreasing the maximum distance  increasing or decreasing the maximum price  choosing a restaurant type  choosing a specific dish When filtering the results, only the existing results shall be affected and a new search query should not be sent.",
+        "rationale": "In order for a user to filter results in a list or a map.",
+        "dependencies": [
+          "FR7",
+          "FR8"
+        ]
+      },
+      {
+        "id": "FR21",
+        "title": "Mobile application - Profile page",
+        "description": "On the mobile application, a user should have a profile page. On the profile page a user can edit his/her information, which includes the password, e-mail address and phone number. A user should also be able to choose what language the mobile application should be set to. The different language choices are Swedish, English, Spanish and French.",
+        "rationale": "In order for a user to have a profile page on the mobile application.",
+        "dependencies": [
+          "FR1"
+        ]
+      }
+    ],
+    "quality_requirements": [
+      {
+        "id": "QR1",
+        "title": "Prominent search feature",
+        "description": "The search feature should be prominent and easy to find for the user.",
+        "rationale": "In order to for a user to find the search feature easily.",
+        "dependencies": []
+      },
+      {
+        "id": "QR2",
+        "title": "Usage of the search feature",
+        "description": "The different search options should be evident, simple and easy to understand.",
+        "rationale": "In order to for a user to perform a search easily.",
+        "dependencies": []
+      },
+      {
+        "id": "QR3",
+        "title": "Usage of the result in the list view",
+        "description": "The results displayed in the list view should be user friendly and easy to understand. Selecting an element in the result list should only take one click.",
+        "rationale": "In order to for a user to use the list view easily.",
+        "dependencies": []
+      },
+      {
+        "id": "QR4",
+        "title": "Usage of the result in the map view",
+        "description": "The results displayed in the map view should be user friendly and easy to understand. Selecting a pin on the map should only take one click.",
+        "rationale": "In order to for a user to use the map view easily.",
+        "dependencies": []
+      },
+      {
+        "id": "QR5",
+        "title": "Usage of the information link",
+        "description": "The information link should be prominent and it should be evident that it is a usable link. Selecting the information link should only take one click.",
+        "rationale": "In order to for a user to use the information link easily.",
+        "dependencies": []
+      },
+      {
+        "id": "QR8",
+        "title": "The fault tolerance of the system.",
+        "tag": "SystemDependability",
+        "gist": "The fault tolerance of the system.",
+        "scale": "If the system loses the connection to the Internet or to the GPS device or the system gets some strange input, the user should be informed.",
+        "meter": "Measurements obtained from 1000 hours of usage during testing.",
+        "must": "100% of the time. This section includes the design constraints on the software caused by the hardware.",
+        "plan": "",
+        "wish": "",
+        "description": "",
+        "rationale": "",
+        "dependencies": []
+      },
+      {
+        "id": "QR9",
+        "title": "The reliability of the system.",
+        "tag": "SystemReliability 24",
+        "gist": "The reliability of the system.",
+        "scale": "The reliability that the system gives the right result on a search.",
+        "meter": "Measurements obtained from 1000 searches during testing.",
+        "must": "More than 98% of the searches.",
+        "plan": "More than 99% of the searches.",
+        "wish": "100% of the searches.",
+        "description": "",
+        "rationale": "",
+        "dependencies": []
+      },
+      {
+        "id": "QR12",
+        "title": "Security of the communication between the system and server.",
+        "tag": "CommunicationSecurity",
+        "gist": "Security of the communication between the system and server.",
+        "scale": "The messages should be encrypted for log-in communications, so others cannot get user-name and password from those messages.",
+        "meter": "Attempts to get user-name and password through obtained messages on 1000 log-in session during testing.",
+        "must": "100% of the Communication Messages in the communication of a log-in session should be encrypted. Communication Messages: Defined: Every exchanged of information between client and server.",
+        "plan": "",
+        "wish": "",
+        "description": "",
+        "rationale": "",
+        "dependencies": []
+      },
+      {
+        "id": "QR13",
+        "title": "Security of accounts. 25",
+        "tag": "RestaurantOwnerLoginAccountSecurity",
+        "gist": "Security of accounts. 25",
+        "scale": "If a restaurant owner tries to log in to the web portal with a non-existing account then the restaurant owner should not be logged in. The restaurant owner should be notified about log-in failure.",
+        "meter": "1000 attempts to log-in with a non-existing user account during testing.",
+        "must": "100% of the time.",
+        "plan": "",
+        "wish": "",
+        "description": "",
+        "rationale": "",
+        "dependencies": []
+      },
+      {
+        "id": "QR14",
+        "title": "Security of accounts.",
+        "tag": "AdminLoginAccountSecurity",
+        "gist": "Security of accounts.",
+        "scale": "If an admin tries to log in to the web portal with a non-existing account then the admin should not be logged in. The admin should be notified about log-in failure.",
+        "meter": "1000 attempts to log-in with a non-existing user account during testing.",
+        "must": "100% of the time.",
+        "plan": "",
+        "wish": "",
+        "description": "",
+        "rationale": "",
+        "dependencies": []
+      },
+      {
+        "id": "QR17",
+        "title": "The security of creating account for users of the system.",
+        "tag": "UserCreateAccountSecurity",
+        "gist": "The security of creating account for users of the system.",
+        "scale": "If a user wants to create an account and the desired user name is occupied, the user should be asked to choose a different user name.",
+        "meter": "Measurements obtained on 1000 hours of usage during testing.",
+        "must": "100% of the time.",
+        "plan": "",
+        "wish": "",
+        "description": "",
+        "rationale": "",
+        "dependencies": []
+      },
+      {
+        "id": "QR18",
+        "title": "The security of creating account for restaurant owners of the system.",
+        "tag": "RestaurantOwnerCreateAccountSecurity",
+        "gist": "The security of creating account for restaurant owners of the system.",
+        "scale": "If a restaurant owner wants to create an account and the desired user name is occupied, the restaurant owner should be asked to choose a different user name.",
+        "meter": "Measurements obtained on 1000 hours of usage during testing.",
+        "must": "100% of the time. 26",
+        "plan": "",
+        "wish": "",
+        "description": "",
+        "rationale": "",
+        "dependencies": []
+      },
+      {
+        "id": "QR19",
+        "title": "Application extendibility",
+        "description": "The application should be easy to extend. The code should be written in a way that it favors implementation of new functions.",
+        "rationale": "In order for future functions to be implemented easily to the application.",
+        "dependencies": []
+      },
+      {
+        "id": "QR20",
+        "title": "Application portability",
+        "description": "The application should be portable with iOS and Android.",
+        "rationale": "The adaptable platform for the application to run on.",
+        "dependencies": [
+          "FR1",
+          "FR10",
+          "FR11",
+          "FR12",
+          "FR13",
+          "FR14",
+          "FR15",
+          "FR16",
+          "FR17",
+          "FR18",
+          "FR19",
+          "FR2",
+          "FR20",
+          "FR21",
+          "FR22",
+          "FR23",
+          "FR24",
+          "FR25",
+          "FR26",
+          "FR27",
+          "FR28",
+          "FR29",
+          "FR3",
+          "FR30",
+          "FR31",
+          "FR32",
+          "FR33",
+          "FR4",
+          "FR5",
+          "FR6",
+          "FR7",
+          "FR8",
+          "FR9",
+          "QR1",
+          "QR10",
+          "QR11",
+          "QR12",
+          "QR13",
+          "QR14",
+          "QR15",
+          "QR16",
+          "QR17",
+          "QR18",
+          "QR19",
+          "QR2",
+          "QR20",
+          "QR21",
+          "QR22",
+          "QR23",
+          "QR3",
+          "QR4",
+          "QR5",
+          "QR6",
+          "QR7",
+          "QR8",
+          "QR9"
+        ]
+      },
+      {
+        "id": "QR21",
+        "title": "Application testability",
+        "description": "Test environments should be built for the application to allow testing of the applications different functions.",
+        "rationale": "In order to test the application.",
+        "dependencies": []
+      },
+      {
+        "id": "QR22",
+        "title": "Internet Connection",
+        "description": "The application should be connected to the Internet.",
+        "rationale": "In order for the application to communicate with the database.",
+        "dependencies": []
+      },
+      {
+        "id": "QR23",
+        "title": "GPS Connection",
+        "description": "The application should be connected to the GPS device.",
+        "rationale": "In order for the application to get the users location, the map and to calculate the distance.",
+        "dependencies": []
+      }
+    ],
+    "use_cases": [
+      {
+        "id": "FR22",
+        "title": "Create an account",
+        "feature": "Create an account",
+        "business_value": "create an account",
+        "actor": "A restaurant owner",
+        "capability": "register on the web-portal",
+        "scenarios": [
+          {
+            "name": "Required information for registration",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the restaurant owner wants to create an account"
+              },
+              {
+                "keyword": "And",
+                "text": "the restaurant owner does not have an account"
+              }
+            ]
+          },
+          {
+            "name": "Full information for registration",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the restaurant owner wants to create an account"
+              },
+              {
+                "keyword": "And",
+                "text": "the restaurant owner does not have an account"
+              },
+              {
+                "keyword": "When",
+                "text": "the restaurant owner registers on the web-portal by providing user name"
+              },
+              {
+                "keyword": "And",
+                "text": "password"
+              },
+              {
+                "keyword": "And",
+                "text": "address"
+              },
+              {
+                "keyword": "And",
+                "text": "e-mail address"
+              },
+              {
+                "keyword": "And",
+                "text": "phone number"
+              },
+              {
+                "keyword": "And",
+                "text": "mobile number"
+              },
+              {
+                "keyword": "Then",
+                "text": "the restaurant owner should be able to apply for verification"
+              }
+            ]
+          },
+          {
+            "name": "Confirmed registration",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the restaurant owner has applied for verification"
+              },
+              {
+                "keyword": "And",
+                "text": "has not received a confirmation e-mail after registration"
+              },
+              {
+                "keyword": "When",
+                "text": "the restaurant owner receives a confirmation e-mail"
+              },
+              {
+                "keyword": "Then",
+                "text": "the restaurant owner should be able to log in"
+              }
+            ]
+          }
+        ],
+        "description": "Feature: Create an account. create an account",
+        "rationale": "In order to create an account",
+        "dependencies": []
+      },
+      {
+        "id": "FR23",
+        "title": "Restaurant owner log-in",
+        "feature": "Restaurant owner log-in",
+        "business_value": "use the system",
+        "actor": "A restaurant owner",
+        "capability": "be logged in to the web-portal",
+        "scenarios": [
+          {
+            "name": "Successful log-in",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the restaurant owner wants to log in"
+              },
+              {
+                "keyword": "When",
+                "text": "the restaurant owner logs in with his/her account"
+              },
+              {
+                "keyword": "Then",
+                "text": "the restaurant owner should be logged in as a restaurant owner"
+              }
+            ]
+          },
+          {
+            "name": "Retrieve password",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the restaurant owner wants to log in"
+              },
+              {
+                "keyword": "And",
+                "text": "has lost the password"
+              },
+              {
+                "keyword": "When",
+                "text": "the restaurant owner enters his/her email address in the “Retrieve password” form"
+              },
+              {
+                "keyword": "And",
+                "text": "submits the form"
+              },
+              {
+                "keyword": "Then",
+                "text": "the restaurant owner should receive an email containing the password"
+              }
+            ]
+          }
+        ],
+        "description": "Feature: Restaurant owner log-in. use the system",
+        "rationale": "In order to use the system",
+        "dependencies": []
+      },
+      {
+        "id": "FR24",
+        "title": "Manage information",
+        "feature": "Manage information",
+        "business_value": "manage information",
+        "actor": "A restaurant owner",
+        "capability": "be logged in to the web-portal",
+        "scenarios": [
+          {
+            "name": "Show fields for managing information",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the restaurant owner is logged in"
+              },
+              {
+                "keyword": "When",
+                "text": "the restaurant owner wants to manage information"
+              },
+              {
+                "keyword": "Then",
+                "text": "the restaurant owner should be able to manage information in a form"
+              }
+            ]
+          },
+          {
+            "name": "Filling in mandatory fields",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the restaurant owner wants to fill in the mandatory fields of the form"
+              },
+              {
+                "keyword": "When",
+                "text": "the restaurant owner provides average price"
+              },
+              {
+                "keyword": "And",
+                "text": "address"
+              },
+              {
+                "keyword": "And",
+                "text": "e-mail address"
+              },
+              {
+                "keyword": "And",
+                "text": "phone number"
+              },
+              {
+                "keyword": "And",
+                "text": "restaurant name"
+              },
+              {
+                "keyword": "Then",
+                "text": "the restaurant owner has filled the mandatory fields of the form"
+              }
+            ]
+          },
+          {
+            "name": "Filling in optional fields",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the restaurant owner of a restaurant wants to fill in optional fields in the form"
+              },
+              {
+                "keyword": "When",
+                "text": "the restaurant owner provides restaurant description"
+              },
+              {
+                "keyword": "And",
+                "text": "menu"
+              },
+              {
+                "keyword": "And",
+                "text": "type of restaurant"
+              },
+              {
+                "keyword": "And",
+                "text": "picture of restaurant"
+              },
+              {
+                "keyword": "And",
+                "text": "mobile phone"
+              },
+              {
+                "keyword": "Then",
+                "text": "the restaurant owner has filled in optional fields in the form"
+              }
+            ]
+          },
+          {
+            "name": "Filling in menu field",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the restaurant owner wants to fill in the menu field in the form"
+              },
+              {
+                "keyword": "When",
+                "text": "the restaurant owner provides dish name"
+              },
+              {
+                "keyword": "And",
+                "text": "dish description"
+              },
+              {
+                "keyword": "And",
+                "text": "dish price"
+              },
+              {
+                "keyword": "Then",
+                "text": "the restaurant owner has filled in the menu field in the form"
+              }
+            ]
+          },
+          {
+            "name": "Adding information with mandatory fields",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the restaurant owner has filled in the mandatory fields of the form"
+              },
+              {
+                "keyword": "When",
+                "text": "the restaurant owner submits the form"
+              },
+              {
+                "keyword": "Then",
+                "text": "the information about the restaurant should be added"
+              }
+            ]
+          },
+          {
+            "name": "Adding information with mandatory and optional fields",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the restaurant owner has filled in the mandatory fields of the form"
+              }
+            ]
+          },
+          {
+            "name": "Deleting information",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the restaurant owner is logged in"
+              },
+              {
+                "keyword": "And",
+                "text": "information exists"
+              },
+              {
+                "keyword": "When",
+                "text": "the restaurant owner deletes information"
+              },
+              {
+                "keyword": "Then",
+                "text": "the information should be deleted"
+              }
+            ]
+          },
+          {
+            "name": "Editing information",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the restaurant owner is logged in"
+              },
+              {
+                "keyword": "And",
+                "text": "information exists"
+              },
+              {
+                "keyword": "When",
+                "text": "the restaurant owner edits information"
+              },
+              {
+                "keyword": "Then",
+                "text": "the information should be edited"
+              }
+            ]
+          }
+        ],
+        "description": "Feature: Manage information. manage information",
+        "rationale": "In order to manage information",
+        "dependencies": []
+      },
+      {
+        "id": "FR25",
+        "title": "Restaurant owner - Selecting preferred language on the web-portal",
+        "feature": "Restaurant owner - Selecting preferred language on the web-portal",
+        "business_value": "understand the web-portal",
+        "actor": "A restaurant owner",
+        "capability": "be able to select a preferred language for the web-portal",
+        "scenarios": [
+          {
+            "name": "Select English as preferred language",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the restaurant owner wants to select a preferred language"
+              },
+              {
+                "keyword": "When",
+                "text": "the restaurant owner selects English as a new language"
+              },
+              {
+                "keyword": "Then",
+                "text": "the web-portal will show all text in English"
+              }
+            ]
+          },
+          {
+            "name": "Select Swedish as preferred language",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the restaurant owner wants to select a preferred language"
+              },
+              {
+                "keyword": "When",
+                "text": "the restaurant owner selects Swedish as a new language"
+              },
+              {
+                "keyword": "Then",
+                "text": "the web-portal will show all text in Swedish"
+              }
+            ]
+          },
+          {
+            "name": "Select French as preferred language",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the restaurant owner wants to select a preferred language"
+              },
+              {
+                "keyword": "When",
+                "text": "the restaurant owner selects French as a new language"
+              },
+              {
+                "keyword": "Then",
+                "text": "the web-portal will show all text in French"
+              }
+            ]
+          },
+          {
+            "name": "Select Spanish as preferred language",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the restaurant owner wants to select a preferred language"
+              },
+              {
+                "keyword": "When",
+                "text": "the restaurant owner selects Spanish as a new language"
+              },
+              {
+                "keyword": "Then",
+                "text": "the web-portal will show all text in Spanish"
+              }
+            ]
+          }
+        ],
+        "description": "Feature: Restaurant owner - Selecting preferred language on the web-portal. understand the web-portal",
+        "rationale": "In order to understand the web-portal",
+        "dependencies": []
+      },
+      {
+        "id": "FR26",
+        "title": "Administrator log in",
+        "feature": "Administrator log in",
+        "business_value": "administer the system",
+        "actor": "An administrator",
+        "capability": "be logged in to the web-portal",
+        "scenarios": [
+          {
+            "name": "Successful log-in",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the administrator wants to log in"
+              },
+              {
+                "keyword": "When",
+                "text": "the administrator logs in with an administrator account"
+              },
+              {
+                "keyword": "Then",
+                "text": "the administrator should be logged in as an administrator"
+              }
+            ]
+          }
+        ],
+        "description": "Feature: Administrator log in. administer the system",
+        "rationale": "In order to administer the system",
+        "dependencies": []
+      },
+      {
+        "id": "FR27",
+        "title": "Verify restaurant owner",
+        "feature": "Verify restaurant owner",
+        "business_value": "allow a restaurant owner to use the system",
+        "actor": "An administrator",
+        "capability": "be able to verify the restaurant owner",
+        "scenarios": [
+          {
+            "name": "Verify a restaurant owner",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the administrator is logged in"
+              },
+              {
+                "keyword": "When",
+                "text": "the administrator verifies a restaurant owner"
+              },
+              {
+                "keyword": "Then",
+                "text": "the restaurant owner should be able to log in"
+              },
+              {
+                "keyword": "And",
+                "text": "the restaurant owner should be notified by a confirmation email"
+              }
+            ]
+          },
+          {
+            "name": "Reject a restaurant owner",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the administrator is logged in"
+              },
+              {
+                "keyword": "When",
+                "text": "the administrator rejects a restaurant owner"
+              },
+              {
+                "keyword": "Then",
+                "text": "the restaurant owner should not be able to log in"
+              },
+              {
+                "keyword": "And",
+                "text": "the restaurant owner should be notified by a rejection email"
+              }
+            ]
+          }
+        ],
+        "description": "Feature: Verify restaurant owner. allow a restaurant owner to use the system",
+        "rationale": "In order to allow a restaurant owner to use the system",
+        "dependencies": []
+      },
+      {
+        "id": "FR28",
+        "title": "Manage restaurant types",
+        "feature": "Manage restaurant types",
+        "business_value": "have a list of restaurant types",
+        "actor": "An administrator",
+        "capability": "be able to manage the restaurant types",
+        "scenarios": [
+          {
+            "name": "Add a new restaurant type",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the administrator is logged in"
+              },
+              {
+                "keyword": "When",
+                "text": "the administrator creates a new restaurant type"
+              },
+              {
+                "keyword": "Then",
+                "text": "the new restaurant type should be added to the list of restaurant types"
+              }
+            ]
+          },
+          {
+            "name": "Editing an existing restaurant type",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the administrator is logged in"
+              },
+              {
+                "keyword": "When",
+                "text": "the administrator edits an existing restaurant type"
+              },
+              {
+                "keyword": "Then",
+                "text": "the restaurant type should be updated in the list of restaurant types"
+              }
+            ]
+          },
+          {
+            "name": "Delete a restaurant type",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the administrator is logged in"
+              },
+              {
+                "keyword": "When",
+                "text": "the administrator deletes a restaurant type"
+              },
+              {
+                "keyword": "Then",
+                "text": "the deleted restaurant type should be removed from the list of restaurant types"
+              }
+            ]
+          }
+        ],
+        "description": "Feature: Manage restaurant types. have a list of restaurant types",
+        "rationale": "In order to have a list of restaurant types",
+        "dependencies": []
+      },
+      {
+        "id": "FR29",
+        "title": "Manage restaurant dishes",
+        "feature": "Manage restaurant dishes",
+        "business_value": "have a list of dishes",
+        "actor": "An administrator",
+        "capability": "be able to manage the dishes",
+        "scenarios": [
+          {
+            "name": "Add a new dish",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the administrator is logged in"
+              },
+              {
+                "keyword": "When",
+                "text": "the administrator creates a new dish"
+              },
+              {
+                "keyword": "Then",
+                "text": "the new dish should be added to the list of dishes"
+              }
+            ]
+          },
+          {
+            "name": "Editing an existing dish",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the administrator is logged in"
+              },
+              {
+                "keyword": "When",
+                "text": "the administrator edits an existing dish"
+              },
+              {
+                "keyword": "Then",
+                "text": "the dish should be updated in the list of dishes"
+              }
+            ]
+          },
+          {
+            "name": "Delete a dish",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the administrator is logged in"
+              },
+              {
+                "keyword": "When",
+                "text": "the administrator deletes a dish"
+              },
+              {
+                "keyword": "Then",
+                "text": "the deleted dish should be removed from the list of dishes"
+              }
+            ]
+          }
+        ],
+        "description": "Feature: Manage restaurant dishes. have a list of dishes",
+        "rationale": "In order to have a list of dishes",
+        "dependencies": []
+      },
+      {
+        "id": "FR30",
+        "title": "Manage restaurant information",
+        "feature": "Manage restaurant information",
+        "business_value": "manage restaurant information",
+        "actor": "An administrator",
+        "capability": "be logged in to the web-portal",
+        "scenarios": [
+          {
+            "name": "Add restaurant information",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the administrator is logged in"
+              },
+              {
+                "keyword": "When",
+                "text": "the administrator adds restaurant information"
+              },
+              {
+                "keyword": "Then",
+                "text": "the information should be added to the restaurant"
+              }
+            ]
+          },
+          {
+            "name": "Delete restaurant information",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the administrator is logged in"
+              }
+            ]
+          },
+          {
+            "name": "Edit restaurant information",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the administrator is logged in"
+              },
+              {
+                "keyword": "And",
+                "text": "information about a restaurant exists"
+              },
+              {
+                "keyword": "When",
+                "text": "the administrator edits the information"
+              },
+              {
+                "keyword": "Then",
+                "text": "the information about the restaurant should be edited"
+              }
+            ]
+          }
+        ],
+        "description": "Feature: Manage restaurant information. manage restaurant information",
+        "rationale": "In order to manage restaurant information",
+        "dependencies": []
+      },
+      {
+        "id": "FR31",
+        "title": "Manage users",
+        "feature": "Manage users",
+        "business_value": "keep track of the users",
+        "actor": "An administrator",
+        "capability": "be able to manage the users",
+        "scenarios": [
+          {
+            "name": "Edit an existing user’s information",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the administrator is logged in"
+              },
+              {
+                "keyword": "When",
+                "text": "the administrator edits an existing user"
+              },
+              {
+                "keyword": "Then",
+                "text": "the user information should be updated"
+              }
+            ]
+          },
+          {
+            "name": "Delete/Inactivate an existing user",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the administrator is logged in"
+              },
+              {
+                "keyword": "When",
+                "text": "the administrator deletes an existing user"
+              },
+              {
+                "keyword": "Then",
+                "text": "the user should be deleted"
+              }
+            ]
+          }
+        ],
+        "description": "Feature: Manage users. keep track of the users",
+        "rationale": "In order to keep track of the users",
+        "dependencies": []
+      },
+      {
+        "id": "FR32",
+        "title": "Manage restaurant owners",
+        "feature": "Manage restaurant owners",
+        "business_value": "keep track of the restaurant owners",
+        "actor": "An administrator",
+        "capability": "be able to manage the restaurant owners",
+        "scenarios": [
+          {
+            "name": "Add a new restaurant owner",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the administrator is logged in"
+              },
+              {
+                "keyword": "When",
+                "text": "the administrator creates a new restaurant owner"
+              },
+              {
+                "keyword": "Then",
+                "text": "the new restaurant owner should be added"
+              }
+            ]
+          },
+          {
+            "name": "Edit an existing restaurant owner",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the administrator is logged in"
+              },
+              {
+                "keyword": "When",
+                "text": "the administrator edits an existing restaurant owner"
+              },
+              {
+                "keyword": "Then",
+                "text": "the restaurant owner information should be updated"
+              }
+            ]
+          },
+          {
+            "name": "Delete an existing restaurant owner",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the administrator is logged in"
+              }
+            ]
+          }
+        ],
+        "description": "Feature: Manage restaurant owners. keep track of the restaurant owners",
+        "rationale": "In order to keep track of the restaurant owners",
+        "dependencies": []
+      },
+      {
+        "id": "FR33",
+        "title": "Administrator - Selecting preferred language on the web-portal",
+        "feature": "Administrator - Selecting preferred language on the web-portal",
+        "business_value": "understand the web-portal",
+        "actor": "An administrator",
+        "capability": "be able to select a preferred language for the web-portal",
+        "scenarios": [
+          {
+            "name": "Select English as preferred language",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the administrator wants to select a preferred language"
+              },
+              {
+                "keyword": "When",
+                "text": "the administrator selects English as a new language"
+              },
+              {
+                "keyword": "Then",
+                "text": "the web-portal will show all text in English"
+              }
+            ]
+          },
+          {
+            "name": "Select Swedish as preferred language",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the administrator wants to select a preferred language"
+              },
+              {
+                "keyword": "When",
+                "text": "the administrator selects Swedish as a new language"
+              },
+              {
+                "keyword": "Then",
+                "text": "the web-portal will show all text in Swedish"
+              }
+            ]
+          },
+          {
+            "name": "Select French as preferred language",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the administrator wants to select a preferred language"
+              },
+              {
+                "keyword": "When",
+                "text": "the administrator selects French as a new language"
+              },
+              {
+                "keyword": "Then",
+                "text": "the web-portal will show all text in French"
+              }
+            ]
+          },
+          {
+            "name": "Select Spanish as preferred language",
+            "steps": [
+              {
+                "keyword": "Given",
+                "text": "the administrator wants to select a preferred language"
+              },
+              {
+                "keyword": "When",
+                "text": "the administrator selects Spanish as a new language"
+              },
+              {
+                "keyword": "Then",
+                "text": "the web-portal will show all text in Spanish"
+              }
+            ]
+          }
+        ],
+        "description": "Feature: Administrator - Selecting preferred language on the web-portal. understand the web-portal",
+        "rationale": "In order to understand the web-portal",
+        "dependencies": []
+      }
+    ],
+    "constraints": [
+      {
+        "id": "QR10",
+        "title": "Hard drive space.",
+        "tag": "HardDriveSpace",
+        "gist": "Hard drive space.",
+        "scale": "The application’s need of hard drive space.",
+        "meter": "MB.",
+        "must": "No more than 20 MB.",
+        "plan": "No more than 15 MB.",
+        "wish": "No more than 10 MB. MB: DEFINED: Megabyte",
+        "description": "",
+        "rationale": "",
+        "dependencies": []
+      },
+      {
+        "id": "QR11",
+        "title": "The amount of Operate System memory occupied by the application.",
+        "tag": "ApplicationMemoryUsage",
+        "gist": "The amount of Operate System memory occupied by the application.",
+        "scale": "MB.",
+        "meter": "Observations done from the performance log during testing",
+        "must": "No more than 20 MB.",
+        "plan": "No more than 16 MB",
+        "wish": "No more than 10 MB Operate System: DEFINED: The mobile Operate System which the application is running on. MB: DEFINED: Megabyte. The requirements in this section specify the required reliability, availability, security and maintainability of the software system.",
+        "description": "",
+        "rationale": "",
+        "dependencies": []
+      }
+    ],
+    "performance_requirements": [
+      {
+        "id": "QR6",
+        "title": "The fastness of the search",
+        "tag": "ResponseTime",
+        "gist": "The fastness of the search",
+        "scale": "The response time of a search",
+        "meter": "Measurements obtained from 1000 searches during testing.",
+        "must": "No more than 2 seconds 100% of the time. WISH: No more than 1 second 100% of the time. 23",
+        "plan": "",
+        "wish": "No more than 1 second 100% of the time. 23",
+        "description": "",
+        "rationale": "",
+        "dependencies": []
+      },
+      {
+        "id": "QR7",
+        "title": "The availability of the system when it is used.",
+        "tag": "SystemAvailability",
+        "gist": "The availability of the system when it is used.",
+        "scale": "The average system availability (not considering network failing).",
+        "meter": "Measurements obtained from 1000 hours of usage during testing.",
+        "must": "More than 98% of the time.",
+        "plan": "More than 99% of the time.",
+        "wish": "100% of the time.",
+        "description": "",
+        "rationale": "",
+        "dependencies": []
+      },
+      {
+        "id": "QR15",
+        "title": "Security of restaurant owners accounts.",
+        "tag": "RestaurantOwnerAccountSecurity",
+        "gist": "Security of restaurant owners accounts.",
+        "scale": "A restaurant owner and IP address should not be able to log-in for a certain time period after three times of failed log-in attempts.",
+        "meter": "1000 attempts to log-in during the lock period after user account has been locked because of failed log-in attempts of three times.",
+        "must": "The locking period should be half an hour, and during that period the log-in function is disabled.",
+        "plan": "",
+        "wish": "",
+        "description": "",
+        "rationale": "",
+        "dependencies": []
+      },
+      {
+        "id": "QR16",
+        "title": "Security of admin accounts.",
+        "tag": "AdminAccountSecurity",
+        "gist": "Security of admin accounts.",
+        "scale": "An admin and IP address should not be able to log-in to the web portal for a certain time period after three times of failed log-in attempts.",
+        "meter": "1000 attempts to log-in during the lock period after user account has been locked because of failed log-in attempts of three times.",
+        "must": "The locking period should be half an hour, and during that period the log-in function is disabled.",
+        "plan": "",
+        "wish": "",
+        "description": "",
+        "rationale": "",
+        "dependencies": []
+      }
+    ]
+  },
+  "all_requirements": [
+    {
+      "id": "FR1",
+      "title": "Download mobile application",
+      "description": "A user should be able to download the mobile application through either an application store or similar service on the mobile phone. The application should be free to download.",
+      "rationale": "In order for a user to download the mobile application.",
+      "dependencies": []
+    },
+    {
+      "id": "FR2",
+      "title": "Download and notify users of new releases",
+      "description": "When a new/updated version or release of the software is released, the user should check for these manually. The download of the new release should be done through the mobile phone in the same way as downloading the mobile application.",
+      "rationale": "In order for a user to download a new/updated release.",
+      "dependencies": [
+        "FR1"
+      ]
+    },
+    {
+      "id": "FR3",
+      "title": "User registration - Mobile application",
+      "description": "Given that a user has downloaded the mobile application, then the user should be able to register through the mobile application. The user must provide user-name, password and e-mail address. The user can choose to provide a regularly used phone number.",
+      "rationale": "In order for a user to register on the mobile application.",
+      "dependencies": [
+        "FR1"
+      ]
+    },
+    {
+      "id": "FR4",
+      "title": "User log-in - Mobile application",
+      "description": "Given that a user has registered, then the user should be able to log in to the mobile application. The log-in information will be stored on the phone and in the future the user should be logged in automatically.",
+      "rationale": "In order for a user to register on the mobile application.",
+      "dependencies": [
+        "FR1",
+        "FR3"
+      ]
+    },
+    {
+      "id": "FR5",
+      "title": "Retrieve password",
+      "description": "Given that a user has registered, then the user should be able to retrieve his/her password by e- mail.",
+      "rationale": "In order for a user to retrieve his/her password.",
+      "dependencies": [
+        "FR1"
+      ]
+    },
+    {
+      "id": "FR6",
+      "title": "Mobile application - Search",
+      "description": "Given that a user is logged in to the mobile application, then the first page that is shown should be the search page. The user should be able to search for a restaurant, according to several search options. The search options are Price, Destination, Restaurant type and Specific dish. There should also be a free- text search option. A user should be able to select multiple search options in one search.",
+      "rationale": "In order for a user to search for a restaurant.",
+      "dependencies": [
+        "FR4"
+      ]
+    },
+    {
+      "id": "FR7",
+      "title": "Mobile application - Search result in a map view",
+      "description": " Search results can be viewed on a map. On the map, the relevant and closest restaurants according to the user’s position are shown.  A specific pin will represent a specific restaurant location. On each pin there should be an information link.  There should be maximally 100 results displayed. The map view should have a default zoom.  The map view should include a button that, when selected, should display different filtering options in a filtering menu.",
+      "rationale": "The way results are displayed in a map.",
+      "dependencies": [
+        "FR6"
+      ]
+    },
+    {
+      "id": "FR8",
+      "title": "Mobile application - Search result in a list view",
+      "description": " Search results can be viewed in a list. Each element in the list represents a specific restaurant. Each element should include the restaurant name, telephone number, type of food, distance according to the user’s position, average price, a short two-line description, a link to the restaurant’s web-page and an information link.  There should be maximally 100 results displayed. If the result contains more restaurants than what can be displayed on the screen at one time, the user should be able to scroll through them.  When searching by price the restaurants should be sorted according to the following order: 1. average price 2. distance 3. restaurant type 4. specific dish  When searching by a search option, other than price, the restaurants should be sorted according to the following order: 1. distance 2. average price 3. restaurant type 4. specific dish  The list view should include a header with different selectable sorting options.  The list view should include a button that, when selected, should display different filtering options in a filtering menu.",
+      "rationale": "The way results should be displayed in a list.",
+      "dependencies": [
+        "FR6"
+      ]
+    },
+    {
+      "id": "FR9",
+      "title": "Mobile application - Navigation to restaurant",
+      "description": "A user should be able to select a pin on a map or an element on a list. When a selection is made, the location of the restaurant should be sent to the mobile phone’s GPS-navigation program. The user should then be navigated to the destination. When the destination is reached, a user should be able to go back to the search page on the mobile application.",
+      "rationale": "To navigate a user to a chosen restaurant.",
+      "dependencies": [
+        "FR7",
+        "FR8"
+      ]
+    },
+    {
+      "id": "FR10",
+      "title": "Mobile application - Switch result view",
+      "description": "A user should be able to switch between a map view and a list view for all search options. 12",
+      "rationale": "In order for a user to switch between result views.",
+      "dependencies": [
+        "FR7",
+        "FR8"
+      ]
+    },
+    {
+      "id": "FR11",
+      "title": "Mobile application - Selecting the information link",
+      "description": "A user should be able to select the information link, which is included on all result items. The link will direct the user to an information page, which includes a picture of the restaurant, the restaurant name, address, phone number, e-mail address, type of food, average price, restaurant description and a menu with name, description and price of the different dishes.",
+      "rationale": "In order to show information about the restaurants.",
+      "dependencies": [
+        "FR7",
+        "FR8"
+      ]
+    },
+    {
+      "id": "FR12",
+      "title": "Mobile application - Search by price",
+      "description": "A user should be able to input a maximum and a minimum price range. The result is displayed in a list view by default.",
+      "rationale": "In order for a user to search by price.",
+      "dependencies": [
+        "FR8"
+      ]
+    },
+    {
+      "id": "FR13",
+      "title": "Mobile application - Search by destination",
+      "description": "A user should be able to input a maximum and a minimum distance, according to his/her position. By default the minimum distance is set to 0 km and the maximum to 10 km. The user should be able to input a higher or lower maximum distance and a higher minimum distance than set by default. The result is displayed in a map view by default.",
+      "rationale": "In order for a user to search by destination.",
+      "dependencies": [
+        "FR7"
+      ]
+    },
+    {
+      "id": "FR14",
+      "title": "Accepted input for price and destination search",
+      "description": "Integers should be accepted as input when a user searches by price or destination. If the system receives an invalid input the user should be informed and prompted to insert an accepted input.",
+      "rationale": "In order for a user to search with valid input.",
+      "dependencies": [
+        "FR12",
+        "FR13"
+      ]
+    },
+    {
+      "id": "FR15",
+      "title": "Mobile application - Search by restaurant type 13",
+      "description": "A user should be able to select a restaurant type in a given list as input. The result is displayed in a map view by default.",
+      "rationale": "In order for a user to search by restaurant type.",
+      "dependencies": [
+        "FR7"
+      ]
+    },
+    {
+      "id": "FR16",
+      "title": "Mobile application - Search by specific dish",
+      "description": "A user should be able to select a specific dish in a given list as input. The result is displayed in a map view by default.",
+      "rationale": "In order for a user to search by specific dish.",
+      "dependencies": [
+        "FR7"
+      ]
+    },
+    {
+      "id": "FR17",
+      "title": "Mobile application - Free-text search",
+      "description": "A user should be able to conduct a search by providing either restaurant name, restaurant description, restaurant address, restaurant type or restaurant menu in the free-text search field. The result is displayed in a map view by default.",
+      "rationale": "In order for a user to search through the free-text search.",
+      "dependencies": [
+        "FR7"
+      ]
+    },
+    {
+      "id": "FR18",
+      "title": "Mobile application - No match found",
+      "description": "If no match is found the user should be informed but kept on the search page in order to get the possibility to conduct a new search right away.",
+      "rationale": "In order for user to conduct a new search if no match is found.",
+      "dependencies": [
+        "FR5"
+      ]
+    },
+    {
+      "id": "FR19",
+      "title": "Mobile application - Sorting results",
+      "description": "When viewing the results in a list, a user should be able to sort the results according to price, distance, restaurant type, specific dish or restaurant name.  When sorting by restaurant name, specific dish or restaurant type the results should be ordered alphabetically.  When sorting by price the results should be ordered from cheapest to most expensive.  When sorting by distance the results should be ordered from closets to furthest distance according to the user’s position. 14 When the sort button for a specific search option is clicked, then the order should be reversed and ordered in a descending matter. If the sort button is clicked again the order of the results should be reversed.",
+      "rationale": "In order for a user to sort results in a list.",
+      "dependencies": [
+        "FR8"
+      ]
+    },
+    {
+      "id": "FR20",
+      "title": "Mobile application - Filtering results",
+      "description": "When viewing the results in a list or a map, a user should be able to filter the results in a filtering menu. The filtering options include:  increasing or decreasing the maximum distance  increasing or decreasing the maximum price  choosing a restaurant type  choosing a specific dish When filtering the results, only the existing results shall be affected and a new search query should not be sent.",
+      "rationale": "In order for a user to filter results in a list or a map.",
+      "dependencies": [
+        "FR7",
+        "FR8"
+      ]
+    },
+    {
+      "id": "FR21",
+      "title": "Mobile application - Profile page",
+      "description": "On the mobile application, a user should have a profile page. On the profile page a user can edit his/her information, which includes the password, e-mail address and phone number. A user should also be able to choose what language the mobile application should be set to. The different language choices are Swedish, English, Spanish and French.",
+      "rationale": "In order for a user to have a profile page on the mobile application.",
+      "dependencies": [
+        "FR1"
+      ]
+    },
+    {
+      "id": "FR22",
+      "title": "Create an account",
+      "feature": "Create an account",
+      "business_value": "create an account",
+      "actor": "A restaurant owner",
+      "capability": "register on the web-portal",
+      "scenarios": [
+        {
+          "name": "Required information for registration",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the restaurant owner wants to create an account"
+            },
+            {
+              "keyword": "And",
+              "text": "the restaurant owner does not have an account"
+            }
+          ]
+        },
+        {
+          "name": "Full information for registration",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the restaurant owner wants to create an account"
+            },
+            {
+              "keyword": "And",
+              "text": "the restaurant owner does not have an account"
+            },
+            {
+              "keyword": "When",
+              "text": "the restaurant owner registers on the web-portal by providing user name"
+            },
+            {
+              "keyword": "And",
+              "text": "password"
+            },
+            {
+              "keyword": "And",
+              "text": "address"
+            },
+            {
+              "keyword": "And",
+              "text": "e-mail address"
+            },
+            {
+              "keyword": "And",
+              "text": "phone number"
+            },
+            {
+              "keyword": "And",
+              "text": "mobile number"
+            },
+            {
+              "keyword": "Then",
+              "text": "the restaurant owner should be able to apply for verification"
+            }
+          ]
+        },
+        {
+          "name": "Confirmed registration",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the restaurant owner has applied for verification"
+            },
+            {
+              "keyword": "And",
+              "text": "has not received a confirmation e-mail after registration"
+            },
+            {
+              "keyword": "When",
+              "text": "the restaurant owner receives a confirmation e-mail"
+            },
+            {
+              "keyword": "Then",
+              "text": "the restaurant owner should be able to log in"
+            }
+          ]
+        }
+      ],
+      "description": "Feature: Create an account. create an account",
+      "rationale": "In order to create an account",
+      "dependencies": []
+    },
+    {
+      "id": "FR23",
+      "title": "Restaurant owner log-in",
+      "feature": "Restaurant owner log-in",
+      "business_value": "use the system",
+      "actor": "A restaurant owner",
+      "capability": "be logged in to the web-portal",
+      "scenarios": [
+        {
+          "name": "Successful log-in",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the restaurant owner wants to log in"
+            },
+            {
+              "keyword": "When",
+              "text": "the restaurant owner logs in with his/her account"
+            },
+            {
+              "keyword": "Then",
+              "text": "the restaurant owner should be logged in as a restaurant owner"
+            }
+          ]
+        },
+        {
+          "name": "Retrieve password",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the restaurant owner wants to log in"
+            },
+            {
+              "keyword": "And",
+              "text": "has lost the password"
+            },
+            {
+              "keyword": "When",
+              "text": "the restaurant owner enters his/her email address in the “Retrieve password” form"
+            },
+            {
+              "keyword": "And",
+              "text": "submits the form"
+            },
+            {
+              "keyword": "Then",
+              "text": "the restaurant owner should receive an email containing the password"
+            }
+          ]
+        }
+      ],
+      "description": "Feature: Restaurant owner log-in. use the system",
+      "rationale": "In order to use the system",
+      "dependencies": []
+    },
+    {
+      "id": "FR24",
+      "title": "Manage information",
+      "feature": "Manage information",
+      "business_value": "manage information",
+      "actor": "A restaurant owner",
+      "capability": "be logged in to the web-portal",
+      "scenarios": [
+        {
+          "name": "Show fields for managing information",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the restaurant owner is logged in"
+            },
+            {
+              "keyword": "When",
+              "text": "the restaurant owner wants to manage information"
+            },
+            {
+              "keyword": "Then",
+              "text": "the restaurant owner should be able to manage information in a form"
+            }
+          ]
+        },
+        {
+          "name": "Filling in mandatory fields",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the restaurant owner wants to fill in the mandatory fields of the form"
+            },
+            {
+              "keyword": "When",
+              "text": "the restaurant owner provides average price"
+            },
+            {
+              "keyword": "And",
+              "text": "address"
+            },
+            {
+              "keyword": "And",
+              "text": "e-mail address"
+            },
+            {
+              "keyword": "And",
+              "text": "phone number"
+            },
+            {
+              "keyword": "And",
+              "text": "restaurant name"
+            },
+            {
+              "keyword": "Then",
+              "text": "the restaurant owner has filled the mandatory fields of the form"
+            }
+          ]
+        },
+        {
+          "name": "Filling in optional fields",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the restaurant owner of a restaurant wants to fill in optional fields in the form"
+            },
+            {
+              "keyword": "When",
+              "text": "the restaurant owner provides restaurant description"
+            },
+            {
+              "keyword": "And",
+              "text": "menu"
+            },
+            {
+              "keyword": "And",
+              "text": "type of restaurant"
+            },
+            {
+              "keyword": "And",
+              "text": "picture of restaurant"
+            },
+            {
+              "keyword": "And",
+              "text": "mobile phone"
+            },
+            {
+              "keyword": "Then",
+              "text": "the restaurant owner has filled in optional fields in the form"
+            }
+          ]
+        },
+        {
+          "name": "Filling in menu field",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the restaurant owner wants to fill in the menu field in the form"
+            },
+            {
+              "keyword": "When",
+              "text": "the restaurant owner provides dish name"
+            },
+            {
+              "keyword": "And",
+              "text": "dish description"
+            },
+            {
+              "keyword": "And",
+              "text": "dish price"
+            },
+            {
+              "keyword": "Then",
+              "text": "the restaurant owner has filled in the menu field in the form"
+            }
+          ]
+        },
+        {
+          "name": "Adding information with mandatory fields",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the restaurant owner has filled in the mandatory fields of the form"
+            },
+            {
+              "keyword": "When",
+              "text": "the restaurant owner submits the form"
+            },
+            {
+              "keyword": "Then",
+              "text": "the information about the restaurant should be added"
+            }
+          ]
+        },
+        {
+          "name": "Adding information with mandatory and optional fields",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the restaurant owner has filled in the mandatory fields of the form"
+            }
+          ]
+        },
+        {
+          "name": "Deleting information",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the restaurant owner is logged in"
+            },
+            {
+              "keyword": "And",
+              "text": "information exists"
+            },
+            {
+              "keyword": "When",
+              "text": "the restaurant owner deletes information"
+            },
+            {
+              "keyword": "Then",
+              "text": "the information should be deleted"
+            }
+          ]
+        },
+        {
+          "name": "Editing information",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the restaurant owner is logged in"
+            },
+            {
+              "keyword": "And",
+              "text": "information exists"
+            },
+            {
+              "keyword": "When",
+              "text": "the restaurant owner edits information"
+            },
+            {
+              "keyword": "Then",
+              "text": "the information should be edited"
+            }
+          ]
+        }
+      ],
+      "description": "Feature: Manage information. manage information",
+      "rationale": "In order to manage information",
+      "dependencies": []
+    },
+    {
+      "id": "FR25",
+      "title": "Restaurant owner - Selecting preferred language on the web-portal",
+      "feature": "Restaurant owner - Selecting preferred language on the web-portal",
+      "business_value": "understand the web-portal",
+      "actor": "A restaurant owner",
+      "capability": "be able to select a preferred language for the web-portal",
+      "scenarios": [
+        {
+          "name": "Select English as preferred language",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the restaurant owner wants to select a preferred language"
+            },
+            {
+              "keyword": "When",
+              "text": "the restaurant owner selects English as a new language"
+            },
+            {
+              "keyword": "Then",
+              "text": "the web-portal will show all text in English"
+            }
+          ]
+        },
+        {
+          "name": "Select Swedish as preferred language",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the restaurant owner wants to select a preferred language"
+            },
+            {
+              "keyword": "When",
+              "text": "the restaurant owner selects Swedish as a new language"
+            },
+            {
+              "keyword": "Then",
+              "text": "the web-portal will show all text in Swedish"
+            }
+          ]
+        },
+        {
+          "name": "Select French as preferred language",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the restaurant owner wants to select a preferred language"
+            },
+            {
+              "keyword": "When",
+              "text": "the restaurant owner selects French as a new language"
+            },
+            {
+              "keyword": "Then",
+              "text": "the web-portal will show all text in French"
+            }
+          ]
+        },
+        {
+          "name": "Select Spanish as preferred language",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the restaurant owner wants to select a preferred language"
+            },
+            {
+              "keyword": "When",
+              "text": "the restaurant owner selects Spanish as a new language"
+            },
+            {
+              "keyword": "Then",
+              "text": "the web-portal will show all text in Spanish"
+            }
+          ]
+        }
+      ],
+      "description": "Feature: Restaurant owner - Selecting preferred language on the web-portal. understand the web-portal",
+      "rationale": "In order to understand the web-portal",
+      "dependencies": []
+    },
+    {
+      "id": "FR26",
+      "title": "Administrator log in",
+      "feature": "Administrator log in",
+      "business_value": "administer the system",
+      "actor": "An administrator",
+      "capability": "be logged in to the web-portal",
+      "scenarios": [
+        {
+          "name": "Successful log-in",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the administrator wants to log in"
+            },
+            {
+              "keyword": "When",
+              "text": "the administrator logs in with an administrator account"
+            },
+            {
+              "keyword": "Then",
+              "text": "the administrator should be logged in as an administrator"
+            }
+          ]
+        }
+      ],
+      "description": "Feature: Administrator log in. administer the system",
+      "rationale": "In order to administer the system",
+      "dependencies": []
+    },
+    {
+      "id": "FR27",
+      "title": "Verify restaurant owner",
+      "feature": "Verify restaurant owner",
+      "business_value": "allow a restaurant owner to use the system",
+      "actor": "An administrator",
+      "capability": "be able to verify the restaurant owner",
+      "scenarios": [
+        {
+          "name": "Verify a restaurant owner",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the administrator is logged in"
+            },
+            {
+              "keyword": "When",
+              "text": "the administrator verifies a restaurant owner"
+            },
+            {
+              "keyword": "Then",
+              "text": "the restaurant owner should be able to log in"
+            },
+            {
+              "keyword": "And",
+              "text": "the restaurant owner should be notified by a confirmation email"
+            }
+          ]
+        },
+        {
+          "name": "Reject a restaurant owner",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the administrator is logged in"
+            },
+            {
+              "keyword": "When",
+              "text": "the administrator rejects a restaurant owner"
+            },
+            {
+              "keyword": "Then",
+              "text": "the restaurant owner should not be able to log in"
+            },
+            {
+              "keyword": "And",
+              "text": "the restaurant owner should be notified by a rejection email"
+            }
+          ]
+        }
+      ],
+      "description": "Feature: Verify restaurant owner. allow a restaurant owner to use the system",
+      "rationale": "In order to allow a restaurant owner to use the system",
+      "dependencies": []
+    },
+    {
+      "id": "FR28",
+      "title": "Manage restaurant types",
+      "feature": "Manage restaurant types",
+      "business_value": "have a list of restaurant types",
+      "actor": "An administrator",
+      "capability": "be able to manage the restaurant types",
+      "scenarios": [
+        {
+          "name": "Add a new restaurant type",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the administrator is logged in"
+            },
+            {
+              "keyword": "When",
+              "text": "the administrator creates a new restaurant type"
+            },
+            {
+              "keyword": "Then",
+              "text": "the new restaurant type should be added to the list of restaurant types"
+            }
+          ]
+        },
+        {
+          "name": "Editing an existing restaurant type",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the administrator is logged in"
+            },
+            {
+              "keyword": "When",
+              "text": "the administrator edits an existing restaurant type"
+            },
+            {
+              "keyword": "Then",
+              "text": "the restaurant type should be updated in the list of restaurant types"
+            }
+          ]
+        },
+        {
+          "name": "Delete a restaurant type",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the administrator is logged in"
+            },
+            {
+              "keyword": "When",
+              "text": "the administrator deletes a restaurant type"
+            },
+            {
+              "keyword": "Then",
+              "text": "the deleted restaurant type should be removed from the list of restaurant types"
+            }
+          ]
+        }
+      ],
+      "description": "Feature: Manage restaurant types. have a list of restaurant types",
+      "rationale": "In order to have a list of restaurant types",
+      "dependencies": []
+    },
+    {
+      "id": "FR29",
+      "title": "Manage restaurant dishes",
+      "feature": "Manage restaurant dishes",
+      "business_value": "have a list of dishes",
+      "actor": "An administrator",
+      "capability": "be able to manage the dishes",
+      "scenarios": [
+        {
+          "name": "Add a new dish",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the administrator is logged in"
+            },
+            {
+              "keyword": "When",
+              "text": "the administrator creates a new dish"
+            },
+            {
+              "keyword": "Then",
+              "text": "the new dish should be added to the list of dishes"
+            }
+          ]
+        },
+        {
+          "name": "Editing an existing dish",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the administrator is logged in"
+            },
+            {
+              "keyword": "When",
+              "text": "the administrator edits an existing dish"
+            },
+            {
+              "keyword": "Then",
+              "text": "the dish should be updated in the list of dishes"
+            }
+          ]
+        },
+        {
+          "name": "Delete a dish",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the administrator is logged in"
+            },
+            {
+              "keyword": "When",
+              "text": "the administrator deletes a dish"
+            },
+            {
+              "keyword": "Then",
+              "text": "the deleted dish should be removed from the list of dishes"
+            }
+          ]
+        }
+      ],
+      "description": "Feature: Manage restaurant dishes. have a list of dishes",
+      "rationale": "In order to have a list of dishes",
+      "dependencies": []
+    },
+    {
+      "id": "FR30",
+      "title": "Manage restaurant information",
+      "feature": "Manage restaurant information",
+      "business_value": "manage restaurant information",
+      "actor": "An administrator",
+      "capability": "be logged in to the web-portal",
+      "scenarios": [
+        {
+          "name": "Add restaurant information",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the administrator is logged in"
+            },
+            {
+              "keyword": "When",
+              "text": "the administrator adds restaurant information"
+            },
+            {
+              "keyword": "Then",
+              "text": "the information should be added to the restaurant"
+            }
+          ]
+        },
+        {
+          "name": "Delete restaurant information",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the administrator is logged in"
+            }
+          ]
+        },
+        {
+          "name": "Edit restaurant information",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the administrator is logged in"
+            },
+            {
+              "keyword": "And",
+              "text": "information about a restaurant exists"
+            },
+            {
+              "keyword": "When",
+              "text": "the administrator edits the information"
+            },
+            {
+              "keyword": "Then",
+              "text": "the information about the restaurant should be edited"
+            }
+          ]
+        }
+      ],
+      "description": "Feature: Manage restaurant information. manage restaurant information",
+      "rationale": "In order to manage restaurant information",
+      "dependencies": []
+    },
+    {
+      "id": "FR31",
+      "title": "Manage users",
+      "feature": "Manage users",
+      "business_value": "keep track of the users",
+      "actor": "An administrator",
+      "capability": "be able to manage the users",
+      "scenarios": [
+        {
+          "name": "Edit an existing user’s information",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the administrator is logged in"
+            },
+            {
+              "keyword": "When",
+              "text": "the administrator edits an existing user"
+            },
+            {
+              "keyword": "Then",
+              "text": "the user information should be updated"
+            }
+          ]
+        },
+        {
+          "name": "Delete/Inactivate an existing user",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the administrator is logged in"
+            },
+            {
+              "keyword": "When",
+              "text": "the administrator deletes an existing user"
+            },
+            {
+              "keyword": "Then",
+              "text": "the user should be deleted"
+            }
+          ]
+        }
+      ],
+      "description": "Feature: Manage users. keep track of the users",
+      "rationale": "In order to keep track of the users",
+      "dependencies": []
+    },
+    {
+      "id": "FR32",
+      "title": "Manage restaurant owners",
+      "feature": "Manage restaurant owners",
+      "business_value": "keep track of the restaurant owners",
+      "actor": "An administrator",
+      "capability": "be able to manage the restaurant owners",
+      "scenarios": [
+        {
+          "name": "Add a new restaurant owner",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the administrator is logged in"
+            },
+            {
+              "keyword": "When",
+              "text": "the administrator creates a new restaurant owner"
+            },
+            {
+              "keyword": "Then",
+              "text": "the new restaurant owner should be added"
+            }
+          ]
+        },
+        {
+          "name": "Edit an existing restaurant owner",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the administrator is logged in"
+            },
+            {
+              "keyword": "When",
+              "text": "the administrator edits an existing restaurant owner"
+            },
+            {
+              "keyword": "Then",
+              "text": "the restaurant owner information should be updated"
+            }
+          ]
+        },
+        {
+          "name": "Delete an existing restaurant owner",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the administrator is logged in"
+            }
+          ]
+        }
+      ],
+      "description": "Feature: Manage restaurant owners. keep track of the restaurant owners",
+      "rationale": "In order to keep track of the restaurant owners",
+      "dependencies": []
+    },
+    {
+      "id": "FR33",
+      "title": "Administrator - Selecting preferred language on the web-portal",
+      "feature": "Administrator - Selecting preferred language on the web-portal",
+      "business_value": "understand the web-portal",
+      "actor": "An administrator",
+      "capability": "be able to select a preferred language for the web-portal",
+      "scenarios": [
+        {
+          "name": "Select English as preferred language",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the administrator wants to select a preferred language"
+            },
+            {
+              "keyword": "When",
+              "text": "the administrator selects English as a new language"
+            },
+            {
+              "keyword": "Then",
+              "text": "the web-portal will show all text in English"
+            }
+          ]
+        },
+        {
+          "name": "Select Swedish as preferred language",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the administrator wants to select a preferred language"
+            },
+            {
+              "keyword": "When",
+              "text": "the administrator selects Swedish as a new language"
+            },
+            {
+              "keyword": "Then",
+              "text": "the web-portal will show all text in Swedish"
+            }
+          ]
+        },
+        {
+          "name": "Select French as preferred language",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the administrator wants to select a preferred language"
+            },
+            {
+              "keyword": "When",
+              "text": "the administrator selects French as a new language"
+            },
+            {
+              "keyword": "Then",
+              "text": "the web-portal will show all text in French"
+            }
+          ]
+        },
+        {
+          "name": "Select Spanish as preferred language",
+          "steps": [
+            {
+              "keyword": "Given",
+              "text": "the administrator wants to select a preferred language"
+            },
+            {
+              "keyword": "When",
+              "text": "the administrator selects Spanish as a new language"
+            },
+            {
+              "keyword": "Then",
+              "text": "the web-portal will show all text in Spanish"
+            }
+          ]
+        }
+      ],
+      "description": "Feature: Administrator - Selecting preferred language on the web-portal. understand the web-portal",
+      "rationale": "In order to understand the web-portal",
+      "dependencies": []
+    },
+    {
+      "id": "QR1",
+      "title": "Prominent search feature",
+      "description": "The search feature should be prominent and easy to find for the user.",
+      "rationale": "In order to for a user to find the search feature easily.",
+      "dependencies": []
+    },
+    {
+      "id": "QR2",
+      "title": "Usage of the search feature",
+      "description": "The different search options should be evident, simple and easy to understand.",
+      "rationale": "In order to for a user to perform a search easily.",
+      "dependencies": []
+    },
+    {
+      "id": "QR3",
+      "title": "Usage of the result in the list view",
+      "description": "The results displayed in the list view should be user friendly and easy to understand. Selecting an element in the result list should only take one click.",
+      "rationale": "In order to for a user to use the list view easily.",
+      "dependencies": []
+    },
+    {
+      "id": "QR4",
+      "title": "Usage of the result in the map view",
+      "description": "The results displayed in the map view should be user friendly and easy to understand. Selecting a pin on the map should only take one click.",
+      "rationale": "In order to for a user to use the map view easily.",
+      "dependencies": []
+    },
+    {
+      "id": "QR5",
+      "title": "Usage of the information link",
+      "description": "The information link should be prominent and it should be evident that it is a usable link. Selecting the information link should only take one click.",
+      "rationale": "In order to for a user to use the information link easily.",
+      "dependencies": []
+    },
+    {
+      "id": "QR6",
+      "title": "The fastness of the search",
+      "tag": "ResponseTime",
+      "gist": "The fastness of the search",
+      "scale": "The response time of a search",
+      "meter": "Measurements obtained from 1000 searches during testing.",
+      "must": "No more than 2 seconds 100% of the time. WISH: No more than 1 second 100% of the time. 23",
+      "plan": "",
+      "wish": "No more than 1 second 100% of the time. 23",
+      "description": "",
+      "rationale": "",
+      "dependencies": []
+    },
+    {
+      "id": "QR7",
+      "title": "The availability of the system when it is used.",
+      "tag": "SystemAvailability",
+      "gist": "The availability of the system when it is used.",
+      "scale": "The average system availability (not considering network failing).",
+      "meter": "Measurements obtained from 1000 hours of usage during testing.",
+      "must": "More than 98% of the time.",
+      "plan": "More than 99% of the time.",
+      "wish": "100% of the time.",
+      "description": "",
+      "rationale": "",
+      "dependencies": []
+    },
+    {
+      "id": "QR8",
+      "title": "The fault tolerance of the system.",
+      "tag": "SystemDependability",
+      "gist": "The fault tolerance of the system.",
+      "scale": "If the system loses the connection to the Internet or to the GPS device or the system gets some strange input, the user should be informed.",
+      "meter": "Measurements obtained from 1000 hours of usage during testing.",
+      "must": "100% of the time. This section includes the design constraints on the software caused by the hardware.",
+      "plan": "",
+      "wish": "",
+      "description": "",
+      "rationale": "",
+      "dependencies": []
+    },
+    {
+      "id": "QR9",
+      "title": "The reliability of the system.",
+      "tag": "SystemReliability 24",
+      "gist": "The reliability of the system.",
+      "scale": "The reliability that the system gives the right result on a search.",
+      "meter": "Measurements obtained from 1000 searches during testing.",
+      "must": "More than 98% of the searches.",
+      "plan": "More than 99% of the searches.",
+      "wish": "100% of the searches.",
+      "description": "",
+      "rationale": "",
+      "dependencies": []
+    },
+    {
+      "id": "QR10",
+      "title": "Hard drive space.",
+      "tag": "HardDriveSpace",
+      "gist": "Hard drive space.",
+      "scale": "The application’s need of hard drive space.",
+      "meter": "MB.",
+      "must": "No more than 20 MB.",
+      "plan": "No more than 15 MB.",
+      "wish": "No more than 10 MB. MB: DEFINED: Megabyte",
+      "description": "",
+      "rationale": "",
+      "dependencies": []
+    },
+    {
+      "id": "QR11",
+      "title": "The amount of Operate System memory occupied by the application.",
+      "tag": "ApplicationMemoryUsage",
+      "gist": "The amount of Operate System memory occupied by the application.",
+      "scale": "MB.",
+      "meter": "Observations done from the performance log during testing",
+      "must": "No more than 20 MB.",
+      "plan": "No more than 16 MB",
+      "wish": "No more than 10 MB Operate System: DEFINED: The mobile Operate System which the application is running on. MB: DEFINED: Megabyte. The requirements in this section specify the required reliability, availability, security and maintainability of the software system.",
+      "description": "",
+      "rationale": "",
+      "dependencies": []
+    },
+    {
+      "id": "QR12",
+      "title": "Security of the communication between the system and server.",
+      "tag": "CommunicationSecurity",
+      "gist": "Security of the communication between the system and server.",
+      "scale": "The messages should be encrypted for log-in communications, so others cannot get user-name and password from those messages.",
+      "meter": "Attempts to get user-name and password through obtained messages on 1000 log-in session during testing.",
+      "must": "100% of the Communication Messages in the communication of a log-in session should be encrypted. Communication Messages: Defined: Every exchanged of information between client and server.",
+      "plan": "",
+      "wish": "",
+      "description": "",
+      "rationale": "",
+      "dependencies": []
+    },
+    {
+      "id": "QR13",
+      "title": "Security of accounts. 25",
+      "tag": "RestaurantOwnerLoginAccountSecurity",
+      "gist": "Security of accounts. 25",
+      "scale": "If a restaurant owner tries to log in to the web portal with a non-existing account then the restaurant owner should not be logged in. The restaurant owner should be notified about log-in failure.",
+      "meter": "1000 attempts to log-in with a non-existing user account during testing.",
+      "must": "100% of the time.",
+      "plan": "",
+      "wish": "",
+      "description": "",
+      "rationale": "",
+      "dependencies": []
+    },
+    {
+      "id": "QR14",
+      "title": "Security of accounts.",
+      "tag": "AdminLoginAccountSecurity",
+      "gist": "Security of accounts.",
+      "scale": "If an admin tries to log in to the web portal with a non-existing account then the admin should not be logged in. The admin should be notified about log-in failure.",
+      "meter": "1000 attempts to log-in with a non-existing user account during testing.",
+      "must": "100% of the time.",
+      "plan": "",
+      "wish": "",
+      "description": "",
+      "rationale": "",
+      "dependencies": []
+    },
+    {
+      "id": "QR15",
+      "title": "Security of restaurant owners accounts.",
+      "tag": "RestaurantOwnerAccountSecurity",
+      "gist": "Security of restaurant owners accounts.",
+      "scale": "A restaurant owner and IP address should not be able to log-in for a certain time period after three times of failed log-in attempts.",
+      "meter": "1000 attempts to log-in during the lock period after user account has been locked because of failed log-in attempts of three times.",
+      "must": "The locking period should be half an hour, and during that period the log-in function is disabled.",
+      "plan": "",
+      "wish": "",
+      "description": "",
+      "rationale": "",
+      "dependencies": []
+    },
+    {
+      "id": "QR16",
+      "title": "Security of admin accounts.",
+      "tag": "AdminAccountSecurity",
+      "gist": "Security of admin accounts.",
+      "scale": "An admin and IP address should not be able to log-in to the web portal for a certain time period after three times of failed log-in attempts.",
+      "meter": "1000 attempts to log-in during the lock period after user account has been locked because of failed log-in attempts of three times.",
+      "must": "The locking period should be half an hour, and during that period the log-in function is disabled.",
+      "plan": "",
+      "wish": "",
+      "description": "",
+      "rationale": "",
+      "dependencies": []
+    },
+    {
+      "id": "QR17",
+      "title": "The security of creating account for users of the system.",
+      "tag": "UserCreateAccountSecurity",
+      "gist": "The security of creating account for users of the system.",
+      "scale": "If a user wants to create an account and the desired user name is occupied, the user should be asked to choose a different user name.",
+      "meter": "Measurements obtained on 1000 hours of usage during testing.",
+      "must": "100% of the time.",
+      "plan": "",
+      "wish": "",
+      "description": "",
+      "rationale": "",
+      "dependencies": []
+    },
+    {
+      "id": "QR18",
+      "title": "The security of creating account for restaurant owners of the system.",
+      "tag": "RestaurantOwnerCreateAccountSecurity",
+      "gist": "The security of creating account for restaurant owners of the system.",
+      "scale": "If a restaurant owner wants to create an account and the desired user name is occupied, the restaurant owner should be asked to choose a different user name.",
+      "meter": "Measurements obtained on 1000 hours of usage during testing.",
+      "must": "100% of the time. 26",
+      "plan": "",
+      "wish": "",
+      "description": "",
+      "rationale": "",
+      "dependencies": []
+    },
+    {
+      "id": "QR19",
+      "title": "Application extendibility",
+      "description": "The application should be easy to extend. The code should be written in a way that it favors implementation of new functions.",
+      "rationale": "In order for future functions to be implemented easily to the application.",
+      "dependencies": []
+    },
+    {
+      "id": "QR20",
+      "title": "Application portability",
+      "description": "The application should be portable with iOS and Android.",
+      "rationale": "The adaptable platform for the application to run on.",
+      "dependencies": [
+        "FR1",
+        "FR10",
+        "FR11",
+        "FR12",
+        "FR13",
+        "FR14",
+        "FR15",
+        "FR16",
+        "FR17",
+        "FR18",
+        "FR19",
+        "FR2",
+        "FR20",
+        "FR21",
+        "FR22",
+        "FR23",
+        "FR24",
+        "FR25",
+        "FR26",
+        "FR27",
+        "FR28",
+        "FR29",
+        "FR3",
+        "FR30",
+        "FR31",
+        "FR32",
+        "FR33",
+        "FR4",
+        "FR5",
+        "FR6",
+        "FR7",
+        "FR8",
+        "FR9",
+        "QR1",
+        "QR10",
+        "QR11",
+        "QR12",
+        "QR13",
+        "QR14",
+        "QR15",
+        "QR16",
+        "QR17",
+        "QR18",
+        "QR19",
+        "QR2",
+        "QR20",
+        "QR21",
+        "QR22",
+        "QR23",
+        "QR3",
+        "QR4",
+        "QR5",
+        "QR6",
+        "QR7",
+        "QR8",
+        "QR9"
+      ]
+    },
+    {
+      "id": "QR21",
+      "title": "Application testability",
+      "description": "Test environments should be built for the application to allow testing of the applications different functions.",
+      "rationale": "In order to test the application.",
+      "dependencies": []
+    },
+    {
+      "id": "QR22",
+      "title": "Internet Connection",
+      "description": "The application should be connected to the Internet.",
+      "rationale": "In order for the application to communicate with the database.",
+      "dependencies": []
+    },
+    {
+      "id": "QR23",
+      "title": "GPS Connection",
+      "description": "The application should be connected to the GPS device.",
+      "rationale": "In order for the application to get the users location, the map and to calculate the distance.",
+      "dependencies": []
+    }
+  ],
+  "page_metadata": [
+    {
+      "page": 1,
+      "requirement_ids": [],
+      "entities": [],
+      "text_length": 271
+    },
+    {
+      "page": 2,
+      "requirement_ids": [],
+      "entities": [],
+      "text_length": 4639
+    },
+    {
+      "page": 3,
+      "requirement_ids": [],
+      "entities": [],
+      "text_length": 2461
+    },
+    {
+      "page": 4,
+      "requirement_ids": [],
+      "entities": [],
+      "text_length": 1539
+    },
+    {
+      "page": 5,
+      "requirement_ids": [],
+      "entities": [],
+      "text_length": 1236
+    },
+    {
+      "page": 6,
+      "requirement_ids": [],
+      "entities": [],
+      "text_length": 2704
+    },
+    {
+      "page": 7,
+      "requirement_ids": [],
+      "entities": [],
+      "text_length": 3085
+    },
+    {
+      "page": 8,
+      "requirement_ids": [],
+      "entities": [],
+      "text_length": 371
+    },
+    {
+      "page": 9,
+      "requirement_ids": [],
+      "entities": [],
+      "text_length": 2142
+    },
+    {
+      "page": 10,
+      "requirement_ids": [],
+      "entities": [],
+      "text_length": 986
+    },
+    {
+      "page": 11,
+      "requirement_ids": [
+        "FR"
+      ],
+      "entities": [],
+      "text_length": 2095
+    },
+    {
+      "page": 12,
+      "requirement_ids": [
+        "FR"
+      ],
+      "entities": [],
+      "text_length": 1850
+    },
+    {
+      "page": 13,
+      "requirement_ids": [
+        "FR"
+      ],
+      "entities": [],
+      "text_length": 2015
+    },
+    {
+      "page": 14,
+      "requirement_ids": [
+        "FR"
+      ],
+      "entities": [],
+      "text_length": 1906
+    },
+    {
+      "page": 15,
+      "requirement_ids": [
+        "FR"
+      ],
+      "entities": [],
+      "text_length": 1842
+    },
+    {
+      "page": 16,
+      "requirement_ids": [
+        "FR"
+      ],
+      "entities": [],
+      "text_length": 1778
+    },
+    {
+      "page": 17,
+      "requirement_ids": [
+        "FR"
+      ],
+      "entities": [],
+      "text_length": 1516
+    },
+    {
+      "page": 18,
+      "requirement_ids": [
+        "FR"
+      ],
+      "entities": [],
+      "text_length": 1667
+    },
+    {
+      "page": 19,
+      "requirement_ids": [
+        "FR"
+      ],
+      "entities": [],
+      "text_length": 1676
+    },
+    {
+      "page": 20,
+      "requirement_ids": [
+        "FR"
+      ],
+      "entities": [],
+      "text_length": 1499
+    },
+    {
+      "page": 21,
+      "requirement_ids": [
+        "FR"
+      ],
+      "entities": [],
+      "text_length": 1561
+    },
+    {
+      "page": 22,
+      "requirement_ids": [
+        "FR"
+      ],
+      "entities": [],
+      "text_length": 1544
+    },
+    {
+      "page": 23,
+      "requirement_ids": [
+        "FR",
+        "QR"
+      ],
+      "entities": [],
+      "text_length": 1700
+    },
+    {
+      "page": 24,
+      "requirement_ids": [
+        "QR"
+      ],
+      "entities": [],
+      "text_length": 1481
+    },
+    {
+      "page": 25,
+      "requirement_ids": [
+        "QR"
+      ],
+      "entities": [],
+      "text_length": 1347
+    },
+    {
+      "page": 26,
+      "requirement_ids": [
+        "QR"
+      ],
+      "entities": [],
+      "text_length": 1670
+    },
+    {
+      "page": 27,
+      "requirement_ids": [
+        "QR"
+      ],
+      "entities": [],
+      "text_length": 2360
+    },
+    {
+      "page": 28,
+      "requirement_ids": [
+        "QR"
+      ],
+      "entities": [],
+      "text_length": 707
+    },
+    {
+      "page": 29,
+      "requirement_ids": [],
+      "entities": [],
+      "text_length": 3052
+    },
+    {
+      "page": 30,
+      "requirement_ids": [],
+      "entities": [],
+      "text_length": 448
+    },
+    {
+      "page": 31,
+      "requirement_ids": [
+        "FR"
+      ],
+      "entities": [],
+      "text_length": 859
+    },
+    {
+      "page": 32,
+      "requirement_ids": [
+        "FR",
+        "QR"
+      ],
+      "entities": [],
+      "text_length": 776
+    },
+    {
+      "page": 33,
+      "requirement_ids": [
+        "QR"
+      ],
+      "entities": [],
+      "text_length": 283
+    },
+    {
+      "page": 34,
+      "requirement_ids": [
+        "FR",
+        "QR"
+      ],
+      "entities": [],
+      "text_length": 988
+    },
+    {
+      "page": 35,
+      "requirement_ids": [
+        "FR",
+        "QR"
+      ],
+      "entities": [],
+      "text_length": 694
+    },
+    {
+      "page": 36,
+      "requirement_ids": [],
+      "entities": [],
+      "text_length": 104
+    },
+    {
+      "page": 37,
+      "requirement_ids": [
+        "FR",
+        "QR"
+      ],
+      "entities": [],
+      "text_length": 277
+    },
+    {
+      "page": 38,
+      "requirement_ids": [
+        "FR"
+      ],
+      "entities": [],
+      "text_length": 1285
+    },
+    {
+      "page": 39,
+      "requirement_ids": [
+        "FR"
+      ],
+      "entities": [],
+      "text_length": 1233
+    },
+    {
+      "page": 40,
+      "requirement_ids": [
+        "FR"
+      ],
+      "entities": [],
+      "text_length": 1240
+    },
+    {
+      "page": 41,
+      "requirement_ids": [
+        "FR"
+      ],
+      "entities": [],
+      "text_length": 1234
+    },
+    {
+      "page": 42,
+      "requirement_ids": [
+        "FR"
+      ],
+      "entities": [],
+      "text_length": 1196
+    },
+    {
+      "page": 43,
+      "requirement_ids": [
+        "FR",
+        "QR"
+      ],
+      "entities": [],
+      "text_length": 1223
+    },
+    {
+      "page": 44,
+      "requirement_ids": [
+        "QR"
+      ],
+      "entities": [],
+      "text_length": 1239
+    },
+    {
+      "page": 45,
+      "requirement_ids": [
+        "QR"
+      ],
+      "entities": [],
+      "text_length": 1259
+    },
+    {
+      "page": 46,
+      "requirement_ids": [
+        "QR"
+      ],
+      "entities": [],
+      "text_length": 1232
+    },
+    {
+      "page": 47,
+      "requirement_ids": [
+        "FR",
+        "QR"
+      ],
+      "entities": [],
+      "text_length": 861
+    },
+    {
+      "page": 48,
+      "requirement_ids": [
+        "FR",
+        "QR"
+      ],
+      "entities": [],
+      "text_length": 258
+    },
+    {
+      "page": 49,
+      "requirement_ids": [
+        "FR",
+        "QR"
+      ],
+      "entities": [],
+      "text_length": 1679
+    },
+    {
+      "page": 50,
+      "requirement_ids": [
+        "FR"
+      ],
+      "entities": [],
+      "text_length": 1685
+    },
+    {
+      "page": 51,
+      "requirement_ids": [
+        "FR"
+      ],
+      "entities": [],
+      "text_length": 1579
+    },
+    {
+      "page": 52,
+      "requirement_ids": [
+        "FR",
+        "QR"
+      ],
+      "entities": [],
+      "text_length": 1543
+    },
+    {
+      "page": 53,
+      "requirement_ids": [
+        "FR",
+        "QR"
+      ],
+      "entities": [],
+      "text_length": 1603
+    },
+    {
+      "page": 54,
+      "requirement_ids": [
+        "FR",
+        "QR"
+      ],
+      "entities": [],
+      "text_length": 1539
+    },
+    {
+      "page": 55,
+      "requirement_ids": [
+        "QR"
+      ],
+      "entities": [],
+      "text_length": 333
+    },
+    {
+      "page": 56,
+      "requirement_ids": [],
+      "entities": [],
+      "text_length": 41
+    },
+    {
+      "page": 57,
+      "requirement_ids": [],
+      "entities": [],
+      "text_length": 60
+    },
+    {
+      "page": 58,
+      "requirement_ids": [],
+      "entities": [],
+      "text_length": 30
+    }
+  ],
+  "validation": {
+    "incomplete_requirements": [
+      {
+        "id": "QR6",
+        "issues": [
+          "missing description"
+        ]
+      },
+      {
+        "id": "QR7",
+        "issues": [
+          "missing description"
+        ]
+      },
+      {
+        "id": "QR8",
+        "issues": [
+          "missing description"
+        ]
+      },
+      {
+        "id": "QR9",
+        "issues": [
+          "missing description"
+        ]
+      },
+      {
+        "id": "QR10",
+        "issues": [
+          "missing description"
+        ]
+      },
+      {
+        "id": "QR11",
+        "issues": [
+          "missing description"
+        ]
+      },
+      {
+        "id": "QR12",
+        "issues": [
+          "missing description"
+        ]
+      },
+      {
+        "id": "QR13",
+        "issues": [
+          "missing description"
+        ]
+      },
+      {
+        "id": "QR14",
+        "issues": [
+          "missing description"
+        ]
+      },
+      {
+        "id": "QR15",
+        "issues": [
+          "missing description"
+        ]
+      },
+      {
+        "id": "QR16",
+        "issues": [
+          "missing description"
+        ]
+      },
+      {
+        "id": "QR17",
+        "issues": [
+          "missing description"
+        ]
+      },
+      {
+        "id": "QR18",
+        "issues": [
+          "missing description"
+        ]
+      }
+    ]
+  }
+}

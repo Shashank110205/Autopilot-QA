@@ -1,0 +1,32 @@
+================================================================================
+HYBRID TEST GENERATION SUMMARY
+================================================================================
+
+Generated: 2025-10-16 21:31:48.328677
+Total Tests: 638
+
+PHASE 1 - FAST BATCH:
+  Test Cases: 432
+  Types: positive, negative, edge, integration, performance, security
+
+PHASE 2 - COMPREHENSIVE:
+  Test Cases: 206
+  Types: usability, compatibility, api, data_integrity, reliability
+
+By Type:
+  positive: 72
+  negative: 72
+  edge: 72
+  integration: 72
+  performance: 72
+  security: 72
+  usability: 39
+  compatibility: 42
+  api: 45
+  data_integrity: 41
+  reliability: 39
+
+By Priority:
+  High: 534
+  Medium: 102
+  Low: 2

@@ -1,0 +1,537 @@
+import json
+import pandas as pd
+from typing import List, Dict, Any, Optional
+from dataclasses import dataclass, asdict
+from datetime import datetime
+from enum import Enum
+import ollama
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import time
+
+
+# ============================================
+# OPTIMIZED DATA STRUCTURES
+# ============================================
+
+class TestCaseType(Enum):
+    """Essential test case types"""
+    POSITIVE = "positive"
+    NEGATIVE = "negative"
+    EDGE = "edge"
+    INTEGRATION = "integration"
+    PERFORMANCE = "performance"
+    SECURITY = "security"
+
+
+@dataclass
+class TestCase:
+    """Streamlined test case structure"""
+    test_id: str
+    requirement_id: str
+    test_type: str
+    test_title: str
+    preconditions: str
+    test_steps: List[str]
+    expected_result: str
+    test_data: str
+    priority: str
+
+
+# ============================================
+# FAST BATCH PROMPT GENERATOR
+# ============================================
+
+class FastPromptGenerator:
+    """Optimized prompt generator for batch processing"""
+    
+    @staticmethod
+    def build_batch_prompt(requirement: Dict, domain: str, test_types: List[str]) -> str:
+        """Generate ALL test types in ONE prompt for speed"""
+        
+        test_types_str = ", ".join(test_types)
+        
+        prompt = f"""Generate {len(test_types)} test cases (one per type) for this requirement.
+
+REQUIREMENT:
+ID: {requirement['id']}
+Title: {requirement['title']}
+Description: {requirement['description'][:200]}
+
+DOMAIN: {domain}
+
+GENERATE EXACTLY {len(test_types)} TEST CASES - ONE FOR EACH TYPE:
+{test_types_str}
+
+OUTPUT FORMAT (JSON array only, no markdown):
+[
+  {{
+    "test_type": "positive",
+    "test_title": "Brief clear title",
+    "preconditions": "Setup requirements",
+    "test_steps": ["Step 1", "Step 2", "Step 3", "Step 4"],
+    "expected_result": "Expected outcome",
+    "test_data": "Test data values",
+    "priority": "High"
+  }}
+]
+
+RULES:
+- EXACTLY {len(test_types)} test cases
+- 4-6 steps per test
+- Be specific and concise
+- Output ONLY JSON array
+"""
+        return prompt
+
+
+# ============================================
+# FAST VALIDATION ENGINE
+# ============================================
+
+class FastValidator:
+    """Lightweight validation for speed"""
+    
+    @staticmethod
+    def validate(test_cases: List[Dict], requirement: Dict) -> List[Dict]:
+        """Quick validation and normalization"""
+        validated = []
+        
+        for tc in test_cases:
+            # Quick field check
+            if not tc.get('test_title') or not tc.get('test_steps'):
+                continue
+            
+            # Normalize steps
+            if isinstance(tc['test_steps'], str):
+                tc['test_steps'] = [s.strip() for s in tc['test_steps'].split('\n') if s.strip()]
+            
+            # Ensure minimum steps
+            if len(tc['test_steps']) < 3:
+                tc['test_steps'].extend([
+                    "Execute action",
+                    "Verify result"
+                ])
+            
+            # Add requirement ID
+            tc['requirement_id'] = requirement['id']
+            
+            # Normalize priority
+            if tc.get('priority') not in ['High', 'Medium', 'Low']:
+                tc['priority'] = 'High' if tc.get('test_type') in ['positive', 'negative', 'security'] else 'Medium'
+            
+            validated.append(tc)
+        
+        return validated
+
+
+# ============================================
+# OPTIMIZED GENERATION ENGINE
+# ============================================
+
+class FastTestGenerationEngine:
+    """High-performance test generation engine"""
+    
+    def __init__(self, model_name: str = "qwen2.5-coder:7b-instruct"):
+        self.model_name = model_name
+        self.prompt_gen = FastPromptGenerator()
+        self.validator = FastValidator()
+        self.test_counter = 1
+        
+        # Performance settings
+        self.max_workers = 3  # Parallel LLM calls
+        self.batch_size = 6  # Test types per LLM call
+        
+        print(f"\n{'='*80}")
+        print(f"⚡ FAST TEST GENERATION ENGINE")
+        print(f"{'='*80}")
+        print(f"Model: {model_name}")
+        print(f"Parallel workers: {self.max_workers}")
+        print(f"Batch processing: {self.batch_size} types per call")
+        print(f"{'='*80}\n")
+        
+        # Verify Ollama and keep model loaded
+        try:
+            ollama.list()
+            # Warm up model (keeps it in memory)
+            ollama.generate(model=self.model_name, prompt="test", options={'num_predict': 1})
+            print("✅ Model loaded and ready\n")
+        except Exception as e:
+            print(f"⚠️ Ollama issue: {e}\n")
+    
+    def _call_llm_fast(self, prompt: str) -> Optional[str]:
+        """Fast LLM call with minimal overhead"""
+        try:
+            response = ollama.generate(
+                model=self.model_name,
+                prompt=prompt,
+                options={
+                    'temperature': 0.2,  # Lower for speed and consistency
+                    'top_p': 0.9,
+                    'num_predict': 3000,  # Reduced token limit for speed
+                    'repeat_penalty': 1.1
+                }
+            )
+            return response['response']
+        except Exception as e:
+            print(f"  ⚠️ LLM error: {e}")
+            return None
+    
+    def _parse_fast(self, response: str) -> List[Dict]:
+        """Fast JSON parsing"""
+        if not response:
+            return []
+        
+        try:
+            # Quick cleanup
+            cleaned = response.strip()
+            if cleaned.startswith('```'):
+                start = cleaned.find('[')
+                end = cleaned.rfind(']') + 1
+            else:
+                start = cleaned.find('[')
+                end = cleaned.rfind(']') + 1
+            
+            if start == -1 or end == 0:
+                return []
+            
+            json_str = cleaned[start:end]
+            return json.loads(json_str)
+        except:
+            return []
+    
+    def _generate_fallback(self, requirement: Dict, test_type: str) -> Dict:
+        """Quick fallback test case"""
+        return {
+            "test_type": test_type,
+            "test_title": f"{test_type.capitalize()} test for {requirement['title'][:50]}",
+            "preconditions": "Application ready, user logged in",
+            "test_steps": [
+                f"Navigate to {requirement['title']}",
+                "Execute test action",
+                "Input test data",
+                "Verify result"
+            ],
+            "expected_result": requirement.get('rationale', 'Feature works as expected'),
+            "test_data": "test_input",
+            "priority": "Medium"
+        }
+    
+    def generate_for_requirement(
+        self, 
+        requirement: Dict, 
+        domain: str,
+        test_types: List[str]
+    ) -> List[TestCase]:
+        """Generate test cases for one requirement (batch mode)"""
+        
+        # Build batch prompt (all test types in one call)
+        prompt = self.prompt_gen.build_batch_prompt(requirement, domain, test_types)
+        
+        # Call LLM once for all test types
+        response = self._call_llm_fast(prompt)
+        
+        # Parse response
+        generated = self._parse_fast(response)
+        
+        # Fill missing test types with fallback
+        generated_types = set(tc.get('test_type') for tc in generated)
+        for test_type in test_types:
+            if test_type not in generated_types:
+                generated.append(self._generate_fallback(requirement, test_type))
+        
+        # Validate
+        validated = self.validator.validate(generated, requirement)
+        
+        # Convert to TestCase objects
+        test_cases = []
+        for tc in validated:
+            test_case = TestCase(
+                test_id=f"TC_{requirement['id']}_{self.test_counter:03d}",
+                requirement_id=tc['requirement_id'],
+                test_type=tc.get('test_type', 'positive'),
+                test_title=tc['test_title'],
+                preconditions=tc.get('preconditions', 'System ready'),
+                test_steps=tc['test_steps'],
+                expected_result=tc['expected_result'],
+                test_data=tc.get('test_data', ''),
+                priority=tc.get('priority', 'Medium')
+            )
+            test_cases.append(test_case)
+            self.test_counter += 1
+        
+        return test_cases
+    
+    def generate_parallel(
+        self,
+        requirements: List[Dict],
+        domain: str,
+        test_types: List[str]
+    ) -> List[TestCase]:
+        """Generate test cases in parallel for speed"""
+        
+        all_test_cases = []
+        total = len(requirements)
+        
+        print(f"🚀 Processing {total} requirements in parallel...")
+        start_time = time.time()
+        
+        with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
+            # Submit all requirements
+            futures = {
+                executor.submit(
+                    self.generate_for_requirement,
+                    req,
+                    domain,
+                    test_types
+                ): req for req in requirements
+            }
+            
+            # Process as completed
+            completed = 0
+            for future in as_completed(futures):
+                req = futures[future]
+                try:
+                    test_cases = future.result()
+                    all_test_cases.extend(test_cases)
+                    completed += 1
+                    
+                    elapsed = time.time() - start_time
+                    avg_time = elapsed / completed
+                    remaining = (total - completed) * avg_time
+                    
+                    print(f"  ✅ {completed}/{total} | {req['id']} | "
+                          f"{len(test_cases)} tests | "
+                          f"ETA: {remaining/60:.1f}m")
+                    
+                except Exception as e:
+                    print(f"  ❌ {req['id']}: {e}")
+                    completed += 1
+        
+        elapsed = time.time() - start_time
+        print(f"\n⏱️  Completed in {elapsed/60:.1f} minutes")
+        print(f"📊 Generated {len(all_test_cases)} test cases")
+        
+        return all_test_cases
+
+
+# ============================================
+# FAST ORCHESTRATOR
+# ============================================
+
+class FastTestGenerator:
+    """Main orchestrator optimized for speed"""
+    
+    def __init__(
+        self, 
+        input_file: str,
+        model_name: str = "qwen2.5-coder:7b-instruct",
+        test_types: Optional[List[str]] = None
+    ):
+        self.input_file = input_file
+        self.engine = FastTestGenerationEngine(model_name)
+        self.data = None
+        self.all_test_cases = []
+        
+        # Default to essential test types only
+        self.test_types = test_types or [
+            'positive', 'negative', 'edge', 
+            'integration', 'performance', 'security'
+        ]
+        
+        print(f"Test types: {self.test_types}\n")
+    
+    def load_data(self):
+        """Load input data"""
+        with open(self.input_file, 'r', encoding='utf-8') as f:
+            self.data = json.load(f)
+        
+        print(f"{'='*80}")
+        print(f"📄 LOADED DATA")
+        print(f"{'='*80}")
+        print(f"Requirements: {self.data['metadata']['total_requirements']}")
+        print(f"Chunks: {self.data['metadata']['total_chunks']}")
+        print(f"Domain: {self.data['domain_classification']['primary_domain']}")
+        print(f"{'='*80}\n")
+    
+    def generate_all(self, max_requirements: Optional[int] = None):
+        """Generate all test cases (optimized)"""
+        
+        domain = self.data['domain_classification']['primary_domain']
+        
+        # Flatten all requirements
+        all_requirements = []
+        for chunk in self.data['chunks']:
+            all_requirements.extend(chunk['requirements'])
+        
+        # Limit if specified
+        if max_requirements:
+            all_requirements = all_requirements[:max_requirements]
+            print(f"⚠️  Limited to {max_requirements} requirements\n")
+        
+        # Generate in parallel
+        self.all_test_cases = self.engine.generate_parallel(
+            all_requirements,
+            domain,
+            self.test_types
+        )
+    
+    def save_results(self, output_prefix: str = "fast_test_cases"):
+        """Save results quickly"""
+        
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        
+        # 1. JSON
+        json_data = {
+            "metadata": {
+                "generated": datetime.now().isoformat(),
+                "model": self.engine.model_name,
+                "total_test_cases": len(self.all_test_cases)
+            },
+            "test_cases": [asdict(tc) for tc in self.all_test_cases]
+        }
+        
+        json_file = f"{output_prefix}_{timestamp}.json"
+        with open(json_file, 'w', encoding='utf-8') as f:
+            json.dump(json_data, f, indent=2)
+        
+        print(f"\n✅ Saved JSON: {json_file}")
+        
+        # 2. Excel
+        df = pd.DataFrame([asdict(tc) for tc in self.all_test_cases])
+        df['test_steps'] = df['test_steps'].apply(
+            lambda x: '\n'.join([f"{i+1}. {s}" for i, s in enumerate(x)])
+        )
+        
+        excel_file = f"{output_prefix}_{timestamp}.xlsx"
+        with pd.ExcelWriter(excel_file, engine='openpyxl') as writer:
+            # Overview
+            overview = pd.DataFrame([{
+                'Total Tests': len(self.all_test_cases),
+                'Positive': len([t for t in self.all_test_cases if t.test_type == 'positive']),
+                'Negative': len([t for t in self.all_test_cases if t.test_type == 'negative']),
+                'Edge': len([t for t in self.all_test_cases if t.test_type == 'edge']),
+                'Integration': len([t for t in self.all_test_cases if t.test_type == 'integration']),
+                'Performance': len([t for t in self.all_test_cases if t.test_type == 'performance']),
+                'Security': len([t for t in self.all_test_cases if t.test_type == 'security'])
+            }])
+            overview.to_excel(writer, sheet_name='Overview', index=False)
+            
+            # All tests
+            df.to_excel(writer, sheet_name='All Tests', index=False)
+            
+            # By type
+            for test_type in self.test_types:
+                type_df = df[df['test_type'] == test_type]
+                if not type_df.empty:
+                    type_df.to_excel(writer, sheet_name=test_type.capitalize()[:31], index=False)
+        
+        print(f"✅ Saved Excel: {excel_file}")
+        
+        # 3. Summary
+        summary_file = f"{output_prefix}_summary_{timestamp}.txt"
+        with open(summary_file, 'w') as f:
+            f.write("="*80 + "\n")
+            f.write("FAST TEST GENERATION SUMMARY\n")
+            f.write("="*80 + "\n\n")
+            f.write(f"Generated: {datetime.now()}\n")
+            f.write(f"Total Tests: {len(self.all_test_cases)}\n\n")
+            
+            f.write("By Type:\n")
+            for test_type in self.test_types:
+                count = len([t for t in self.all_test_cases if t.test_type == test_type])
+                f.write(f"  {test_type}: {count}\n")
+            
+            f.write("\nBy Priority:\n")
+            for priority in ['High', 'Medium', 'Low']:
+                count = len([t for t in self.all_test_cases if t.priority == priority])
+                f.write(f"  {priority}: {count}\n")
+        
+        print(f"✅ Saved Summary: {summary_file}")
+        
+        return json_file, excel_file, summary_file
+    
+    def show_stats(self):
+        """Quick statistics"""
+        print(f"\n{'='*80}")
+        print(f"📊 STATISTICS")
+        print(f"{'='*80}")
+        print(f"Total Test Cases: {len(self.all_test_cases)}")
+        print(f"\nBy Type:")
+        for test_type in self.test_types:
+            count = len([t for t in self.all_test_cases if t.test_type == test_type])
+            print(f"  {test_type}: {count}")
+        print(f"{'='*80}\n")
+
+
+# ============================================
+# MAIN EXECUTION
+# ============================================
+
+def main():
+    """Fast execution"""
+    
+    # CONFIGURATION
+    INPUT_FILE = "../03_Chunking_Domain_Understanding/chunked_requirements_with_domain.json"
+    OUTPUT_PREFIX = "../04_AI_powered_TestCaseGeneration/fast_test_cases"
+    MODEL = "qwen2.5-coder:7b-instruct"
+    
+    # SPEED MODES:
+    # Mode 1: Ultra Fast (4 types, ~15 mins for 56 reqs)
+    TEST_TYPES_ULTRA_FAST = ['positive', 'negative', 'edge', 'integration']
+    
+    # Mode 2: Balanced (6 types, ~25 mins for 56 reqs)
+    TEST_TYPES_BALANCED = ['positive', 'negative', 'edge', 'integration', 'performance', 'security']
+    
+    # Mode 3: Comprehensive (8 types, ~35 mins for 56 reqs)
+    TEST_TYPES_FULL = ['positive', 'negative', 'edge', 'integration', 'performance', 'security', 'usability', 'api']
+    
+    # SELECT MODE HERE
+    SELECTED_TEST_TYPES = TEST_TYPES_FULL  # Change this!
+    
+    # Limit for testing (None = all)
+    MAX_REQUIREMENTS = None  # Set to 10 for quick test
+    
+    print("="*80)
+    print(" " * 25 + "⚡ FAST TEST GENERATION")
+    print("="*80)
+    print(f"Mode: {len(SELECTED_TEST_TYPES)} test types per requirement")
+    print(f"Estimated time: {len(SELECTED_TEST_TYPES) * 0.5 * (MAX_REQUIREMENTS or 56) / 60:.1f} minutes")
+    print("="*80 + "\n")
+    
+    # Initialize
+    generator = FastTestGenerator(
+        INPUT_FILE,
+        model_name=MODEL,
+        test_types=SELECTED_TEST_TYPES
+    )
+    
+    # Load
+    print("[1/3] Loading data...")
+    generator.load_data()
+    
+    # Generate
+    print("[2/3] Generating test cases...")
+    start = time.time()
+    generator.generate_all(max_requirements=MAX_REQUIREMENTS)
+    elapsed = time.time() - start
+    
+    # Save
+    print(f"\n[3/3] Saving results...")
+    json_f, excel_f, summary_f = generator.save_results(OUTPUT_PREFIX)
+    
+    # Stats
+    generator.show_stats()
+    
+    # Final
+    print("="*80)
+    print("✅ COMPLETE!")
+    print("="*80)
+    print(f"Time: {elapsed/60:.1f} minutes")
+    print(f"Test cases: {len(generator.all_test_cases)}")
+    print(f"Speed: {len(generator.all_test_cases)/elapsed*60:.1f} tests/hour")
+    print(f"\nFiles:\n  -  {json_f}\n  -  {excel_f}\n  -  {summary_f}")
+    print("="*80 + "\n")
+
+
+if __name__ == "__main__":
+    main()

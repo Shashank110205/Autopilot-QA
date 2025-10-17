@@ -1,0 +1,349 @@
+{
+  "test_case_feedback": [
+    {
+      "test_case_id": "TC_FR2_290",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.878406"
+    },
+    {
+      "test_case_id": "TC_FR2_289",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.879406"
+    },
+    {
+      "test_case_id": "TC_FR9_338",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.879406"
+    },
+    {
+      "test_case_id": "TC_FR9_339",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.880388"
+    },
+    {
+      "test_case_id": "TC_FR5_324",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.880388"
+    },
+    {
+      "test_case_id": "TC_FR5_325",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.880388"
+    },
+    {
+      "test_case_id": "TC_FR4_312",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.881892"
+    },
+    {
+      "test_case_id": "TC_FR4_313",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.881892"
+    },
+    {
+      "test_case_id": "TC_FR3_300",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.882896"
+    },
+    {
+      "test_case_id": "TC_FR2_291",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.882896"
+    },
+    {
+      "test_case_id": "TC_FR4_315",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.882896"
+    },
+    {
+      "test_case_id": "TC_FR3_303",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.883897"
+    },
+    {
+      "test_case_id": "TC_FR5_327",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.884900"
+    },
+    {
+      "test_case_id": "TC_FR5_328",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.884900"
+    },
+    {
+      "test_case_id": "TC_FR3_301",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.884900"
+    },
+    {
+      "test_case_id": "TC_FR15_394",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.886038"
+    },
+    {
+      "test_case_id": "TC_FR3_302",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.887040"
+    },
+    {
+      "test_case_id": "TC_FR13_369",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.887548"
+    },
+    {
+      "test_case_id": "TC_FR13_371",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.887548"
+    },
+    {
+      "test_case_id": "TC_FR13_370",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.888549"
+    },
+    {
+      "test_case_id": "TC_FR3_304",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.888549"
+    },
+    {
+      "test_case_id": "TC_FR24_276",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.889549"
+    },
+    {
+      "test_case_id": "TC_FR24_277",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.889549"
+    },
+    {
+      "test_case_id": "TC_FR15_396",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.890549"
+    },
+    {
+      "test_case_id": "TC_FR4_316",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.890549"
+    },
+    {
+      "test_case_id": "TC_FR9_336",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.892055"
+    },
+    {
+      "test_case_id": "TC_FR12_270",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.893063"
+    },
+    {
+      "test_case_id": "TC_FR4_319",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.893063"
+    },
+    {
+      "test_case_id": "TC_FR3_297",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.894061"
+    },
+    {
+      "test_case_id": "TC_FR3_298",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.894565"
+    },
+    {
+      "test_case_id": "TC_FR24_281",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.895068"
+    },
+    {
+      "test_case_id": "TC_FR4_318",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.895068"
+    },
+    {
+      "test_case_id": "TC_FR13_367",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.896072"
+    },
+    {
+      "test_case_id": "TC_FR3_296",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.897077"
+    },
+    {
+      "test_case_id": "TC_FR24_282",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.898072"
+    },
+    {
+      "test_case_id": "TC_FR9_332",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.898072"
+    },
+    {
+      "test_case_id": "TC_FR5_326",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.899072"
+    },
+    {
+      "test_case_id": "TC_FR4_320",
+      "feedback_type": "approved",
+      "feedback_data": {
+        "reason": "Test case meets quality standards"
+      },
+      "user_id": "simulator",
+      "timestamp": "2025-10-17T00:31:05.900073"
+    }
+  ],
+  "requirement_patterns": {},
+  "common_issues": [],
+  "improvement_suggestions": []
+}

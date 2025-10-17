@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Requirements Traceability Matrix Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .header { background: #2c3e50; color: white; padding: 20px; border-radius: 5px; }
+        .metric-card { background: white; padding: 20px; margin: 10px 0; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .metric-value { font-size: 36px; font-weight: bold; color: #3498db; }
+        .metric-label { font-size: 14px; color: #7f8c8d; }
+        table { width: 100%; border-collapse: collapse; background: white; margin: 20px 0; }
+        th { background: #3498db; color: white; padding: 12px; text-align: left; }
+        td { padding: 10px; border-bottom: 1px solid #ddd; }
+        tr:hover { background: #f8f9fa; }
+        .status-good { color: #27ae60; font-weight: bold; }
+        .status-warning { color: #f39c12; font-weight: bold; }
+        .status-bad { color: #e74c3c; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 Requirements Traceability Matrix (RTM) Dashboard</h1>
+        <p>Generated: 2025-10-17 00:19:52</p>
+    </div>
+    
+    <h2>Coverage Metrics</h2>
+    <div style="display: flex; gap: 20px;">
+
+        <div class="metric-card" style="flex: 1;">
+            <div class="metric-label">Functional Coverage</div>
+            <div class="metric-value status-good">96.4%</div>
+            <div class="metric-label">Target: 95%</div>
+        </div>
+
+        <div class="metric-card" style="flex: 1;">
+            <div class="metric-label">Edge Case Coverage</div>
+            <div class="metric-value status-bad">87.5%</div>
+            <div class="metric-label">Target: 80%</div>
+        </div>
+
+        <div class="metric-card" style="flex: 1;">
+            <div class="metric-label">Integration Coverage</div>
+            <div class="metric-value status-bad">71.4%</div>
+            <div class="metric-label">Target: 85%</div>
+        </div>
+
+    </div>
+    
+    <h2>Requirements Coverage Summary (Top 20)</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Type</th>
+            <th>Priority</th>
+            <th>Total Tests</th>
+            <th>Status</th>
+        </tr>
+
+        <tr>
+            <td>FR1</td>
+            <td>Download mobile application...</td>
+            <td>functional</td>
+            <td>3</td>
+            <td>6</td>
+            <td>✅ Excellent Coverage</td>
+        </tr>
+
+        <tr>
+            <td>FR10</td>
+            <td>Mobile application - Switch result view...</td>
+            <td>functional</td>
+            <td>3</td>
+            <td>18</td>
+            <td>✅ Excellent Coverage</td>
+        </tr>
+
+        <tr>
+            <td>FR11</td>
+            <td>Mobile application - Selecting the information link...</td>
+            <td>functional</td>
+            <td>3</td>
+            <td>11</td>
+            <td>✅ Excellent Coverage</td>
+        </tr>
+
+        <tr>
+            <td>FR12</td>
+            <td>Mobile application - Search by price...</td>
+            <td>functional</td>
+            <td>3</td>
+            <td>13</td>
+            <td>✅ Excellent Coverage</td>
+        </tr>
+
+        <tr>
+            <td>FR13</td>
+            <td>Mobile application - Search by destination...</td>
+            <td>functional</td>
+            <td>3</td>
+            <td>20</td>
+            <td>✅ Excellent Coverage</td>
+        </tr>
+
+        <tr>
+            <td>FR14</td>
+            <td>Accepted input for price and destination search...</td>
+            <td>functional</td>
+            <td>3</td>
+            <td>17</td>
+            <td>✅ Excellent Coverage</td>
+        </tr>
+
+        <tr>
+            <td>FR15</td>
+            <td>Mobile application - Search by restaurant type 13...</td>
+            <td>functional</td>
+            <td>3</td>
+            <td>15</td>
+            <td>✅ Excellent Coverage</td>
+        </tr>
+
+        <tr>
+            <td>FR16</td>
+            <td>Mobile application - Search by specific dish...</td>
+            <td>functional</td>
+            <td>3</td>
+            <td>6</td>
+            <td>✅ Excellent Coverage</td>
+        </tr>
+
+        <tr>
+            <td>FR17</td>
+            <td>Mobile application - Free-text search...</td>
+            <td>functional</td>
+            <td>3</td>
+            <td>5</td>
+            <td>✅ Good Coverage</td>
+        </tr>
+
+        <tr>
+            <td>FR18</td>
+            <td>Mobile application - No match found...</td>
+            <td>functional</td>
+            <td>3</td>
+            <td>5</td>
+            <td>✅ Good Coverage</td>
+        </tr>
+
+        <tr>
+            <td>FR19</td>
+            <td>Mobile application - Sorting results...</td>
+            <td>functional</td>
+            <td>3</td>
+            <td>3</td>
+            <td>✅ Good Coverage</td>
+        </tr>
+
+        <tr>
+            <td>FR2</td>
+            <td>Download and notify users of new releases...</td>
+            <td>functional</td>
+            <td>3</td>
+            <td>15</td>
+            <td>✅ Excellent Coverage</td>
+        </tr>
+
+        <tr>
+            <td>FR20</td>
+            <td>Mobile application - Filtering results...</td>
+            <td>functional</td>
+            <td>3</td>
+            <td>6</td>
+            <td>✅ Excellent Coverage</td>
+        </tr>
+
+        <tr>
+            <td>FR21</td>
+            <td>Mobile application - Profile page...</td>
+            <td>functional</td>
+            <td>3</td>
+            <td>5</td>
+            <td>✅ Good Coverage</td>
+        </tr>
+
+        <tr>
+            <td>FR22</td>
+            <td>Create an account...</td>
+            <td>functional</td>
+            <td>3</td>
+            <td>6</td>
+            <td>✅ Excellent Coverage</td>
+        </tr>
+
+        <tr>
+            <td>FR23</td>
+            <td>Restaurant owner log-in...</td>
+            <td>functional</td>
+            <td>3</td>
+            <td>6</td>
+            <td>✅ Excellent Coverage</td>
+        </tr>
+
+        <tr>
+            <td>FR24</td>
+            <td>Manage information...</td>
+            <td>functional</td>
+            <td>3</td>
+            <td>15</td>
+            <td>✅ Excellent Coverage</td>
+        </tr>
+
+        <tr>
+            <td>FR25</td>
+            <td>Restaurant owner - Selecting preferred language on the web-p...</td>
+            <td>functional</td>
+            <td>3</td>
+            <td>5</td>
+            <td>✅ Good Coverage</td>
+        </tr>
+
+        <tr>
+            <td>FR26</td>
+            <td>Administrator log in...</td>
+            <td>functional</td>
+            <td>3</td>
+            <td>5</td>
+            <td>✅ Good Coverage</td>
+        </tr>
+
+        <tr>
+            <td>FR27</td>
+            <td>Verify restaurant owner...</td>
+            <td>functional</td>
+            <td>3</td>
+            <td>5</td>
+            <td>✅ Good Coverage</td>
+        </tr>
+
+    </table>
+</body>
+</html>
