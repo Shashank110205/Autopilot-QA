@@ -86,10 +86,15 @@ CONFIG = {
         "Government", 
         "Gaming", 
         "Social Media",
-        "Restaurant/Food Service",  # Added for your SRS
-        "Location-based Services"   # Added for your SRS
+        "Restaurant/Food Service",
+        "Location-based Services",
+        "Task Management / Productivity Tools"
     ]
 }
+
+# ADD THIS: Input paths for CRU units
+CRU_INPUT_PATH = "../02_Requirement_Understanding/output/cru_units.json"
+REQUIREMENTS_INPUT_PATH = "../02_Requirement_Understanding/output/requirements_extracted_grouped.json"  # Still needed for domain classification
 
 class SemanticChunker:
     """
@@ -120,16 +125,16 @@ class SemanticChunker:
     
     def create_semantic_chunks(
         self, 
-        requirements: List[Dict],
+        requirements: List[Dict],  # Now accepts CRUs
         min_size: int = CONFIG["min_chunk_size"],
         max_size: int = CONFIG["max_chunk_size"],
         similarity_threshold: float = CONFIG["similarity_threshold"]
     ) -> List[Dict]:
         """
-        Create semantically coherent chunks from requirements
+        Create semantically coherent chunks from CRUs or requirements
         
         Args:
-            requirements: List of requirement dictionaries
+            requirements: List of CRU dictionaries or requirement dictionaries
             min_size: Minimum chunk size in tokens
             max_size: Maximum chunk size in tokens
             similarity_threshold: Similarity threshold for combining chunks
@@ -144,13 +149,17 @@ class SemanticChunker:
             "requirements": [],
             "text": "",
             "token_count": 0,
-            "requirement_ids": []
+            "requirement_ids": [],  # For backward compatibility
+            "cru_ids": []  # NEW: Track CRU IDs specifically
         }
         
         for req in requirements:
-            # Combine requirement fields into text
+            # Combine requirement/CRU fields into text
             req_text = self._requirement_to_text(req)
             req_tokens = self.count_tokens(req_text)
+            
+            # Determine ID to track
+            req_id = req.get("cru_id") or req.get("id", "")
             
             # Check if adding this requirement exceeds max size
             if current_chunk["token_count"] + req_tokens > max_size and current_chunk["requirements"]:
@@ -162,18 +171,25 @@ class SemanticChunker:
                 # Start new chunk with overlap (include previous requirement)
                 prev_req = current_chunk["requirements"][-1]
                 prev_text = self._requirement_to_text(prev_req)
+                prev_id = prev_req.get("cru_id") or prev_req.get("id", "")
+                
                 current_chunk = {
                     "requirements": [prev_req],
                     "text": prev_text,
                     "token_count": self.count_tokens(prev_text),
-                    "requirement_ids": [prev_req.get("id", "")]
+                    "requirement_ids": [prev_id],
+                    "cru_ids": [prev_id] if "cru_id" in prev_req else []
                 }
             
-            # Add requirement to current chunk
+            # Add requirement/CRU to current chunk
             current_chunk["requirements"].append(req)
             current_chunk["text"] += "\n" + req_text
             current_chunk["token_count"] += req_tokens
-            current_chunk["requirement_ids"].append(req.get("id", ""))
+            current_chunk["requirement_ids"].append(req_id)
+            
+            # Track CRU IDs separately if this is a CRU
+            if "cru_id" in req:
+                current_chunk["cru_ids"].append(req_id)
         
         # Add final chunk
         if current_chunk["requirements"]:
@@ -185,6 +201,14 @@ class SemanticChunker:
         for idx, chunk in enumerate(chunks):
             chunk["chunk_id"] = f"CHUNK_{idx+1:03d}"
             chunk["semantic_score"] = self._calculate_semantic_coherence(chunk["text"])
+            
+            # Add parent requirement tracking for CRUs
+            if chunk["cru_ids"]:
+                chunk["parent_requirements"] = list(set([
+                    req.get("parent_requirement") 
+                    for req in chunk["requirements"] 
+                    if "parent_requirement" in req
+                ]))
         
         print(f"✅ Created {len(chunks)} semantic chunks")
         self._print_chunk_statistics(chunks)
@@ -192,41 +216,62 @@ class SemanticChunker:
         return chunks
     
     def _requirement_to_text(self, req: Dict) -> str:
-        """Convert requirement dict to text representation"""
+        """Convert requirement dict OR CRU to text representation"""
         parts = []
         
-        if "id" in req:
-            parts.append(f"ID: {req['id']}")
-        if "title" in req:
-            parts.append(f"Title: {req['title']}")
-        if "description" in req:
-            parts.append(f"Description: {req['description']}")
-        if "rationale" in req:
-            parts.append(f"Rationale: {req['rationale']}")
-        if "dependencies" in req and req["dependencies"]:
-            parts.append(f"Dependencies: {', '.join(req['dependencies'])}")
-        
-        # Handle use cases (Gherkin format)
-        if "feature" in req:
-            parts.append(f"Feature: {req['feature']}")
-            if "business_value" in req:
-                parts.append(f"Business Value: {req['business_value']}")
-            if "actor" in req:
+        # Check if this is a CRU or a requirement
+        if "cru_id" in req:
+            # This is a CRU
+            if "cru_id" in req:
+                parts.append(f"CRU: {req['cru_id']}")
+            if "parent_requirement" in req:
+                parts.append(f"Parent: {req['parent_requirement']}")
+            if "actor" in req and req["actor"]:
                 parts.append(f"Actor: {req['actor']}")
-            if "scenarios" in req:
-                for scenario in req["scenarios"]:
-                    parts.append(f"Scenario: {scenario.get('name', '')}")
-                    if "steps" in scenario:
-                        for step in scenario["steps"]:
-                            parts.append(f"{step.get('keyword', '')}: {step.get('text', '')}")
-        
-        # Handle quality requirements
-        if "tag" in req:
-            parts.append(f"Tag: {req['tag']}")
-        if "gist" in req:
-            parts.append(f"Gist: {req['gist']}")
-        if "must" in req:
-            parts.append(f"MUST: {req['must']}")
+            if "action" in req and req["action"]:
+                parts.append(f"Action: {req['action']}")
+            if "constraint" in req and req["constraint"]:
+                parts.append(f"Constraint: {req['constraint']}")
+            if "system_response" in req and req["system_response"]:
+                parts.append(f"System Response: {req['system_response']}")
+            if "preconditions" in req and req["preconditions"]:
+                parts.append(f"Preconditions: {', '.join(req['preconditions'])}")
+            if "rationale" in req and req["rationale"]:
+                parts.append(f"Rationale: {req['rationale']}")
+        else:
+            # This is a standard requirement (fallback for backward compatibility)
+            if "id" in req:
+                parts.append(f"ID: {req['id']}")
+            if "title" in req:
+                parts.append(f"Title: {req['title']}")
+            if "description" in req:
+                parts.append(f"Description: {req['description']}")
+            if "rationale" in req:
+                parts.append(f"Rationale: {req['rationale']}")
+            if "dependencies" in req and req["dependencies"]:
+                parts.append(f"Dependencies: {', '.join(req['dependencies'])}")
+            
+            # Handle use cases (Gherkin format)
+            if "feature" in req:
+                parts.append(f"Feature: {req['feature']}")
+                if "business_value" in req:
+                    parts.append(f"Business Value: {req['business_value']}")
+                if "actor" in req:
+                    parts.append(f"Actor: {req['actor']}")
+                if "scenarios" in req:
+                    for scenario in req["scenarios"]:
+                        parts.append(f"Scenario: {scenario.get('name', '')}")
+                        if "steps" in scenario:
+                            for step in scenario["steps"]:
+                                parts.append(f"{step.get('keyword', '')}: {step.get('text', '')}")
+            
+            # Handle quality requirements
+            if "tag" in req:
+                parts.append(f"Tag: {req['tag']}")
+            if "gist" in req:
+                parts.append(f"Gist: {req['gist']}")
+            if "must" in req:
+                parts.append(f"MUST: {req['must']}")
         
         return " ".join(parts)
     
@@ -296,6 +341,25 @@ class DomainClassifier:
         self.domains = CONFIG["domains"]
         print("✅ Domain classifier loaded successfully")
     
+    def _detect_domain_hints(self, requirements: List[Dict]) -> str:
+        combined_text = " ".join([
+            self._requirement_to_text_simple(req) 
+            for req in requirements[:20]
+        ]).lower()
+        
+        # Pattern matching for better domain detection
+        if "todo" in combined_text and "task" in combined_text:
+            return "Task Management / Productivity Tools"
+        elif "payment" in combined_text or "checkout" in combined_text:
+            return "E-commerce"
+        elif "patient" in combined_text or "medical" in combined_text:
+            return "Healthcare"
+        elif "transaction" in combined_text or "account" in combined_text:
+            return "Finance"
+        
+        return None
+    
+
     def classify_domain(
         self, 
         requirements: List[Dict], 
@@ -313,6 +377,11 @@ class DomainClassifier:
         """
         print(f"\n🔍 Classifying project domain...")
         
+        # ADD THIS: Check for domain hints first
+        hint = self._detect_domain_hints(requirements)
+        if hint:
+            print(f"💡 Domain hint detected: {hint}")
+
         # Combine first 10 requirements for classification
         sample_reqs = requirements[:10]
         combined_text = " ".join([
@@ -328,9 +397,18 @@ class DomainClassifier:
         result = self.classifier(
             combined_text, 
             self.domains,
-            multi_label=multi_label
+            multi_label=multi_label,
+            hypothesis_template="This project is related to {}."  # ADD THIS for better classification
         )
         
+        if hint and hint in result["labels"]:
+            hint_idx = result["labels"].index(hint)
+            result["scores"][hint_idx] = min(result["scores"][hint_idx] * 1.5, 0.95)
+            # Re-sort by score
+            sorted_pairs = sorted(zip(result["labels"], result["scores"]), 
+                                key=lambda x: x[1], reverse=True)
+            result["labels"], result["scores"] = zip(*sorted_pairs)
+
         # Parse results
         domain_result = {
             "primary_domain": result["labels"][0],
@@ -391,6 +469,26 @@ class DomainClassifier:
                 "test_focus": ["GPS accuracy", "Real-time updates", "Map integration", "Search radius", "Geolocation"],
                 "compliance": ["Privacy regulations", "Location data handling"],
                 "critical_flows": ["Location search", "Navigation", "Distance calculation"]
+            },
+            "Task Management / Productivity Tools": {
+                "test_focus": [
+                    "User authentication and authorization",
+                    "Todo CRUD operations", 
+                    "Data isolation between users",
+                    "State management (completion status)",
+                    "Input validation and error handling"
+                ],
+                "compliance": [
+                    "GDPR (user data privacy)",
+                    "OWASP API Security",
+                    "Password storage best practices"
+                ],
+                "critical_flows": [
+                    "User authentication flow (registration → login → JWT)",
+                    "Todo management flow (create → update → complete → delete)",
+                    "Data isolation enforcement",
+                    "Error handling and validation"
+                ]
             }
         }
         
@@ -402,51 +500,61 @@ class DomainClassifier:
 
 
 def process_requirements_with_chunking_and_domain(
-    requirements_json_path: str,
-    output_path: str = "chunked_requirements_with_domain.json"
+    cru_json_path: str = CRU_INPUT_PATH,
+    requirements_json_path: str = REQUIREMENTS_INPUT_PATH,
+    output_path: str = "output/chunked_requirements_with_domain.json"
 ) -> Dict:
     """
-    Main processing function: Load requirements, chunk them, classify domain
+    Main processing function: Load CRUs, chunk them, classify domain
     
     Args:
-        requirements_json_path: Path to extracted requirements JSON
+        cru_json_path: Path to CRU units JSON
+        requirements_json_path: Path to requirements JSON (for domain classification)
         output_path: Path to save processed output
         
     Returns:
         Dictionary containing chunks and domain classification
     """
     print("="*70)
-    print("🚀 SEMANTIC CHUNKING + DOMAIN CLASSIFICATION PIPELINE")
+    print("🚀 SEMANTIC CHUNKING + DOMAIN CLASSIFICATION PIPELINE (CRU-based)")
     print("="*70)
     
-    # Load requirements
-    print(f"\n📂 Loading requirements from: {requirements_json_path}")
+    # Load CRU units for chunking
+    print(f"\n📂 Loading CRU units from: {cru_json_path}")
+    with open(cru_json_path, 'r', encoding='utf-8') as f:
+        cru_data = json.load(f)
+    
+    cru_units = cru_data.get("crus", [])
+    print(f"✅ Loaded {len(cru_units)} CRU units")
+    
+    # Load original requirements for domain classification
+    print(f"\n📂 Loading requirements for domain classification from: {requirements_json_path}")
     with open(requirements_json_path, 'r', encoding='utf-8') as f:
-        data = json.load(f)
+        req_data = json.load(f)
     
-    # Combine all requirements types
+    # Combine all requirements types for domain classification
     all_requirements = []
-    if "functional_requirements" in data:
-        all_requirements.extend(data["functional_requirements"])
-    if "quality_requirements" in data:
-        all_requirements.extend(data["quality_requirements"])
-    if "use_cases" in data:
-        all_requirements.extend(data["use_cases"])
-    if "constraints" in data:
-        all_requirements.extend(data["constraints"])
-    if "performance_requirements" in data:
-        all_requirements.extend(data["performance_requirements"])
+    if "functional_requirements" in req_data:
+        all_requirements.extend(req_data["functional_requirements"])
+    if "quality_requirements" in req_data:
+        all_requirements.extend(req_data["quality_requirements"])
+    if "use_cases" in req_data:
+        all_requirements.extend(req_data["use_cases"])
+    if "constraints" in req_data:
+        all_requirements.extend(req_data["constraints"])
+    if "performance_requirements" in req_data:
+        all_requirements.extend(req_data["performance_requirements"])
     
-    print(f"✅ Loaded {len(all_requirements)} total requirements")
+    print(f"✅ Loaded {len(all_requirements)} requirements for domain classification")
     
     # Initialize chunker and classifier
     chunker = SemanticChunker()
     classifier = DomainClassifier()
     
-    # Create semantic chunks
-    chunks = chunker.create_semantic_chunks(all_requirements)
+    # Create semantic chunks from CRUs (this is the key change!)
+    chunks = chunker.create_semantic_chunks(cru_units)
     
-    # Classify domain
+    # Classify domain using original requirements
     domain_info = classifier.classify_domain(all_requirements)
     
     # Get domain-specific context
@@ -455,12 +563,14 @@ def process_requirements_with_chunking_and_domain(
     # Prepare output
     output = {
         "metadata": {
+            "total_crus": len(cru_units),
             "total_requirements": len(all_requirements),
             "total_chunks": len(chunks),
             "avg_chunk_size": np.mean([c["token_count"] for c in chunks]),
             "chunking_model": CONFIG["embedding_model"],
             "classification_model": CONFIG["classification_model"],
-            "cache_location": str(cache_location)
+            "cache_location": str(cache_location),
+            "chunking_source": "CRU units"  # NEW: Indicate we're chunking CRUs
         },
         "domain_classification": domain_info,
         "domain_context": domain_context,
@@ -482,19 +592,33 @@ def process_requirements_with_chunking_and_domain(
 # ======================== MAIN EXECUTION ========================
 if __name__ == "__main__":
     try:
-        # Process your requirements
+        # Process CRU units (not raw requirements!)
         result = process_requirements_with_chunking_and_domain(
+            cru_json_path="../02_Requirement_Understanding/output/cru_units.json",
             requirements_json_path="../02_Requirement_Understanding/output/requirements_extracted_grouped.json",
-            output_path="../03_Chunking_Domain_Understanding/chunked_requirements_with_domain.json"
+            output_path="../03_Chunking_Domain_Understanding/output/chunked_crus_with_domain.json"
         )
         
         # Display summary
         print(f"\n📊 SUMMARY:")
+        print(f"  - Total CRU Units: {result['metadata']['total_crus']}")
         print(f"  - Total Chunks: {result['metadata']['total_chunks']}")
         print(f"  - Primary Domain: {result['domain_classification']['primary_domain']}")
         print(f"  - Domain Confidence: {result['domain_classification']['confidence']:.2%}")
         print(f"  - Test Focus Areas: {', '.join(result['domain_context']['test_focus'][:3])}")
         print(f"  - Cache Location: {result['metadata']['cache_location']}")
+        print(f"  - Chunking Source: {result['metadata']['chunking_source']}")
+        
+        # Show sample chunk with CRU IDs
+        if result['chunks']:
+            sample_chunk = result['chunks'][0]
+            print(f"\n🔹 Sample Chunk:")
+            print(f"  - Chunk ID: {sample_chunk['chunk_id']}")
+            print(f"  - CRU IDs: {', '.join(sample_chunk.get('cru_ids', [])[:5])}")
+            if 'parent_requirements' in sample_chunk:
+                print(f"  - Parent Requirements: {', '.join(sample_chunk['parent_requirements'][:5])}")
+            print(f"  - Token Count: {sample_chunk['token_count']}")
+            print(f"  - Semantic Score: {sample_chunk['semantic_score']:.3f}")
         
     except Exception as e:
         print(f"\n❌ ERROR: {e}")

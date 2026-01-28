@@ -1,0 +1,6044 @@
+{
+  "metadata": {
+    "total_signals": 243,
+    "total_requirements": 10,
+    "signal_type_counts": {
+      "other": 193,
+      "action": 20,
+      "outcome": 7,
+      "constraint": 17,
+      "actor": 6
+    },
+    "extraction_version": "1.0"
+  },
+  "signals": [
+    {
+      "signal_id": "SIG_FR1_01",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "The system",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "DET",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "det",
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_02",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "new users",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADJ",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_03",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "shall allow",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "AUX",
+          "VERB"
+        ],
+        "dependency_roles": [
+          "aux",
+          "ROOT"
+        ],
+        "contains_modal": true
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_04",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "establishes account",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "VERB",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "ROOT",
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_05",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "a username",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "DET",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "det",
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_06",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "password",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "conj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_07",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "a role",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "DET",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "det",
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_08",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "User",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "appos"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_09",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "Admin",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "conj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_10",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "Super Admin",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN",
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "conj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_11",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "a persistent user account",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "DET",
+          "ADJ",
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "det",
+          "amod",
+          "compound",
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_12",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "the MySQL database",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "DET",
+          "PROPN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "det",
+          "compound",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_13",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "Validates",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_14",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "Handles",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_15",
+      "parent_requirement_id": "FR1",
+      "signal_type": "action",
+      "text_span": "username uniqueness via",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "VERB",
+          "NOUN",
+          "ADP"
+        ],
+        "dependency_roles": [
+          "ROOT",
+          "dobj",
+          "prep"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_16",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "duplicates by",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "VERB",
+          "ADP"
+        ],
+        "dependency_roles": [
+          "ROOT",
+          "prep"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_17",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "uniqueness",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_18",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "MySQL query",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_19",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "Hashes password",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_20",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "Passport.js",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_21",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "Inserts user record",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "compound",
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_22",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "Users data store",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN",
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "compound",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_23",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "error message",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_24",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "Redirects",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_25",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "page",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_26",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "success",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_27",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "Account",
+      "source_field": "outputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_28",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "Username",
+      "source_field": "outputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_29",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "already exists",
+      "source_field": "outputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADV",
+          "VERB"
+        ],
+        "dependency_roles": [
+          "advmod",
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_30",
+      "parent_requirement_id": "FR1",
+      "signal_type": "outcome",
+      "text_span": "Account created successfully.",
+      "source_field": "outputs",
+      "linguistic_features": {
+        "pos_tags": [],
+        "dependency_roles": [],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_31",
+      "parent_requirement_id": "FR1",
+      "signal_type": "outcome",
+      "text_span": "for duplicates: \"Username already exists",
+      "source_field": "outputs",
+      "linguistic_features": {
+        "pos_tags": [],
+        "dependency_roles": [],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_32",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "Success message",
+      "source_field": "outputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_33",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "duplicates",
+      "source_field": "outputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_34",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "New session- ready user profile",
+      "source_field": "outputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN",
+          "ADJ",
+          "ADJ",
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "case",
+          "amod",
+          "compound",
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_35",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "Username",
+      "source_field": "inputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_36",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "unique string",
+      "source_field": "inputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADJ",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "appos"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_37",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "Password",
+      "source_field": "inputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_38",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "(hashed string",
+      "source_field": "inputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "PUNCT",
+          "VERB",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "punct",
+          "amod",
+          "appos"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_39",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "Role selection",
+      "source_field": "inputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_40",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "dropdown",
+      "source_field": "inputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "appos"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_41",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "User",
+      "source_field": "inputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "appos"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_42",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "Admin",
+      "source_field": "inputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "conj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR1_43",
+      "parent_requirement_id": "FR1",
+      "signal_type": "other",
+      "text_span": "Super Admin",
+      "source_field": "inputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN",
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "appos"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_01",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "The system",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "DET",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "det",
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_02",
+      "parent_requirement_id": "FR2",
+      "signal_type": "action",
+      "text_span": "shall authenticate users upon",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "AUX",
+          "VERB",
+          "NOUN",
+          "SCONJ"
+        ],
+        "dependency_roles": [
+          "aux",
+          "ROOT",
+          "dobj",
+          "prep"
+        ],
+        "contains_modal": true
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_03",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "users",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_04",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "login",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_05",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "a role-specific dashboard",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "DET",
+          "NOUN",
+          "PUNCT",
+          "ADJ",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "det",
+          "npadvmod",
+          "punct",
+          "amod",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_06",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "Invalid credentials",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADJ",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_07",
+      "parent_requirement_id": "FR2",
+      "signal_type": "action",
+      "text_span": "Validates hash via",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "VERB",
+          "NOUN",
+          "ADP"
+        ],
+        "dependency_roles": [
+          "ROOT",
+          "dobj",
+          "prep"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_08",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "trigger display",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "VERB",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "ROOT",
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_09",
+      "parent_requirement_id": "FR2",
+      "signal_type": "outcome",
+      "text_span": "and retry option",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [],
+        "dependency_roles": [],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_10",
+      "parent_requirement_id": "FR2",
+      "signal_type": "outcome",
+      "text_span": "Role-specific dashboard HTML page",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [],
+        "dependency_roles": [],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_11",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "Queries MySQL Users store",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN",
+          "PROPN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "compound",
+          "compound",
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_12",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "matching credentials",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "VERB",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_13",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "password hash",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_14",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "Passport.js",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_15",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "Establishes session",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_16",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "role assignment",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_17",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "Redirects",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_18",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "User",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "appos"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_19",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "personal dashboard",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADJ",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_20",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "Admin",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "appos"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_21",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "all-tasks view",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "DET",
+          "PUNCT",
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "det",
+          "punct",
+          "compound",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_22",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "Super Admin",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN",
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "appos"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_23",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "full management dashboard",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADJ",
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "compound",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_24",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "error display",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_25",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "retry option",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "conj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_26",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "Outputs",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_27",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "Role-specific dashboard HTML page",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "PUNCT",
+          "ADJ",
+          "NOUN",
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "npadvmod",
+          "punct",
+          "amod",
+          "compound",
+          "compound",
+          "appos"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_28",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "Error message",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_29",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "Role-specific dashboard HTML page",
+      "source_field": "outputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "PUNCT",
+          "ADJ",
+          "NOUN",
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "npadvmod",
+          "punct",
+          "amod",
+          "compound",
+          "compound",
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_30",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "Error message",
+      "source_field": "outputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_31",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "Invalid credentials",
+      "source_field": "outputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADJ",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "appos"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_32",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "Username",
+      "source_field": "inputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR2_33",
+      "parent_requirement_id": "FR2",
+      "signal_type": "other",
+      "text_span": "Password",
+      "source_field": "inputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_01",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "Authenticated users",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADJ",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_02",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "shall create",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "AUX",
+          "VERB"
+        ],
+        "dependency_roles": [
+          "aux",
+          "ROOT"
+        ],
+        "contains_modal": true
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_03",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "edit",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "conj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_04",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "delete tasks",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADJ",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "conj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_05",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "visibility",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_06",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "role",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_07",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "Updates",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_08",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "Users",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_09",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "Realtime UI",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN",
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_10",
+      "parent_requirement_id": "FR3",
+      "signal_type": "action",
+      "text_span": "For deletes record via",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADP",
+          "VERB",
+          "NOUN",
+          "ADP"
+        ],
+        "dependency_roles": [
+          "prep",
+          "ROOT",
+          "dobj",
+          "prep"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_11",
+      "parent_requirement_id": "FR3",
+      "signal_type": "action",
+      "text_span": "updates post - operation",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "VERB",
+          "NOUN",
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "ROOT",
+          "dobj",
+          "dobj",
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_12",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "create",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_13",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "MySQL Tasks store",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN",
+          "PROPN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "compound",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_14",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "user ID",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_15",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "edit/delete/mark",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "SYM",
+          "NOUN",
+          "SYM",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "nmod",
+          "punct",
+          "nmod",
+          "punct",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_16",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "specific record",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADJ",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_17",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "Task ID",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN",
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_18",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "Role enforcement",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_19",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "own tasks",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADJ",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_20",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "post",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_21",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "-",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_22",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "operation",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_23",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "Task",
+      "source_field": "outputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_24",
+      "parent_requirement_id": "FR3",
+      "signal_type": "outcome",
+      "text_span": "messages: \"Task created/updated/deleted/marked",
+      "source_field": "outputs",
+      "linguistic_features": {
+        "pos_tags": [],
+        "dependency_roles": [],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_25",
+      "parent_requirement_id": "FR3",
+      "signal_type": "action",
+      "text_span": "Updated task list",
+      "source_field": "outputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "VERB",
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "compound",
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_26",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "dashboard",
+      "source_field": "outputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_27",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "Confirmation messages",
+      "source_field": "outputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_28",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "Task details",
+      "source_field": "inputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_29",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "title",
+      "source_field": "inputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "appos"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_30",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "description",
+      "source_field": "inputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "appos"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_31",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "create/edit",
+      "source_field": "inputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "SYM",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "nmod",
+          "punct",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_32",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "Task ID",
+      "source_field": "inputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_33",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "edit/delete/mark",
+      "source_field": "inputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "SYM",
+          "NOUN",
+          "SYM",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "nmod",
+          "punct",
+          "nmod",
+          "punct",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR3_34",
+      "parent_requirement_id": "FR3",
+      "signal_type": "other",
+      "text_span": "Completion status toggle",
+      "source_field": "inputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "compound",
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "signal_id": "SIG_FR4_01",
+      "parent_requirement_id": "FR4",
+      "signal_type": "other",
+      "text_span": "The system",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "DET",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "det",
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "signal_id": "SIG_FR4_02",
+      "parent_requirement_id": "FR4",
+      "signal_type": "action",
+      "text_span": "shall filter tasks by",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "AUX",
+          "VERB",
+          "NOUN",
+          "ADP"
+        ],
+        "dependency_roles": [
+          "aux",
+          "ROOT",
+          "dobj",
+          "prep"
+        ],
+        "contains_modal": true
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "signal_id": "SIG_FR4_03",
+      "parent_requirement_id": "FR4",
+      "signal_type": "other",
+      "text_span": "tasks",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "signal_id": "SIG_FR4_04",
+      "parent_requirement_id": "FR4",
+      "signal_type": "other",
+      "text_span": "status",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "signal_id": "SIG_FR4_05",
+      "parent_requirement_id": "FR4",
+      "signal_type": "other",
+      "text_span": "clearing",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "signal_id": "SIG_FR4_06",
+      "parent_requirement_id": "FR4",
+      "signal_type": "other",
+      "text_span": "completed tasks",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "VERB",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "signal_id": "SIG_FR4_07",
+      "parent_requirement_id": "FR4",
+      "signal_type": "other",
+      "text_span": "Displays",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "signal_id": "SIG_FR4_08",
+      "parent_requirement_id": "FR4",
+      "signal_type": "other",
+      "text_span": "Deletes",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "signal_id": "SIG_FR4_09",
+      "parent_requirement_id": "FR4",
+      "signal_type": "other",
+      "text_span": "Refreshes",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "signal_id": "SIG_FR4_10",
+      "parent_requirement_id": "FR4",
+      "signal_type": "action",
+      "text_span": "filtered list dynamically",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "VERB",
+          "NOUN",
+          "ADV"
+        ],
+        "dependency_roles": [
+          "ROOT",
+          "dobj",
+          "advmod"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "signal_id": "SIG_FR4_11",
+      "parent_requirement_id": "FR4",
+      "signal_type": "action",
+      "text_span": "On completed tasks",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADP",
+          "VERB",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "prep",
+          "ROOT",
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "signal_id": "SIG_FR4_12",
+      "parent_requirement_id": "FR4",
+      "signal_type": "outcome",
+      "text_span": "filtered list dynamically",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [],
+        "dependency_roles": [],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "signal_id": "SIG_FR4_13",
+      "parent_requirement_id": "FR4",
+      "signal_type": "other",
+      "text_span": "Queries MySQL Tasks store",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "PROPN",
+          "PROPN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "compound",
+          "compound",
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "signal_id": "SIG_FR4_14",
+      "parent_requirement_id": "FR4",
+      "signal_type": "other",
+      "text_span": "status filter",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "signal_id": "SIG_FR4_15",
+      "parent_requirement_id": "FR4",
+      "signal_type": "other",
+      "text_span": "list",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "signal_id": "SIG_FR4_16",
+      "parent_requirement_id": "FR4",
+      "signal_type": "other",
+      "text_span": "tasks",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "signal_id": "SIG_FR4_17",
+      "parent_requirement_id": "FR4",
+      "signal_type": "other",
+      "text_span": "the user/role scope",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "DET",
+          "NOUN",
+          "SYM",
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "det",
+          "nmod",
+          "punct",
+          "compound",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "signal_id": "SIG_FR4_18",
+      "parent_requirement_id": "FR4",
+      "signal_type": "other",
+      "text_span": "dashboard",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "appos"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "signal_id": "SIG_FR4_19",
+      "parent_requirement_id": "FR4",
+      "signal_type": "other",
+      "text_span": "Completed tasks",
+      "source_field": "outputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "VERB",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "signal_id": "SIG_FR4_20",
+      "parent_requirement_id": "FR4",
+      "signal_type": "outcome",
+      "text_span": "Completed tasks cleared.",
+      "source_field": "outputs",
+      "linguistic_features": {
+        "pos_tags": [],
+        "dependency_roles": [],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "signal_id": "SIG_FR4_21",
+      "parent_requirement_id": "FR4",
+      "signal_type": "action",
+      "text_span": "Filtered task list view",
+      "source_field": "outputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "VERB",
+          "NOUN",
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "compound",
+          "compound",
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "signal_id": "SIG_FR4_22",
+      "parent_requirement_id": "FR4",
+      "signal_type": "other",
+      "text_span": "Confirmation",
+      "source_field": "outputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "signal_id": "SIG_FR4_23",
+      "parent_requirement_id": "FR4",
+      "signal_type": "other",
+      "text_span": "Filter selector",
+      "source_field": "inputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "signal_id": "SIG_FR4_24",
+      "parent_requirement_id": "FR4",
+      "signal_type": "other",
+      "text_span": "Clear request",
+      "source_field": "inputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADJ",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "signal_id": "SIG_FR4_25",
+      "parent_requirement_id": "FR4",
+      "signal_type": "other",
+      "text_span": "(button",
+      "source_field": "inputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "PUNCT",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "punct",
+          "appos"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "signal_id": "SIG_FR4_26",
+      "parent_requirement_id": "FR4",
+      "signal_type": "other",
+      "text_span": "completed tasks",
+      "source_field": "inputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "VERB",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "signal_id": "SIG_FR5_01",
+      "parent_requirement_id": "FR5",
+      "signal_type": "other",
+      "text_span": "Tasks",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.5"
+      }
+    },
+    {
+      "signal_id": "SIG_FR5_02",
+      "parent_requirement_id": "FR5",
+      "signal_type": "action",
+      "text_span": "shall persist in",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "AUX",
+          "VERB",
+          "ADP"
+        ],
+        "dependency_roles": [
+          "aux",
+          "ROOT",
+          "prep"
+        ],
+        "contains_modal": true
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.5"
+      }
+    },
+    {
+      "signal_id": "SIG_FR5_03",
+      "parent_requirement_id": "FR5",
+      "signal_type": "constraint",
+      "text_span": "only to the logged-in user",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [],
+        "dependency_roles": [],
+        "contains_modal": false,
+        "metric_type": "qualitative"
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.5"
+      }
+    },
+    {
+      "signal_id": "SIG_FR5_04",
+      "parent_requirement_id": "FR5",
+      "signal_type": "other",
+      "text_span": "user data",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "conj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.5"
+      }
+    },
+    {
+      "signal_id": "SIG_FR5_05",
+      "parent_requirement_id": "FR5",
+      "signal_type": "other",
+      "text_span": "MySQL",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.5"
+      }
+    },
+    {
+      "signal_id": "SIG_FR5_06",
+      "parent_requirement_id": "FR5",
+      "signal_type": "other",
+      "text_span": "the logged-in user",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "DET",
+          "ADJ",
+          "PUNCT",
+          "ADP",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "det",
+          "amod",
+          "punct",
+          "prt",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.5"
+      }
+    },
+    {
+      "signal_id": "SIG_FR5_07",
+      "parent_requirement_id": "FR5",
+      "signal_type": "actor",
+      "text_span": "All CRUD operations",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "DET",
+          "PROPN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "det",
+          "compound",
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.5"
+      }
+    },
+    {
+      "signal_id": "SIG_FR5_08",
+      "parent_requirement_id": "FR5",
+      "signal_type": "other",
+      "text_span": "Queries",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.5"
+      }
+    },
+    {
+      "signal_id": "SIG_FR5_09",
+      "parent_requirement_id": "FR5",
+      "signal_type": "other",
+      "text_span": "commit to",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "VERB",
+          "ADP"
+        ],
+        "dependency_roles": [
+          "ROOT",
+          "prep"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.5"
+      }
+    },
+    {
+      "signal_id": "SIG_FR5_10",
+      "parent_requirement_id": "FR5",
+      "signal_type": "other",
+      "text_span": "user ID/role",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "PROPN",
+          "SYM",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "nmod",
+          "punct",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.5"
+      }
+    },
+    {
+      "signal_id": "SIG_FR5_11",
+      "parent_requirement_id": "FR5",
+      "signal_type": "action",
+      "text_span": "Ensures data integrity",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "VERB",
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "compound",
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.5"
+      }
+    },
+    {
+      "signal_id": "SIG_FR5_12",
+      "parent_requirement_id": "FR5",
+      "signal_type": "other",
+      "text_span": "transactions",
+      "source_field": "system_behavior",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.5"
+      }
+    },
+    {
+      "signal_id": "SIG_FR5_13",
+      "parent_requirement_id": "FR5",
+      "signal_type": "action",
+      "text_span": "Persistent, role-restricted data views",
+      "source_field": "outputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADJ",
+          "PUNCT",
+          "NOUN",
+          "PUNCT",
+          "VERB",
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "punct",
+          "npadvmod",
+          "punct",
+          "amod",
+          "compound",
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.5"
+      }
+    },
+    {
+      "signal_id": "SIG_FR5_14",
+      "parent_requirement_id": "FR5",
+      "signal_type": "other",
+      "text_span": "Non-Functional Requirements",
+      "source_field": "outputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADJ",
+          "ADJ",
+          "ADJ",
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "compound",
+          "amod",
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.5"
+      }
+    },
+    {
+      "signal_id": "SIG_FR5_15",
+      "parent_requirement_id": "FR5",
+      "signal_type": "other",
+      "text_span": "Any task/user operation",
+      "source_field": "inputs",
+      "linguistic_features": {
+        "pos_tags": [
+          "DET",
+          "NOUN",
+          "SYM",
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "det",
+          "nmod",
+          "punct",
+          "compound",
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.5"
+      }
+    },
+    {
+      "signal_id": "SIG_QR2_01",
+      "parent_requirement_id": "QR2",
+      "signal_type": "other",
+      "text_span": "Passwords",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "nsubjpass"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.2"
+      }
+    },
+    {
+      "signal_id": "SIG_QR2_02",
+      "parent_requirement_id": "QR2",
+      "signal_type": "actor",
+      "text_span": "based control enforces",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "VERB",
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "compound",
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.2"
+      }
+    },
+    {
+      "signal_id": "SIG_QR2_03",
+      "parent_requirement_id": "QR2",
+      "signal_type": "other",
+      "text_span": "Users",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.2"
+      }
+    },
+    {
+      "signal_id": "SIG_QR2_04",
+      "parent_requirement_id": "QR2",
+      "signal_type": "other",
+      "text_span": "higher roles",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADJ",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.2"
+      }
+    },
+    {
+      "signal_id": "SIG_QR2_05",
+      "parent_requirement_id": "QR2",
+      "signal_type": "other",
+      "text_span": "Sessions",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.2"
+      }
+    },
+    {
+      "signal_id": "SIG_QR2_06",
+      "parent_requirement_id": "QR2",
+      "signal_type": "action",
+      "text_span": "shall hashed using",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "AUX",
+          "VERB",
+          "VERB"
+        ],
+        "dependency_roles": [
+          "aux",
+          "ROOT",
+          "xcomp"
+        ],
+        "contains_modal": true
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.2"
+      }
+    },
+    {
+      "signal_id": "SIG_QR2_07",
+      "parent_requirement_id": "QR2",
+      "signal_type": "other",
+      "text_span": "extend visibility",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "VERB",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "ROOT",
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.2"
+      }
+    },
+    {
+      "signal_id": "SIG_QR2_08",
+      "parent_requirement_id": "QR2",
+      "signal_type": "action",
+      "text_span": "must timeout after with",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "AUX",
+          "VERB",
+          "ADP",
+          "ADP"
+        ],
+        "dependency_roles": [
+          "aux",
+          "ROOT",
+          "prep",
+          "prep"
+        ],
+        "contains_modal": true
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.2"
+      }
+    },
+    {
+      "signal_id": "SIG_QR2_09",
+      "parent_requirement_id": "QR2",
+      "signal_type": "constraint",
+      "text_span": "timeout after inactivity, with HTTPS enforcement in production",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [],
+        "dependency_roles": [],
+        "contains_modal": false,
+        "metric_type": "quantitative"
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.2"
+      }
+    },
+    {
+      "signal_id": "SIG_QR2_10",
+      "parent_requirement_id": "QR2",
+      "signal_type": "constraint",
+      "text_span": "only personal tasks",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [],
+        "dependency_roles": [],
+        "contains_modal": false,
+        "metric_type": "qualitative"
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.2"
+      }
+    },
+    {
+      "signal_id": "SIG_QR2_11",
+      "parent_requirement_id": "QR2",
+      "signal_type": "constraint",
+      "text_span": "hashed using Passport",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [],
+        "dependency_roles": [],
+        "contains_modal": false,
+        "metric_type": "qualitative"
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.2"
+      }
+    },
+    {
+      "signal_id": "SIG_QR2_12",
+      "parent_requirement_id": "QR2",
+      "signal_type": "constraint",
+      "text_span": "HTTPS enforcement in production",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [],
+        "dependency_roles": [],
+        "contains_modal": false,
+        "metric_type": "qualitative"
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.2"
+      }
+    },
+    {
+      "signal_id": "SIG_QR2_13",
+      "parent_requirement_id": "QR2",
+      "signal_type": "other",
+      "text_span": "Passport.js",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.2"
+      }
+    },
+    {
+      "signal_id": "SIG_QR2_14",
+      "parent_requirement_id": "QR2",
+      "signal_type": "other",
+      "text_span": "storage",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.2"
+      }
+    },
+    {
+      "signal_id": "SIG_QR2_15",
+      "parent_requirement_id": "QR2",
+      "signal_type": "actor",
+      "text_span": "Role-based access control enforces",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "PUNCT",
+          "VERB",
+          "NOUN",
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "npadvmod",
+          "punct",
+          "amod",
+          "compound",
+          "compound",
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.2"
+      }
+    },
+    {
+      "signal_id": "SIG_QR2_16",
+      "parent_requirement_id": "QR2",
+      "signal_type": "constraint",
+      "text_span": "only personal tasks",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADV",
+          "ADJ",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "advmod",
+          "amod",
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.2"
+      }
+    },
+    {
+      "signal_id": "SIG_QR2_17",
+      "parent_requirement_id": "QR2",
+      "signal_type": "other",
+      "text_span": "visibility",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.2"
+      }
+    },
+    {
+      "signal_id": "SIG_QR2_18",
+      "parent_requirement_id": "QR2",
+      "signal_type": "other",
+      "text_span": "inactivity",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.2"
+      }
+    },
+    {
+      "signal_id": "SIG_QR2_19",
+      "parent_requirement_id": "QR2",
+      "signal_type": "other",
+      "text_span": "HTTPS enforcement",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.2"
+      }
+    },
+    {
+      "signal_id": "SIG_QR2_20",
+      "parent_requirement_id": "QR2",
+      "signal_type": "other",
+      "text_span": "production",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.2"
+      }
+    },
+    {
+      "signal_id": "SIG_QR2_21",
+      "parent_requirement_id": "QR2",
+      "signal_type": "other",
+      "text_span": "No unauthenticated access",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "DET",
+          "ADJ",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "det",
+          "amod",
+          "ROOT"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.2"
+      }
+    },
+    {
+      "signal_id": "SIG_QR2_22",
+      "parent_requirement_id": "QR2",
+      "signal_type": "other",
+      "text_span": "dashboards",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.2"
+      }
+    },
+    {
+      "signal_id": "SIG_QR2_23",
+      "parent_requirement_id": "QR2",
+      "signal_type": "other",
+      "text_span": "data",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "conj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.2"
+      }
+    },
+    {
+      "signal_id": "SIG_QR3_01",
+      "parent_requirement_id": "QR3",
+      "signal_type": "other",
+      "text_span": "The UI",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "DET",
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "det",
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.3"
+      }
+    },
+    {
+      "signal_id": "SIG_QR3_02",
+      "parent_requirement_id": "QR3",
+      "signal_type": "other",
+      "text_span": "Navigation",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.3"
+      }
+    },
+    {
+      "signal_id": "SIG_QR3_03",
+      "parent_requirement_id": "QR3",
+      "signal_type": "other",
+      "text_span": "Accessibility features",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.3"
+      }
+    },
+    {
+      "signal_id": "SIG_QR3_04",
+      "parent_requirement_id": "QR3",
+      "signal_type": "other",
+      "text_span": "include navigation",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "VERB",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "ROOT",
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.3"
+      }
+    },
+    {
+      "signal_id": "SIG_QR3_05",
+      "parent_requirement_id": "QR3",
+      "signal_type": "other",
+      "text_span": "mobile",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.3"
+      }
+    },
+    {
+      "signal_id": "SIG_QR3_06",
+      "parent_requirement_id": "QR3",
+      "signal_type": "other",
+      "text_span": "desktop",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "conj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.3"
+      }
+    },
+    {
+      "signal_id": "SIG_QR3_07",
+      "parent_requirement_id": "QR3",
+      "signal_type": "other",
+      "text_span": "Bootstrap",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.3"
+      }
+    },
+    {
+      "signal_id": "SIG_QR3_08",
+      "parent_requirement_id": "QR3",
+      "signal_type": "other",
+      "text_span": "intuitive elements",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADJ",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.3"
+      }
+    },
+    {
+      "signal_id": "SIG_QR3_09",
+      "parent_requirement_id": "QR3",
+      "signal_type": "other",
+      "text_span": "hover effects",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADJ",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.3"
+      }
+    },
+    {
+      "signal_id": "SIG_QR3_10",
+      "parent_requirement_id": "QR3",
+      "signal_type": "other",
+      "text_span": "edit/delete",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "SYM",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "nmod",
+          "punct",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.3"
+      }
+    },
+    {
+      "signal_id": "SIG_QR3_11",
+      "parent_requirement_id": "QR3",
+      "signal_type": "other",
+      "text_span": "clear feedback",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADJ",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.3"
+      }
+    },
+    {
+      "signal_id": "SIG_QR3_12",
+      "parent_requirement_id": "QR3",
+      "signal_type": "other",
+      "text_span": "all actions",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "DET",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "det",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.3"
+      }
+    },
+    {
+      "signal_id": "SIG_QR3_13",
+      "parent_requirement_id": "QR3",
+      "signal_type": "other",
+      "text_span": "e.g., success/error modals",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADV",
+          "PUNCT",
+          "NOUN",
+          "SYM",
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "advmod",
+          "punct",
+          "compound",
+          "punct",
+          "compound",
+          "appos"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.3"
+      }
+    },
+    {
+      "signal_id": "SIG_QR3_14",
+      "parent_requirement_id": "QR3",
+      "signal_type": "other",
+      "text_span": "keyboard navigation",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.3"
+      }
+    },
+    {
+      "signal_id": "SIG_QR3_15",
+      "parent_requirement_id": "QR3",
+      "signal_type": "other",
+      "text_span": "high-contrast modes",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADJ",
+          "PUNCT",
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "punct",
+          "compound",
+          "conj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.3"
+      }
+    },
+    {
+      "signal_id": "SIG_QR4_01",
+      "parent_requirement_id": "QR4",
+      "signal_type": "other",
+      "text_span": "The system",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "DET",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "det",
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.4"
+      }
+    },
+    {
+      "signal_id": "SIG_QR4_02",
+      "parent_requirement_id": "QR4",
+      "signal_type": "other",
+      "text_span": "Error handling",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.4"
+      }
+    },
+    {
+      "signal_id": "SIG_QR4_03",
+      "parent_requirement_id": "QR4",
+      "signal_type": "actor",
+      "text_span": "no single failure",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "DET",
+          "ADJ",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "det",
+          "amod",
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.4"
+      }
+    },
+    {
+      "signal_id": "SIG_QR4_04",
+      "parent_requirement_id": "QR4",
+      "signal_type": "other",
+      "text_span": "Data consistency",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.4"
+      }
+    },
+    {
+      "signal_id": "SIG_QR4_05",
+      "parent_requirement_id": "QR4",
+      "signal_type": "action",
+      "text_span": "shall maintain uptime with via",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "AUX",
+          "VERB",
+          "NOUN",
+          "ADP",
+          "ADP"
+        ],
+        "dependency_roles": [
+          "aux",
+          "ROOT",
+          "dobj",
+          "prep",
+          "prep"
+        ],
+        "contains_modal": true
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.4"
+      }
+    },
+    {
+      "signal_id": "SIG_QR4_06",
+      "parent_requirement_id": "QR4",
+      "signal_type": "other",
+      "text_span": "causes outage",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "VERB",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "ROOT",
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.4"
+      }
+    },
+    {
+      "signal_id": "SIG_QR4_07",
+      "parent_requirement_id": "QR4",
+      "signal_type": "other",
+      "text_span": "preserved through",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "VERB",
+          "ADP"
+        ],
+        "dependency_roles": [
+          "ROOT",
+          "prep"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.4"
+      }
+    },
+    {
+      "signal_id": "SIG_QR4_08",
+      "parent_requirement_id": "QR4",
+      "signal_type": "constraint",
+      "text_span": "uptime, with automatic data backups via MySQL",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [],
+        "dependency_roles": [],
+        "contains_modal": false,
+        "metric_type": "quantitative"
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.4"
+      }
+    },
+    {
+      "signal_id": "SIG_QR4_09",
+      "parent_requirement_id": "QR4",
+      "signal_type": "other",
+      "text_span": "99% uptime",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NUM",
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "nummod",
+          "compound",
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.4"
+      }
+    },
+    {
+      "signal_id": "SIG_QR4_10",
+      "parent_requirement_id": "QR4",
+      "signal_type": "other",
+      "text_span": "automatic data backups",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADJ",
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "compound",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.4"
+      }
+    },
+    {
+      "signal_id": "SIG_QR4_11",
+      "parent_requirement_id": "QR4",
+      "signal_type": "other",
+      "text_span": "MySQL",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.4"
+      }
+    },
+    {
+      "signal_id": "SIG_QR4_12",
+      "parent_requirement_id": "QR4",
+      "signal_type": "other",
+      "text_span": "graceful degradation",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADJ",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.4"
+      }
+    },
+    {
+      "signal_id": "SIG_QR4_13",
+      "parent_requirement_id": "QR4",
+      "signal_type": "other",
+      "text_span": "total outage",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADJ",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.4"
+      }
+    },
+    {
+      "signal_id": "SIG_QR4_14",
+      "parent_requirement_id": "QR4",
+      "signal_type": "other",
+      "text_span": "ACIDcompliant transactions",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.4"
+      }
+    },
+    {
+      "signal_id": "SIG_QR5_01",
+      "parent_requirement_id": "QR5",
+      "signal_type": "actor",
+      "text_span": "The web application",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "DET",
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "det",
+          "compound",
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.5"
+      }
+    },
+    {
+      "signal_id": "SIG_QR5_02",
+      "parent_requirement_id": "QR5",
+      "signal_type": "other",
+      "text_span": "Responsive design",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADJ",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.5"
+      }
+    },
+    {
+      "signal_id": "SIG_QR5_03",
+      "parent_requirement_id": "QR5",
+      "signal_type": "action",
+      "text_span": "shall function across without",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "AUX",
+          "VERB",
+          "ADP",
+          "ADP"
+        ],
+        "dependency_roles": [
+          "aux",
+          "ROOT",
+          "prep",
+          "prep"
+        ],
+        "contains_modal": true
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.5"
+      }
+    },
+    {
+      "signal_id": "SIG_QR5_04",
+      "parent_requirement_id": "QR5",
+      "signal_type": "other",
+      "text_span": "ensures compatibility",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "VERB",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "ROOT",
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.5"
+      }
+    },
+    {
+      "signal_id": "SIG_QR5_05",
+      "parent_requirement_id": "QR5",
+      "signal_type": "constraint",
+      "text_span": "without OS dependencies",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [],
+        "dependency_roles": [],
+        "contains_modal": false,
+        "metric_type": "qualitative"
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.5"
+      }
+    },
+    {
+      "signal_id": "SIG_QR5_06",
+      "parent_requirement_id": "QR5",
+      "signal_type": "other",
+      "text_span": "major browsers",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADJ",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.5"
+      }
+    },
+    {
+      "signal_id": "SIG_QR5_07",
+      "parent_requirement_id": "QR5",
+      "signal_type": "other",
+      "text_span": "Chrome",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "appos"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.5"
+      }
+    },
+    {
+      "signal_id": "SIG_QR5_08",
+      "parent_requirement_id": "QR5",
+      "signal_type": "other",
+      "text_span": "Firefox",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "appos"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.5"
+      }
+    },
+    {
+      "signal_id": "SIG_QR5_09",
+      "parent_requirement_id": "QR5",
+      "signal_type": "other",
+      "text_span": "OS dependencies",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.5"
+      }
+    },
+    {
+      "signal_id": "SIG_QR5_10",
+      "parent_requirement_id": "QR5",
+      "signal_type": "other",
+      "text_span": "compatibility",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.5"
+      }
+    },
+    {
+      "signal_id": "SIG_QR5_11",
+      "parent_requirement_id": "QR5",
+      "signal_type": "other",
+      "text_span": "devices",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.5"
+      }
+    },
+    {
+      "signal_id": "SIG_QR5_12",
+      "parent_requirement_id": "QR5",
+      "signal_type": "other",
+      "text_span": "320px",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.5"
+      }
+    },
+    {
+      "signal_id": "SIG_QR5_13",
+      "parent_requirement_id": "QR5",
+      "signal_type": "other",
+      "text_span": "4K resolutions",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NUM",
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "nummod",
+          "compound",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.5"
+      }
+    },
+    {
+      "signal_id": "SIG_QR5_14",
+      "parent_requirement_id": "QR5",
+      "signal_type": "other",
+      "text_span": "Heroku-like platforms",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "PROPN",
+          "PUNCT",
+          "ADJ",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "npadvmod",
+          "punct",
+          "amod",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.5"
+      }
+    },
+    {
+      "signal_id": "SIG_QR1_01",
+      "parent_requirement_id": "QR1",
+      "signal_type": "other",
+      "text_span": "The system",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "DET",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "det",
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "signal_id": "SIG_QR1_02",
+      "parent_requirement_id": "QR1",
+      "signal_type": "other",
+      "text_span": "Database queries",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "signal_id": "SIG_QR1_03",
+      "parent_requirement_id": "QR1",
+      "signal_type": "other",
+      "text_span": "load times",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "signal_id": "SIG_QR1_04",
+      "parent_requirement_id": "QR1",
+      "signal_type": "action",
+      "text_span": "shall handle users",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "AUX",
+          "VERB",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "aux",
+          "ROOT",
+          "dobj"
+        ],
+        "contains_modal": true
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "signal_id": "SIG_QR1_05",
+      "parent_requirement_id": "QR1",
+      "signal_type": "action",
+      "text_span": "must optimize for",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "AUX",
+          "VERB",
+          "ADP"
+        ],
+        "dependency_roles": [
+          "aux",
+          "ROOT",
+          "prep"
+        ],
+        "contains_modal": true
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "signal_id": "SIG_QR1_06",
+      "parent_requirement_id": "QR1",
+      "signal_type": "action",
+      "text_span": "shall not exceed seconds",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "AUX",
+          "PART",
+          "VERB",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "aux",
+          "neg",
+          "ROOT",
+          "dobj"
+        ],
+        "contains_modal": true
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "signal_id": "SIG_QR1_07",
+      "parent_requirement_id": "QR1",
+      "signal_type": "constraint",
+      "text_span": "100 concurrent users with task operations CRUD, filter) responding in under 1 second",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [],
+        "dependency_roles": [],
+        "contains_modal": false,
+        "metric_type": "quantitative"
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "signal_id": "SIG_QR1_08",
+      "parent_requirement_id": "QR1",
+      "signal_type": "constraint",
+      "text_span": "500ms under load",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [],
+        "dependency_roles": [],
+        "contains_modal": false,
+        "metric_type": "quantitative"
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "signal_id": "SIG_QR1_09",
+      "parent_requirement_id": "QR1",
+      "signal_type": "constraint",
+      "text_span": "2 seconds for typical use",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [],
+        "dependency_roles": [],
+        "contains_modal": false,
+        "metric_type": "quantitative"
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "signal_id": "SIG_QR1_10",
+      "parent_requirement_id": "QR1",
+      "signal_type": "constraint",
+      "text_span": "up to 100 concurrent users with task operations CRUD, filter) responding in under 1 second",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [],
+        "dependency_roles": [],
+        "contains_modal": false,
+        "metric_type": "quantitative"
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "signal_id": "SIG_QR1_11",
+      "parent_requirement_id": "QR1",
+      "signal_type": "constraint",
+      "text_span": "below 500ms under load",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [],
+        "dependency_roles": [],
+        "contains_modal": false,
+        "metric_type": "quantitative"
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "signal_id": "SIG_QR1_12",
+      "parent_requirement_id": "QR1",
+      "signal_type": "constraint",
+      "text_span": "99th percentile response times below 500ms under load",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [],
+        "dependency_roles": [],
+        "contains_modal": false,
+        "metric_type": "quantitative"
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "signal_id": "SIG_QR1_13",
+      "parent_requirement_id": "QR1",
+      "signal_type": "constraint",
+      "text_span": "latency, achieving 99th percentile response times below 500ms under load",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [],
+        "dependency_roles": [],
+        "contains_modal": false,
+        "metric_type": "quantitative"
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "signal_id": "SIG_QR1_14",
+      "parent_requirement_id": "QR1",
+      "signal_type": "constraint",
+      "text_span": "shall not exceed 2 seconds for typical use",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [],
+        "dependency_roles": [],
+        "contains_modal": false,
+        "metric_type": "qualitative"
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "signal_id": "SIG_QR1_15",
+      "parent_requirement_id": "QR1",
+      "signal_type": "other",
+      "text_span": "up to 100 concurrent users",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADP",
+          "PART",
+          "NUM",
+          "ADJ",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "quantmod",
+          "quantmod",
+          "nummod",
+          "amod",
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "signal_id": "SIG_QR1_16",
+      "parent_requirement_id": "QR1",
+      "signal_type": "other",
+      "text_span": "task operations CRUD",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN",
+          "PROPN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "compound",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "signal_id": "SIG_QR1_17",
+      "parent_requirement_id": "QR1",
+      "signal_type": "other",
+      "text_span": "filter",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "appos"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "signal_id": "SIG_QR1_18",
+      "parent_requirement_id": "QR1",
+      "signal_type": "constraint",
+      "text_span": "under 1 second",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADP",
+          "NUM",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "quantmod",
+          "nummod",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "signal_id": "SIG_QR1_19",
+      "parent_requirement_id": "QR1",
+      "signal_type": "other",
+      "text_span": "low latency",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADJ",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "signal_id": "SIG_QR1_20",
+      "parent_requirement_id": "QR1",
+      "signal_type": "other",
+      "text_span": "99th percentile response times",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADJ",
+          "ADJ",
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "amod",
+          "compound",
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "signal_id": "SIG_QR1_21",
+      "parent_requirement_id": "QR1",
+      "signal_type": "other",
+      "text_span": "500ms",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "signal_id": "SIG_QR1_22",
+      "parent_requirement_id": "QR1",
+      "signal_type": "other",
+      "text_span": "load",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "signal_id": "SIG_QR1_23",
+      "parent_requirement_id": "QR1",
+      "signal_type": "actor",
+      "text_span": "Page load times",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN",
+          "NOUN",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "compound",
+          "compound",
+          "nsubj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "signal_id": "SIG_QR1_24",
+      "parent_requirement_id": "QR1",
+      "signal_type": "other",
+      "text_span": "dashboards",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "signal_id": "SIG_QR1_25",
+      "parent_requirement_id": "QR1",
+      "signal_type": "other",
+      "text_span": "2 seconds",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "NUM",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "nummod",
+          "dobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "signal_id": "SIG_QR1_26",
+      "parent_requirement_id": "QR1",
+      "signal_type": "other",
+      "text_span": "typical use",
+      "source_field": "description",
+      "linguistic_features": {
+        "pos_tags": [
+          "ADJ",
+          "NOUN"
+        ],
+        "dependency_roles": [
+          "amod",
+          "pobj"
+        ],
+        "contains_modal": false
+      },
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    }
+  ]
+}

@@ -1,0 +1,755 @@
+{
+  "metadata": {
+    "total_cras": 34,
+    "total_requirements": 10,
+    "complete_assemblies": 32,
+    "incomplete_assemblies": 2,
+    "confidence_distribution": {
+      "high": 32,
+      "medium": 2,
+      "low": 0
+    },
+    "assembly_version": "1.0"
+  },
+  "candidate_requirement_assemblies": [
+    {
+      "cra_id": "CRA_FR1_description_1",
+      "parent_requirement_id": "FR1",
+      "assembled_from_signals": [
+        "SIG_FR1_03",
+        "SIG_FR1_01"
+      ],
+      "candidate_actor": "The system",
+      "candidate_action": "shall allow",
+      "candidate_constraint": null,
+      "candidate_outcome": null,
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "cra_id": "CRA_FR1_description_2",
+      "parent_requirement_id": "FR1",
+      "assembled_from_signals": [
+        "SIG_FR1_04",
+        "SIG_FR1_01"
+      ],
+      "candidate_actor": "The system",
+      "candidate_action": "establishes account",
+      "candidate_constraint": null,
+      "candidate_outcome": null,
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "cra_id": "CRA_FR1_system_behavior_1",
+      "parent_requirement_id": "FR1",
+      "assembled_from_signals": [
+        "SIG_FR1_15",
+        "SIG_FR1_13"
+      ],
+      "candidate_actor": "Validates",
+      "candidate_action": "username uniqueness via",
+      "candidate_constraint": null,
+      "candidate_outcome": null,
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "cra_id": "CRA_FR1_system_behavior_2",
+      "parent_requirement_id": "FR1",
+      "assembled_from_signals": [
+        "SIG_FR1_16",
+        "SIG_FR1_13"
+      ],
+      "candidate_actor": "Validates",
+      "candidate_action": "duplicates by",
+      "candidate_constraint": null,
+      "candidate_outcome": null,
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "cra_id": "CRA_FR1_outputs_1",
+      "parent_requirement_id": "FR1",
+      "assembled_from_signals": [
+        "SIG_FR1_29",
+        "SIG_FR1_27",
+        "SIG_FR1_30",
+        "SIG_FR1_31"
+      ],
+      "candidate_actor": "Account",
+      "candidate_action": "already exists",
+      "candidate_constraint": null,
+      "candidate_outcome": "Account created successfully. | for duplicates: \"Username already exists",
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "cra_id": "CRA_FR1_cross_field",
+      "parent_requirement_id": "FR1",
+      "assembled_from_signals": [
+        "SIG_FR1_03",
+        "SIG_FR1_30",
+        "SIG_FR1_31"
+      ],
+      "candidate_actor": null,
+      "candidate_action": "shall allow",
+      "candidate_constraint": null,
+      "candidate_outcome": "Account created successfully. | for duplicates: \"Username already exists",
+      "assembly_confidence": "medium",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      }
+    },
+    {
+      "cra_id": "CRA_FR2_description_1",
+      "parent_requirement_id": "FR2",
+      "assembled_from_signals": [
+        "SIG_FR2_02",
+        "SIG_FR2_01"
+      ],
+      "candidate_actor": "The system",
+      "candidate_action": "shall authenticate users upon",
+      "candidate_constraint": null,
+      "candidate_outcome": null,
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "cra_id": "CRA_FR2_system_behavior_1",
+      "parent_requirement_id": "FR2",
+      "assembled_from_signals": [
+        "SIG_FR2_07",
+        "SIG_FR2_06",
+        "SIG_FR2_09",
+        "SIG_FR2_10"
+      ],
+      "candidate_actor": "Invalid credentials",
+      "candidate_action": "Validates hash via",
+      "candidate_constraint": null,
+      "candidate_outcome": "and retry option | Role-specific dashboard HTML page",
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "cra_id": "CRA_FR2_system_behavior_2",
+      "parent_requirement_id": "FR2",
+      "assembled_from_signals": [
+        "SIG_FR2_08",
+        "SIG_FR2_06",
+        "SIG_FR2_09",
+        "SIG_FR2_10"
+      ],
+      "candidate_actor": "Invalid credentials",
+      "candidate_action": "trigger display",
+      "candidate_constraint": null,
+      "candidate_outcome": "and retry option | Role-specific dashboard HTML page",
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      }
+    },
+    {
+      "cra_id": "CRA_FR3_description_1",
+      "parent_requirement_id": "FR3",
+      "assembled_from_signals": [
+        "SIG_FR3_02",
+        "SIG_FR3_01"
+      ],
+      "candidate_actor": "Authenticated users",
+      "candidate_action": "shall create",
+      "candidate_constraint": null,
+      "candidate_outcome": null,
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "cra_id": "CRA_FR3_system_behavior_1",
+      "parent_requirement_id": "FR3",
+      "assembled_from_signals": [
+        "SIG_FR3_10",
+        "SIG_FR3_07"
+      ],
+      "candidate_actor": "Updates",
+      "candidate_action": "For deletes record via",
+      "candidate_constraint": null,
+      "candidate_outcome": null,
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "cra_id": "CRA_FR3_system_behavior_2",
+      "parent_requirement_id": "FR3",
+      "assembled_from_signals": [
+        "SIG_FR3_11",
+        "SIG_FR3_07"
+      ],
+      "candidate_actor": "Updates",
+      "candidate_action": "updates post - operation",
+      "candidate_constraint": null,
+      "candidate_outcome": null,
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "cra_id": "CRA_FR3_outputs_1",
+      "parent_requirement_id": "FR3",
+      "assembled_from_signals": [
+        "SIG_FR3_25",
+        "SIG_FR3_23",
+        "SIG_FR3_24"
+      ],
+      "candidate_actor": "Task",
+      "candidate_action": "Updated task list",
+      "candidate_constraint": null,
+      "candidate_outcome": "messages: \"Task created/updated/deleted/marked",
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "cra_id": "CRA_FR3_cross_field",
+      "parent_requirement_id": "FR3",
+      "assembled_from_signals": [
+        "SIG_FR3_02",
+        "SIG_FR3_24"
+      ],
+      "candidate_actor": null,
+      "candidate_action": "shall create",
+      "candidate_constraint": null,
+      "candidate_outcome": "messages: \"Task created/updated/deleted/marked",
+      "assembly_confidence": "medium",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.3"
+      }
+    },
+    {
+      "cra_id": "CRA_FR4_description_1",
+      "parent_requirement_id": "FR4",
+      "assembled_from_signals": [
+        "SIG_FR4_02",
+        "SIG_FR4_01"
+      ],
+      "candidate_actor": "The system",
+      "candidate_action": "shall filter tasks by",
+      "candidate_constraint": null,
+      "candidate_outcome": null,
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "cra_id": "CRA_FR4_system_behavior_1",
+      "parent_requirement_id": "FR4",
+      "assembled_from_signals": [
+        "SIG_FR4_10",
+        "SIG_FR4_07",
+        "SIG_FR4_12"
+      ],
+      "candidate_actor": "Displays",
+      "candidate_action": "filtered list dynamically",
+      "candidate_constraint": null,
+      "candidate_outcome": "filtered list dynamically",
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "cra_id": "CRA_FR4_system_behavior_2",
+      "parent_requirement_id": "FR4",
+      "assembled_from_signals": [
+        "SIG_FR4_11",
+        "SIG_FR4_07",
+        "SIG_FR4_12"
+      ],
+      "candidate_actor": "Displays",
+      "candidate_action": "On completed tasks",
+      "candidate_constraint": null,
+      "candidate_outcome": "filtered list dynamically",
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "cra_id": "CRA_FR4_outputs_1",
+      "parent_requirement_id": "FR4",
+      "assembled_from_signals": [
+        "SIG_FR4_21",
+        "SIG_FR4_19",
+        "SIG_FR4_20"
+      ],
+      "candidate_actor": "Completed tasks",
+      "candidate_action": "Filtered task list view",
+      "candidate_constraint": null,
+      "candidate_outcome": "Completed tasks cleared.",
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "cra_id": "CRA_FR4_cross_field",
+      "parent_requirement_id": "FR4",
+      "assembled_from_signals": [
+        "SIG_FR4_02",
+        "SIG_FR4_20"
+      ],
+      "candidate_actor": "shall filter tasks by",
+      "candidate_action": "shall filter tasks by",
+      "candidate_constraint": null,
+      "candidate_outcome": "Completed tasks cleared.",
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      }
+    },
+    {
+      "cra_id": "CRA_FR5_description_1",
+      "parent_requirement_id": "FR5",
+      "assembled_from_signals": [
+        "SIG_FR5_02",
+        "SIG_FR5_01",
+        "SIG_FR5_03"
+      ],
+      "candidate_actor": "Tasks",
+      "candidate_action": "shall persist in",
+      "candidate_constraint": "only to the logged-in user",
+      "candidate_outcome": null,
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.5"
+      }
+    },
+    {
+      "cra_id": "CRA_FR5_system_behavior_1",
+      "parent_requirement_id": "FR5",
+      "assembled_from_signals": [
+        "SIG_FR5_09",
+        "SIG_FR5_07"
+      ],
+      "candidate_actor": "All CRUD operations",
+      "candidate_action": "commit to",
+      "candidate_constraint": null,
+      "candidate_outcome": null,
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.5"
+      }
+    },
+    {
+      "cra_id": "CRA_FR5_system_behavior_2",
+      "parent_requirement_id": "FR5",
+      "assembled_from_signals": [
+        "SIG_FR5_11",
+        "SIG_FR5_07"
+      ],
+      "candidate_actor": "All CRUD operations",
+      "candidate_action": "Ensures data integrity",
+      "candidate_constraint": null,
+      "candidate_outcome": null,
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.5"
+      }
+    },
+    {
+      "cra_id": "CRA_QR2_description_1",
+      "parent_requirement_id": "QR2",
+      "assembled_from_signals": [
+        "SIG_QR2_06",
+        "SIG_QR2_01",
+        "SIG_QR2_09",
+        "SIG_QR2_10",
+        "SIG_QR2_11",
+        "SIG_QR2_12",
+        "SIG_QR2_16"
+      ],
+      "candidate_actor": "Passwords",
+      "candidate_action": "shall hashed using",
+      "candidate_constraint": "timeout after inactivity, with HTTPS enforcement in production | only personal tasks | hashed using Passport | HTTPS enforcement in production",
+      "candidate_outcome": null,
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.2"
+      }
+    },
+    {
+      "cra_id": "CRA_QR2_description_2",
+      "parent_requirement_id": "QR2",
+      "assembled_from_signals": [
+        "SIG_QR2_07",
+        "SIG_QR2_01",
+        "SIG_QR2_09",
+        "SIG_QR2_10",
+        "SIG_QR2_11",
+        "SIG_QR2_12",
+        "SIG_QR2_16"
+      ],
+      "candidate_actor": "Passwords",
+      "candidate_action": "extend visibility",
+      "candidate_constraint": "timeout after inactivity, with HTTPS enforcement in production | only personal tasks | hashed using Passport | HTTPS enforcement in production",
+      "candidate_outcome": null,
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.2"
+      }
+    },
+    {
+      "cra_id": "CRA_QR2_description_3",
+      "parent_requirement_id": "QR2",
+      "assembled_from_signals": [
+        "SIG_QR2_08",
+        "SIG_QR2_01",
+        "SIG_QR2_09",
+        "SIG_QR2_10",
+        "SIG_QR2_11",
+        "SIG_QR2_12",
+        "SIG_QR2_16"
+      ],
+      "candidate_actor": "Passwords",
+      "candidate_action": "must timeout after with",
+      "candidate_constraint": "timeout after inactivity, with HTTPS enforcement in production | only personal tasks | hashed using Passport | HTTPS enforcement in production",
+      "candidate_outcome": null,
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.2"
+      }
+    },
+    {
+      "cra_id": "CRA_QR3_description_1",
+      "parent_requirement_id": "QR3",
+      "assembled_from_signals": [
+        "SIG_QR3_04",
+        "SIG_QR3_01"
+      ],
+      "candidate_actor": "The UI",
+      "candidate_action": "include navigation",
+      "candidate_constraint": null,
+      "candidate_outcome": null,
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.3"
+      }
+    },
+    {
+      "cra_id": "CRA_QR4_description_1",
+      "parent_requirement_id": "QR4",
+      "assembled_from_signals": [
+        "SIG_QR4_05",
+        "SIG_QR4_01",
+        "SIG_QR4_08"
+      ],
+      "candidate_actor": "The system",
+      "candidate_action": "shall maintain uptime with via",
+      "candidate_constraint": "uptime, with automatic data backups via MySQL",
+      "candidate_outcome": null,
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.4"
+      }
+    },
+    {
+      "cra_id": "CRA_QR4_description_2",
+      "parent_requirement_id": "QR4",
+      "assembled_from_signals": [
+        "SIG_QR4_06",
+        "SIG_QR4_01",
+        "SIG_QR4_08"
+      ],
+      "candidate_actor": "The system",
+      "candidate_action": "causes outage",
+      "candidate_constraint": "uptime, with automatic data backups via MySQL",
+      "candidate_outcome": null,
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.4"
+      }
+    },
+    {
+      "cra_id": "CRA_QR4_description_3",
+      "parent_requirement_id": "QR4",
+      "assembled_from_signals": [
+        "SIG_QR4_07",
+        "SIG_QR4_01",
+        "SIG_QR4_08"
+      ],
+      "candidate_actor": "The system",
+      "candidate_action": "preserved through",
+      "candidate_constraint": "uptime, with automatic data backups via MySQL",
+      "candidate_outcome": null,
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.4"
+      }
+    },
+    {
+      "cra_id": "CRA_QR5_description_1",
+      "parent_requirement_id": "QR5",
+      "assembled_from_signals": [
+        "SIG_QR5_03",
+        "SIG_QR5_01",
+        "SIG_QR5_05"
+      ],
+      "candidate_actor": "The web application",
+      "candidate_action": "shall function across without",
+      "candidate_constraint": "without OS dependencies",
+      "candidate_outcome": null,
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.5"
+      }
+    },
+    {
+      "cra_id": "CRA_QR5_description_2",
+      "parent_requirement_id": "QR5",
+      "assembled_from_signals": [
+        "SIG_QR5_04",
+        "SIG_QR5_01",
+        "SIG_QR5_05"
+      ],
+      "candidate_actor": "The web application",
+      "candidate_action": "ensures compatibility",
+      "candidate_constraint": "without OS dependencies",
+      "candidate_outcome": null,
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.5"
+      }
+    },
+    {
+      "cra_id": "CRA_QR1_description_1",
+      "parent_requirement_id": "QR1",
+      "assembled_from_signals": [
+        "SIG_QR1_04",
+        "SIG_QR1_01",
+        "SIG_QR1_07",
+        "SIG_QR1_08",
+        "SIG_QR1_09",
+        "SIG_QR1_10",
+        "SIG_QR1_11",
+        "SIG_QR1_12",
+        "SIG_QR1_13",
+        "SIG_QR1_14",
+        "SIG_QR1_18"
+      ],
+      "candidate_actor": "The system",
+      "candidate_action": "shall handle users",
+      "candidate_constraint": "100 concurrent users with task operations CRUD, filter) responding in under 1 second | 500ms under load | 2 seconds for typical use | up to 100 concurrent users with task operations CRUD, filter) responding in under 1 second | below 500ms under load | 99th percentile response times below 500ms under load | latency, achieving 99th percentile response times below 500ms under load | shall not exceed 2 seconds for typical use | under 1 second",
+      "candidate_outcome": null,
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "cra_id": "CRA_QR1_description_2",
+      "parent_requirement_id": "QR1",
+      "assembled_from_signals": [
+        "SIG_QR1_05",
+        "SIG_QR1_01",
+        "SIG_QR1_07",
+        "SIG_QR1_08",
+        "SIG_QR1_09",
+        "SIG_QR1_10",
+        "SIG_QR1_11",
+        "SIG_QR1_12",
+        "SIG_QR1_13",
+        "SIG_QR1_14",
+        "SIG_QR1_18"
+      ],
+      "candidate_actor": "The system",
+      "candidate_action": "must optimize for",
+      "candidate_constraint": "100 concurrent users with task operations CRUD, filter) responding in under 1 second | 500ms under load | 2 seconds for typical use | up to 100 concurrent users with task operations CRUD, filter) responding in under 1 second | below 500ms under load | 99th percentile response times below 500ms under load | latency, achieving 99th percentile response times below 500ms under load | shall not exceed 2 seconds for typical use | under 1 second",
+      "candidate_outcome": null,
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    },
+    {
+      "cra_id": "CRA_QR1_description_3",
+      "parent_requirement_id": "QR1",
+      "assembled_from_signals": [
+        "SIG_QR1_06",
+        "SIG_QR1_01",
+        "SIG_QR1_07",
+        "SIG_QR1_08",
+        "SIG_QR1_09",
+        "SIG_QR1_10",
+        "SIG_QR1_11",
+        "SIG_QR1_12",
+        "SIG_QR1_13",
+        "SIG_QR1_14",
+        "SIG_QR1_18"
+      ],
+      "candidate_actor": "The system",
+      "candidate_action": "shall not exceed seconds",
+      "candidate_constraint": "100 concurrent users with task operations CRUD, filter) responding in under 1 second | 500ms under load | 2 seconds for typical use | up to 100 concurrent users with task operations CRUD, filter) responding in under 1 second | below 500ms under load | 99th percentile response times below 500ms under load | latency, achieving 99th percentile response times below 500ms under load | shall not exceed 2 seconds for typical use | under 1 second",
+      "candidate_outcome": null,
+      "assembly_confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      }
+    }
+  ]
+}

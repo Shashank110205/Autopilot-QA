@@ -11,13 +11,22 @@ import pdfplumber
 def extract_pdf_content(path):
     print(f"[PDF] Processing: {path}")
     result = {"text": [], "ocr_text": [], "tables": []}
+    
+    # Create output directory structure
+    os.makedirs("output/extracted_images", exist_ok=True)
+    
+    # Get document name without extension for organizing images
+    doc_name = os.path.splitext(os.path.basename(path))[0]
+    doc_img_dir = os.path.join("output/extracted_images", doc_name)
+    os.makedirs(doc_img_dir, exist_ok=True)
+    
     doc = fitz.open(path)
     for pno, page in enumerate(doc, 1):
         result["text"].append({"page": pno, "content": page.get_text("text")})
         for i, img in enumerate(page.get_images(full=True)):
             xref = img[0]
             pix = fitz.Pixmap(doc, xref)
-            img_path = f"page{pno}_img{i+1}.png"
+            img_path = os.path.join(doc_img_dir, f"page{pno}_img{i+1}.png")
             (pix if pix.n < 5 else fitz.Pixmap(fitz.csRGB, pix)).save(img_path)
             img_cv = cv2.imread(img_path)
             gray = cv2.cvtColor(img_cv, cv2.COLOR_BGR2GRAY)

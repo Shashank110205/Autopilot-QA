@@ -1,0 +1,513 @@
+{
+  "metadata": {
+    "total_crus": 33,
+    "source_requirements": 10,
+    "cru_types": {
+      "functional": 12,
+      "performance": 8,
+      "security": 1,
+      "usability": 2,
+      "reliability": 1,
+      "portability": 1,
+      "quality": 0,
+      "other": 8
+    }
+  },
+  "crus": [
+    {
+      "cru_id": "CRU_FR1_01",
+      "parent_requirement_id": "FR1",
+      "type": "functional",
+      "actor": "Validates",
+      "action": "username uniqueness via",
+      "observable_outcome": null,
+      "constraint_or_metric": null,
+      "source": "SRS",
+      "traceability": {
+        "section": "3.1",
+        "page": null
+      },
+      "original_text": "Validates username uniqueness via MySQL query"
+    },
+    {
+      "cru_id": "CRU_FR1_02",
+      "parent_requirement_id": "FR1",
+      "type": "functional",
+      "actor": "Handles",
+      "action": "duplicates by",
+      "observable_outcome": "error message",
+      "constraint_or_metric": null,
+      "source": "SRS",
+      "traceability": {
+        "section": "3.1",
+        "page": null
+      },
+      "original_text": "Handles duplicates by displaying error message"
+    },
+    {
+      "cru_id": "CRU_FR1_03",
+      "parent_requirement_id": "FR1",
+      "type": "functional",
+      "actor": "Account",
+      "action": "exists already",
+      "observable_outcome": "\"Account created successfully",
+      "constraint_or_metric": null,
+      "source": "SRS",
+      "traceability": {
+        "section": "3.1",
+        "page": null
+      },
+      "original_text": "Success message: \"Account created successfully.\" Error message for duplicates: \"Username already exists.\" New session- ready user profile."
+    },
+    {
+      "cru_id": "CRU_FR2_01",
+      "parent_requirement_id": "FR2",
+      "type": "functional",
+      "actor": "The system",
+      "action": "authenticate users upon",
+      "observable_outcome": null,
+      "constraint_or_metric": null,
+      "source": "SRS",
+      "traceability": {
+        "section": "3.2",
+        "page": null
+      },
+      "original_text": "The system shall authenticate users upon login and redirect them to a role-specific dashboard."
+    },
+    {
+      "cru_id": "CRU_FR2_02",
+      "parent_requirement_id": "FR2",
+      "type": "functional",
+      "actor": "Invalid credentials",
+      "action": "trigger display",
+      "observable_outcome": "and retry option",
+      "constraint_or_metric": null,
+      "source": "SRS",
+      "traceability": {
+        "section": "3.2",
+        "page": null
+      },
+      "original_text": "Invalid credentials trigger error display and retry option"
+    },
+    {
+      "cru_id": "CRU_FR3_01",
+      "parent_requirement_id": "FR3",
+      "type": "functional",
+      "actor": "Updates",
+      "action": "deletes For record via",
+      "observable_outcome": null,
+      "constraint_or_metric": null,
+      "source": "SRS",
+      "traceability": {
+        "section": "3.3",
+        "page": null
+      },
+      "original_text": "For edit/delete/mark: Updates/deletes specific record via Task ID"
+    },
+    {
+      "cru_id": "CRU_FR3_02",
+      "parent_requirement_id": "FR3",
+      "type": "functional",
+      "actor": "Realtime UI",
+      "action": "updates post - operation",
+      "observable_outcome": null,
+      "constraint_or_metric": null,
+      "source": "SRS",
+      "traceability": {
+        "section": "3.3",
+        "page": null
+      },
+      "original_text": "Realtime UI updates post-operation."
+    },
+    {
+      "cru_id": "CRU_FR4_01",
+      "parent_requirement_id": "FR4",
+      "type": "functional",
+      "actor": "The system",
+      "action": "filter tasks by",
+      "observable_outcome": null,
+      "constraint_or_metric": null,
+      "source": "SRS",
+      "traceability": {
+        "section": "3.4",
+        "page": null
+      },
+      "original_text": "The system shall filter tasks by status (all, active, completed) and allow clearing of completed tasks."
+    },
+    {
+      "cru_id": "CRU_FR4_02",
+      "parent_requirement_id": "FR4",
+      "type": "functional",
+      "actor": "Displays",
+      "action": "filtered list dynamically",
+      "observable_outcome": "filtered list dynamically",
+      "constraint_or_metric": null,
+      "source": "SRS",
+      "traceability": {
+        "section": "3.4",
+        "page": null
+      },
+      "original_text": "Displays filtered list dynamically"
+    },
+    {
+      "cru_id": "CRU_FR4_03",
+      "parent_requirement_id": "FR4",
+      "type": "functional",
+      "actor": "Deletes",
+      "action": "completed On tasks",
+      "observable_outcome": null,
+      "constraint_or_metric": null,
+      "source": "SRS",
+      "traceability": {
+        "section": "3.4",
+        "page": null
+      },
+      "original_text": "On clear: Deletes all completed tasks for the user/role scope"
+    },
+    {
+      "cru_id": "CRU_FR5_01",
+      "parent_requirement_id": "FR5",
+      "type": "functional",
+      "actor": "Tasks",
+      "action": "persist in",
+      "observable_outcome": null,
+      "constraint_or_metric": "only to the logged-in user",
+      "source": "SRS",
+      "traceability": {
+        "section": "3.5",
+        "page": null
+      },
+      "original_text": "Tasks and user data shall persist in MySQL and be visible only to the logged-in user."
+    },
+    {
+      "cru_id": "CRU_FR5_02",
+      "parent_requirement_id": "FR5",
+      "type": "functional",
+      "actor": "All CRUD operations",
+      "action": "commit to",
+      "observable_outcome": null,
+      "constraint_or_metric": null,
+      "source": "SRS",
+      "traceability": {
+        "section": "3.5",
+        "page": null
+      },
+      "original_text": "All CRUD operations commit to MySQL"
+    },
+    {
+      "cru_id": "CRU_QR2_01",
+      "parent_requirement_id": "QR2",
+      "type": "security",
+      "actor": "Passwords",
+      "action": "hashed using",
+      "observable_outcome": null,
+      "constraint_or_metric": null,
+      "source": "SRS",
+      "traceability": {
+        "section": "4.2",
+        "page": null
+      },
+      "original_text": "Passwords shall be hashed using Passport.js before storage"
+    },
+    {
+      "cru_id": "CRU_QR2_02",
+      "parent_requirement_id": "QR2",
+      "type": "other",
+      "actor": "based control enforces",
+      "action": "see tasks",
+      "observable_outcome": null,
+      "constraint_or_metric": "only personal tasks",
+      "source": "SRS",
+      "traceability": {
+        "section": "4.2",
+        "page": null
+      },
+      "original_text": "Role-based access control enforces least privilege: Users see only personal tasks"
+    },
+    {
+      "cru_id": "CRU_QR2_03",
+      "parent_requirement_id": "QR2",
+      "type": "other",
+      "actor": "higher roles",
+      "action": "extend visibility",
+      "observable_outcome": null,
+      "constraint_or_metric": null,
+      "source": "SRS",
+      "traceability": {
+        "section": "4.2",
+        "page": null
+      },
+      "original_text": "higher roles extend visibility"
+    },
+    {
+      "cru_id": "CRU_QR2_04",
+      "parent_requirement_id": "QR2",
+      "type": "other",
+      "actor": "Sessions",
+      "action": "timeout after with",
+      "observable_outcome": null,
+      "constraint_or_metric": "Sessions must timeout after inactivity, with HTTPS enforcement in production",
+      "source": "SRS",
+      "traceability": {
+        "section": "4.2",
+        "page": null
+      },
+      "original_text": "Sessions must timeout after inactivity, with HTTPS enforcement in production"
+    },
+    {
+      "cru_id": "CRU_QR2_05",
+      "parent_requirement_id": "QR2",
+      "type": "other",
+      "actor": "Sessions",
+      "action": "timeout after with",
+      "observable_outcome": null,
+      "constraint_or_metric": "HTTPS enforcement",
+      "source": "SRS",
+      "traceability": {
+        "section": "4.2",
+        "page": null
+      },
+      "original_text": "Sessions must timeout after inactivity, with HTTPS enforcement in production"
+    },
+    {
+      "cru_id": "CRU_QR2_06",
+      "parent_requirement_id": "QR2",
+      "type": "other",
+      "actor": "Sessions",
+      "action": "timeout after with",
+      "observable_outcome": null,
+      "constraint_or_metric": "with HTTPS enforcement",
+      "source": "SRS",
+      "traceability": {
+        "section": "4.2",
+        "page": null
+      },
+      "original_text": "Sessions must timeout after inactivity, with HTTPS enforcement in production"
+    },
+    {
+      "cru_id": "CRU_QR3_01",
+      "parent_requirement_id": "QR3",
+      "type": "usability",
+      "actor": "Accessibility features",
+      "action": "include navigation",
+      "observable_outcome": null,
+      "constraint_or_metric": null,
+      "source": "SRS",
+      "traceability": {
+        "section": "4.3",
+        "page": null
+      },
+      "original_text": "Accessibility features include keyboard navigation and high-contrast modes where standard."
+    },
+    {
+      "cru_id": "CRU_QR4_01",
+      "parent_requirement_id": "QR4",
+      "type": "reliability",
+      "actor": "The system",
+      "action": "maintain uptime with via",
+      "observable_outcome": null,
+      "constraint_or_metric": "The system shall maintain 99% uptime, with automatic data backups via MySQL",
+      "source": "SRS",
+      "traceability": {
+        "section": "4.4",
+        "page": null
+      },
+      "original_text": "The system shall maintain 99% uptime, with automatic data backups via MySQL"
+    },
+    {
+      "cru_id": "CRU_QR4_02",
+      "parent_requirement_id": "QR4",
+      "type": "other",
+      "actor": "Error handling",
+      "action": "ensures degradation",
+      "observable_outcome": null,
+      "constraint_or_metric": null,
+      "source": "SRS",
+      "traceability": {
+        "section": "4.4",
+        "page": null
+      },
+      "original_text": "Error handling ensures graceful degradation"
+    },
+    {
+      "cru_id": "CRU_QR4_03",
+      "parent_requirement_id": "QR4",
+      "type": "other",
+      "actor": "no single failure",
+      "action": "causes outage",
+      "observable_outcome": null,
+      "constraint_or_metric": null,
+      "source": "SRS",
+      "traceability": {
+        "section": "4.4",
+        "page": null
+      },
+      "original_text": "no single failure causes total outage"
+    },
+    {
+      "cru_id": "CRU_QR4_04",
+      "parent_requirement_id": "QR4",
+      "type": "other",
+      "actor": "Data consistency",
+      "action": "preserved through",
+      "observable_outcome": null,
+      "constraint_or_metric": null,
+      "source": "SRS",
+      "traceability": {
+        "section": "4.4",
+        "page": null
+      },
+      "original_text": "Data consistency preserved through ACIDcompliant transactions."
+    },
+    {
+      "cru_id": "CRU_QR5_01",
+      "parent_requirement_id": "QR5",
+      "type": "portability",
+      "actor": "The web application",
+      "action": "function across without",
+      "observable_outcome": null,
+      "constraint_or_metric": null,
+      "source": "SRS",
+      "traceability": {
+        "section": "4.5",
+        "page": null
+      },
+      "original_text": "The web application shall function across major browsers Chrome, Firefox) without OS dependencies"
+    },
+    {
+      "cru_id": "CRU_QR5_02",
+      "parent_requirement_id": "QR5",
+      "type": "usability",
+      "actor": "Responsive design",
+      "action": "ensures compatibility",
+      "observable_outcome": null,
+      "constraint_or_metric": null,
+      "source": "SRS",
+      "traceability": {
+        "section": "4.5",
+        "page": null
+      },
+      "original_text": "Responsive design ensures compatibility with devices from 320px to 4K resolutions"
+    },
+    {
+      "cru_id": "CRU_QR1_01",
+      "parent_requirement_id": "QR1",
+      "type": "performance",
+      "actor": "The system",
+      "action": "handle users",
+      "observable_outcome": null,
+      "constraint_or_metric": "The system shall handle up to 100 concurrent users with task operations CRUD, filter) respondi",
+      "source": "SRS",
+      "traceability": {
+        "section": "4.1",
+        "page": null
+      },
+      "original_text": "The system shall handle up to 100 concurrent users with task operations CRUD, filter) responding in under 1 second"
+    },
+    {
+      "cru_id": "CRU_QR1_02",
+      "parent_requirement_id": "QR1",
+      "type": "performance",
+      "actor": "The system",
+      "action": "handle users",
+      "observable_outcome": null,
+      "constraint_or_metric": "task operations CRUD, filter) responding in under 1 second",
+      "source": "SRS",
+      "traceability": {
+        "section": "4.1",
+        "page": null
+      },
+      "original_text": "The system shall handle up to 100 concurrent users with task operations CRUD, filter) responding in under 1 second"
+    },
+    {
+      "cru_id": "CRU_QR1_03",
+      "parent_requirement_id": "QR1",
+      "type": "performance",
+      "actor": "The system",
+      "action": "handle users",
+      "observable_outcome": null,
+      "constraint_or_metric": "The system shall handle up to 100 concurrent users with task operations CRUD, filter) responding in under 1 second",
+      "source": "SRS",
+      "traceability": {
+        "section": "4.1",
+        "page": null
+      },
+      "original_text": "The system shall handle up to 100 concurrent users with task operations CRUD, filter) responding in under 1 second"
+    },
+    {
+      "cru_id": "CRU_QR1_04",
+      "parent_requirement_id": "QR1",
+      "type": "performance",
+      "actor": "The system",
+      "action": "handle users",
+      "observable_outcome": null,
+      "constraint_or_metric": "with task operations CRUD, filter) responding in under 1 second",
+      "source": "SRS",
+      "traceability": {
+        "section": "4.1",
+        "page": null
+      },
+      "original_text": "The system shall handle up to 100 concurrent users with task operations CRUD, filter) responding in under 1 second"
+    },
+    {
+      "cru_id": "CRU_QR1_05",
+      "parent_requirement_id": "QR1",
+      "type": "performance",
+      "actor": "Database queries",
+      "action": "optimize for",
+      "observable_outcome": null,
+      "constraint_or_metric": "y, achieving 99th percentile response times below 500ms under load",
+      "source": "SRS",
+      "traceability": {
+        "section": "4.1",
+        "page": null
+      },
+      "original_text": "Database queries must optimize for low latency, achieving 99th percentile response times below 500ms under load"
+    },
+    {
+      "cru_id": "CRU_QR1_06",
+      "parent_requirement_id": "QR1",
+      "type": "performance",
+      "actor": "Database queries",
+      "action": "optimize for",
+      "observable_outcome": null,
+      "constraint_or_metric": "latency, achieving 99th percentile response times below 500ms under load",
+      "source": "SRS",
+      "traceability": {
+        "section": "4.1",
+        "page": null
+      },
+      "original_text": "Database queries must optimize for low latency, achieving 99th percentile response times below 500ms under load"
+    },
+    {
+      "cru_id": "CRU_QR1_07",
+      "parent_requirement_id": "QR1",
+      "type": "performance",
+      "actor": "load times",
+      "action": "exceed not seconds",
+      "observable_outcome": null,
+      "constraint_or_metric": "Page load times on dashboards shall not exceed 2 seconds for typical use",
+      "source": "SRS",
+      "traceability": {
+        "section": "4.1",
+        "page": null
+      },
+      "original_text": "Page load times on dashboards shall not exceed 2 seconds for typical use."
+    },
+    {
+      "cru_id": "CRU_QR1_08",
+      "parent_requirement_id": "QR1",
+      "type": "performance",
+      "actor": "load times",
+      "action": "exceed not seconds",
+      "observable_outcome": null,
+      "constraint_or_metric": "shall not exceed 2 seconds for typical use",
+      "source": "SRS",
+      "traceability": {
+        "section": "4.1",
+        "page": null
+      },
+      "original_text": "Page load times on dashboards shall not exceed 2 seconds for typical use."
+    }
+  ]
+}

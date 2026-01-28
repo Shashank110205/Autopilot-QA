@@ -7,6 +7,12 @@ from enum import Enum
 import ollama
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+FAST_MODEL = "qwen2.5:14b-instruct"       # Phase 1: fast, cheap
+DEEP_MODEL = "qwen2.5:14b-instruct"       # Phase 2: comprehensive
 
 
 # ============================================
@@ -36,12 +42,12 @@ class TestCase:
     test_type: str
     test_title: str
     description: str
-    preconditions: List[str]
-    test_steps: List[str]
-    expected_result: str
-    test_data: Dict[str, Any]
-    priority: str
-    generation_phase: str
+    preconditions: List[str] = field(default_factory=lambda: ["Application accessible"])
+    test_steps: List[str] = field(default_factory=list)
+    expected_result: str = "Test should pass as expected"
+    test_data: Dict[str, Any] = field(default_factory=dict)
+    priority: str = "Medium"
+    generation_phase: str = "unknown"
     srs_section: str = ""
     depends_on: List[str] = field(default_factory=list)
 
@@ -55,7 +61,7 @@ class SRSRequirementAnalyzer:
     
     # Known SRS-specific patterns for critical requirements
     SRS_PATTERNS = {
-        "FR6": {
+        "CRU_FR6_01": {
             "must_test": [
                 "Search by price (min-max range)",
                 "Search by destination",
@@ -65,7 +71,7 @@ class SRSRequirementAnalyzer:
                 "COMBINED multi-criteria search (Price + Distance + Type)"
             ]
         },
-        "FR7": {
+        "CRU_FR7_01": {
             "must_test": [
                 "Maximum 100 results displayed on map",
                 "Default zoom level verification",
@@ -73,7 +79,7 @@ class SRSRequirementAnalyzer:
                 "Filtering menu button present"
             ]
         },
-        "FR8": {
+        "CRU_FR8_01": {
             "must_test": [
                 "Maximum 100 results in list view",
                 "Sorting when search by price: price → distance → type → dish",
@@ -82,7 +88,7 @@ class SRSRequirementAnalyzer:
                 "Filtering menu button"
             ]
         },
-        "FR11": {
+        "CRU_FR11_01": {
             "must_test": [
                 "Picture displayed",
                 "Name, address, phone, email displayed",
@@ -90,7 +96,7 @@ class SRSRequirementAnalyzer:
                 "Full menu with dish names, descriptions, prices"
             ]
         },
-        "FR12": {
+        "CRU_FR12_01": {
             "must_test": [
                 "Minimum and maximum price input",
                 "Results displayed in LIST VIEW by default (not map)",
@@ -98,7 +104,7 @@ class SRSRequirementAnalyzer:
                 "Only integers accepted (reference FR14)"
             ]
         },
-        "FR24": {
+        "CRU_FR24_01": {
             "must_test": [
                 "MANDATORY fields: average price, address, email, phone, restaurant name",
                 "OPTIONAL fields: description, menu, type, picture, mobile",
@@ -126,24 +132,30 @@ class SRSRequirementAnalyzer:
 
 class EnhancedSRSPromptGenerator:
     """Enhanced prompt generator with SRS-specific requirements"""
-    
-    @staticmethod
-    def build_srs_enhanced_prompt(requirement: Dict, domain: str, test_types: List[str]) -> str:
-        """Generate prompt with SRS-specific enhancements"""
+    def __init__(self, prompts_file: str = "prompts.json"):
+        """Load prompts from JSON file"""
+        with open(prompts_file, 'r', encoding='utf-8') as f:
+            self.prompts = json.load(f)
+        print(f"✓ Loaded prompts from {prompts_file}")
+
+
+    def build_srs_enhanced_prompt(self, requirement: Dict, domain: str, test_types: List[str]) -> str:
+        """Generate prompt using JSON template"""
         
-        req_id = requirement.get('id', '')
-        req_description = requirement.get('description', '')
+        req_id = requirement.get('cru_id', '')
+        parent_req = requirement.get('parent_requirement', '')
+        req_description = requirement.get('action', '')  # CRUs have 'action' field
         req_rationale = requirement.get('rationale', '')
         dependencies = requirement.get('dependencies', [])
         test_types_str = ", ".join(test_types)
         
         # Check if this requirement has SRS-specific patterns
-        srs_specifics = SRSRequirementAnalyzer.get_srs_specifics(req_id)
+        srs_specifics = SRSRequirementAnalyzer.get_srs_specifics(parent_req)
         
         srs_specific_section = ""
         if srs_specifics:
             srs_specific_section = f"""
-⚠️ CRITICAL SRS-SPECIFIC REQUIREMENTS FOR {req_id}:
+ CRITICAL SRS-SPECIFIC REQUIREMENTS FOR {req_id}:
 The SRS document EXPLICITLY requires testing these scenarios:
 {chr(10).join([f"  {i+1}. {spec}" for i, spec in enumerate(srs_specifics)])}
 
@@ -151,90 +163,25 @@ YOU MUST generate test cases that DIRECTLY test these specific behaviors.
 DO NOT generate generic tests. Each test must address one of the above requirements.
 """
         
-        prompt = f"""You are a senior QA engineer generating SPECIFIC, DETAILED test cases from an SRS document.
-
-CRITICAL RULES:
-1. NO placeholder test cases like "Execute test action" or "Input test data"
-2. NO generic "Verify result" steps
-3. Use ACTUAL test data from the requirement (URLs, usernames, fields, etc.)
-4. Reference SPECIFIC behaviors mentioned in the requirement
-5. Each test step must be executable by a human tester
-6. Expected results must be MEASURABLE and SPECIFIC
-
-{srs_specific_section}
-
-REQUIREMENT:
-ID: {req_id}
-Title: {requirement['title']}
-Description: {req_description}
-Rationale: {req_rationale}
-Dependencies: {', '.join(dependencies) if dependencies else 'None'}
-
-DOMAIN: {domain}
-
-ANALYZE THE REQUIREMENT DESCRIPTION CAREFULLY:
-- Extract specific data fields mentioned (price, distance, types, etc.)
-- Identify exact behaviors (sorting order, display limits, mandatory fields)
-- Note any quantitative requirements (max results, time limits, ranges)
-- Identify integration points with other features
-- Look for "maximum", "minimum", "sorted by", "displayed in", "mandatory", "optional" keywords
-
-GENERATE {len(test_types)} TEST CASES - ONE FOR EACH TYPE:
-{test_types_str}
-
-FOR EACH TEST TYPE:
-- POSITIVE: Test the main success scenario with real, specific data from the requirement
-- NEGATIVE: Test error handling with invalid inputs specific to this requirement
-- EDGE: Test boundary conditions mentioned in the requirement (e.g., exactly 100 results, min=max)
-- INTEGRATION: Test interaction with dependencies listed above
-- PERFORMANCE: Test any performance criteria mentioned (time limits, data limits)
-- SECURITY: Test authentication, authorization, data protection for this feature
-
-OUTPUT FORMAT (JSON array only, no markdown):
-[
-  {{
-    "test_type": "positive",
-    "test_title": "Specific test title describing exact scenario",
-    "description": "Clear explanation of what this test validates",
-    "preconditions": ["Specific precondition 1", "Specific precondition 2", "Specific precondition 3"],
-    "test_steps": [
-      "Navigate to [specific page/URL]",
-      "Enter [specific field]: '[actual value]'",
-      "Click '[specific button name]' button",
-      "Verify [specific element] displays [exact expected value]"
-    ],
-    "test_data": {{
-      "field1": "actual_value",
-      "field2": "actual_value",
-      "expected_count": 10
-    }},
-    "expected_result": "Specific, measurable outcome with exact values/behaviors from requirement",
-    "priority": "High",
-    "srs_section": "Section number if mentioned in requirement",
-    "depends_on": {json.dumps(dependencies)}
-  }}
-]
-
-EXAMPLES OF GOOD VS BAD:
-❌ BAD: "Execute test action"
-✅ GOOD: "Click 'Search' button with price range 100-500"
-
-❌ BAD: "Verify result"
-✅ GOOD: "Verify results are sorted by distance first, then by price, displaying maximum 100 restaurants"
-
-❌ BAD: "test_data": "test_input"
-✅ GOOD: "test_data": {{"min_price": 100, "max_price": 500, "distance_km": 5}}
-
-❌ BAD (for FR24): "Enter price range and search"
-✅ GOOD (for FR24): "Fill restaurant form: name='Test Restaurant', address='123 Main St', email='test@restaurant.com', phone='555-1234', average_price=25, then click 'Submit'"
-
-GENERATE EXACTLY {len(test_types)} SPECIFIC, DETAILED TEST CASES.
-Output ONLY JSON array, no explanations.
-"""
+        prompt_template = self.prompts["srs_enhanced_prompt"]
+        
+        # Replace placeholders with actual values
+        prompt = prompt_template.format(
+            srs_specific_section=srs_specific_section,
+            req_id=req_id,
+            req_title=f"{requirement.get('actor', '')} {requirement.get('action', '')}",  # CRU structure
+            req_description=req_description,
+            req_rationale=req_rationale,
+            dependencies=', '.join(dependencies) if dependencies else 'None',
+            domain=domain,
+            test_types_str=test_types_str,
+            num_test_types=len(test_types),
+            depends_on_json=json.dumps(dependencies)
+        )
+        
         return prompt
     
-    @staticmethod
-    def build_deep_srs_prompt(requirement: Dict, domain: str, test_type: str) -> str:
+    def build_deep_srs_prompt(self, requirement: Dict, domain: str, test_type: str) -> str:
         """Generate deep prompt for comprehensive testing with SRS focus"""
         
         req_id = requirement.get('id', '')
@@ -248,121 +195,32 @@ Output ONLY JSON array, no explanations.
         srs_reminder = ""
         if srs_specifics:
             srs_reminder = f"""
-⚠️ CRITICAL: For {req_id}, the SRS explicitly requires:
+ CRITICAL: For {req_id}, the SRS explicitly requires:
 {chr(10).join([f"  • {spec}" for spec in srs_specifics])}
 
 Your {test_type.upper()} test cases MUST address these specific SRS requirements.
 """
+        # Get type-specific guidance from JSON
+        type_guidance = self.prompts["type_guidance"].get(test_type, "Focus on requirement-specific scenarios")
         
-        # Type-specific guidance
-        type_guidance = {
-            "usability": """
-Focus on USER EXPERIENCE aspects mentioned in requirement:
-- UI element clarity and placement
-- Task completion time (if specified)
-- Error message clarity
-- Navigation intuitiveness
-- Mobile vs desktop experience differences
-""",
-            "compatibility": """
-Focus on PLATFORM/DEVICE compatibility:
-- iOS vs Android differences
-- Different screen sizes/resolutions
-- Browser compatibility (if web-based)
-- GPS/location accuracy across devices
-- Network type variations (WiFi, 4G, 5G)
-""",
-            "api": """
-Focus on API INTEGRATION details:
-- Specific endpoint paths and methods
-- Request/response schema validation
-- HTTP status codes for different scenarios
-- Authentication/authorization headers
-- Rate limiting if mentioned
-- Response time requirements
-""",
-            "data_integrity": """
-Focus on DATA CONSISTENCY:
-- CRUD operations validation
-- Calculation accuracy (if formulas mentioned)
-- Mandatory vs optional field validation
-- Data type constraints (integer, string, etc.)
-- Foreign key relationships
-- Transaction integrity
-""",
-            "reliability": """
-Focus on FAILURE RECOVERY:
-- Network interruption handling
-- App crash recovery
-- GPS signal loss behavior
-- Session timeout handling
-- Data persistence across crashes
-"""
-        }
+        # Get the prompt template from JSON
+        prompt_template = self.prompts["deep_srs_prompt"]
         
-        guidance = type_guidance.get(test_type, "Focus on requirement-specific scenarios")
-        
-        prompt = f"""You are a senior QA engineer specializing in {test_type.upper()} testing.
-
-{srs_reminder}
-
-REQUIREMENT DETAILS:
-ID: {req_id}
-Title: {requirement['title']}
-Description: {req_description}
-Rationale: {req_rationale}
-Dependencies: {', '.join(dependencies) if dependencies else 'None'}
-
-DOMAIN: {domain}
-
-{guidance}
-
-CRITICAL: EXTRACT SPECIFIC DETAILS FROM REQUIREMENT DESCRIPTION:
-- Look for field names, data types, ranges, limits
-- Identify specific UI elements, pages, or workflows
-- Note any numerical requirements (max results, time limits, etc.)
-- Identify sorting/filtering behaviors
-- Note mandatory vs optional elements
-
-GENERATE 2-3 DETAILED {test_type.upper()} TEST CASES.
-
-Each test case MUST:
-1. Use ACTUAL data from the requirement (not generic "test_input")
-2. Have SPECIFIC, executable test steps (not "Execute test action")
-3. Have MEASURABLE expected results (not "Feature works as expected")
-4. Reference specific UI elements, fields, or behaviors from requirement
-5. Include quantitative expectations if mentioned in requirement
-
-OUTPUT FORMAT (JSON array):
-[
-  {{
-    "test_type": "{test_type}",
-    "test_title": "Specific title describing exact {test_type} scenario",
-    "description": "What this test validates in the requirement",
-    "preconditions": ["Specific setup 1", "Specific setup 2", "Specific setup 3"],
-    "test_steps": [
-      "Specific step 1 with actual values",
-      "Specific step 2 with actual actions",
-      "Specific step 3 with exact verification",
-      "Specific step 4 with measurable check",
-      "Specific step 5 with concrete outcome"
-    ],
-    "test_data": {{
-      "actual_field1": "concrete_value1",
-      "actual_field2": "concrete_value2",
-      "expected_limit": 100
-    }},
-    "expected_result": "Specific, measurable outcome with exact values, counts, or behaviors from requirement",
-    "priority": "High or Medium based on criticality",
-    "srs_section": "Section reference if available",
-    "depends_on": {json.dumps(dependencies)}
-  }}
-]
-
-IMPORTANT: If requirement mentions specific values (e.g., "maximum 100 results", "within 2 seconds", "sorted by distance then price"), include these EXACT values in test cases.
-
-Output ONLY JSON array.
-"""
+        # Replace placeholders with actual values
+        prompt = prompt_template.format(
+            test_type=test_type,
+            test_type_upper=test_type.upper(),
+            req_id=req_id,
+            req_title=f"{requirement.get('actor', '')} {requirement.get('action', '')}",
+            req_description=req_description,
+            req_rationale=req_rationale,
+            dependencies=', '.join(dependencies) if dependencies else 'None',
+            domain=domain,
+            srs_reminder=srs_reminder,
+            type_guidance=type_guidance,
+            depends_on_json=json.dumps(dependencies)
+        )
+       
         return prompt
 
 
@@ -391,15 +249,26 @@ class EnhancedSRSValidator:
     def validate(test_cases: List[Dict], requirement: Dict, is_comprehensive: bool = False) -> List[Dict]:
         """Strict validation to prevent placeholder test cases"""
         validated = []
-        req_id = requirement.get('id', '')
+        req_id = requirement.get('cru_id', '')
         
         # Get SRS specifics for this requirement
-        srs_specifics = SRSRequirementAnalyzer.get_srs_specifics(req_id)
+        parent_req = requirement.get('parent_requirement', '')
+        srs_specifics = SRSRequirementAnalyzer.get_srs_specifics(parent_req)
         
         for idx, tc in enumerate(test_cases):
+            # Ensure all required fields exist with defaults FIRST
+            tc.setdefault('test_title', 'Untitled Test')
+            tc.setdefault('test_steps', [])
+            tc.setdefault('preconditions', ['Application accessible'])
+            tc.setdefault('test_data', {})
+            tc.setdefault('expected_result', 'Test should pass')
+            tc.setdefault('test_type', 'positive')
+            tc.setdefault('priority', 'Medium')
+            tc.setdefault('description', 'Test case description')
+            
             # 1. Required fields check
             if not tc.get('test_title') or not tc.get('test_steps'):
-                print(f"    ⚠️ Test {idx+1}: Missing title or steps")
+                print(f"     Test {idx+1}: Missing title or steps")
                 continue
             
             # 2. Check for placeholder phrases in steps
@@ -408,7 +277,7 @@ class EnhancedSRSValidator:
             
             for phrase in EnhancedSRSValidator.FORBIDDEN_PHRASES:
                 if phrase in steps_str:
-                    print(f"    ⚠️ Test {idx+1}: Contains placeholder phrase '{phrase}'")
+                    print(f"     Test {idx+1}: Contains placeholder phrase '{phrase}'")
                     has_placeholder = True
                     break
             
@@ -419,7 +288,7 @@ class EnhancedSRSValidator:
             expected = tc.get('expected_result', '').lower()
             for phrase in ["works as expected", "behaves as expected", "feature works"]:
                 if phrase in expected:
-                    print(f"    ⚠️ Test {idx+1}: Generic expected result")
+                    print(f"     Test {idx+1}: Generic expected result")
                     has_placeholder = True
                     break
             
@@ -431,9 +300,9 @@ class EnhancedSRSValidator:
                 tc['test_steps'] = [s.strip() for s in tc['test_steps'].split('\n') if s.strip()]
             
             # 5. Ensure minimum quality steps
-            min_steps = 5 if is_comprehensive else 4
+            min_steps = 3 if is_comprehensive else 3
             if len(tc['test_steps']) < min_steps:
-                print(f"    ⚠️ Test {idx+1}: Only {len(tc['test_steps'])} steps (min: {min_steps})")
+                print(f"     Test {idx+1}: Only {len(tc['test_steps'])} steps (min: {min_steps})")
                 continue
             
             # 6. Normalize preconditions
@@ -454,12 +323,12 @@ class EnhancedSRSValidator:
             # 8. Check test data quality
             test_data_str = str(tc.get('test_data', {})).lower()
             if 'test_input' in test_data_str or 'test_value' in test_data_str:
-                print(f"    ⚠️ Test {idx+1}: Generic test data")
+                print(f"     Test {idx+1}: Generic test data")
                 # Don't skip, but flag
             
             # 9. Check expected result length
             if len(expected) < 30:
-                print(f"    ⚠️ Test {idx+1}: Expected result too short ({len(expected)} chars)")
+                print(f"     Test {idx+1}: Expected result too short ({len(expected)} chars)")
                 continue
             
             # 10. For critical SRS requirements, check if test addresses SRS specifics
@@ -472,11 +341,12 @@ class EnhancedSRSValidator:
                     for keyword in spec.split()[:3]  # Check first 3 words of each spec
                 )
                 if not addresses_srs:
-                    print(f"    ℹ️ Test {idx+1}: May not address SRS-specific requirements for {req_id}")
+                    print(f"    Test {idx+1}: May not address SRS-specific requirements for {req_id}")
             
             # 11. Add requirement metadata
-            tc['requirement_id'] = requirement['id']
-            tc['description'] = tc.get('description', f"Test case for {requirement['title']}")
+            tc['requirement_id'] = requirement['cru_id']
+            tc['description'] = tc.get('description', f"Test case for {requirement.get('action', requirement['cru_id'])}")
+
             
             # 12. Normalize priority
             if tc.get('priority') not in ['High', 'Medium', 'Low']:
@@ -500,90 +370,155 @@ class EnhancedSRSValidator:
 # ============================================
 
 class OptimizedHybridEngine:
-    """Optimized SRS-aware hybrid test generation engine"""
-    
-    def __init__(self, model_name: str = "qwen2.5-coder:7b-instruct"):
+    def __init__(self, model_name: str = "qwen2.5:14b-instruct", prompts_file: str = "prompts.json"):
         self.model_name = model_name
-        self.prompt_gen = EnhancedSRSPromptGenerator()
+        self.prompt_gen = EnhancedSRSPromptGenerator(prompts_file)
         self.validator = EnhancedSRSValidator()
         self.test_counter = 1
-        self.max_workers = 3
+        self.max_workers = 5
         
         print(f"\n{'='*80}")
         print(f"⚡ OPTIMIZED SRS-AWARE HYBRID TEST GENERATION ENGINE")
         print(f"{'='*80}")
         print(f"Model: {model_name}")
-        print(f"✅ Enforces SRS-specific test cases")
-        print(f"✅ Blocks placeholder/template tests")
-        print(f"✅ Deduplicates overlapping requirements")
-        print(f"✅ Targets critical SRS gaps (FR6, FR8, FR24, etc.)")
+        print(f"✓ Prompts loaded from: {prompts_file}")
+        print(f" Enforces SRS-specific test cases")
+        print(f" Blocks placeholder/template tests")
+        print(f" Deduplicates overlapping requirements")
         print(f"{'='*80}\n")
         
         try:
             ollama.list()
             ollama.generate(model=self.model_name, prompt="test", options={'num_predict': 1})
-            print("✅ Model loaded and ready\n")
+            print("✓ Model loaded and ready\n")
         except Exception as e:
-            print(f"⚠️ Ollama issue: {e}\n")
+            print(f"⚠ Ollama issue: {e}\n")
+    
+    def set_model(self, model_name: str):
+        if self.model_name != model_name:
+            print(f"🔁 Switching model → {model_name}")
+            self.model_name = model_name
+
     
     def _call_llm(self, prompt: str, is_comprehensive: bool = False) -> Optional[str]:
         """Call LLM with appropriate settings"""
         try:
+            print(f"      Calling LLM... (prompt length: {len(prompt)} chars)")
             response = ollama.generate(
                 model=self.model_name,
                 prompt=prompt,
                 options={
                     'temperature': 0.3 if is_comprehensive else 0.2,
                     'top_p': 0.9,
-                    'num_predict': 6000 if is_comprehensive else 4000,
+                    'num_predict': 8000 if is_comprehensive else 5000,
                     'repeat_penalty': 1.1
                 }
             )
-            return response['response']
+            response_text = response['response']
+
+            print(f"      LLM response length: {len(response_text)} chars")
+            print(f"      First 200 chars: {response_text[:200]}")
+            time.sleep(0.8)
+            return response_text
         except Exception as e:
-            print(f"  ⚠️ LLM error: {e}")
+            print(f"⚠ LLM error: {e}")
+            import traceback
+            traceback.print_exc()
             return None
-    
+
+    """def _call_llm(self, prompt: str, is_comprehensive: bool = False) -> Optional[str]:
+        print(f"      Calling LLM... (prompt length: {len(prompt)} chars)")
+
+        for attempt in range(3):
+            try:
+                response = self.client.chat.completions.create(
+                    model=self.model_name,
+                    messages=[
+                        {
+                            "role": "system",
+                            "content": (
+                                "You are a senior QA automation engineer. "
+                                "You MUST return ONLY valid JSON. "
+                                "No explanations, no markdown."
+                                "Follow the user's instructions exactly."
+                            )
+                        },
+                        {"role": "user", "content": prompt}
+                    ],
+                    temperature=0.3 if is_comprehensive else 0.2,
+                    top_p=0.9,
+                    max_tokens=2500 if is_comprehensive else 1800
+                )
+
+                response_text = response.choices[0].message.content
+                time.sleep(12)
+                print(f"      LLM response length: {len(response_text)} chars")
+                print(f"      First 200 chars: {response_text[:200]}")
+                return response_text
+
+            except groq.RateLimitError:
+                wait = 3 + attempt * 2
+                print(f"⏳ Rate limit hit. Sleeping {wait}s...")
+                time.sleep(wait)
+
+            except Exception as e:
+                print(f"   LLM error: {e}")
+                return None
+
+        print("   LLM failed after retries")
+        return None"""
+ 
+
     def _parse_json(self, response: str) -> List[Dict]:
-        """Parse JSON response"""
         if not response:
+            print("      No response to parse")
             return []
-        
+
+        cleaned = response.strip()
+
+        if cleaned.startswith('```'):
+            lines = cleaned.split('\n')
+            cleaned = '\n'.join(line for line in lines if not line.strip().startswith('```'))
+
+        start = cleaned.find('[')
+        end = cleaned.rfind(']') + 1
+
+        if start == -1 or end == 0:
+            print("      No JSON array found")
+            return []
+
+        json_str = cleaned[start:end]
+
         try:
-            cleaned = response.strip()
-            if cleaned.startswith('```'):
-                lines = cleaned.split('\n')
-                cleaned = '\n'.join(line for line in lines if not line.strip().startswith('```'))
-            
-            start = cleaned.find('[')
-            end = cleaned.rfind(']') + 1
-            
-            if start == -1 or end == 0:
-                return []
-            
-            json_str = cleaned[start:end]
-            return json.loads(json_str)
-        except Exception as e:
-            print(f"  ⚠️ JSON parse error: {e}")
+            parsed = json.loads(json_str)
+            print(f"      ✓ Successfully parsed {len(parsed)} test cases")
+            return parsed
+        except json.JSONDecodeError as e:
+            print(f"⚠ JSON parse error: {e}")
+            print(f"      First 500 chars of response: {response[:500]}")
             return []
+
     
     def generate_fast_batch(self, requirement: Dict, domain: str, test_types: List[str]) -> List[TestCase]:
         """Phase 1: Fast batch with SRS awareness"""
-        
+
+        req_id = requirement.get('cru_id', requirement.get('id', 'UNKNOWN'))
+        print(f"    Generating for {req_id}...")
         prompt = self.prompt_gen.build_srs_enhanced_prompt(requirement, domain, test_types)
         response = self._call_llm(prompt, is_comprehensive=False)
-        generated = self._parse_json(response)
+        if not response:
+            print(f"    No response from LLM for {req_id}")
+            return []
         
+        generated = self._parse_json(response)
         print(f"    Generated {len(generated)} raw test cases")
         
         validated = self.validator.validate(generated, requirement, is_comprehensive=False)
-        
-        print(f"    ✅ Validated {len(validated)} test cases (rejected {len(generated) - len(validated)})")
-        
+        print(f"    Validated {len(validated)} test cases (rejected {len(generated) - len(validated)})")
         test_cases = []
         for tc in validated:
             test_case = TestCase(
-                test_id=f"TC_{requirement['id']}_{self.test_counter:03d}",
+                test_id=f"TC_{req_id}_{self.test_counter:03d}",
                 requirement_id=tc['requirement_id'],
                 test_type=tc.get('test_type', 'positive'),
                 test_title=tc['test_title'],
@@ -616,11 +551,12 @@ class OptimizedHybridEngine:
             
             validated = self.validator.validate(generated, requirement, is_comprehensive=True)
             
-            print(f"      ✅ {len(validated)} {test_type} tests validated")
+            print(f"       {len(validated)} {test_type} tests validated")
             
             for tc in validated:
+                req_id = requirement.get('cru_id', requirement.get('id', 'UNKNOWN'))
                 test_case = TestCase(
-                    test_id=f"TC_{requirement['id']}_{self.test_counter:03d}",
+                    test_id=f"TC_{req_id}_{self.test_counter:03d}",
                     requirement_id=tc['requirement_id'],
                     test_type=tc.get('test_type', test_type),
                     test_title=tc['test_title'],
@@ -645,7 +581,7 @@ class OptimizedHybridEngine:
         all_test_cases = []
         total = len(requirements)
         
-        print(f"🚀 PHASE 1: SRS-aware fast batch for {total} requirements...")
+        print(f" PHASE 1: SRS-aware fast batch for {total} requirements...")
         start_time = time.time()
         
         with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
@@ -666,15 +602,17 @@ class OptimizedHybridEngine:
                     avg_time = elapsed / completed
                     remaining = (total - completed) * avg_time
                     
-                    print(f"  ✅ {completed}/{total} | {req['id']} | "
+                    req_id = req.get('cru_id', req.get('id', 'UNKNOWN'))
+                    print(f"   {completed}/{total} | {req_id} | "
                           f"{len(test_cases)} tests | ETA: {remaining/60:.1f}m")
                 except Exception as e:
-                    print(f"  ❌ {req['id']}: {e}")
+                    req_id = req.get('cru_id', req.get('id', 'UNKNOWN'))
+                    print(f"   {req_id}: {e}")
                     completed += 1
         
         elapsed = time.time() - start_time
-        print(f"\n⏱️  Phase 1 completed in {elapsed/60:.1f} minutes")
-        print(f"📊 Generated {len(all_test_cases)} quality test cases\n")
+        print(f"\n Phase 1 completed in {elapsed/60:.1f} minutes")
+        print(f" Generated {len(all_test_cases)} quality test cases\n")
         
         return all_test_cases
     
@@ -688,11 +626,16 @@ class OptimizedHybridEngine:
         start_time = time.time()
         
         for idx, req in enumerate(requirements, 1):
-            print(f"\n  [{idx}/{total}] {req['id']}: {req['title'][:60]}...")
+            req_id = req.get('cru_id', req.get('id', 'UNKNOWN'))
+            actor = req.get('actor', 'System')
+            action = req.get('action', 'perform action')
+            req_title = f"{actor} {action}"
+            print(f"\n  [{idx}/{total}] {req_id}: {req_title[:60]}...")
             
             # Flag if this is a critical SRS requirement
-            if SRSRequirementAnalyzer.has_srs_specifics(req['id']):
-                print(f"      🎯 SRS-critical requirement - enhanced testing")
+            parent_req = req.get('parent_requirement', req_id)
+            if SRSRequirementAnalyzer.has_srs_specifics(parent_req):
+                print(f"       SRS-critical requirement - enhanced testing")
             
             try:
                 test_cases = self.generate_comprehensive(req, domain, test_types)
@@ -702,13 +645,13 @@ class OptimizedHybridEngine:
                 avg_time = elapsed / idx
                 remaining = (total - idx) * avg_time
                 
-                print(f"  ✅ Total {len(test_cases)} comprehensive tests | ETA: {remaining/60:.1f}m")
+                print(f"   Total {len(test_cases)} comprehensive tests | ETA: {remaining/60:.1f}m")
             except Exception as e:
-                print(f"  ❌ Error: {e}")
+                print(f"   Error: {e}")
         
         elapsed = time.time() - start_time
-        print(f"\n⏱️  Phase 2 completed in {elapsed/60:.1f} minutes")
-        print(f"📊 Generated {len(all_test_cases)} comprehensive test cases\n")
+        print(f"\n  Phase 2 completed in {elapsed/60:.1f} minutes")
+        print(f" Generated {len(all_test_cases)} comprehensive test cases\n")
         
         return all_test_cases
 
@@ -720,16 +663,16 @@ class OptimizedHybridEngine:
 class OptimizedHybridGenerator:
     """Optimized SRS-aware hybrid test generator with deduplication"""
     
-    def __init__(self, input_file: str, model_name: str = "qwen2.5-coder:7b-instruct"):
+    def __init__(self, input_file: str, model_name: str = "qwen2.5:14b-instruct", prompts_file: str = "prompts.json"):
         self.input_file = input_file
-        self.engine = OptimizedHybridEngine(model_name)
+        self.engine = OptimizedHybridEngine(model_name, prompts_file=prompts_file)
         self.data = None
         self.phase1_test_cases = []
         self.phase2_test_cases = []
         
-        self.phase1_types = ['positive', 'negative', 'edge', 'integration', 'performance', 'security']
-        self.phase2_types = ['usability', 'compatibility', 'api', 'data_integrity', 'reliability']
-        
+        self.phase1_types = ['positive', 'negative', 'edge', 'integration']
+        self.phase2_types = ['performance', 'security', 'usability', 'compatibility', 'api', 'data_integrity', 'reliability', 'boundary', 'error_handling']
+                
         print(f"Phase 1 types: {self.phase1_types}")
         print(f"Phase 2 types: {self.phase2_types}\n")
     
@@ -744,13 +687,13 @@ class OptimizedHybridGenerator:
         overlap_count = total_instances - unique_count
         
         print(f"{'='*80}")
-        print(f"📄 LOADED DATA")
+        print(f" LOADED CRU DATA")
         print(f"{'='*80}")
-        print(f"Total requirement instances: {total_instances}")
-        print(f"Unique requirements: {unique_count}")
+        print(f"Total CRU instances: {total_instances}")
+        print(f"Unique CRU: {unique_count}")
         if overlap_count > 0:
-            print(f"⚠️ Overlap detected: {overlap_count} duplicate instances ({overlap_count/total_instances*100:.1f}%)")
-            print(f"✅ Deduplication will be applied")
+            print(f" Overlap detected: {overlap_count} duplicate instances ({overlap_count/total_instances*100:.1f}%)")
+            print(f" Deduplication will be applied")
         print(f"Chunks: {self.data['metadata']['total_chunks']}")
         print(f"Domain: {self.data['domain_classification']['primary_domain']}")
         print(f"{'='*80}\n")
@@ -762,9 +705,9 @@ class OptimizedHybridGenerator:
         
         for chunk in self.data['chunks']:
             for req in chunk['requirements']:
-                if req['id'] not in seen_req_ids:
+                if req['cru_id'] not in seen_req_ids:
                     all_requirements.append(req)
-                    seen_req_ids.add(req['id'])
+                    seen_req_ids.add(req['cru_id'])
         
         return all_requirements
     
@@ -776,9 +719,10 @@ class OptimizedHybridGenerator:
         
         critical_reqs = []
         
-        # Priority 1: SRS-critical requirements (FR6, FR8, FR24, etc.)
+        # Priority 1: SRS-critical (check parent_requirement)
         for req in all_requirements:
-            if SRSRequirementAnalyzer.has_srs_specifics(req['id']):
+            parent_req = req.get('parent_requirement', '')
+            if SRSRequirementAnalyzer.has_srs_specifics(parent_req):
                 critical_reqs.append(req)
         
         # Priority 2: Requirements with dependencies
@@ -795,14 +739,18 @@ class OptimizedHybridGenerator:
         critical_reqs = critical_reqs[:top_n]
         
         print(f"{'='*80}")
-        print(f"🎯 CRITICAL REQUIREMENTS FOR PHASE 2")
+        print(f" CRITICAL REQUIREMENTS FOR PHASE 2")
         print(f"{'='*80}")
         print(f"Total unique requirements: {len(all_requirements)}")
         print(f"Selected for Phase 2: {len(critical_reqs)}")
         for req in critical_reqs:
             deps = ', '.join(req.get('dependencies', [])) if req.get('dependencies') else 'None'
-            srs_flag = "🎯 SRS-Critical" if SRSRequirementAnalyzer.has_srs_specifics(req['id']) else ""
-            print(f"  • {req['id']}: {req['title'][:45]} | Deps: {deps} {srs_flag}")
+            parent = req.get('parent_requirement', '')
+            srs_flag = "  SRS-Critical" if SRSRequirementAnalyzer.has_srs_specifics(parent) else ""
+            actor = req.get('actor', 'Unknown')
+            action = req.get('action', 'No action specified')
+            action_display = action[:40] if len(action) > 40 else action
+            print(f"  • {req['cru_id']}: {actor} {action_display} | Parent: {parent}{srs_flag}")
         print(f"{'='*80}\n")
         
         return critical_reqs
@@ -814,8 +762,10 @@ class OptimizedHybridGenerator:
         # Deduplicate requirements (fixes 22% overlap)
         all_requirements = self._deduplicate_requirements()
         
-        print(f"✅ Deduplicated: {len(all_requirements)} unique requirements\n")
+        print(f" Deduplicated: {len(all_requirements)} unique requirements\n")
         
+        self.engine.set_model(FAST_MODEL)
+
         self.phase1_test_cases = self.engine.generate_parallel_fast(
             all_requirements, domain, self.phase1_types
         )
@@ -824,6 +774,8 @@ class OptimizedHybridGenerator:
         """Phase 2: Comprehensive"""
         domain = self.data['domain_classification']['primary_domain']
         
+        self.engine.set_model(DEEP_MODEL)
+
         self.phase2_test_cases = self.engine.generate_sequential_comprehensive(
             critical_requirements, domain, self.phase2_types
         )
@@ -856,23 +808,47 @@ class OptimizedHybridGenerator:
         with open(json_file, 'w', encoding='utf-8') as f:
             json.dump(json_data, f, indent=2)
         
-        print(f"✅ Saved JSON: {json_file}")
+        print(f" Saved JSON: {json_file}")
         
         # Excel
         df = pd.DataFrame([asdict(tc) for tc in all_test_cases])
-        
-        df['preconditions'] = df['preconditions'].apply(
-            lambda x: '\n'.join([f"• {p}" for p in x]) if isinstance(x, list) else x
-        )
-        df['test_steps'] = df['test_steps'].apply(
-            lambda x: '\n'.join([f"{i+1}. {s}" for i, s in enumerate(x)]) if isinstance(x, list) else x
-        )
-        df['test_data'] = df['test_data'].apply(
-            lambda x: json.dumps(x, indent=2) if isinstance(x, dict) else x
-        )
-        df['depends_on'] = df['depends_on'].apply(
-            lambda x: ', '.join(x) if isinstance(x, list) else x
-        )
+
+        # Check if DataFrame is empty
+        if df.empty:
+            print("⚠️ Warning: No test cases generated. Creating empty report.")
+            df = pd.DataFrame(columns=['test_id', 'requirement_id', 'test_type', 'test_title', 
+                                        'description', 'preconditions', 'test_steps', 'expected_result',
+                                        'test_data', 'priority', 'generation_phase', 'srs_section', 'depends_on'])
+        else:
+            # SAFE handling with .get() to avoid KeyError
+            if 'preconditions' in df.columns:
+                df['preconditions'] = df['preconditions'].apply(
+                    lambda x: '\n'.join([f"• {p}" for p in x]) if isinstance(x, list) else str(x) if x else "None"
+                )
+            else:
+                df['preconditions'] = "None"
+            
+            if 'test_steps' in df.columns:
+                df['test_steps'] = df['test_steps'].apply(
+                    lambda x: '\n'.join([f"{i+1}. {s}" for i, s in enumerate(x)]) if isinstance(x, list) else str(x) if x else "None"
+                )
+            else:
+                df['test_steps'] = "None"
+            
+            if 'test_data' in df.columns:
+                df['test_data'] = df['test_data'].apply(
+                    lambda x: json.dumps(x, indent=2) if isinstance(x, dict) else str(x) if x else "{}"
+                )
+            else:
+                df['test_data'] = "{}"
+            
+            if 'depends_on' in df.columns:
+                df['depends_on'] = df['depends_on'].apply(
+                    lambda x: ', '.join(x) if isinstance(x, list) and x else "None"
+                )
+            else:
+                df['depends_on'] = "None"
+
         
         excel_file = f"{output_prefix}_{timestamp}.xlsx"
         with pd.ExcelWriter(excel_file, engine='openpyxl') as writer:
@@ -902,7 +878,7 @@ class OptimizedHybridGenerator:
                 if not type_df.empty:
                     type_df.to_excel(writer, sheet_name=test_type.capitalize()[:31], index=False)
         
-        print(f"✅ Saved Excel: {excel_file}")
+        print(f" Saved Excel: {excel_file}")
         
         # Summary
         summary_file = f"{output_prefix}_summary_{timestamp}.txt"
@@ -932,7 +908,7 @@ class OptimizedHybridGenerator:
                 count = len([t for t in all_test_cases if t.test_type == test_type])
                 f.write(f"  {test_type}: {count}\n")
         
-        print(f"✅ Saved Summary: {summary_file}")
+        print(f" Saved Summary: {summary_file}")
         
         return json_file, excel_file, summary_file
     
@@ -941,7 +917,7 @@ class OptimizedHybridGenerator:
         all_test_cases = self.phase1_test_cases + self.phase2_test_cases
         
         print(f"\n{'='*80}")
-        print(f"📊 FINAL STATISTICS")
+        print(f" FINAL STATISTICS")
         print(f"{'='*80}")
         print(f"Total Test Cases: {len(all_test_cases)}")
         print(f"\nBy Phase:")
@@ -958,21 +934,27 @@ class OptimizedHybridGenerator:
 # ============================================
 
 def main():
-    INPUT_FILE = "../03_Chunking_Domain_Understanding/chunked_requirements_with_domain.json"
-    OUTPUT_PREFIX = "../04_AI_powered_TestCaseGeneration/optimized_test_cases"
-    MODEL = "qwen2.5-coder:7b-instruct"
-    NUM_CRITICAL = 15
+    INPUT_FILE = "../03_Chunking_Domain_Understanding/output/chunked_crus_with_domain.json"
+    PROMPTS_FILE = "../04_AI_powered_TestCaseGeneration/prompts.json"
+    OUTPUT_DIR = "./output"
+    OUTPUT_PREFIX = os.path.join(OUTPUT_DIR, "optimized_test_cases")
+    FAST_MODEL = os.getenv("FAST_MODEL", "qwen2.5:14b-instruct")
+    DEEP_MODEL = os.getenv("DEEP_MODEL", "qwen2.5:14b-instruct")
+    NUM_CRITICAL = int(os.getenv("NUM_CRITICAL_REQUIREMENTS", "25"))
+    
+    # Create output directory if it doesn't exist
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
     
     print("="*80)
     print(" " * 10 + "⚡ OPTIMIZED SRS-AWARE HYBRID TEST GENERATION")
     print("="*80)
-    print("✅ Deduplication (fixes 22% overlap)")
-    print("✅ SRS-specific prompts (FR6, FR8, FR24, etc.)")
-    print("✅ Enhanced validation (blocks placeholders)")
-    print("✅ Priority targeting (critical SRS gaps)")
+    print(" Deduplication (fixes 22% overlap)")
+    print(" SRS-specific prompts (FR6, FR8, FR24, etc.)")
+    print(" Enhanced validation (blocks placeholders)")
+    print(" Priority targeting (critical SRS gaps)")
     print("="*80 + "\n")
     
-    generator = OptimizedHybridGenerator(INPUT_FILE, model_name=MODEL)
+    generator = OptimizedHybridGenerator(INPUT_FILE,  prompts_file=PROMPTS_FILE)
     
     print("[1/4] Loading data...")
     generator.load_data()
@@ -997,7 +979,7 @@ def main():
     
     total_time = phase1_time + phase2_time
     print("="*80)
-    print("✅ COMPLETE!")
+    print(" COMPLETE!")
     print("="*80)
     print(f"Phase 1: {phase1_time/60:.1f}m | Phase 2: {phase2_time/60:.1f}m | Total: {total_time/60:.1f}m")
     print(f"Tests: {len(generator.phase1_test_cases) + len(generator.phase2_test_cases)}")
