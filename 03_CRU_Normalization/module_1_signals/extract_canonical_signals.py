@@ -27,7 +27,21 @@ SIGNAL_TYPES = {"actor", "action", "constraint", "outcome", "other"}
 
 # Load spaCy model
 print("⚙️ Loading spaCy model...")
-nlp = spacy.load("en_core_web_sm")
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    print("spaCy model 'en_core_web_sm' not found. Attempting to download it now...")
+    import subprocess, sys
+    try:
+        subprocess.check_call([sys.executable, "-m", "spacy", "download", "en_core_web_sm"])
+        nlp = spacy.load("en_core_web_sm")
+    except Exception as e:
+        print("Automatic download failed:", e)
+        print("Please install the model manually by running:")
+        print("  python -m spacy download en_core_web_sm")
+        print("or, if preferred, install the pip package:")
+        print("  pip install en-core-web-sm")
+        sys.exit(1)
 
 
 # ======================

@@ -320,6 +320,102 @@ def score_action_quality(action: str, source_field: str) -> int:
 
 
 # ======================
+# Executable Action Test
+# ======================
+
+def is_executable_action(action: str) -> Tuple[bool, str]:
+    """Test if action is executable in a QA test step.
+    
+    An action is executable if it can appear in:
+    "Verify that the system [action]"
+    
+    Criteria:
+    - Starts with a verb (not past participle as adjective)
+    - Contains clear object or complement
+    - Does NOT describe outcomes, states, or properties
+    - Does NOT end with prepositions
+    
+    Returns: (is_executable, reason_if_not)
+    """
+    if not action or len(action.strip()) < 3:
+        return False, "empty or too short"
+    
+    words = action.lower().split()
+    
+    if len(words) < 2:
+        return False, "less than 2 words"
+    
+    first_word = words[0]
+    last_word = words[-1]
+    
+    # Must start with a verb
+    if not has_verb_pattern(first_word):
+        return False, f"does not start with verb (starts with '{first_word}')"
+    
+    # Check for non-executable patterns
+    
+    # Outcome descriptors (causes, results, leads)
+    outcome_verbs = ['causes', 'results', 'leads', 'produces', 'generates']
+    if first_word in outcome_verbs:
+        return False, f"describes outcome ('{first_word}')"
+    
+    # State descriptors (is, are, be, being)
+    state_verbs = ['is', 'are', 'be', 'being', 'am']
+    if first_word in state_verbs:
+        return False, f"describes state ('{first_word}')"
+    
+    # Past participles used as adjectives (filtered, updated, preserved)
+    if first_word.endswith('ed') and first_word in ['filtered', 'updated', 'preserved', 'completed', 'cached']:
+        return False, f"past participle used adjectivally ('{first_word}')"
+    
+    # Property/noun phrases (username uniqueness, data integrity)
+    # Check if action is noun-heavy without clear verb action
+    noun_indicators = ['uniqueness', 'integrity', 'compatibility', 'consistency', 'validity']
+    if any(indicator in action for indicator in noun_indicators):
+        return False, f"describes property not action"
+    
+    # Must NOT end with prepositions
+    if last_word in PREPOSITIONS:
+        return False, f"ends with preposition ('{last_word}')"
+    
+    # Check for incomplete phrases
+    incomplete_patterns = ['post - operation', 'task list', 'hash via']
+    if any(pattern in action for pattern in incomplete_patterns):
+        return False, "incomplete phrase"
+    
+    return True, ""
+
+
+def test_anchor_executability(anchors: Dict[str, Optional[str]]) -> Dict[str, Dict[str, Any]]:
+    """Test all anchors for executability.
+    
+    Returns: Dict mapping requirement_id -> {
+        'anchor': str,
+        'is_executable': bool,
+        'reason': str
+    }
+    """
+    results = {}
+    
+    for req_id, anchor in anchors.items():
+        if not anchor:
+            results[req_id] = {
+                'anchor': None,
+                'is_executable': False,
+                'reason': 'no anchor'
+            }
+        else:
+            is_exec, reason = is_executable_action(anchor)
+            results[req_id] = {
+                'anchor': anchor,
+                'is_executable': is_exec,
+                'reason': reason if not is_exec else 'OK'
+            }
+    
+    return results
+
+
+# ======================
 # Action Anchoring
 # ======================
 
@@ -613,19 +709,23 @@ def deduplicate_crus(crus: List[CanonicalRequirementUnit]) -> List[CanonicalRequ
 def validate_and_finalize_cra(
     cra: Dict[str, Any], 
     cru_counter: int,
-    action_anchor: Optional[str]
+    action_anchor: Optional[str],
+    anchor_is_executable: bool
 ) -> List[CanonicalRequirementUnit]:
-    """Validate and finalize a single CRA into CRU(s) using action anchor.
+    """Validate and finalize a single CRA into CRU(s) with anchor absolutism.
+    
+    ANCHOR ABSOLUTISM: If anchor exists, ALL CRUs use it. No exceptions.
     
     May produce:
-    - 0 CRUs (if action invalid and no anchor)
+    - 0 CRUs (if no anchor or non-executable anchor without constraints)
     - 1 CRU (normal case)
     - N CRUs (if multiple constraints split)
     
     Args:
         cra: Candidate Requirement Assembly
         cru_counter: Counter for CRU ID generation
-        action_anchor: Canonical action for this requirement (from anchoring step)
+        action_anchor: Canonical action for this requirement (MANDATORY)
+        anchor_is_executable: Whether the anchor passes executable test
     
     Returns: List of CRUs
     """
@@ -635,40 +735,31 @@ def validate_and_finalize_cra(
     
     # Extract candidates
     candidate_actor = cra.get("candidate_actor")
-    candidate_action = cra.get("candidate_action")
     candidate_constraint = cra.get("candidate_constraint")
     candidate_outcome = cra.get("candidate_outcome")
+    
+    # ANCHOR ABSOLUTISM: Ignore CRA action entirely
+    # If anchor exists, use it. No exceptions.
+    if not action_anchor:
+        # No anchor = discard
+        return []
+    
+    # Use anchor action (absolutism)
+    action = action_anchor
     
     # 1. Normalize actor (always succeeds)
     actor = normalize_actor(candidate_actor)
     
-    # 2. Determine action using anchoring + grammar enforcement
-    action = None
-    
-    # Try to normalize the candidate action
-    normalized_action = normalize_action(candidate_action)
-    
-    if normalized_action:
-        # Check grammar
-        is_valid, _ = validate_action_grammar(normalized_action)
-        if is_valid:
-            action = normalized_action
-        elif action_anchor:
-            # Grammar failed, use anchor
-            action = action_anchor
-    elif action_anchor:
-        # Normalization failed, use anchor
-        action = action_anchor
-    
-    # If still no valid action, DISCARD
-    if not action:
-        return []
-    
-    # 3. Validate outcome
+    # 2. Validate outcome
     outcome = validate_outcome(candidate_outcome)
     
-    # 4. Split constraints
+    # 3. Split constraints
     constraints = split_constraints(candidate_constraint)
+    
+    # 4. Check if non-executable anchor without constraints
+    if not anchor_is_executable and not constraints:
+        # Non-executable action without constraints = discard
+        return []
     
     # 5. Create CRU(s)
     crus = []
@@ -677,7 +768,14 @@ def validate_and_finalize_cra(
         # Create one CRU per constraint
         for idx, constraint in enumerate(constraints):
             cru_type = infer_cru_type(parent_req_id, action, constraint)
-            confidence = calculate_confidence(actor, action, constraint, outcome)
+            
+            # Confidence calculation with executability consideration
+            if not anchor_is_executable:
+                # Non-executable anchor: maximum confidence is medium
+                confidence = "medium"
+            else:
+                # Executable anchor: normal confidence calculation
+                confidence = calculate_confidence(actor, action, constraint, outcome)
             
             cru = CanonicalRequirementUnit(
                 cru_id=f"CRU_{parent_req_id}_{cru_counter + idx:02d}",
@@ -695,7 +793,14 @@ def validate_and_finalize_cra(
     else:
         # Single CRU without constraint
         cru_type = infer_cru_type(parent_req_id, action, None)
-        confidence = calculate_confidence(actor, action, None, outcome)
+        
+        # Confidence calculation with executability consideration
+        if not anchor_is_executable:
+            # Non-executable anchor: maximum confidence is medium
+            confidence = "medium"
+        else:
+            # Executable anchor: normal confidence calculation
+            confidence = calculate_confidence(actor, action, None, outcome)
         
         cru = CanonicalRequirementUnit(
             cru_id=f"CRU_{parent_req_id}_{cru_counter:02d}",
@@ -715,12 +820,13 @@ def validate_and_finalize_cra(
 
 
 def finalize_crus(cras: List[Dict[str, Any]]) -> Dict[str, Any]:
-    """Main pipeline: Validate and finalize all CRAs into CRUs with action anchoring.
+    """Main pipeline: Validate and finalize all CRAs into CRUs with semantic invariants.
     
     Pipeline:
     1. Create action anchors for each requirement
-    2. Validate and finalize each CRA using anchors
-    3. Deduplicate CRUs
+    2. Test anchor executability (Invariant 2)
+    3. Validate and finalize each CRA using anchors (Invariant 1: Anchor Absolutism)
+    4. Deduplicate CRUs
     
     Args:
         cras: List of Candidate Requirement Assemblies
@@ -732,42 +838,71 @@ def finalize_crus(cras: List[Dict[str, Any]]) -> Dict[str, Any]:
     print("🎯 Creating action anchors...")
     action_anchors = create_action_anchors(cras)
     
-    # Report anchors
-    print("\n📍 Action Anchors Selected:")
-    for req_id, anchor in sorted(action_anchors.items()):
-        if anchor:
-            print(f"   {req_id}: \"{anchor}\"")
+    # Step 2: Test anchor executability
+    print("🧪 Testing anchor executability...")
+    executability_results = test_anchor_executability(action_anchors)
+    
+    # Report anchors with executability status
+    print("\n📍 Action Anchors & Executability:")
+    for req_id, result in sorted(executability_results.items()):
+        anchor = result['anchor']
+        is_exec = result['is_executable']
+        reason = result['reason']
+        
+        if not anchor:
+            print(f"   {req_id}: [NO ANCHOR] - all CRAs will be discarded")
+        elif is_exec:
+            print(f"   {req_id}: \"{anchor}\" ✓ executable")
         else:
-            print(f"   {req_id}: [NO VALID ANCHOR - CRAs may be discarded]")
+            print(f"   {req_id}: \"{anchor}\" ✗ non-executable ({reason})")
+            print(f"             → CRUs will be downgraded to medium confidence")
     
     all_crus = []
     cru_counter_by_req = defaultdict(int)
     
     discarded_count = 0
     discarded_no_anchor = 0
-    discarded_grammar_failure = 0
+    discarded_non_executable_no_constraint = 0
+    downgraded_count = 0
     
-    # Step 2: Process each CRA with anchor
+    # Step 3: Process each CRA with anchor absolutism
     for cra in cras:
         parent_req_id = cra.get("parent_requirement_id", "UNKNOWN")
         counter = cru_counter_by_req[parent_req_id]
         
-        # Get anchor for this requirement
-        anchor = action_anchors.get(parent_req_id)
+        # Get anchor and executability for this requirement
+        exec_result = executability_results.get(parent_req_id, {})
+        anchor = exec_result.get('anchor')
+        is_executable = exec_result.get('is_executable', False)
         
-        crus = validate_and_finalize_cra(cra, counter + 1, anchor)
+        # Get constraints to check if we should discard
+        has_constraints = bool(cra.get("candidate_constraint"))
+        
+        # Check discard conditions
+        if not anchor:
+            discarded_count += 1
+            discarded_no_anchor += 1
+            continue
+        
+        if not is_executable and not has_constraints:
+            discarded_count += 1
+            discarded_non_executable_no_constraint += 1
+            continue
+        
+        # Process CRA with anchor absolutism
+        crus = validate_and_finalize_cra(cra, counter + 1, anchor, is_executable)
         
         if not crus:
             discarded_count += 1
-            if not anchor:
-                discarded_no_anchor += 1
-            else:
-                discarded_grammar_failure += 1
         else:
+            # Count downgrades
+            if not is_executable:
+                downgraded_count += len(crus)
+            
             all_crus.extend(crus)
             cru_counter_by_req[parent_req_id] += len(crus)
     
-    # Step 3: Deduplicate
+    # Step 4: Deduplicate
     before_dedup = len(all_crus)
     all_crus = deduplicate_crus(all_crus)
     duplicates_removed = before_dedup - len(all_crus)
@@ -784,13 +919,10 @@ def finalize_crus(cras: List[Dict[str, Any]]) -> Dict[str, Any]:
     with_constraint = sum(1 for cru in all_crus if cru.constraint)
     with_outcome = sum(1 for cru in all_crus if cru.outcome)
     
-    # Count anchored CRUs
-    crus_by_req = defaultdict(list)
-    for cru in all_crus:
-        crus_by_req[cru.parent_requirement_id].append(cru)
-    
-    anchored_requirements = sum(1 for req_id, crus_list in crus_by_req.items() 
-                                if len(crus_list) > 0 and action_anchors.get(req_id))
+    # Count requirements with executable anchors
+    executable_anchors = sum(1 for r in executability_results.values() if r['is_executable'])
+    non_executable_anchors = sum(1 for r in executability_results.values() 
+                                 if r['anchor'] and not r['is_executable'])
     
     output = {
         "metadata": {
@@ -798,16 +930,20 @@ def finalize_crus(cras: List[Dict[str, Any]]) -> Dict[str, Any]:
             "total_cras_processed": len(cras),
             "cras_discarded": discarded_count,
             "cras_discarded_no_anchor": discarded_no_anchor,
-            "cras_discarded_grammar_failure": discarded_grammar_failure,
+            "cras_discarded_non_executable_no_constraint": discarded_non_executable_no_constraint,
             "duplicates_removed": duplicates_removed,
+            "crus_downgraded_non_executable": downgraded_count,
             "requirements_with_anchors": len([a for a in action_anchors.values() if a]),
-            "requirements_anchored": anchored_requirements,
+            "requirements_with_executable_anchors": executable_anchors,
+            "requirements_with_non_executable_anchors": non_executable_anchors,
             "crus_with_constraints": with_constraint,
             "crus_with_outcomes": with_outcome,
             "type_distribution": dict(type_counts),
             "confidence_distribution": dict(confidence_counts),
             "action_anchors": {k: v for k, v in action_anchors.items() if v},
-            "finalization_version": "2.0"
+            "anchor_executability": {k: {'anchor': v['anchor'], 'executable': v['is_executable'], 'reason': v['reason']} 
+                                     for k, v in executability_results.items() if v['anchor']},
+            "finalization_version": "3.0"
         },
         "crus": [cru.to_dict() for cru in all_crus]
     }
@@ -852,9 +988,14 @@ if __name__ == "__main__":
     print(f"CRAs Processed:       {output['metadata']['total_cras_processed']}")
     print(f"CRAs Discarded:       {output['metadata']['cras_discarded']}")
     print(f"  - No anchor:        {output['metadata']['cras_discarded_no_anchor']}")
-    print(f"  - Grammar failure:  {output['metadata']['cras_discarded_grammar_failure']}")
+    print(f"  - Non-exec w/o constraint: {output['metadata']['cras_discarded_non_executable_no_constraint']}")
     print(f"Duplicates Removed:   {output['metadata']['duplicates_removed']}")
-    print(f"Requirements with Anchors: {output['metadata']['requirements_with_anchors']}")
+    print(f"CRUs Downgraded (non-exec): {output['metadata']['crus_downgraded_non_executable']}")
+    print(f"")
+    print(f"Requirements with Anchors:")
+    print(f"  - Executable:       {output['metadata']['requirements_with_executable_anchors']}")
+    print(f"  - Non-executable:   {output['metadata']['requirements_with_non_executable_anchors']}")
+    print(f"")
     print(f"CRUs with Constraints: {output['metadata']['crus_with_constraints']}")
     print(f"CRUs with Outcomes:   {output['metadata']['crus_with_outcomes']}")
     

@@ -24,7 +24,15 @@ print("📄 Loaded structured_output.json")
 # Load NLP Models
 # ======================
 print("⚙️ Loading NLP models...")
-nlp = spacy.load("en_core_web_sm")
+
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    raise RuntimeError(
+        "spaCy model 'en_core_web_sm' not found. "
+        "Run: python -m spacy download en_core_web_sm"
+    )
+
 ner_model = pipeline("ner", model="dslim/bert-base-NER", aggregation_strategy="simple")
 
 # ======================

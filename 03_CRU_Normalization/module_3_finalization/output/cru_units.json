@@ -1,0 +1,370 @@
+{
+  "metadata": {
+    "total_crus": 16,
+    "total_cras_processed": 34,
+    "cras_discarded": 11,
+    "cras_discarded_no_anchor": 4,
+    "cras_discarded_non_executable_no_constraint": 7,
+    "duplicates_removed": 31,
+    "crus_downgraded_non_executable": 6,
+    "requirements_with_anchors": 8,
+    "requirements_with_executable_anchors": 4,
+    "requirements_with_non_executable_anchors": 4,
+    "crus_with_constraints": 12,
+    "crus_with_outcomes": 0,
+    "type_distribution": {
+      "functional": 4,
+      "security": 1,
+      "reliability": 1,
+      "portability": 1,
+      "performance": 9
+    },
+    "confidence_distribution": {
+      "medium": 7,
+      "high": 9
+    },
+    "action_anchors": {
+      "FR3": "updates post - operation",
+      "QR1": "handle users",
+      "QR4": "causes outage",
+      "QR5": "ensures compatibility",
+      "FR5": "ensures data integrity",
+      "FR2": "validates hash",
+      "FR4": "filter tasks",
+      "FR1": "establishes account"
+    },
+    "anchor_executability": {
+      "FR3": {
+        "anchor": "updates post - operation",
+        "executable": false,
+        "reason": "incomplete phrase"
+      },
+      "QR1": {
+        "anchor": "handle users",
+        "executable": true,
+        "reason": "OK"
+      },
+      "QR4": {
+        "anchor": "causes outage",
+        "executable": false,
+        "reason": "describes outcome ('causes')"
+      },
+      "QR5": {
+        "anchor": "ensures compatibility",
+        "executable": false,
+        "reason": "describes property not action"
+      },
+      "FR5": {
+        "anchor": "ensures data integrity",
+        "executable": false,
+        "reason": "describes property not action"
+      },
+      "FR2": {
+        "anchor": "validates hash",
+        "executable": true,
+        "reason": "OK"
+      },
+      "FR4": {
+        "anchor": "filter tasks",
+        "executable": true,
+        "reason": "OK"
+      },
+      "FR1": {
+        "anchor": "establishes account",
+        "executable": true,
+        "reason": "OK"
+      }
+    },
+    "finalization_version": "3.0"
+  },
+  "crus": [
+    {
+      "cru_id": "CRU_FR1_01",
+      "parent_requirement_id": "FR1",
+      "actor": "System",
+      "action": "establishes account",
+      "constraint": null,
+      "outcome": null,
+      "type": "functional",
+      "confidence": "medium",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.1"
+      },
+      "derived_from_cra": "CRA_FR1_description_1"
+    },
+    {
+      "cru_id": "CRU_FR2_01",
+      "parent_requirement_id": "FR2",
+      "actor": "System",
+      "action": "validates hash",
+      "constraint": null,
+      "outcome": null,
+      "type": "security",
+      "confidence": "medium",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.2"
+      },
+      "derived_from_cra": "CRA_FR2_description_1"
+    },
+    {
+      "cru_id": "CRU_FR4_01",
+      "parent_requirement_id": "FR4",
+      "actor": "System",
+      "action": "filter tasks",
+      "constraint": null,
+      "outcome": null,
+      "type": "functional",
+      "confidence": "medium",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      },
+      "derived_from_cra": "CRA_FR4_description_1"
+    },
+    {
+      "cru_id": "CRU_FR4_02",
+      "parent_requirement_id": "FR4",
+      "actor": "UI",
+      "action": "filter tasks",
+      "constraint": null,
+      "outcome": null,
+      "type": "functional",
+      "confidence": "medium",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.4"
+      },
+      "derived_from_cra": "CRA_FR4_system_behavior_1"
+    },
+    {
+      "cru_id": "CRU_FR5_01",
+      "parent_requirement_id": "FR5",
+      "actor": "System",
+      "action": "ensures data integrity",
+      "constraint": "only to the logged-in user",
+      "outcome": null,
+      "type": "functional",
+      "confidence": "medium",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "standard",
+        "section": "3.5"
+      },
+      "derived_from_cra": "CRA_FR5_description_1"
+    },
+    {
+      "cru_id": "CRU_QR4_01",
+      "parent_requirement_id": "QR4",
+      "actor": "System",
+      "action": "causes outage",
+      "constraint": "uptime, with automatic data backups via MySQL",
+      "outcome": null,
+      "type": "reliability",
+      "confidence": "medium",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.4"
+      },
+      "derived_from_cra": "CRA_QR4_description_1"
+    },
+    {
+      "cru_id": "CRU_QR5_01",
+      "parent_requirement_id": "QR5",
+      "actor": "System",
+      "action": "ensures compatibility",
+      "constraint": "without OS dependencies",
+      "outcome": null,
+      "type": "portability",
+      "confidence": "medium",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.5"
+      },
+      "derived_from_cra": "CRA_QR5_description_1"
+    },
+    {
+      "cru_id": "CRU_QR1_01",
+      "parent_requirement_id": "QR1",
+      "actor": "System",
+      "action": "handle users",
+      "constraint": "100 concurrent users with task operations CRUD, filter) responding in under 1 second",
+      "outcome": null,
+      "type": "performance",
+      "confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      },
+      "derived_from_cra": "CRA_QR1_description_1"
+    },
+    {
+      "cru_id": "CRU_QR1_02",
+      "parent_requirement_id": "QR1",
+      "actor": "System",
+      "action": "handle users",
+      "constraint": "500ms under load",
+      "outcome": null,
+      "type": "performance",
+      "confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      },
+      "derived_from_cra": "CRA_QR1_description_1"
+    },
+    {
+      "cru_id": "CRU_QR1_03",
+      "parent_requirement_id": "QR1",
+      "actor": "System",
+      "action": "handle users",
+      "constraint": "2 seconds for typical use",
+      "outcome": null,
+      "type": "performance",
+      "confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      },
+      "derived_from_cra": "CRA_QR1_description_1"
+    },
+    {
+      "cru_id": "CRU_QR1_04",
+      "parent_requirement_id": "QR1",
+      "actor": "System",
+      "action": "handle users",
+      "constraint": "up to 100 concurrent users with task operations CRUD, filter) responding in under 1 second",
+      "outcome": null,
+      "type": "performance",
+      "confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      },
+      "derived_from_cra": "CRA_QR1_description_1"
+    },
+    {
+      "cru_id": "CRU_QR1_05",
+      "parent_requirement_id": "QR1",
+      "actor": "System",
+      "action": "handle users",
+      "constraint": "below 500ms under load",
+      "outcome": null,
+      "type": "performance",
+      "confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      },
+      "derived_from_cra": "CRA_QR1_description_1"
+    },
+    {
+      "cru_id": "CRU_QR1_06",
+      "parent_requirement_id": "QR1",
+      "actor": "System",
+      "action": "handle users",
+      "constraint": "99th percentile response times below 500ms under load",
+      "outcome": null,
+      "type": "performance",
+      "confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      },
+      "derived_from_cra": "CRA_QR1_description_1"
+    },
+    {
+      "cru_id": "CRU_QR1_07",
+      "parent_requirement_id": "QR1",
+      "actor": "System",
+      "action": "handle users",
+      "constraint": "latency, achieving 99th percentile response times below 500ms under load",
+      "outcome": null,
+      "type": "performance",
+      "confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      },
+      "derived_from_cra": "CRA_QR1_description_1"
+    },
+    {
+      "cru_id": "CRU_QR1_08",
+      "parent_requirement_id": "QR1",
+      "actor": "System",
+      "action": "handle users",
+      "constraint": "shall not exceed 2 seconds for typical use",
+      "outcome": null,
+      "type": "performance",
+      "confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      },
+      "derived_from_cra": "CRA_QR1_description_1"
+    },
+    {
+      "cru_id": "CRU_QR1_09",
+      "parent_requirement_id": "QR1",
+      "actor": "System",
+      "action": "handle users",
+      "constraint": "under 1 second",
+      "outcome": null,
+      "type": "performance",
+      "confidence": "high",
+      "traceability": {
+        "page": null,
+        "source_file": "SRS.pdf",
+        "extraction_type": "text",
+        "requirement_type": "planguage",
+        "section": "4.1"
+      },
+      "derived_from_cra": "CRA_QR1_description_1"
+    }
+  ]
+}
