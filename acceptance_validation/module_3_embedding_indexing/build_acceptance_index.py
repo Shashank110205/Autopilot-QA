@@ -14,8 +14,9 @@ import gc
 from pathlib import Path
 from typing import List, Tuple
 
-from embedding_model import load_embedding_model
-from index_metadata import MetadataStore, AcceptanceMetadata
+# Use package-qualified imports for reliable resolution when modules are executed directly
+from acceptance_validation.module_3_embedding_indexing.embedding_model import load_embedding_model
+from acceptance_validation.module_3_embedding_indexing.index_metadata import MetadataStore, AcceptanceMetadata
 
 # Force single-threaded FAISS
 faiss.omp_set_num_threads(1)
@@ -63,7 +64,7 @@ class AcceptanceIndexBuilder:
             FAISS index configured with HNSW parameters
         """
         # Create HNSW index
-        index = faiss.IndexHNSWFlat(self.embedding_dim, 16)  # M = 16
+        index = faiss.IndexHNSWFlat(self.embedding_dim, 16, faiss.METRIC_INNER_PRODUCT)  # M = 16
         
         # Set HNSW parameters
         index.hnsw.efConstruction = 200

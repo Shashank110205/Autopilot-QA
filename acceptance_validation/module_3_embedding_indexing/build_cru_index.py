@@ -11,8 +11,10 @@ import time
 from pathlib import Path
 from typing import List
 
-from embedding_model import load_embedding_model
-from index_metadata import MetadataStore, CRUMetadata
+# Use package-qualified imports so this module works both when run as a package
+# and when imported from sibling modules/scripts that adjust sys.path.
+from acceptance_validation.module_3_embedding_indexing.embedding_model import load_embedding_model
+from acceptance_validation.module_3_embedding_indexing.index_metadata import MetadataStore, CRUMetadata
 
 
 class CRUIndexBuilder:
@@ -57,7 +59,7 @@ class CRUIndexBuilder:
             FAISS index configured with HNSW parameters
         """
         # Create HNSW index
-        index = faiss.IndexHNSWFlat(self.embedding_dim, 16)  # M = 16
+        index = faiss.IndexHNSWFlat(self.embedding_dim, 16, faiss.METRIC_INNER_PRODUCT)  # M = 16
         
         # Set HNSW parameters
         index.hnsw.efConstruction = 200
