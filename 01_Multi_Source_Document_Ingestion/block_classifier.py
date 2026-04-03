@@ -118,6 +118,10 @@ def _classify_section(section_path: str, section_title: str) -> str:
     # functional_requirements
     if _RE_FUNC.match(section_path):
         return "functional_requirements"
+
+    # performance_requirements — path rule
+    if _RE_PERF.match(section_path):
+        return "performance_requirements"
     if any(kw in title for kw in
            ("functional requirement", "user class", "use case")):
         return "functional_requirements"
@@ -149,6 +153,13 @@ def _classify_section(section_path: str, section_title: str) -> str:
     # appendix — only if prioritization did not already fire
     if section_path.startswith("A.") or "appendix" in title:
         return "appendix"
+
+    # parent-path inheritance fallback
+    if "." in section_path:
+        parent_path = section_path.rsplit(".", 1)[0]
+        parent_type = _classify_section(parent_path, "")
+        if parent_type != "other":
+            return parent_type
 
     return "other"
 
