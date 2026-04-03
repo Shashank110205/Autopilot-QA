@@ -124,7 +124,7 @@ def _group_words_into_blocks(words):
         next_line_text = line_objects[i]["text"].strip()
         is_field_label = bool(FIELD_LABEL_RE.match(next_line_text))
 
-        if (curr_top - prev_bottom <= 4) and not is_field_label:
+        if (curr_top - prev_bottom <= 8) and not is_field_label:
             current_lines.append(line_objects[i])
         else:
             paragraph_blocks.append(current_lines)

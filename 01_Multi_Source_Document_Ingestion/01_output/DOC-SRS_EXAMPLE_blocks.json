@@ -5,8 +5,8 @@
     "module": "UNKNOWN",
     "version": "1.0",
     "source_file": "/Users/preetham/Projects/Autopilot-QA/input/srs_example.pdf",
-    "generated_at": "2026-04-03T10:12:20",
-    "total_blocks": 618
+    "generated_at": "2026-04-03T16:57:53",
+    "total_blocks": 601
   },
   "blocks": [
     {
@@ -1369,7 +1369,7 @@
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": false,
-      "text": "Since this is a data-centric product it will need somewhere\nto store the data. For that, a database will be used. Both the\nmobile application and web portal will communicate with\nthe database, however in slightly different ways. The mobile\napplication will only use the database to get data while the\nweb portal will also add and modify data. All of the\ndatabase communication will go over the Internet.\nFigure 1 - Block diagram",
+      "text": "Since this is a data-centric product it will need somewhere\nto store the data. For that, a database will be used. Both the\nmobile application and web portal will communicate with\nthe database, however in slightly different ways. The mobile\napplication will only use the database to get data while the\nweb portal will also add and modify data. All of the\ndatabase communication will go over the Internet.\nFigure 1 - Block diagram\nThe mobile application has some restrictions about the\nresource allocation. To avoid problems with overloading the operating system the application is only\nallowed to use 20 megabytes of memory while running the application. The maximum amount of hard\ndrive space is also 20 megabytes.",
       "source_locator": {
         "page": 4,
         "para": 5
@@ -1381,35 +1381,9 @@
     },
     {
       "block_id": "B-0049",
-      "block_type": "paragraph",
-      "page": 4,
-      "para_index": 6,
-      "section_path": "2.1",
-      "section_title": "Product perspective",
-      "section_semantic_type": "system_overview",
-      "section_id": "SEC-2.1",
-      "structural_role": "prose_content",
-      "candidate_req_id": null,
-      "candidate_dependencies": [],
-      "skip": false,
-      "toc_confirmed": true,
-      "body_confirmed": false,
-      "low_confidence_confirmation": false,
-      "text": "The mobile application has some restrictions about the\nresource allocation. To avoid problems with overloading the operating system the application is only\nallowed to use 20 megabytes of memory while running the application. The maximum amount of hard\ndrive space is also 20 megabytes.",
-      "source_locator": {
-        "page": 4,
-        "para": 6
-      },
-      "doc_id": "DOC-SRS_EXAMPLE",
-      "doc_type": "SRS",
-      "module": "UNKNOWN",
-      "version": "1.0"
-    },
-    {
-      "block_id": "B-0050",
       "block_type": "heading",
       "page": 4,
-      "para_index": 7,
+      "para_index": 6,
       "section_path": "2.2",
       "section_title": "Product function",
       "section_semantic_type": "system_overview",
@@ -1422,6 +1396,32 @@
       "body_confirmed": false,
       "low_confidence_confirmation": true,
       "text": "2.2 Product functions",
+      "source_locator": {
+        "page": 4,
+        "para": 6
+      },
+      "doc_id": "DOC-SRS_EXAMPLE",
+      "doc_type": "SRS",
+      "module": "UNKNOWN",
+      "version": "1.0"
+    },
+    {
+      "block_id": "B-0050",
+      "block_type": "paragraph",
+      "page": 4,
+      "para_index": 7,
+      "section_path": "2.2",
+      "section_title": "Product function",
+      "section_semantic_type": "system_overview",
+      "section_id": "SEC-2.2",
+      "structural_role": "prose_content",
+      "candidate_req_id": null,
+      "candidate_dependencies": [],
+      "skip": false,
+      "toc_confirmed": true,
+      "body_confirmed": false,
+      "low_confidence_confirmation": true,
+      "text": "With the mobile application, the users will be able to search for restaurants. The result will be based on\nthe criteria the user inputs. There are several search criteria and it will be possible for the administrator of\nthe system to manage the options for those criteria that have that.",
       "source_locator": {
         "page": 4,
         "para": 7
@@ -1447,7 +1447,7 @@
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": true,
-      "text": "With the mobile application, the users will be able to search for restaurants. The result will be based on\nthe criteria the user inputs. There are several search criteria and it will be possible for the administrator of\nthe system to manage the options for those criteria that have that.",
+      "text": "The result of the search will be viewed either in a list view or in a map view, depending on what criteria\nincluded in the search. The list view will have one list item for each restaurant matching the search\ncriteria and show a small part of the restaurant information so the user can identify the restaurant. The",
       "source_locator": {
         "page": 4,
         "para": 8
@@ -1459,32 +1459,6 @@
     },
     {
       "block_id": "B-0052",
-      "block_type": "paragraph",
-      "page": 4,
-      "para_index": 9,
-      "section_path": "2.2",
-      "section_title": "Product function",
-      "section_semantic_type": "system_overview",
-      "section_id": "SEC-2.2",
-      "structural_role": "prose_content",
-      "candidate_req_id": null,
-      "candidate_dependencies": [],
-      "skip": false,
-      "toc_confirmed": true,
-      "body_confirmed": false,
-      "low_confidence_confirmation": true,
-      "text": "The result of the search will be viewed either in a list view or in a map view, depending on what criteria\nincluded in the search. The list view will have one list item for each restaurant matching the search\ncriteria and show a small part of the restaurant information so the user can identify the restaurant. The",
-      "source_locator": {
-        "page": 4,
-        "para": 9
-      },
-      "doc_id": "DOC-SRS_EXAMPLE",
-      "doc_type": "SRS",
-      "module": "UNKNOWN",
-      "version": "1.0"
-    },
-    {
-      "block_id": "B-0053",
       "block_type": "paragraph",
       "page": 5,
       "para_index": 0,
@@ -1510,7 +1484,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0054",
+      "block_id": "B-0053",
       "block_type": "paragraph",
       "page": 5,
       "para_index": 1,
@@ -1536,7 +1510,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0055",
+      "block_id": "B-0054",
       "block_type": "heading",
       "page": 5,
       "para_index": 2,
@@ -1562,7 +1536,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0056",
+      "block_id": "B-0055",
       "block_type": "paragraph",
       "page": 5,
       "para_index": 3,
@@ -1588,7 +1562,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0057",
+      "block_id": "B-0056",
       "block_type": "paragraph",
       "page": 5,
       "para_index": 4,
@@ -1614,7 +1588,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0058",
+      "block_id": "B-0057",
       "block_type": "paragraph",
       "page": 5,
       "para_index": 5,
@@ -1640,7 +1614,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0059",
+      "block_id": "B-0058",
       "block_type": "paragraph",
       "page": 5,
       "para_index": 6,
@@ -1666,7 +1640,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0060",
+      "block_id": "B-0059",
       "block_type": "heading",
       "page": 5,
       "para_index": 7,
@@ -1692,7 +1666,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0061",
+      "block_id": "B-0060",
       "block_type": "paragraph",
       "page": 5,
       "para_index": 8,
@@ -1718,7 +1692,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0062",
+      "block_id": "B-0061",
       "block_type": "paragraph",
       "page": 5,
       "para_index": 9,
@@ -1744,7 +1718,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0063",
+      "block_id": "B-0062",
       "block_type": "paragraph",
       "page": 5,
       "para_index": 10,
@@ -1770,7 +1744,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0064",
+      "block_id": "B-0063",
       "block_type": "heading",
       "page": 5,
       "para_index": 11,
@@ -1796,7 +1770,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0065",
+      "block_id": "B-0064",
       "block_type": "paragraph",
       "page": 5,
       "para_index": 12,
@@ -1822,7 +1796,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0066",
+      "block_id": "B-0065",
       "block_type": "paragraph",
       "page": 5,
       "para_index": 13,
@@ -1848,7 +1822,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0067",
+      "block_id": "B-0066",
       "block_type": "paragraph",
       "page": 6,
       "para_index": 0,
@@ -1874,7 +1848,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0068",
+      "block_id": "B-0067",
       "block_type": "heading",
       "page": 6,
       "para_index": 1,
@@ -1900,7 +1874,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0069",
+      "block_id": "B-0068",
       "block_type": "paragraph",
       "page": 6,
       "para_index": 2,
@@ -1926,7 +1900,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0070",
+      "block_id": "B-0069",
       "block_type": "heading",
       "page": 7,
       "para_index": 0,
@@ -1952,7 +1926,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0071",
+      "block_id": "B-0070",
       "block_type": "paragraph",
       "page": 7,
       "para_index": 1,
@@ -1978,7 +1952,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0072",
+      "block_id": "B-0071",
       "block_type": "heading",
       "page": 7,
       "para_index": 2,
@@ -2004,7 +1978,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0073",
+      "block_id": "B-0072",
       "block_type": "paragraph",
       "page": 7,
       "para_index": 3,
@@ -2030,7 +2004,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0074",
+      "block_id": "B-0073",
       "block_type": "heading",
       "page": 7,
       "para_index": 4,
@@ -2056,7 +2030,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0075",
+      "block_id": "B-0074",
       "block_type": "paragraph",
       "page": 7,
       "para_index": 5,
@@ -2082,7 +2056,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0076",
+      "block_id": "B-0075",
       "block_type": "paragraph",
       "page": 7,
       "para_index": 6,
@@ -2108,7 +2082,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0077",
+      "block_id": "B-0076",
       "block_type": "paragraph",
       "page": 7,
       "para_index": 7,
@@ -2134,7 +2108,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0078",
+      "block_id": "B-0077",
       "block_type": "paragraph",
       "page": 7,
       "para_index": 8,
@@ -2160,7 +2134,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0079",
+      "block_id": "B-0078",
       "block_type": "paragraph",
       "page": 7,
       "para_index": 9,
@@ -2186,7 +2160,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0080",
+      "block_id": "B-0079",
       "block_type": "paragraph",
       "page": 7,
       "para_index": 10,
@@ -2212,7 +2186,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0081",
+      "block_id": "B-0080",
       "block_type": "paragraph",
       "page": 8,
       "para_index": 0,
@@ -2238,7 +2212,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0082",
+      "block_id": "B-0081",
       "block_type": "paragraph",
       "page": 8,
       "para_index": 1,
@@ -2264,7 +2238,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0083",
+      "block_id": "B-0082",
       "block_type": "paragraph",
       "page": 8,
       "para_index": 2,
@@ -2290,7 +2264,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0084",
+      "block_id": "B-0083",
       "block_type": "heading",
       "page": 8,
       "para_index": 3,
@@ -2316,7 +2290,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0085",
+      "block_id": "B-0084",
       "block_type": "paragraph",
       "page": 8,
       "para_index": 4,
@@ -2342,7 +2316,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0086",
+      "block_id": "B-0085",
       "block_type": "heading",
       "page": 8,
       "para_index": 5,
@@ -2368,7 +2342,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0087",
+      "block_id": "B-0086",
       "block_type": "paragraph",
       "page": 8,
       "para_index": 6,
@@ -2394,7 +2368,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0088",
+      "block_id": "B-0087",
       "block_type": "table",
       "page": 8,
       "para_index": 7,
@@ -2430,7 +2404,7 @@
       }
     },
     {
-      "block_id": "B-0089",
+      "block_id": "B-0088",
       "block_type": "paragraph",
       "page": 9,
       "para_index": 0,
@@ -2456,7 +2430,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0090",
+      "block_id": "B-0089",
       "block_type": "heading",
       "page": 9,
       "para_index": 1,
@@ -2482,7 +2456,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0091",
+      "block_id": "B-0090",
       "block_type": "paragraph",
       "page": 9,
       "para_index": 2,
@@ -2508,7 +2482,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0092",
+      "block_id": "B-0091",
       "block_type": "heading",
       "page": 9,
       "para_index": 3,
@@ -2534,7 +2508,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0093",
+      "block_id": "B-0092",
       "block_type": "paragraph",
       "page": 9,
       "para_index": 4,
@@ -2560,7 +2534,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0094",
+      "block_id": "B-0093",
       "block_type": "heading",
       "page": 9,
       "para_index": 5,
@@ -2586,7 +2560,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0095",
+      "block_id": "B-0094",
       "block_type": "heading",
       "page": 9,
       "para_index": 6,
@@ -2612,7 +2586,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0096",
+      "block_id": "B-0095",
       "block_type": "paragraph",
       "page": 9,
       "para_index": 7,
@@ -2638,7 +2612,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0097",
+      "block_id": "B-0096",
       "block_type": "paragraph",
       "page": 9,
       "para_index": 8,
@@ -2664,7 +2638,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0098",
+      "block_id": "B-0097",
       "block_type": "paragraph",
       "page": 9,
       "para_index": 9,
@@ -2690,7 +2664,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0099",
+      "block_id": "B-0098",
       "block_type": "paragraph",
       "page": 9,
       "para_index": 10,
@@ -2716,7 +2690,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0100",
+      "block_id": "B-0099",
       "block_type": "paragraph",
       "page": 9,
       "para_index": 11,
@@ -2742,7 +2716,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0101",
+      "block_id": "B-0100",
       "block_type": "heading",
       "page": 9,
       "para_index": 12,
@@ -2768,7 +2742,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0102",
+      "block_id": "B-0101",
       "block_type": "paragraph",
       "page": 9,
       "para_index": 13,
@@ -2794,7 +2768,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0103",
+      "block_id": "B-0102",
       "block_type": "paragraph",
       "page": 9,
       "para_index": 14,
@@ -2820,7 +2794,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0104",
+      "block_id": "B-0103",
       "block_type": "paragraph",
       "page": 9,
       "para_index": 15,
@@ -2846,7 +2820,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0105",
+      "block_id": "B-0104",
       "block_type": "paragraph",
       "page": 9,
       "para_index": 16,
@@ -2872,7 +2846,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0106",
+      "block_id": "B-0105",
       "block_type": "paragraph",
       "page": 9,
       "para_index": 17,
@@ -2900,7 +2874,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0107",
+      "block_id": "B-0106",
       "block_type": "heading",
       "page": 9,
       "para_index": 18,
@@ -2926,7 +2900,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0108",
+      "block_id": "B-0107",
       "block_type": "paragraph",
       "page": 9,
       "para_index": 19,
@@ -2952,7 +2926,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0109",
+      "block_id": "B-0108",
       "block_type": "paragraph",
       "page": 9,
       "para_index": 20,
@@ -2978,7 +2952,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0110",
+      "block_id": "B-0109",
       "block_type": "paragraph",
       "page": 9,
       "para_index": 21,
@@ -3004,7 +2978,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0111",
+      "block_id": "B-0110",
       "block_type": "paragraph",
       "page": 9,
       "para_index": 22,
@@ -3030,7 +3004,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0112",
+      "block_id": "B-0111",
       "block_type": "paragraph",
       "page": 9,
       "para_index": 23,
@@ -3058,7 +3032,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0113",
+      "block_id": "B-0112",
       "block_type": "heading",
       "page": 10,
       "para_index": 0,
@@ -3084,7 +3058,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0114",
+      "block_id": "B-0113",
       "block_type": "paragraph",
       "page": 10,
       "para_index": 1,
@@ -3110,7 +3084,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0115",
+      "block_id": "B-0114",
       "block_type": "paragraph",
       "page": 10,
       "para_index": 2,
@@ -3136,7 +3110,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0116",
+      "block_id": "B-0115",
       "block_type": "paragraph",
       "page": 10,
       "para_index": 3,
@@ -3162,7 +3136,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0117",
+      "block_id": "B-0116",
       "block_type": "paragraph",
       "page": 10,
       "para_index": 4,
@@ -3188,7 +3162,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0118",
+      "block_id": "B-0117",
       "block_type": "paragraph",
       "page": 10,
       "para_index": 5,
@@ -3217,7 +3191,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0119",
+      "block_id": "B-0118",
       "block_type": "heading",
       "page": 10,
       "para_index": 6,
@@ -3243,7 +3217,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0120",
+      "block_id": "B-0119",
       "block_type": "paragraph",
       "page": 10,
       "para_index": 7,
@@ -3269,7 +3243,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0121",
+      "block_id": "B-0120",
       "block_type": "paragraph",
       "page": 10,
       "para_index": 8,
@@ -3295,7 +3269,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0122",
+      "block_id": "B-0121",
       "block_type": "paragraph",
       "page": 10,
       "para_index": 9,
@@ -3321,7 +3295,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0123",
+      "block_id": "B-0122",
       "block_type": "paragraph",
       "page": 10,
       "para_index": 10,
@@ -3347,7 +3321,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0124",
+      "block_id": "B-0123",
       "block_type": "paragraph",
       "page": 10,
       "para_index": 11,
@@ -3375,7 +3349,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0125",
+      "block_id": "B-0124",
       "block_type": "heading",
       "page": 10,
       "para_index": 12,
@@ -3401,7 +3375,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0126",
+      "block_id": "B-0125",
       "block_type": "paragraph",
       "page": 10,
       "para_index": 13,
@@ -3427,7 +3401,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0127",
+      "block_id": "B-0126",
       "block_type": "paragraph",
       "page": 10,
       "para_index": 14,
@@ -3453,7 +3427,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0128",
+      "block_id": "B-0127",
       "block_type": "paragraph",
       "page": 10,
       "para_index": 15,
@@ -3479,7 +3453,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0129",
+      "block_id": "B-0128",
       "block_type": "paragraph",
       "page": 10,
       "para_index": 16,
@@ -3505,7 +3479,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0130",
+      "block_id": "B-0129",
       "block_type": "paragraph",
       "page": 10,
       "para_index": 17,
@@ -3533,7 +3507,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0131",
+      "block_id": "B-0130",
       "block_type": "heading",
       "page": 10,
       "para_index": 18,
@@ -3559,7 +3533,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0132",
+      "block_id": "B-0131",
       "block_type": "paragraph",
       "page": 10,
       "para_index": 19,
@@ -3585,7 +3559,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0133",
+      "block_id": "B-0132",
       "block_type": "paragraph",
       "page": 10,
       "para_index": 20,
@@ -3611,7 +3585,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0134",
+      "block_id": "B-0133",
       "block_type": "paragraph",
       "page": 10,
       "para_index": 21,
@@ -3637,7 +3611,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0135",
+      "block_id": "B-0134",
       "block_type": "paragraph",
       "page": 10,
       "para_index": 22,
@@ -3652,7 +3626,7 @@
       "toc_confirmed": false,
       "body_confirmed": true,
       "low_confidence_confirmation": false,
-      "text": " Search results can be viewed on a map. On the map, the relevant and closest restaurants according\nto the user’s position are shown.",
+      "text": " Search results can be viewed on a map. On the map, the relevant and closest restaurants according\nto the user’s position are shown.\n A specific pin will represent a specific restaurant location. On each pin there should be an\ninformation link.\n There should be maximally 100 results displayed. The map view should have a default zoom.\n The map view should include a button that, when selected, should display different filtering\noptions in a filtering menu.",
       "source_locator": {
         "page": 10,
         "para": 22
@@ -3663,88 +3637,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0136",
+      "block_id": "B-0135",
       "block_type": "paragraph",
       "page": 10,
       "para_index": 23,
-      "section_path": "3.2.1.7",
-      "section_title": "Functional requirement 1.7",
-      "section_semantic_type": "functional_requirements",
-      "section_id": "SEC-3.2.1.7",
-      "structural_role": "prose_content",
-      "candidate_req_id": null,
-      "candidate_dependencies": [],
-      "skip": false,
-      "toc_confirmed": false,
-      "body_confirmed": true,
-      "low_confidence_confirmation": false,
-      "text": " A specific pin will represent a specific restaurant location. On each pin there should be an\ninformation link.",
-      "source_locator": {
-        "page": 10,
-        "para": 23
-      },
-      "doc_id": "DOC-SRS_EXAMPLE",
-      "doc_type": "SRS",
-      "module": "UNKNOWN",
-      "version": "1.0"
-    },
-    {
-      "block_id": "B-0137",
-      "block_type": "paragraph",
-      "page": 10,
-      "para_index": 24,
-      "section_path": "3.2.1.7",
-      "section_title": "Functional requirement 1.7",
-      "section_semantic_type": "functional_requirements",
-      "section_id": "SEC-3.2.1.7",
-      "structural_role": "prose_content",
-      "candidate_req_id": null,
-      "candidate_dependencies": [],
-      "skip": false,
-      "toc_confirmed": false,
-      "body_confirmed": true,
-      "low_confidence_confirmation": false,
-      "text": " There should be maximally 100 results displayed. The map view should have a default zoom.",
-      "source_locator": {
-        "page": 10,
-        "para": 24
-      },
-      "doc_id": "DOC-SRS_EXAMPLE",
-      "doc_type": "SRS",
-      "module": "UNKNOWN",
-      "version": "1.0"
-    },
-    {
-      "block_id": "B-0138",
-      "block_type": "paragraph",
-      "page": 10,
-      "para_index": 25,
-      "section_path": "3.2.1.7",
-      "section_title": "Functional requirement 1.7",
-      "section_semantic_type": "functional_requirements",
-      "section_id": "SEC-3.2.1.7",
-      "structural_role": "prose_content",
-      "candidate_req_id": null,
-      "candidate_dependencies": [],
-      "skip": false,
-      "toc_confirmed": false,
-      "body_confirmed": true,
-      "low_confidence_confirmation": false,
-      "text": " The map view should include a button that, when selected, should display different filtering\noptions in a filtering menu.",
-      "source_locator": {
-        "page": 10,
-        "para": 25
-      },
-      "doc_id": "DOC-SRS_EXAMPLE",
-      "doc_type": "SRS",
-      "module": "UNKNOWN",
-      "version": "1.0"
-    },
-    {
-      "block_id": "B-0139",
-      "block_type": "paragraph",
-      "page": 10,
-      "para_index": 26,
       "section_path": "3.2.1.7",
       "section_title": "Functional requirement 1.7",
       "section_semantic_type": "functional_requirements",
@@ -3759,7 +3655,7 @@
       "text": "RAT: The way results are displayed in a map.",
       "source_locator": {
         "page": 10,
-        "para": 26
+        "para": 23
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -3767,10 +3663,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0140",
+      "block_id": "B-0136",
       "block_type": "paragraph",
       "page": 10,
-      "para_index": 27,
+      "para_index": 24,
       "section_path": "3.2.1.7",
       "section_title": "Functional requirement 1.7",
       "section_semantic_type": "functional_requirements",
@@ -3787,7 +3683,7 @@
       "text": "DEP: FR6",
       "source_locator": {
         "page": 10,
-        "para": 27
+        "para": 24
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -3795,7 +3691,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0141",
+      "block_id": "B-0137",
       "block_type": "heading",
       "page": 11,
       "para_index": 0,
@@ -3821,7 +3717,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0142",
+      "block_id": "B-0138",
       "block_type": "paragraph",
       "page": 11,
       "para_index": 1,
@@ -3847,7 +3743,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0143",
+      "block_id": "B-0139",
       "block_type": "paragraph",
       "page": 11,
       "para_index": 2,
@@ -3873,7 +3769,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0144",
+      "block_id": "B-0140",
       "block_type": "paragraph",
       "page": 11,
       "para_index": 3,
@@ -3899,7 +3795,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0145",
+      "block_id": "B-0141",
       "block_type": "paragraph",
       "page": 11,
       "para_index": 4,
@@ -3914,7 +3810,7 @@
       "toc_confirmed": false,
       "body_confirmed": true,
       "low_confidence_confirmation": false,
-      "text": " Search results can be viewed in a list. Each element in the list represents a specific restaurant.\nEach element should include the restaurant name, telephone number, type of food, distance\naccording to the user’s position, average price, a short two-line description, a link to the\nrestaurant’s web-page and an information link.",
+      "text": " Search results can be viewed in a list. Each element in the list represents a specific restaurant.\nEach element should include the restaurant name, telephone number, type of food, distance\naccording to the user’s position, average price, a short two-line description, a link to the\nrestaurant’s web-page and an information link.\n There should be maximally 100 results displayed. If the result contains more restaurants than\nwhat can be displayed on the screen at one time, the user should be able to scroll through them.\n When searching by price the restaurants should be sorted according to the following order:\n1. average price\n2. distance\n3. restaurant type\n4. specific dish\n When searching by a search option, other than price, the restaurants should be sorted according to\nthe following order:\n1. distance\n2. average price\n3. restaurant type\n4. specific dish\n The list view should include a header with different selectable sorting options.\n The list view should include a button that, when selected, should display different filtering\noptions in a filtering menu.",
       "source_locator": {
         "page": 11,
         "para": 4
@@ -3925,140 +3821,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0146",
+      "block_id": "B-0142",
       "block_type": "paragraph",
       "page": 11,
       "para_index": 5,
-      "section_path": "3.2.1.8",
-      "section_title": "Functional requirement 1.8",
-      "section_semantic_type": "functional_requirements",
-      "section_id": "SEC-3.2.1.8",
-      "structural_role": "prose_content",
-      "candidate_req_id": null,
-      "candidate_dependencies": [],
-      "skip": false,
-      "toc_confirmed": false,
-      "body_confirmed": true,
-      "low_confidence_confirmation": false,
-      "text": " There should be maximally 100 results displayed. If the result contains more restaurants than\nwhat can be displayed on the screen at one time, the user should be able to scroll through them.",
-      "source_locator": {
-        "page": 11,
-        "para": 5
-      },
-      "doc_id": "DOC-SRS_EXAMPLE",
-      "doc_type": "SRS",
-      "module": "UNKNOWN",
-      "version": "1.0"
-    },
-    {
-      "block_id": "B-0147",
-      "block_type": "paragraph",
-      "page": 11,
-      "para_index": 6,
-      "section_path": "3.2.1.8",
-      "section_title": "Functional requirement 1.8",
-      "section_semantic_type": "functional_requirements",
-      "section_id": "SEC-3.2.1.8",
-      "structural_role": "prose_content",
-      "candidate_req_id": null,
-      "candidate_dependencies": [],
-      "skip": false,
-      "toc_confirmed": false,
-      "body_confirmed": true,
-      "low_confidence_confirmation": false,
-      "text": " When searching by price the restaurants should be sorted according to the following order:\n1. average price\n2. distance\n3. restaurant type\n4. specific dish",
-      "source_locator": {
-        "page": 11,
-        "para": 6
-      },
-      "doc_id": "DOC-SRS_EXAMPLE",
-      "doc_type": "SRS",
-      "module": "UNKNOWN",
-      "version": "1.0"
-    },
-    {
-      "block_id": "B-0148",
-      "block_type": "paragraph",
-      "page": 11,
-      "para_index": 7,
-      "section_path": "3.2.1.8",
-      "section_title": "Functional requirement 1.8",
-      "section_semantic_type": "functional_requirements",
-      "section_id": "SEC-3.2.1.8",
-      "structural_role": "prose_content",
-      "candidate_req_id": null,
-      "candidate_dependencies": [],
-      "skip": false,
-      "toc_confirmed": false,
-      "body_confirmed": true,
-      "low_confidence_confirmation": false,
-      "text": " When searching by a search option, other than price, the restaurants should be sorted according to\nthe following order:\n1. distance\n2. average price\n3. restaurant type\n4. specific dish",
-      "source_locator": {
-        "page": 11,
-        "para": 7
-      },
-      "doc_id": "DOC-SRS_EXAMPLE",
-      "doc_type": "SRS",
-      "module": "UNKNOWN",
-      "version": "1.0"
-    },
-    {
-      "block_id": "B-0149",
-      "block_type": "paragraph",
-      "page": 11,
-      "para_index": 8,
-      "section_path": "3.2.1.8",
-      "section_title": "Functional requirement 1.8",
-      "section_semantic_type": "functional_requirements",
-      "section_id": "SEC-3.2.1.8",
-      "structural_role": "prose_content",
-      "candidate_req_id": null,
-      "candidate_dependencies": [],
-      "skip": false,
-      "toc_confirmed": false,
-      "body_confirmed": true,
-      "low_confidence_confirmation": false,
-      "text": " The list view should include a header with different selectable sorting options.",
-      "source_locator": {
-        "page": 11,
-        "para": 8
-      },
-      "doc_id": "DOC-SRS_EXAMPLE",
-      "doc_type": "SRS",
-      "module": "UNKNOWN",
-      "version": "1.0"
-    },
-    {
-      "block_id": "B-0150",
-      "block_type": "paragraph",
-      "page": 11,
-      "para_index": 9,
-      "section_path": "3.2.1.8",
-      "section_title": "Functional requirement 1.8",
-      "section_semantic_type": "functional_requirements",
-      "section_id": "SEC-3.2.1.8",
-      "structural_role": "prose_content",
-      "candidate_req_id": null,
-      "candidate_dependencies": [],
-      "skip": false,
-      "toc_confirmed": false,
-      "body_confirmed": true,
-      "low_confidence_confirmation": false,
-      "text": " The list view should include a button that, when selected, should display different filtering\noptions in a filtering menu.",
-      "source_locator": {
-        "page": 11,
-        "para": 9
-      },
-      "doc_id": "DOC-SRS_EXAMPLE",
-      "doc_type": "SRS",
-      "module": "UNKNOWN",
-      "version": "1.0"
-    },
-    {
-      "block_id": "B-0151",
-      "block_type": "paragraph",
-      "page": 11,
-      "para_index": 10,
       "section_path": "3.2.1.8",
       "section_title": "Functional requirement 1.8",
       "section_semantic_type": "functional_requirements",
@@ -4073,7 +3839,7 @@
       "text": "RAT: The way results should be displayed in a list.",
       "source_locator": {
         "page": 11,
-        "para": 10
+        "para": 5
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -4081,10 +3847,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0152",
+      "block_id": "B-0143",
       "block_type": "paragraph",
       "page": 11,
-      "para_index": 11,
+      "para_index": 6,
       "section_path": "3.2.1.8",
       "section_title": "Functional requirement 1.8",
       "section_semantic_type": "functional_requirements",
@@ -4101,7 +3867,7 @@
       "text": "DEP: FR6",
       "source_locator": {
         "page": 11,
-        "para": 11
+        "para": 6
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -4109,10 +3875,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0153",
+      "block_id": "B-0144",
       "block_type": "heading",
       "page": 11,
-      "para_index": 12,
+      "para_index": 7,
       "section_path": "3.2.1.9",
       "section_title": "Functional requirement 1.9",
       "section_semantic_type": "functional_requirements",
@@ -4127,7 +3893,7 @@
       "text": "3.2.1.9 Functional requirement 1.9",
       "source_locator": {
         "page": 11,
-        "para": 12
+        "para": 7
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -4135,10 +3901,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0154",
+      "block_id": "B-0145",
       "block_type": "paragraph",
       "page": 11,
-      "para_index": 13,
+      "para_index": 8,
       "section_path": "3.2.1.9",
       "section_title": "Functional requirement 1.9",
       "section_semantic_type": "functional_requirements",
@@ -4153,7 +3919,7 @@
       "text": "ID: FR9",
       "source_locator": {
         "page": 11,
-        "para": 13
+        "para": 8
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -4161,10 +3927,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0155",
+      "block_id": "B-0146",
       "block_type": "paragraph",
       "page": 11,
-      "para_index": 14,
+      "para_index": 9,
       "section_path": "3.2.1.9",
       "section_title": "Functional requirement 1.9",
       "section_semantic_type": "functional_requirements",
@@ -4179,7 +3945,7 @@
       "text": "TITLE: Mobile application - Navigation to restaurant",
       "source_locator": {
         "page": 11,
-        "para": 14
+        "para": 9
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -4187,10 +3953,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0156",
+      "block_id": "B-0147",
       "block_type": "paragraph",
       "page": 11,
-      "para_index": 15,
+      "para_index": 10,
       "section_path": "3.2.1.9",
       "section_title": "Functional requirement 1.9",
       "section_semantic_type": "functional_requirements",
@@ -4205,7 +3971,7 @@
       "text": "DESC: A user should be able to select a pin on a map or an element on a list. When a selection is made,\nthe location of the restaurant should be sent to the mobile phone’s GPS-navigation program. The user\nshould then be navigated to the destination. When the destination is reached, a user should be able to go\nback to the search page on the mobile application.",
       "source_locator": {
         "page": 11,
-        "para": 15
+        "para": 10
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -4213,10 +3979,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0157",
+      "block_id": "B-0148",
       "block_type": "paragraph",
       "page": 11,
-      "para_index": 16,
+      "para_index": 11,
       "section_path": "3.2.1.9",
       "section_title": "Functional requirement 1.9",
       "section_semantic_type": "functional_requirements",
@@ -4231,7 +3997,7 @@
       "text": "RAT: To navigate a user to a chosen restaurant.",
       "source_locator": {
         "page": 11,
-        "para": 16
+        "para": 11
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -4239,10 +4005,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0158",
+      "block_id": "B-0149",
       "block_type": "paragraph",
       "page": 11,
-      "para_index": 17,
+      "para_index": 12,
       "section_path": "3.2.1.9",
       "section_title": "Functional requirement 1.9",
       "section_semantic_type": "functional_requirements",
@@ -4260,7 +4026,7 @@
       "text": "DEP: FR7, FR8",
       "source_locator": {
         "page": 11,
-        "para": 17
+        "para": 12
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -4268,10 +4034,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0159",
+      "block_id": "B-0150",
       "block_type": "heading",
       "page": 11,
-      "para_index": 18,
+      "para_index": 13,
       "section_path": "3.2.1.10",
       "section_title": "Functional requirement 1.10",
       "section_semantic_type": "functional_requirements",
@@ -4286,7 +4052,7 @@
       "text": "3.2.1.10 Functional requirement 1.10",
       "source_locator": {
         "page": 11,
-        "para": 18
+        "para": 13
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -4294,10 +4060,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0160",
+      "block_id": "B-0151",
       "block_type": "paragraph",
       "page": 11,
-      "para_index": 19,
+      "para_index": 14,
       "section_path": "3.2.1.10",
       "section_title": "Functional requirement 1.10",
       "section_semantic_type": "functional_requirements",
@@ -4312,7 +4078,7 @@
       "text": "ID: FR10",
       "source_locator": {
         "page": 11,
-        "para": 19
+        "para": 14
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -4320,10 +4086,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0161",
+      "block_id": "B-0152",
       "block_type": "paragraph",
       "page": 11,
-      "para_index": 20,
+      "para_index": 15,
       "section_path": "3.2.1.10",
       "section_title": "Functional requirement 1.10",
       "section_semantic_type": "functional_requirements",
@@ -4338,7 +4104,7 @@
       "text": "TITLE: Mobile application - Switch result view",
       "source_locator": {
         "page": 11,
-        "para": 20
+        "para": 15
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -4346,10 +4112,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0162",
+      "block_id": "B-0153",
       "block_type": "paragraph",
       "page": 11,
-      "para_index": 21,
+      "para_index": 16,
       "section_path": "3.2.1.10",
       "section_title": "Functional requirement 1.10",
       "section_semantic_type": "functional_requirements",
@@ -4364,7 +4130,7 @@
       "text": "DESC: A user should be able to switch between a map view and a list view for all search options.",
       "source_locator": {
         "page": 11,
-        "para": 21
+        "para": 16
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -4372,7 +4138,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0163",
+      "block_id": "B-0154",
       "block_type": "paragraph",
       "page": 12,
       "para_index": 0,
@@ -4398,7 +4164,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0164",
+      "block_id": "B-0155",
       "block_type": "paragraph",
       "page": 12,
       "para_index": 1,
@@ -4427,7 +4193,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0165",
+      "block_id": "B-0156",
       "block_type": "heading",
       "page": 12,
       "para_index": 2,
@@ -4453,7 +4219,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0166",
+      "block_id": "B-0157",
       "block_type": "paragraph",
       "page": 12,
       "para_index": 3,
@@ -4479,7 +4245,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0167",
+      "block_id": "B-0158",
       "block_type": "paragraph",
       "page": 12,
       "para_index": 4,
@@ -4505,7 +4271,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0168",
+      "block_id": "B-0159",
       "block_type": "paragraph",
       "page": 12,
       "para_index": 5,
@@ -4531,7 +4297,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0169",
+      "block_id": "B-0160",
       "block_type": "paragraph",
       "page": 12,
       "para_index": 6,
@@ -4557,7 +4323,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0170",
+      "block_id": "B-0161",
       "block_type": "paragraph",
       "page": 12,
       "para_index": 7,
@@ -4586,7 +4352,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0171",
+      "block_id": "B-0162",
       "block_type": "heading",
       "page": 12,
       "para_index": 8,
@@ -4612,7 +4378,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0172",
+      "block_id": "B-0163",
       "block_type": "paragraph",
       "page": 12,
       "para_index": 9,
@@ -4638,7 +4404,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0173",
+      "block_id": "B-0164",
       "block_type": "paragraph",
       "page": 12,
       "para_index": 10,
@@ -4664,7 +4430,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0174",
+      "block_id": "B-0165",
       "block_type": "paragraph",
       "page": 12,
       "para_index": 11,
@@ -4690,7 +4456,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0175",
+      "block_id": "B-0166",
       "block_type": "paragraph",
       "page": 12,
       "para_index": 12,
@@ -4716,7 +4482,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0176",
+      "block_id": "B-0167",
       "block_type": "paragraph",
       "page": 12,
       "para_index": 13,
@@ -4744,7 +4510,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0177",
+      "block_id": "B-0168",
       "block_type": "heading",
       "page": 12,
       "para_index": 14,
@@ -4770,7 +4536,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0178",
+      "block_id": "B-0169",
       "block_type": "paragraph",
       "page": 12,
       "para_index": 15,
@@ -4796,7 +4562,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0179",
+      "block_id": "B-0170",
       "block_type": "paragraph",
       "page": 12,
       "para_index": 16,
@@ -4822,7 +4588,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0180",
+      "block_id": "B-0171",
       "block_type": "paragraph",
       "page": 12,
       "para_index": 17,
@@ -4848,7 +4614,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0181",
+      "block_id": "B-0172",
       "block_type": "paragraph",
       "page": 12,
       "para_index": 18,
@@ -4874,7 +4640,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0182",
+      "block_id": "B-0173",
       "block_type": "paragraph",
       "page": 12,
       "para_index": 19,
@@ -4902,7 +4668,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0183",
+      "block_id": "B-0174",
       "block_type": "heading",
       "page": 12,
       "para_index": 20,
@@ -4928,7 +4694,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0184",
+      "block_id": "B-0175",
       "block_type": "paragraph",
       "page": 12,
       "para_index": 21,
@@ -4954,7 +4720,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0185",
+      "block_id": "B-0176",
       "block_type": "paragraph",
       "page": 12,
       "para_index": 22,
@@ -4980,7 +4746,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0186",
+      "block_id": "B-0177",
       "block_type": "paragraph",
       "page": 12,
       "para_index": 23,
@@ -5006,7 +4772,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0187",
+      "block_id": "B-0178",
       "block_type": "paragraph",
       "page": 12,
       "para_index": 24,
@@ -5032,7 +4798,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0188",
+      "block_id": "B-0179",
       "block_type": "paragraph",
       "page": 12,
       "para_index": 25,
@@ -5061,7 +4827,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0189",
+      "block_id": "B-0180",
       "block_type": "heading",
       "page": 12,
       "para_index": 26,
@@ -5087,7 +4853,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0190",
+      "block_id": "B-0181",
       "block_type": "paragraph",
       "page": 12,
       "para_index": 27,
@@ -5113,7 +4879,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0191",
+      "block_id": "B-0182",
       "block_type": "paragraph",
       "page": 12,
       "para_index": 28,
@@ -5139,7 +4905,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0192",
+      "block_id": "B-0183",
       "block_type": "paragraph",
       "page": 13,
       "para_index": 0,
@@ -5165,7 +4931,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0193",
+      "block_id": "B-0184",
       "block_type": "paragraph",
       "page": 13,
       "para_index": 1,
@@ -5191,7 +4957,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0194",
+      "block_id": "B-0185",
       "block_type": "paragraph",
       "page": 13,
       "para_index": 2,
@@ -5219,7 +4985,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0195",
+      "block_id": "B-0186",
       "block_type": "heading",
       "page": 13,
       "para_index": 3,
@@ -5245,7 +5011,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0196",
+      "block_id": "B-0187",
       "block_type": "paragraph",
       "page": 13,
       "para_index": 4,
@@ -5271,7 +5037,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0197",
+      "block_id": "B-0188",
       "block_type": "paragraph",
       "page": 13,
       "para_index": 5,
@@ -5297,7 +5063,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0198",
+      "block_id": "B-0189",
       "block_type": "paragraph",
       "page": 13,
       "para_index": 6,
@@ -5323,7 +5089,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0199",
+      "block_id": "B-0190",
       "block_type": "paragraph",
       "page": 13,
       "para_index": 7,
@@ -5349,7 +5115,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0200",
+      "block_id": "B-0191",
       "block_type": "paragraph",
       "page": 13,
       "para_index": 8,
@@ -5377,7 +5143,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0201",
+      "block_id": "B-0192",
       "block_type": "heading",
       "page": 13,
       "para_index": 9,
@@ -5403,7 +5169,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0202",
+      "block_id": "B-0193",
       "block_type": "paragraph",
       "page": 13,
       "para_index": 10,
@@ -5429,7 +5195,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0203",
+      "block_id": "B-0194",
       "block_type": "paragraph",
       "page": 13,
       "para_index": 11,
@@ -5455,7 +5221,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0204",
+      "block_id": "B-0195",
       "block_type": "paragraph",
       "page": 13,
       "para_index": 12,
@@ -5481,7 +5247,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0205",
+      "block_id": "B-0196",
       "block_type": "paragraph",
       "page": 13,
       "para_index": 13,
@@ -5507,7 +5273,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0206",
+      "block_id": "B-0197",
       "block_type": "paragraph",
       "page": 13,
       "para_index": 14,
@@ -5535,7 +5301,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0207",
+      "block_id": "B-0198",
       "block_type": "heading",
       "page": 13,
       "para_index": 15,
@@ -5561,7 +5327,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0208",
+      "block_id": "B-0199",
       "block_type": "paragraph",
       "page": 13,
       "para_index": 16,
@@ -5587,7 +5353,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0209",
+      "block_id": "B-0200",
       "block_type": "paragraph",
       "page": 13,
       "para_index": 17,
@@ -5613,7 +5379,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0210",
+      "block_id": "B-0201",
       "block_type": "paragraph",
       "page": 13,
       "para_index": 18,
@@ -5639,7 +5405,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0211",
+      "block_id": "B-0202",
       "block_type": "paragraph",
       "page": 13,
       "para_index": 19,
@@ -5665,7 +5431,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0212",
+      "block_id": "B-0203",
       "block_type": "paragraph",
       "page": 13,
       "para_index": 20,
@@ -5693,7 +5459,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0213",
+      "block_id": "B-0204",
       "block_type": "heading",
       "page": 13,
       "para_index": 21,
@@ -5719,7 +5485,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0214",
+      "block_id": "B-0205",
       "block_type": "paragraph",
       "page": 13,
       "para_index": 22,
@@ -5745,7 +5511,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0215",
+      "block_id": "B-0206",
       "block_type": "paragraph",
       "page": 13,
       "para_index": 23,
@@ -5771,7 +5537,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0216",
+      "block_id": "B-0207",
       "block_type": "paragraph",
       "page": 13,
       "para_index": 24,
@@ -5797,7 +5563,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0217",
+      "block_id": "B-0208",
       "block_type": "paragraph",
       "page": 13,
       "para_index": 25,
@@ -5812,7 +5578,7 @@
       "toc_confirmed": false,
       "body_confirmed": true,
       "low_confidence_confirmation": false,
-      "text": " When sorting by restaurant name, specific dish or restaurant type the results should be ordered\nalphabetically.",
+      "text": " When sorting by restaurant name, specific dish or restaurant type the results should be ordered\nalphabetically.\n When sorting by price the results should be ordered from cheapest to most expensive.\n When sorting by distance the results should be ordered from closets to furthest distance according\nto the user’s position.",
       "source_locator": {
         "page": 13,
         "para": 25
@@ -5823,59 +5589,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0218",
-      "block_type": "paragraph",
-      "page": 13,
-      "para_index": 26,
-      "section_path": "3.2.1.19",
-      "section_title": "Functional requirement 1.19",
-      "section_semantic_type": "functional_requirements",
-      "section_id": "SEC-3.2.1.19",
-      "structural_role": "prose_content",
-      "candidate_req_id": null,
-      "candidate_dependencies": [],
-      "skip": false,
-      "toc_confirmed": false,
-      "body_confirmed": true,
-      "low_confidence_confirmation": false,
-      "text": " When sorting by price the results should be ordered from cheapest to most expensive.",
-      "source_locator": {
-        "page": 13,
-        "para": 26
-      },
-      "doc_id": "DOC-SRS_EXAMPLE",
-      "doc_type": "SRS",
-      "module": "UNKNOWN",
-      "version": "1.0"
-    },
-    {
-      "block_id": "B-0219",
-      "block_type": "paragraph",
-      "page": 13,
-      "para_index": 27,
-      "section_path": "3.2.1.19",
-      "section_title": "Functional requirement 1.19",
-      "section_semantic_type": "functional_requirements",
-      "section_id": "SEC-3.2.1.19",
-      "structural_role": "prose_content",
-      "candidate_req_id": null,
-      "candidate_dependencies": [],
-      "skip": false,
-      "toc_confirmed": false,
-      "body_confirmed": true,
-      "low_confidence_confirmation": false,
-      "text": " When sorting by distance the results should be ordered from closets to furthest distance according\nto the user’s position.",
-      "source_locator": {
-        "page": 13,
-        "para": 27
-      },
-      "doc_id": "DOC-SRS_EXAMPLE",
-      "doc_type": "SRS",
-      "module": "UNKNOWN",
-      "version": "1.0"
-    },
-    {
-      "block_id": "B-0220",
+      "block_id": "B-0209",
       "block_type": "paragraph",
       "page": 14,
       "para_index": 0,
@@ -5901,7 +5615,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0221",
+      "block_id": "B-0210",
       "block_type": "paragraph",
       "page": 14,
       "para_index": 1,
@@ -5927,7 +5641,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0222",
+      "block_id": "B-0211",
       "block_type": "paragraph",
       "page": 14,
       "para_index": 2,
@@ -5955,7 +5669,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0223",
+      "block_id": "B-0212",
       "block_type": "heading",
       "page": 14,
       "para_index": 3,
@@ -5981,7 +5695,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0224",
+      "block_id": "B-0213",
       "block_type": "paragraph",
       "page": 14,
       "para_index": 4,
@@ -6007,7 +5721,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0225",
+      "block_id": "B-0214",
       "block_type": "paragraph",
       "page": 14,
       "para_index": 5,
@@ -6033,7 +5747,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0226",
+      "block_id": "B-0215",
       "block_type": "paragraph",
       "page": 14,
       "para_index": 6,
@@ -6059,7 +5773,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0227",
+      "block_id": "B-0216",
       "block_type": "paragraph",
       "page": 14,
       "para_index": 7,
@@ -6074,7 +5788,7 @@
       "toc_confirmed": false,
       "body_confirmed": true,
       "low_confidence_confirmation": false,
-      "text": " increasing or decreasing the maximum distance",
+      "text": " increasing or decreasing the maximum distance\n increasing or decreasing the maximum price\n choosing a restaurant type\n choosing a specific dish",
       "source_locator": {
         "page": 14,
         "para": 7
@@ -6085,88 +5799,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0228",
+      "block_id": "B-0217",
       "block_type": "paragraph",
       "page": 14,
       "para_index": 8,
-      "section_path": "3.2.1.20",
-      "section_title": "Functional requirement 1.20",
-      "section_semantic_type": "functional_requirements",
-      "section_id": "SEC-3.2.1.20",
-      "structural_role": "prose_content",
-      "candidate_req_id": null,
-      "candidate_dependencies": [],
-      "skip": false,
-      "toc_confirmed": false,
-      "body_confirmed": true,
-      "low_confidence_confirmation": false,
-      "text": " increasing or decreasing the maximum price",
-      "source_locator": {
-        "page": 14,
-        "para": 8
-      },
-      "doc_id": "DOC-SRS_EXAMPLE",
-      "doc_type": "SRS",
-      "module": "UNKNOWN",
-      "version": "1.0"
-    },
-    {
-      "block_id": "B-0229",
-      "block_type": "paragraph",
-      "page": 14,
-      "para_index": 9,
-      "section_path": "3.2.1.20",
-      "section_title": "Functional requirement 1.20",
-      "section_semantic_type": "functional_requirements",
-      "section_id": "SEC-3.2.1.20",
-      "structural_role": "prose_content",
-      "candidate_req_id": null,
-      "candidate_dependencies": [],
-      "skip": false,
-      "toc_confirmed": false,
-      "body_confirmed": true,
-      "low_confidence_confirmation": false,
-      "text": " choosing a restaurant type",
-      "source_locator": {
-        "page": 14,
-        "para": 9
-      },
-      "doc_id": "DOC-SRS_EXAMPLE",
-      "doc_type": "SRS",
-      "module": "UNKNOWN",
-      "version": "1.0"
-    },
-    {
-      "block_id": "B-0230",
-      "block_type": "paragraph",
-      "page": 14,
-      "para_index": 10,
-      "section_path": "3.2.1.20",
-      "section_title": "Functional requirement 1.20",
-      "section_semantic_type": "functional_requirements",
-      "section_id": "SEC-3.2.1.20",
-      "structural_role": "prose_content",
-      "candidate_req_id": null,
-      "candidate_dependencies": [],
-      "skip": false,
-      "toc_confirmed": false,
-      "body_confirmed": true,
-      "low_confidence_confirmation": false,
-      "text": " choosing a specific dish",
-      "source_locator": {
-        "page": 14,
-        "para": 10
-      },
-      "doc_id": "DOC-SRS_EXAMPLE",
-      "doc_type": "SRS",
-      "module": "UNKNOWN",
-      "version": "1.0"
-    },
-    {
-      "block_id": "B-0231",
-      "block_type": "paragraph",
-      "page": 14,
-      "para_index": 11,
       "section_path": "3.2.1.20",
       "section_title": "Functional requirement 1.20",
       "section_semantic_type": "functional_requirements",
@@ -6181,7 +5817,7 @@
       "text": "When filtering the results, only the existing results shall be affected and a new search query should not be\nsent.",
       "source_locator": {
         "page": 14,
-        "para": 11
+        "para": 8
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -6189,10 +5825,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0232",
+      "block_id": "B-0218",
       "block_type": "paragraph",
       "page": 14,
-      "para_index": 12,
+      "para_index": 9,
       "section_path": "3.2.1.20",
       "section_title": "Functional requirement 1.20",
       "section_semantic_type": "functional_requirements",
@@ -6207,7 +5843,7 @@
       "text": "RAT: In order for a user to filter results in a list or a map.",
       "source_locator": {
         "page": 14,
-        "para": 12
+        "para": 9
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -6215,10 +5851,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0233",
+      "block_id": "B-0219",
       "block_type": "paragraph",
       "page": 14,
-      "para_index": 13,
+      "para_index": 10,
       "section_path": "3.2.1.20",
       "section_title": "Functional requirement 1.20",
       "section_semantic_type": "functional_requirements",
@@ -6236,7 +5872,7 @@
       "text": "DEP: FR7, FR8",
       "source_locator": {
         "page": 14,
-        "para": 13
+        "para": 10
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -6244,10 +5880,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0234",
+      "block_id": "B-0220",
       "block_type": "heading",
       "page": 14,
-      "para_index": 14,
+      "para_index": 11,
       "section_path": "3.2.1.21",
       "section_title": "Functional requirement 1.21",
       "section_semantic_type": "functional_requirements",
@@ -6262,7 +5898,7 @@
       "text": "3.2.1.21 Functional requirement 1.21",
       "source_locator": {
         "page": 14,
-        "para": 14
+        "para": 11
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -6270,10 +5906,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0235",
+      "block_id": "B-0221",
       "block_type": "paragraph",
       "page": 14,
-      "para_index": 15,
+      "para_index": 12,
       "section_path": "3.2.1.21",
       "section_title": "Functional requirement 1.21",
       "section_semantic_type": "functional_requirements",
@@ -6288,7 +5924,7 @@
       "text": "ID: FR21",
       "source_locator": {
         "page": 14,
-        "para": 15
+        "para": 12
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -6296,10 +5932,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0236",
+      "block_id": "B-0222",
       "block_type": "paragraph",
       "page": 14,
-      "para_index": 16,
+      "para_index": 13,
       "section_path": "3.2.1.21",
       "section_title": "Functional requirement 1.21",
       "section_semantic_type": "functional_requirements",
@@ -6314,7 +5950,7 @@
       "text": "TITLE: Mobile application - Profile page",
       "source_locator": {
         "page": 14,
-        "para": 16
+        "para": 13
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -6322,10 +5958,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0237",
+      "block_id": "B-0223",
       "block_type": "paragraph",
       "page": 14,
-      "para_index": 17,
+      "para_index": 14,
       "section_path": "3.2.1.21",
       "section_title": "Functional requirement 1.21",
       "section_semantic_type": "functional_requirements",
@@ -6340,7 +5976,7 @@
       "text": "DESC: On the mobile application, a user should have a profile page. On the profile page a user can edit\nhis/her information, which includes the password, e-mail address and phone number. A user should also\nbe able to choose what language the mobile application should be set to. The different language choices\nare Swedish, English, Spanish and French.",
       "source_locator": {
         "page": 14,
-        "para": 17
+        "para": 14
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -6348,10 +5984,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0238",
+      "block_id": "B-0224",
       "block_type": "paragraph",
       "page": 14,
-      "para_index": 18,
+      "para_index": 15,
       "section_path": "3.2.1.21",
       "section_title": "Functional requirement 1.21",
       "section_semantic_type": "functional_requirements",
@@ -6366,7 +6002,7 @@
       "text": "RAT: In order for a user to have a profile page on the mobile application.",
       "source_locator": {
         "page": 14,
-        "para": 18
+        "para": 15
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -6374,10 +6010,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0239",
+      "block_id": "B-0225",
       "block_type": "paragraph",
       "page": 14,
-      "para_index": 19,
+      "para_index": 16,
       "section_path": "3.2.1.21",
       "section_title": "Functional requirement 1.21",
       "section_semantic_type": "functional_requirements",
@@ -6394,7 +6030,7 @@
       "text": "DEP: FR1",
       "source_locator": {
         "page": 14,
-        "para": 19
+        "para": 16
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -6402,10 +6038,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0240",
+      "block_id": "B-0226",
       "block_type": "heading",
       "page": 14,
-      "para_index": 20,
+      "para_index": 17,
       "section_path": "3.2.2",
       "section_title": "User Class 2 - Restaurant Owner",
       "section_semantic_type": "functional_requirements",
@@ -6420,7 +6056,7 @@
       "text": "3.2.2 User Class 2 - Restaurant Owner",
       "source_locator": {
         "page": 14,
-        "para": 20
+        "para": 17
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -6428,10 +6064,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0241",
+      "block_id": "B-0227",
       "block_type": "heading",
       "page": 14,
-      "para_index": 21,
+      "para_index": 18,
       "section_path": "3.2.2.1",
       "section_title": "Functional requirement 2.1",
       "section_semantic_type": "functional_requirements",
@@ -6446,7 +6082,7 @@
       "text": "3.2.2.1 Functional requirement 2.1",
       "source_locator": {
         "page": 14,
-        "para": 21
+        "para": 18
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -6454,10 +6090,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0242",
+      "block_id": "B-0228",
       "block_type": "paragraph",
       "page": 14,
-      "para_index": 22,
+      "para_index": 19,
       "section_path": "3.2.2.1",
       "section_title": "Functional requirement 2.1",
       "section_semantic_type": "functional_requirements",
@@ -6472,7 +6108,7 @@
       "text": "ID: FR22\nFeature: Create an account\nIn order to create an account\nA restaurant owner\nShould register on the web-portal",
       "source_locator": {
         "page": 14,
-        "para": 22
+        "para": 19
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -6480,10 +6116,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0243",
+      "block_id": "B-0229",
       "block_type": "paragraph",
       "page": 14,
-      "para_index": 23,
+      "para_index": 20,
       "section_path": "3.2.2.1",
       "section_title": "Functional requirement 2.1",
       "section_semantic_type": "functional_requirements",
@@ -6498,7 +6134,7 @@
       "text": "Scenario: Required information for registration\nGiven the restaurant owner wants to create an account\nAnd the restaurant owner does not have an account",
       "source_locator": {
         "page": 14,
-        "para": 23
+        "para": 20
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -6506,7 +6142,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0244",
+      "block_id": "B-0230",
       "block_type": "paragraph",
       "page": 15,
       "para_index": 0,
@@ -6532,7 +6168,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0245",
+      "block_id": "B-0231",
       "block_type": "paragraph",
       "page": 15,
       "para_index": 1,
@@ -6558,7 +6194,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0246",
+      "block_id": "B-0232",
       "block_type": "paragraph",
       "page": 15,
       "para_index": 2,
@@ -6584,7 +6220,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0247",
+      "block_id": "B-0233",
       "block_type": "heading",
       "page": 15,
       "para_index": 3,
@@ -6610,7 +6246,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0248",
+      "block_id": "B-0234",
       "block_type": "paragraph",
       "page": 15,
       "para_index": 4,
@@ -6636,7 +6272,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0249",
+      "block_id": "B-0235",
       "block_type": "paragraph",
       "page": 15,
       "para_index": 5,
@@ -6662,7 +6298,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0250",
+      "block_id": "B-0236",
       "block_type": "paragraph",
       "page": 15,
       "para_index": 6,
@@ -6688,7 +6324,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0251",
+      "block_id": "B-0237",
       "block_type": "heading",
       "page": 16,
       "para_index": 0,
@@ -6714,7 +6350,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0252",
+      "block_id": "B-0238",
       "block_type": "paragraph",
       "page": 16,
       "para_index": 1,
@@ -6740,7 +6376,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0253",
+      "block_id": "B-0239",
       "block_type": "paragraph",
       "page": 16,
       "para_index": 2,
@@ -6766,7 +6402,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0254",
+      "block_id": "B-0240",
       "block_type": "paragraph",
       "page": 16,
       "para_index": 3,
@@ -6792,7 +6428,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0255",
+      "block_id": "B-0241",
       "block_type": "paragraph",
       "page": 16,
       "para_index": 4,
@@ -6818,7 +6454,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0256",
+      "block_id": "B-0242",
       "block_type": "paragraph",
       "page": 16,
       "para_index": 5,
@@ -6844,7 +6480,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0257",
+      "block_id": "B-0243",
       "block_type": "paragraph",
       "page": 16,
       "para_index": 6,
@@ -6870,7 +6506,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0258",
+      "block_id": "B-0244",
       "block_type": "paragraph",
       "page": 16,
       "para_index": 7,
@@ -6896,7 +6532,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0259",
+      "block_id": "B-0245",
       "block_type": "paragraph",
       "page": 17,
       "para_index": 0,
@@ -6922,7 +6558,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0260",
+      "block_id": "B-0246",
       "block_type": "paragraph",
       "page": 17,
       "para_index": 1,
@@ -6948,7 +6584,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0261",
+      "block_id": "B-0247",
       "block_type": "paragraph",
       "page": 17,
       "para_index": 2,
@@ -6974,7 +6610,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0262",
+      "block_id": "B-0248",
       "block_type": "heading",
       "page": 17,
       "para_index": 3,
@@ -7000,7 +6636,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0263",
+      "block_id": "B-0249",
       "block_type": "paragraph",
       "page": 17,
       "para_index": 4,
@@ -7026,7 +6662,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0264",
+      "block_id": "B-0250",
       "block_type": "paragraph",
       "page": 17,
       "para_index": 5,
@@ -7052,7 +6688,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0265",
+      "block_id": "B-0251",
       "block_type": "paragraph",
       "page": 17,
       "para_index": 6,
@@ -7078,7 +6714,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0266",
+      "block_id": "B-0252",
       "block_type": "paragraph",
       "page": 17,
       "para_index": 7,
@@ -7104,7 +6740,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0267",
+      "block_id": "B-0253",
       "block_type": "paragraph",
       "page": 17,
       "para_index": 8,
@@ -7130,7 +6766,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0268",
+      "block_id": "B-0254",
       "block_type": "heading",
       "page": 18,
       "para_index": 0,
@@ -7156,7 +6792,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0269",
+      "block_id": "B-0255",
       "block_type": "heading",
       "page": 18,
       "para_index": 1,
@@ -7182,7 +6818,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0270",
+      "block_id": "B-0256",
       "block_type": "paragraph",
       "page": 18,
       "para_index": 2,
@@ -7208,7 +6844,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0271",
+      "block_id": "B-0257",
       "block_type": "paragraph",
       "page": 18,
       "para_index": 3,
@@ -7234,7 +6870,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0272",
+      "block_id": "B-0258",
       "block_type": "heading",
       "page": 18,
       "para_index": 4,
@@ -7260,7 +6896,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0273",
+      "block_id": "B-0259",
       "block_type": "paragraph",
       "page": 18,
       "para_index": 5,
@@ -7286,7 +6922,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0274",
+      "block_id": "B-0260",
       "block_type": "paragraph",
       "page": 18,
       "para_index": 6,
@@ -7312,7 +6948,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0275",
+      "block_id": "B-0261",
       "block_type": "paragraph",
       "page": 18,
       "para_index": 7,
@@ -7338,7 +6974,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0276",
+      "block_id": "B-0262",
       "block_type": "heading",
       "page": 18,
       "para_index": 8,
@@ -7364,7 +7000,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0277",
+      "block_id": "B-0263",
       "block_type": "paragraph",
       "page": 18,
       "para_index": 9,
@@ -7390,7 +7026,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0278",
+      "block_id": "B-0264",
       "block_type": "paragraph",
       "page": 18,
       "para_index": 10,
@@ -7416,7 +7052,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0279",
+      "block_id": "B-0265",
       "block_type": "paragraph",
       "page": 19,
       "para_index": 0,
@@ -7442,7 +7078,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0280",
+      "block_id": "B-0266",
       "block_type": "paragraph",
       "page": 19,
       "para_index": 1,
@@ -7468,7 +7104,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0281",
+      "block_id": "B-0267",
       "block_type": "heading",
       "page": 19,
       "para_index": 2,
@@ -7494,7 +7130,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0282",
+      "block_id": "B-0268",
       "block_type": "paragraph",
       "page": 19,
       "para_index": 3,
@@ -7520,7 +7156,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0283",
+      "block_id": "B-0269",
       "block_type": "paragraph",
       "page": 19,
       "para_index": 4,
@@ -7546,7 +7182,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0284",
+      "block_id": "B-0270",
       "block_type": "paragraph",
       "page": 19,
       "para_index": 5,
@@ -7572,7 +7208,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0285",
+      "block_id": "B-0271",
       "block_type": "paragraph",
       "page": 19,
       "para_index": 6,
@@ -7598,7 +7234,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0286",
+      "block_id": "B-0272",
       "block_type": "heading",
       "page": 19,
       "para_index": 7,
@@ -7624,7 +7260,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0287",
+      "block_id": "B-0273",
       "block_type": "paragraph",
       "page": 19,
       "para_index": 8,
@@ -7650,7 +7286,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0288",
+      "block_id": "B-0274",
       "block_type": "paragraph",
       "page": 19,
       "para_index": 9,
@@ -7676,7 +7312,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0289",
+      "block_id": "B-0275",
       "block_type": "paragraph",
       "page": 19,
       "para_index": 10,
@@ -7702,7 +7338,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0290",
+      "block_id": "B-0276",
       "block_type": "paragraph",
       "page": 20,
       "para_index": 0,
@@ -7728,7 +7364,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0291",
+      "block_id": "B-0277",
       "block_type": "paragraph",
       "page": 20,
       "para_index": 1,
@@ -7754,7 +7390,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0292",
+      "block_id": "B-0278",
       "block_type": "heading",
       "page": 20,
       "para_index": 2,
@@ -7780,7 +7416,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0293",
+      "block_id": "B-0279",
       "block_type": "paragraph",
       "page": 20,
       "para_index": 3,
@@ -7806,7 +7442,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0294",
+      "block_id": "B-0280",
       "block_type": "paragraph",
       "page": 20,
       "para_index": 4,
@@ -7832,7 +7468,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0295",
+      "block_id": "B-0281",
       "block_type": "paragraph",
       "page": 20,
       "para_index": 5,
@@ -7858,7 +7494,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0296",
+      "block_id": "B-0282",
       "block_type": "heading",
       "page": 20,
       "para_index": 6,
@@ -7884,7 +7520,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0297",
+      "block_id": "B-0283",
       "block_type": "paragraph",
       "page": 20,
       "para_index": 7,
@@ -7910,7 +7546,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0298",
+      "block_id": "B-0284",
       "block_type": "paragraph",
       "page": 20,
       "para_index": 8,
@@ -7936,7 +7572,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0299",
+      "block_id": "B-0285",
       "block_type": "paragraph",
       "page": 20,
       "para_index": 9,
@@ -7962,7 +7598,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0300",
+      "block_id": "B-0286",
       "block_type": "paragraph",
       "page": 20,
       "para_index": 10,
@@ -7988,7 +7624,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0301",
+      "block_id": "B-0287",
       "block_type": "paragraph",
       "page": 21,
       "para_index": 0,
@@ -8014,7 +7650,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0302",
+      "block_id": "B-0288",
       "block_type": "heading",
       "page": 21,
       "para_index": 1,
@@ -8040,7 +7676,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0303",
+      "block_id": "B-0289",
       "block_type": "paragraph",
       "page": 21,
       "para_index": 2,
@@ -8066,7 +7702,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0304",
+      "block_id": "B-0290",
       "block_type": "paragraph",
       "page": 21,
       "para_index": 3,
@@ -8092,7 +7728,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0305",
+      "block_id": "B-0291",
       "block_type": "paragraph",
       "page": 21,
       "para_index": 4,
@@ -8118,7 +7754,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0306",
+      "block_id": "B-0292",
       "block_type": "paragraph",
       "page": 21,
       "para_index": 5,
@@ -8144,7 +7780,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0307",
+      "block_id": "B-0293",
       "block_type": "paragraph",
       "page": 21,
       "para_index": 6,
@@ -8170,7 +7806,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0308",
+      "block_id": "B-0294",
       "block_type": "heading",
       "page": 21,
       "para_index": 7,
@@ -8196,7 +7832,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0309",
+      "block_id": "B-0295",
       "block_type": "paragraph",
       "page": 21,
       "para_index": 8,
@@ -8222,7 +7858,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0310",
+      "block_id": "B-0296",
       "block_type": "heading",
       "page": 21,
       "para_index": 9,
@@ -8248,7 +7884,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0311",
+      "block_id": "B-0297",
       "block_type": "paragraph",
       "page": 21,
       "para_index": 10,
@@ -8274,7 +7910,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0312",
+      "block_id": "B-0298",
       "block_type": "paragraph",
       "page": 21,
       "para_index": 11,
@@ -8300,7 +7936,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0313",
+      "block_id": "B-0299",
       "block_type": "paragraph",
       "page": 21,
       "para_index": 12,
@@ -8326,7 +7962,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0314",
+      "block_id": "B-0300",
       "block_type": "paragraph",
       "page": 21,
       "para_index": 13,
@@ -8352,7 +7988,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0315",
+      "block_id": "B-0301",
       "block_type": "paragraph",
       "page": 21,
       "para_index": 14,
@@ -8378,7 +8014,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0316",
+      "block_id": "B-0302",
       "block_type": "table",
       "page": 21,
       "para_index": 15,
@@ -8414,7 +8050,7 @@
       }
     },
     {
-      "block_id": "B-0317",
+      "block_id": "B-0303",
       "block_type": "heading",
       "page": 22,
       "para_index": 0,
@@ -8440,7 +8076,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0318",
+      "block_id": "B-0304",
       "block_type": "paragraph",
       "page": 22,
       "para_index": 1,
@@ -8466,7 +8102,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0319",
+      "block_id": "B-0305",
       "block_type": "paragraph",
       "page": 22,
       "para_index": 2,
@@ -8492,7 +8128,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0320",
+      "block_id": "B-0306",
       "block_type": "paragraph",
       "page": 22,
       "para_index": 3,
@@ -8518,7 +8154,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0321",
+      "block_id": "B-0307",
       "block_type": "paragraph",
       "page": 22,
       "para_index": 4,
@@ -8544,7 +8180,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0322",
+      "block_id": "B-0308",
       "block_type": "paragraph",
       "page": 22,
       "para_index": 5,
@@ -8570,7 +8206,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0323",
+      "block_id": "B-0309",
       "block_type": "heading",
       "page": 22,
       "para_index": 6,
@@ -8596,7 +8232,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0324",
+      "block_id": "B-0310",
       "block_type": "paragraph",
       "page": 22,
       "para_index": 7,
@@ -8622,7 +8258,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0325",
+      "block_id": "B-0311",
       "block_type": "paragraph",
       "page": 22,
       "para_index": 8,
@@ -8648,7 +8284,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0326",
+      "block_id": "B-0312",
       "block_type": "paragraph",
       "page": 22,
       "para_index": 9,
@@ -8674,7 +8310,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0327",
+      "block_id": "B-0313",
       "block_type": "paragraph",
       "page": 22,
       "para_index": 10,
@@ -8700,7 +8336,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0328",
+      "block_id": "B-0314",
       "block_type": "paragraph",
       "page": 22,
       "para_index": 11,
@@ -8726,7 +8362,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0329",
+      "block_id": "B-0315",
       "block_type": "heading",
       "page": 22,
       "para_index": 12,
@@ -8752,7 +8388,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0330",
+      "block_id": "B-0316",
       "block_type": "paragraph",
       "page": 22,
       "para_index": 13,
@@ -8778,7 +8414,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0331",
+      "block_id": "B-0317",
       "block_type": "paragraph",
       "page": 22,
       "para_index": 14,
@@ -8804,7 +8440,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0332",
+      "block_id": "B-0318",
       "block_type": "paragraph",
       "page": 22,
       "para_index": 15,
@@ -8830,7 +8466,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0333",
+      "block_id": "B-0319",
       "block_type": "paragraph",
       "page": 22,
       "para_index": 16,
@@ -8856,7 +8492,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0334",
+      "block_id": "B-0320",
       "block_type": "paragraph",
       "page": 22,
       "para_index": 17,
@@ -8882,7 +8518,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0335",
+      "block_id": "B-0321",
       "block_type": "heading",
       "page": 22,
       "para_index": 18,
@@ -8908,7 +8544,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0336",
+      "block_id": "B-0322",
       "block_type": "paragraph",
       "page": 22,
       "para_index": 19,
@@ -8934,7 +8570,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0337",
+      "block_id": "B-0323",
       "block_type": "paragraph",
       "page": 22,
       "para_index": 20,
@@ -8960,7 +8596,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0338",
+      "block_id": "B-0324",
       "block_type": "paragraph",
       "page": 22,
       "para_index": 21,
@@ -8986,7 +8622,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0339",
+      "block_id": "B-0325",
       "block_type": "paragraph",
       "page": 22,
       "para_index": 22,
@@ -9012,7 +8648,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0340",
+      "block_id": "B-0326",
       "block_type": "paragraph",
       "page": 22,
       "para_index": 23,
@@ -9038,7 +8674,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0341",
+      "block_id": "B-0327",
       "block_type": "heading",
       "page": 22,
       "para_index": 24,
@@ -9064,7 +8700,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0342",
+      "block_id": "B-0328",
       "block_type": "paragraph",
       "page": 22,
       "para_index": 25,
@@ -9090,7 +8726,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0343",
+      "block_id": "B-0329",
       "block_type": "heading",
       "page": 23,
       "para_index": 0,
@@ -9116,7 +8752,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0344",
+      "block_id": "B-0330",
       "block_type": "paragraph",
       "page": 23,
       "para_index": 1,
@@ -9142,18 +8778,18 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0345",
+      "block_id": "B-0331",
       "block_type": "heading",
       "page": 23,
       "para_index": 2,
       "section_path": "3.4",
       "section_title": "Design constraint",
-      "section_semantic_type": "system_overview",
+      "section_semantic_type": "design_constraints",
       "section_id": "SEC-3.4",
       "structural_role": "section_heading",
       "candidate_req_id": null,
       "candidate_dependencies": [],
-      "skip": true,
+      "skip": false,
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": true,
@@ -9168,13 +8804,13 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0346",
+      "block_id": "B-0332",
       "block_type": "paragraph",
       "page": 23,
       "para_index": 3,
       "section_path": "3.4",
       "section_title": "Design constraint",
-      "section_semantic_type": "system_overview",
+      "section_semantic_type": "design_constraints",
       "section_id": "SEC-3.4",
       "structural_role": "prose_content",
       "candidate_req_id": null,
@@ -9194,13 +8830,13 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0347",
+      "block_id": "B-0333",
       "block_type": "heading",
       "page": 23,
       "para_index": 4,
       "section_path": "3.4.1",
       "section_title": "Hard drive space",
-      "section_semantic_type": "other",
+      "section_semantic_type": "design_constraints",
       "section_id": "SEC-3.4.1",
       "structural_role": "section_heading",
       "candidate_req_id": null,
@@ -9220,13 +8856,13 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0348",
+      "block_id": "B-0334",
       "block_type": "paragraph",
       "page": 23,
       "para_index": 5,
       "section_path": "3.4.1",
       "section_title": "Hard drive space",
-      "section_semantic_type": "other",
+      "section_semantic_type": "design_constraints",
       "section_id": "SEC-3.4.1",
       "structural_role": "req_id_label",
       "candidate_req_id": "QR10",
@@ -9246,13 +8882,13 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0349",
+      "block_id": "B-0335",
       "block_type": "heading",
       "page": 23,
       "para_index": 6,
       "section_path": "3.4.2",
       "section_title": "Application memory usage",
-      "section_semantic_type": "other",
+      "section_semantic_type": "design_constraints",
       "section_id": "SEC-3.4.2",
       "structural_role": "section_heading",
       "candidate_req_id": null,
@@ -9272,13 +8908,13 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0350",
+      "block_id": "B-0336",
       "block_type": "paragraph",
       "page": 23,
       "para_index": 7,
       "section_path": "3.4.2",
       "section_title": "Application memory usage",
-      "section_semantic_type": "other",
+      "section_semantic_type": "design_constraints",
       "section_id": "SEC-3.4.2",
       "structural_role": "req_id_label",
       "candidate_req_id": "QR11",
@@ -9298,7 +8934,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0351",
+      "block_id": "B-0337",
       "block_type": "heading",
       "page": 23,
       "para_index": 8,
@@ -9324,7 +8960,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0352",
+      "block_id": "B-0338",
       "block_type": "paragraph",
       "page": 23,
       "para_index": 9,
@@ -9350,13 +8986,13 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0353",
+      "block_id": "B-0339",
       "block_type": "heading",
       "page": 23,
       "para_index": 10,
       "section_path": "3.5.1",
       "section_title": "Reliability",
-      "section_semantic_type": "performance_requirements",
+      "section_semantic_type": "quality_attributes",
       "section_id": "SEC-3.5.1",
       "structural_role": "section_heading",
       "candidate_req_id": null,
@@ -9376,13 +9012,13 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0354",
+      "block_id": "B-0340",
       "block_type": "paragraph",
       "page": 23,
       "para_index": 11,
       "section_path": "3.5.1",
       "section_title": "Reliability",
-      "section_semantic_type": "performance_requirements",
+      "section_semantic_type": "quality_attributes",
       "section_id": "SEC-3.5.1",
       "structural_role": "req_id_label",
       "candidate_req_id": "QR9",
@@ -9402,13 +9038,13 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0355",
+      "block_id": "B-0341",
       "block_type": "paragraph",
       "page": 24,
       "para_index": 0,
       "section_path": "3.5.1",
       "section_title": "Reliability",
-      "section_semantic_type": "performance_requirements",
+      "section_semantic_type": "quality_attributes",
       "section_id": "SEC-3.5.1",
       "structural_role": "planguage_keyword",
       "candidate_req_id": null,
@@ -9428,13 +9064,13 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0356",
+      "block_id": "B-0342",
       "block_type": "heading",
       "page": 24,
       "para_index": 1,
       "section_path": "3.5.2",
       "section_title": "Availability",
-      "section_semantic_type": "performance_requirements",
+      "section_semantic_type": "quality_attributes",
       "section_id": "SEC-3.5.2",
       "structural_role": "section_heading",
       "candidate_req_id": null,
@@ -9454,13 +9090,13 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0357",
+      "block_id": "B-0343",
       "block_type": "paragraph",
       "page": 24,
       "para_index": 2,
       "section_path": "3.5.2",
       "section_title": "Availability",
-      "section_semantic_type": "performance_requirements",
+      "section_semantic_type": "quality_attributes",
       "section_id": "SEC-3.5.2",
       "structural_role": "req_id_label",
       "candidate_req_id": "QR7",
@@ -9480,13 +9116,13 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0358",
+      "block_id": "B-0344",
       "block_type": "paragraph",
       "page": 24,
       "para_index": 3,
       "section_path": "3.5.2",
       "section_title": "Availability",
-      "section_semantic_type": "performance_requirements",
+      "section_semantic_type": "quality_attributes",
       "section_id": "SEC-3.5.2",
       "structural_role": "req_id_label",
       "candidate_req_id": "QR22",
@@ -9506,13 +9142,13 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0359",
+      "block_id": "B-0345",
       "block_type": "paragraph",
       "page": 24,
       "para_index": 4,
       "section_path": "3.5.2",
       "section_title": "Availability",
-      "section_semantic_type": "performance_requirements",
+      "section_semantic_type": "quality_attributes",
       "section_id": "SEC-3.5.2",
       "structural_role": "req_title_label",
       "candidate_req_id": null,
@@ -9532,13 +9168,13 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0360",
+      "block_id": "B-0346",
       "block_type": "paragraph",
       "page": 24,
       "para_index": 5,
       "section_path": "3.5.2",
       "section_title": "Availability",
-      "section_semantic_type": "performance_requirements",
+      "section_semantic_type": "quality_attributes",
       "section_id": "SEC-3.5.2",
       "structural_role": "req_desc_label",
       "candidate_req_id": null,
@@ -9558,13 +9194,13 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0361",
+      "block_id": "B-0347",
       "block_type": "paragraph",
       "page": 24,
       "para_index": 6,
       "section_path": "3.5.2",
       "section_title": "Availability",
-      "section_semantic_type": "performance_requirements",
+      "section_semantic_type": "quality_attributes",
       "section_id": "SEC-3.5.2",
       "structural_role": "req_rationale_label",
       "candidate_req_id": null,
@@ -9584,13 +9220,13 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0362",
+      "block_id": "B-0348",
       "block_type": "paragraph",
       "page": 24,
       "para_index": 7,
       "section_path": "3.5.2",
       "section_title": "Availability",
-      "section_semantic_type": "performance_requirements",
+      "section_semantic_type": "quality_attributes",
       "section_id": "SEC-3.5.2",
       "structural_role": "req_dependency_label",
       "candidate_req_id": null,
@@ -9610,13 +9246,13 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0363",
+      "block_id": "B-0349",
       "block_type": "paragraph",
       "page": 24,
       "para_index": 8,
       "section_path": "3.5.2",
       "section_title": "Availability",
-      "section_semantic_type": "performance_requirements",
+      "section_semantic_type": "quality_attributes",
       "section_id": "SEC-3.5.2",
       "structural_role": "req_id_label",
       "candidate_req_id": "QR23",
@@ -9636,13 +9272,13 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0364",
+      "block_id": "B-0350",
       "block_type": "paragraph",
       "page": 24,
       "para_index": 9,
       "section_path": "3.5.2",
       "section_title": "Availability",
-      "section_semantic_type": "performance_requirements",
+      "section_semantic_type": "quality_attributes",
       "section_id": "SEC-3.5.2",
       "structural_role": "req_title_label",
       "candidate_req_id": null,
@@ -9662,13 +9298,13 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0365",
+      "block_id": "B-0351",
       "block_type": "paragraph",
       "page": 24,
       "para_index": 10,
       "section_path": "3.5.2",
       "section_title": "Availability",
-      "section_semantic_type": "performance_requirements",
+      "section_semantic_type": "quality_attributes",
       "section_id": "SEC-3.5.2",
       "structural_role": "req_desc_label",
       "candidate_req_id": null,
@@ -9688,13 +9324,13 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0366",
+      "block_id": "B-0352",
       "block_type": "paragraph",
       "page": 24,
       "para_index": 11,
       "section_path": "3.5.2",
       "section_title": "Availability",
-      "section_semantic_type": "performance_requirements",
+      "section_semantic_type": "quality_attributes",
       "section_id": "SEC-3.5.2",
       "structural_role": "req_rationale_label",
       "candidate_req_id": null,
@@ -9714,13 +9350,13 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0367",
+      "block_id": "B-0353",
       "block_type": "paragraph",
       "page": 24,
       "para_index": 12,
       "section_path": "3.5.2",
       "section_title": "Availability",
-      "section_semantic_type": "performance_requirements",
+      "section_semantic_type": "quality_attributes",
       "section_id": "SEC-3.5.2",
       "structural_role": "req_dependency_label",
       "candidate_req_id": null,
@@ -9740,7 +9376,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0368",
+      "block_id": "B-0354",
       "block_type": "heading",
       "page": 24,
       "para_index": 13,
@@ -9766,7 +9402,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0369",
+      "block_id": "B-0355",
       "block_type": "paragraph",
       "page": 24,
       "para_index": 14,
@@ -9792,7 +9428,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0370",
+      "block_id": "B-0356",
       "block_type": "paragraph",
       "page": 24,
       "para_index": 15,
@@ -9818,7 +9454,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0371",
+      "block_id": "B-0357",
       "block_type": "paragraph",
       "page": 25,
       "para_index": 0,
@@ -9844,7 +9480,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0372",
+      "block_id": "B-0358",
       "block_type": "paragraph",
       "page": 25,
       "para_index": 1,
@@ -9870,7 +9506,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0373",
+      "block_id": "B-0359",
       "block_type": "paragraph",
       "page": 25,
       "para_index": 2,
@@ -9896,7 +9532,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0374",
+      "block_id": "B-0360",
       "block_type": "paragraph",
       "page": 25,
       "para_index": 3,
@@ -9922,7 +9558,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0375",
+      "block_id": "B-0361",
       "block_type": "paragraph",
       "page": 25,
       "para_index": 4,
@@ -9948,7 +9584,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0376",
+      "block_id": "B-0362",
       "block_type": "paragraph",
       "page": 25,
       "para_index": 5,
@@ -9974,7 +9610,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0377",
+      "block_id": "B-0363",
       "block_type": "heading",
       "page": 26,
       "para_index": 0,
@@ -10000,7 +9636,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0378",
+      "block_id": "B-0364",
       "block_type": "paragraph",
       "page": 26,
       "para_index": 1,
@@ -10026,7 +9662,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0379",
+      "block_id": "B-0365",
       "block_type": "paragraph",
       "page": 26,
       "para_index": 2,
@@ -10052,7 +9688,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0380",
+      "block_id": "B-0366",
       "block_type": "paragraph",
       "page": 26,
       "para_index": 3,
@@ -10078,7 +9714,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0381",
+      "block_id": "B-0367",
       "block_type": "paragraph",
       "page": 26,
       "para_index": 4,
@@ -10104,7 +9740,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0382",
+      "block_id": "B-0368",
       "block_type": "paragraph",
       "page": 26,
       "para_index": 5,
@@ -10130,7 +9766,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0383",
+      "block_id": "B-0369",
       "block_type": "paragraph",
       "page": 26,
       "para_index": 6,
@@ -10156,7 +9792,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0384",
+      "block_id": "B-0370",
       "block_type": "paragraph",
       "page": 26,
       "para_index": 7,
@@ -10182,7 +9818,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0385",
+      "block_id": "B-0371",
       "block_type": "paragraph",
       "page": 26,
       "para_index": 8,
@@ -10208,7 +9844,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0386",
+      "block_id": "B-0372",
       "block_type": "paragraph",
       "page": 26,
       "para_index": 9,
@@ -10234,7 +9870,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0387",
+      "block_id": "B-0373",
       "block_type": "paragraph",
       "page": 26,
       "para_index": 10,
@@ -10260,7 +9896,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0388",
+      "block_id": "B-0374",
       "block_type": "heading",
       "page": 26,
       "para_index": 11,
@@ -10286,7 +9922,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0389",
+      "block_id": "B-0375",
       "block_type": "paragraph",
       "page": 26,
       "para_index": 12,
@@ -10312,7 +9948,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0390",
+      "block_id": "B-0376",
       "block_type": "paragraph",
       "page": 26,
       "para_index": 13,
@@ -10338,7 +9974,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0391",
+      "block_id": "B-0377",
       "block_type": "paragraph",
       "page": 26,
       "para_index": 14,
@@ -10364,7 +10000,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0392",
+      "block_id": "B-0378",
       "block_type": "paragraph",
       "page": 26,
       "para_index": 15,
@@ -10390,7 +10026,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0393",
+      "block_id": "B-0379",
       "block_type": "paragraph",
       "page": 26,
       "para_index": 16,
@@ -10416,7 +10052,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0394",
+      "block_id": "B-0380",
       "block_type": "heading",
       "page": 27,
       "para_index": 0,
@@ -10442,7 +10078,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0395",
+      "block_id": "B-0381",
       "block_type": "paragraph",
       "page": 27,
       "para_index": 1,
@@ -10468,7 +10104,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0396",
+      "block_id": "B-0382",
       "block_type": "heading",
       "page": 27,
       "para_index": 2,
@@ -10494,7 +10130,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0397",
+      "block_id": "B-0383",
       "block_type": "paragraph",
       "page": 27,
       "para_index": 3,
@@ -10520,7 +10156,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0398",
+      "block_id": "B-0384",
       "block_type": "paragraph",
       "page": 27,
       "para_index": 4,
@@ -10546,7 +10182,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0399",
+      "block_id": "B-0385",
       "block_type": "paragraph",
       "page": 27,
       "para_index": 5,
@@ -10572,7 +10208,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0400",
+      "block_id": "B-0386",
       "block_type": "paragraph",
       "page": 27,
       "para_index": 6,
@@ -10598,7 +10234,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0401",
+      "block_id": "B-0387",
       "block_type": "paragraph",
       "page": 27,
       "para_index": 7,
@@ -10624,7 +10260,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0402",
+      "block_id": "B-0388",
       "block_type": "heading",
       "page": 27,
       "para_index": 8,
@@ -10650,7 +10286,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0403",
+      "block_id": "B-0389",
       "block_type": "paragraph",
       "page": 27,
       "para_index": 9,
@@ -10676,7 +10312,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0404",
+      "block_id": "B-0390",
       "block_type": "paragraph",
       "page": 27,
       "para_index": 10,
@@ -10702,7 +10338,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0405",
+      "block_id": "B-0391",
       "block_type": "paragraph",
       "page": 28,
       "para_index": 0,
@@ -10728,7 +10364,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0406",
+      "block_id": "B-0392",
       "block_type": "paragraph",
       "page": 28,
       "para_index": 1,
@@ -10754,7 +10390,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0407",
+      "block_id": "B-0393",
       "block_type": "paragraph",
       "page": 28,
       "para_index": 2,
@@ -10780,7 +10416,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0408",
+      "block_id": "B-0394",
       "block_type": "heading",
       "page": 29,
       "para_index": 0,
@@ -10806,7 +10442,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0409",
+      "block_id": "B-0395",
       "block_type": "paragraph",
       "page": 29,
       "para_index": 1,
@@ -10821,7 +10457,7 @@
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": false,
-      "text": "Table 2 - Select of ten most important requirements",
+      "text": "Table 2 - Select of ten most important requirements\nRequirement ID Magnus Elmira Faegheh Niclas Farhan Sean Sarah Total",
       "source_locator": {
         "page": 29,
         "para": 1
@@ -10832,7 +10468,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0410",
+      "block_id": "B-0396",
       "block_type": "paragraph",
       "page": 29,
       "para_index": 2,
@@ -10847,7 +10483,7 @@
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": false,
-      "text": "Requirement ID Magnus Elmira Faegheh Niclas Farhan Sean Sarah Total",
+      "text": "FR1 9 7 5 6 6 8 6 47",
       "source_locator": {
         "page": 29,
         "para": 2
@@ -10858,7 +10494,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0411",
+      "block_id": "B-0397",
       "block_type": "paragraph",
       "page": 29,
       "para_index": 3,
@@ -10873,7 +10509,7 @@
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": false,
-      "text": "FR1 9 7 5 6 6 8 6 47",
+      "text": "FR2 3 6 4 3 4 5 3 28",
       "source_locator": {
         "page": 29,
         "para": 3
@@ -10884,7 +10520,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0412",
+      "block_id": "B-0398",
       "block_type": "paragraph",
       "page": 29,
       "para_index": 4,
@@ -10899,7 +10535,7 @@
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": false,
-      "text": "FR2 3 6 4 3 4 5 3 28",
+      "text": "FR3 4 6 8 6 7 7 6 44",
       "source_locator": {
         "page": 29,
         "para": 4
@@ -10910,7 +10546,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0413",
+      "block_id": "B-0399",
       "block_type": "paragraph",
       "page": 29,
       "para_index": 5,
@@ -10925,7 +10561,7 @@
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": false,
-      "text": "FR3 4 6 8 6 7 7 6 44",
+      "text": "FR4 6 5 3 6 7 6 6 39",
       "source_locator": {
         "page": 29,
         "para": 5
@@ -10936,7 +10572,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0414",
+      "block_id": "B-0400",
       "block_type": "paragraph",
       "page": 29,
       "para_index": 6,
@@ -10951,7 +10587,7 @@
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": false,
-      "text": "FR4 6 5 3 6 7 6 6 39",
+      "text": "FR5 6 9 3 5 7 6 5 41",
       "source_locator": {
         "page": 29,
         "para": 6
@@ -10962,7 +10598,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0415",
+      "block_id": "B-0401",
       "block_type": "paragraph",
       "page": 29,
       "para_index": 7,
@@ -10977,7 +10613,7 @@
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": false,
-      "text": "FR5 6 9 3 5 7 6 5 41",
+      "text": "FR6 8 10 10 9 9 10 10 66",
       "source_locator": {
         "page": 29,
         "para": 7
@@ -10988,7 +10624,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0416",
+      "block_id": "B-0402",
       "block_type": "paragraph",
       "page": 29,
       "para_index": 8,
@@ -11003,7 +10639,7 @@
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": false,
-      "text": "FR6 8 10 10 9 9 10 10 66",
+      "text": "FR7 10 8 10 10 8 10 8 64",
       "source_locator": {
         "page": 29,
         "para": 8
@@ -11014,7 +10650,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0417",
+      "block_id": "B-0403",
       "block_type": "paragraph",
       "page": 29,
       "para_index": 9,
@@ -11029,7 +10665,7 @@
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": false,
-      "text": "FR7 10 8 10 10 8 10 8 64",
+      "text": "FR8 10 10 10 8 8 10 8 64",
       "source_locator": {
         "page": 29,
         "para": 9
@@ -11040,7 +10676,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0418",
+      "block_id": "B-0404",
       "block_type": "paragraph",
       "page": 29,
       "para_index": 10,
@@ -11055,7 +10691,7 @@
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": false,
-      "text": "FR8 10 10 10 8 8 10 8 64",
+      "text": "FR9 6 8 5 8 9 7 8 51",
       "source_locator": {
         "page": 29,
         "para": 10
@@ -11066,7 +10702,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0419",
+      "block_id": "B-0405",
       "block_type": "paragraph",
       "page": 29,
       "para_index": 11,
@@ -11081,7 +10717,7 @@
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": false,
-      "text": "FR9 6 8 5 8 9 7 8 51",
+      "text": "FR10 3 6 7 5 6 8 4 39",
       "source_locator": {
         "page": 29,
         "para": 11
@@ -11092,7 +10728,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0420",
+      "block_id": "B-0406",
       "block_type": "paragraph",
       "page": 29,
       "para_index": 12,
@@ -11107,7 +10743,7 @@
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": false,
-      "text": "FR10 3 6 7 5 6 8 4 39",
+      "text": "FR11 3 4 3 6 5 5 5 31",
       "source_locator": {
         "page": 29,
         "para": 12
@@ -11118,7 +10754,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0421",
+      "block_id": "B-0407",
       "block_type": "paragraph",
       "page": 29,
       "para_index": 13,
@@ -11133,7 +10769,7 @@
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": false,
-      "text": "FR11 3 4 3 6 5 5 5 31",
+      "text": "FR12 4 3 7 6 6 7 7 40",
       "source_locator": {
         "page": 29,
         "para": 13
@@ -11144,7 +10780,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0422",
+      "block_id": "B-0408",
       "block_type": "paragraph",
       "page": 29,
       "para_index": 14,
@@ -11159,7 +10795,7 @@
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": false,
-      "text": "FR12 4 3 7 6 6 7 7 40",
+      "text": "FR13 4 6 9 7 7 7 7 47",
       "source_locator": {
         "page": 29,
         "para": 14
@@ -11170,7 +10806,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0423",
+      "block_id": "B-0409",
       "block_type": "paragraph",
       "page": 29,
       "para_index": 15,
@@ -11185,7 +10821,7 @@
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": false,
-      "text": "FR13 4 6 9 7 7 7 7 47",
+      "text": "FR14 4 4 3 6 6 6 5 34",
       "source_locator": {
         "page": 29,
         "para": 15
@@ -11196,7 +10832,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0424",
+      "block_id": "B-0410",
       "block_type": "paragraph",
       "page": 29,
       "para_index": 16,
@@ -11211,7 +10847,7 @@
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": false,
-      "text": "FR14 4 4 3 6 6 6 5 34",
+      "text": "FR15 4 7 7 5 6 6 6 41",
       "source_locator": {
         "page": 29,
         "para": 16
@@ -11222,7 +10858,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0425",
+      "block_id": "B-0411",
       "block_type": "paragraph",
       "page": 29,
       "para_index": 17,
@@ -11237,7 +10873,7 @@
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": false,
-      "text": "FR15 4 7 7 5 6 6 6 41",
+      "text": "FR16 4 7 5 5 6 6 6 39",
       "source_locator": {
         "page": 29,
         "para": 17
@@ -11248,7 +10884,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0426",
+      "block_id": "B-0412",
       "block_type": "paragraph",
       "page": 29,
       "para_index": 18,
@@ -11263,7 +10899,7 @@
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": false,
-      "text": "FR16 4 7 5 5 6 6 6 39",
+      "text": "FR17 4 3 4 2 5 7 3 28",
       "source_locator": {
         "page": 29,
         "para": 18
@@ -11274,7 +10910,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0427",
+      "block_id": "B-0413",
       "block_type": "paragraph",
       "page": 29,
       "para_index": 19,
@@ -11289,7 +10925,7 @@
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": false,
-      "text": "FR17 4 3 4 2 5 7 3 28",
+      "text": "FR18 6 6 3 7 4 4 6 36",
       "source_locator": {
         "page": 29,
         "para": 19
@@ -11300,7 +10936,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0428",
+      "block_id": "B-0414",
       "block_type": "paragraph",
       "page": 29,
       "para_index": 20,
@@ -11315,7 +10951,7 @@
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": false,
-      "text": "FR18 6 6 3 7 4 4 6 36",
+      "text": "FR19 5 4 5 5 4 7 5 35",
       "source_locator": {
         "page": 29,
         "para": 20
@@ -11326,7 +10962,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0429",
+      "block_id": "B-0415",
       "block_type": "paragraph",
       "page": 29,
       "para_index": 21,
@@ -11341,7 +10977,7 @@
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": false,
-      "text": "FR19 5 4 5 5 4 7 5 35",
+      "text": "FR20 5 7 6 5 6 6 5 40",
       "source_locator": {
         "page": 29,
         "para": 21
@@ -11352,7 +10988,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0430",
+      "block_id": "B-0416",
       "block_type": "paragraph",
       "page": 29,
       "para_index": 22,
@@ -11367,7 +11003,7 @@
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": false,
-      "text": "FR20 5 7 6 5 6 6 5 40",
+      "text": "FR21 5 4 4 6 5 4 6 34",
       "source_locator": {
         "page": 29,
         "para": 22
@@ -11378,7 +11014,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0431",
+      "block_id": "B-0417",
       "block_type": "paragraph",
       "page": 29,
       "para_index": 23,
@@ -11393,7 +11029,7 @@
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": false,
-      "text": "FR21 5 4 4 6 5 4 6 34",
+      "text": "FR22 6 8 6 6 8 7 6 47",
       "source_locator": {
         "page": 29,
         "para": 23
@@ -11404,36 +11040,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0432",
-      "block_type": "paragraph",
-      "page": 29,
-      "para_index": 24,
-      "section_path": "A.1",
-      "section_title": "Selection for Cost-Value Approach",
-      "section_semantic_type": "prioritization",
-      "section_id": "SEC-A.1",
-      "structural_role": "prose_content",
-      "candidate_req_id": null,
-      "candidate_dependencies": [],
-      "skip": false,
-      "toc_confirmed": true,
-      "body_confirmed": false,
-      "low_confidence_confirmation": false,
-      "text": "FR22 6 8 6 6 8 7 6 47",
-      "source_locator": {
-        "page": 29,
-        "para": 24
-      },
-      "doc_id": "DOC-SRS_EXAMPLE",
-      "doc_type": "SRS",
-      "module": "UNKNOWN",
-      "version": "1.0"
-    },
-    {
-      "block_id": "B-0433",
+      "block_id": "B-0418",
       "block_type": "table",
       "page": 29,
-      "para_index": 25,
+      "para_index": 24,
       "section_path": "A.1",
       "section_title": "Selection for Cost-Value Approach",
       "section_semantic_type": "prioritization",
@@ -11448,7 +11058,7 @@
       "text": "Table 2 – Select of ten most important requirements |  |  |  |  |  |  |  | \nRequirement ID | Magnus | Elmira | Faegheh | Niclas | Farhan | Sean | Sarah | Total\nFR1 | 9 | 7 | 5 | 6 | 6 | 8 | 6 | 47\nFR2 | 3 | 6 | 4 | 3 | 4 | 5 | 3 | 28\nFR3 | 4 | 6 | 8 | 6 | 7 | 7 | 6 | 44\nFR4 | 6 | 5 | 3 | 6 | 7 | 6 | 6 | 39\nFR5 | 6 | 9 | 3 | 5 | 7 | 6 | 5 | 41\nFR6 | 8 | 10 | 10 | 9 | 9 | 10 | 10 | 66\nFR7 | 10 | 8 | 10 | 10 | 8 | 10 | 8 | 64\nFR8 | 10 | 10 | 10 | 8 | 8 | 10 | 8 | 64\nFR9 | 6 | 8 | 5 | 8 | 9 | 7 | 8 | 51\nFR10 | 3 | 6 | 7 | 5 | 6 | 8 | 4 | 39\nFR11 | 3 | 4 | 3 | 6 | 5 | 5 | 5 | 31\nFR12 | 4 | 3 | 7 | 6 | 6 | 7 | 7 | 40\nFR13 | 4 | 6 | 9 | 7 | 7 | 7 | 7 | 47\nFR14 | 4 | 4 | 3 | 6 | 6 | 6 | 5 | 34\nFR15 | 4 | 7 | 7 | 5 | 6 | 6 | 6 | 41\nFR16 | 4 | 7 | 5 | 5 | 6 | 6 | 6 | 39\nFR17 | 4 | 3 | 4 | 2 | 5 | 7 | 3 | 28\nFR18 | 6 | 6 | 3 | 7 | 4 | 4 | 6 | 36\nFR19 | 5 | 4 | 5 | 5 | 4 | 7 | 5 | 35\nFR20 | 5 | 7 | 6 | 5 | 6 | 6 | 5 | 40\nFR21 | 5 | 4 | 4 | 6 | 5 | 4 | 6 | 34\nFR22 | 6 | 8 | 6 | 6 | 8 | 7 | 6 | 47",
       "source_locator": {
         "page": 29,
-        "para": 25
+        "para": 24
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -11724,7 +11334,7 @@
       }
     },
     {
-      "block_id": "B-0434",
+      "block_id": "B-0419",
       "block_type": "paragraph",
       "page": 30,
       "para_index": 0,
@@ -11750,7 +11360,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0435",
+      "block_id": "B-0420",
       "block_type": "paragraph",
       "page": 30,
       "para_index": 1,
@@ -11776,7 +11386,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0436",
+      "block_id": "B-0421",
       "block_type": "paragraph",
       "page": 30,
       "para_index": 2,
@@ -11802,7 +11412,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0437",
+      "block_id": "B-0422",
       "block_type": "paragraph",
       "page": 30,
       "para_index": 3,
@@ -11828,7 +11438,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0438",
+      "block_id": "B-0423",
       "block_type": "paragraph",
       "page": 30,
       "para_index": 4,
@@ -11854,7 +11464,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0439",
+      "block_id": "B-0424",
       "block_type": "paragraph",
       "page": 30,
       "para_index": 5,
@@ -11880,7 +11490,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0440",
+      "block_id": "B-0425",
       "block_type": "paragraph",
       "page": 30,
       "para_index": 6,
@@ -11906,7 +11516,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0441",
+      "block_id": "B-0426",
       "block_type": "paragraph",
       "page": 30,
       "para_index": 7,
@@ -11932,7 +11542,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0442",
+      "block_id": "B-0427",
       "block_type": "paragraph",
       "page": 30,
       "para_index": 8,
@@ -11958,7 +11568,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0443",
+      "block_id": "B-0428",
       "block_type": "paragraph",
       "page": 30,
       "para_index": 9,
@@ -11984,7 +11594,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0444",
+      "block_id": "B-0429",
       "block_type": "paragraph",
       "page": 30,
       "para_index": 10,
@@ -12010,7 +11620,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0445",
+      "block_id": "B-0430",
       "block_type": "paragraph",
       "page": 30,
       "para_index": 11,
@@ -12036,7 +11646,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0446",
+      "block_id": "B-0431",
       "block_type": "paragraph",
       "page": 30,
       "para_index": 12,
@@ -12062,7 +11672,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0447",
+      "block_id": "B-0432",
       "block_type": "paragraph",
       "page": 30,
       "para_index": 13,
@@ -12088,7 +11698,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0448",
+      "block_id": "B-0433",
       "block_type": "paragraph",
       "page": 30,
       "para_index": 14,
@@ -12114,7 +11724,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0449",
+      "block_id": "B-0434",
       "block_type": "paragraph",
       "page": 30,
       "para_index": 15,
@@ -12140,7 +11750,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0450",
+      "block_id": "B-0435",
       "block_type": "paragraph",
       "page": 30,
       "para_index": 16,
@@ -12166,7 +11776,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0451",
+      "block_id": "B-0436",
       "block_type": "paragraph",
       "page": 30,
       "para_index": 17,
@@ -12192,7 +11802,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0452",
+      "block_id": "B-0437",
       "block_type": "paragraph",
       "page": 30,
       "para_index": 18,
@@ -12218,7 +11828,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0453",
+      "block_id": "B-0438",
       "block_type": "paragraph",
       "page": 30,
       "para_index": 19,
@@ -12244,7 +11854,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0454",
+      "block_id": "B-0439",
       "block_type": "paragraph",
       "page": 30,
       "para_index": 20,
@@ -12270,7 +11880,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0455",
+      "block_id": "B-0440",
       "block_type": "paragraph",
       "page": 30,
       "para_index": 21,
@@ -12296,7 +11906,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0456",
+      "block_id": "B-0441",
       "block_type": "paragraph",
       "page": 30,
       "para_index": 22,
@@ -12322,7 +11932,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0457",
+      "block_id": "B-0442",
       "block_type": "paragraph",
       "page": 30,
       "para_index": 23,
@@ -12348,7 +11958,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0458",
+      "block_id": "B-0443",
       "block_type": "paragraph",
       "page": 30,
       "para_index": 24,
@@ -12374,7 +11984,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0459",
+      "block_id": "B-0444",
       "block_type": "table",
       "page": 30,
       "para_index": 25,
@@ -12679,7 +12289,7 @@
       }
     },
     {
-      "block_id": "B-0460",
+      "block_id": "B-0445",
       "block_type": "paragraph",
       "page": 31,
       "para_index": 0,
@@ -12705,7 +12315,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0461",
+      "block_id": "B-0446",
       "block_type": "paragraph",
       "page": 31,
       "para_index": 1,
@@ -12731,7 +12341,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0462",
+      "block_id": "B-0447",
       "block_type": "paragraph",
       "page": 31,
       "para_index": 2,
@@ -12757,7 +12367,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0463",
+      "block_id": "B-0448",
       "block_type": "paragraph",
       "page": 31,
       "para_index": 3,
@@ -12783,7 +12393,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0464",
+      "block_id": "B-0449",
       "block_type": "paragraph",
       "page": 31,
       "para_index": 4,
@@ -12809,7 +12419,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0465",
+      "block_id": "B-0450",
       "block_type": "paragraph",
       "page": 31,
       "para_index": 5,
@@ -12835,7 +12445,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0466",
+      "block_id": "B-0451",
       "block_type": "paragraph",
       "page": 31,
       "para_index": 6,
@@ -12861,7 +12471,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0467",
+      "block_id": "B-0452",
       "block_type": "paragraph",
       "page": 31,
       "para_index": 7,
@@ -12887,7 +12497,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0468",
+      "block_id": "B-0453",
       "block_type": "paragraph",
       "page": 31,
       "para_index": 8,
@@ -12913,7 +12523,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0469",
+      "block_id": "B-0454",
       "block_type": "table",
       "page": 31,
       "para_index": 9,
@@ -13042,7 +12652,7 @@
       }
     },
     {
-      "block_id": "B-0470",
+      "block_id": "B-0455",
       "block_type": "heading",
       "page": 32,
       "para_index": 0,
@@ -13068,7 +12678,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0471",
+      "block_id": "B-0456",
       "block_type": "paragraph",
       "page": 32,
       "para_index": 1,
@@ -13094,7 +12704,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0472",
+      "block_id": "B-0457",
       "block_type": "paragraph",
       "page": 32,
       "para_index": 2,
@@ -13120,7 +12730,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0473",
+      "block_id": "B-0458",
       "block_type": "paragraph",
       "page": 32,
       "para_index": 3,
@@ -13146,7 +12756,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0474",
+      "block_id": "B-0459",
       "block_type": "paragraph",
       "page": 32,
       "para_index": 4,
@@ -13172,7 +12782,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0475",
+      "block_id": "B-0460",
       "block_type": "paragraph",
       "page": 32,
       "para_index": 5,
@@ -13198,7 +12808,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0476",
+      "block_id": "B-0461",
       "block_type": "paragraph",
       "page": 32,
       "para_index": 6,
@@ -13224,7 +12834,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0477",
+      "block_id": "B-0462",
       "block_type": "paragraph",
       "page": 32,
       "para_index": 7,
@@ -13250,7 +12860,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0478",
+      "block_id": "B-0463",
       "block_type": "paragraph",
       "page": 32,
       "para_index": 8,
@@ -13276,7 +12886,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0479",
+      "block_id": "B-0464",
       "block_type": "paragraph",
       "page": 32,
       "para_index": 9,
@@ -13302,7 +12912,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0480",
+      "block_id": "B-0465",
       "block_type": "paragraph",
       "page": 32,
       "para_index": 10,
@@ -13328,7 +12938,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0481",
+      "block_id": "B-0466",
       "block_type": "paragraph",
       "page": 32,
       "para_index": 11,
@@ -13354,7 +12964,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0482",
+      "block_id": "B-0467",
       "block_type": "paragraph",
       "page": 32,
       "para_index": 12,
@@ -13380,7 +12990,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0483",
+      "block_id": "B-0468",
       "block_type": "paragraph",
       "page": 32,
       "para_index": 13,
@@ -13406,7 +13016,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0484",
+      "block_id": "B-0469",
       "block_type": "paragraph",
       "page": 32,
       "para_index": 14,
@@ -13432,7 +13042,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0485",
+      "block_id": "B-0470",
       "block_type": "paragraph",
       "page": 32,
       "para_index": 15,
@@ -13458,7 +13068,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0486",
+      "block_id": "B-0471",
       "block_type": "paragraph",
       "page": 32,
       "para_index": 16,
@@ -13484,7 +13094,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0487",
+      "block_id": "B-0472",
       "block_type": "paragraph",
       "page": 32,
       "para_index": 17,
@@ -13510,7 +13120,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0488",
+      "block_id": "B-0473",
       "block_type": "paragraph",
       "page": 32,
       "para_index": 18,
@@ -13536,7 +13146,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0489",
+      "block_id": "B-0474",
       "block_type": "paragraph",
       "page": 32,
       "para_index": 19,
@@ -13562,7 +13172,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0490",
+      "block_id": "B-0475",
       "block_type": "paragraph",
       "page": 32,
       "para_index": 20,
@@ -13588,7 +13198,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0491",
+      "block_id": "B-0476",
       "block_type": "paragraph",
       "page": 32,
       "para_index": 21,
@@ -13614,7 +13224,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0492",
+      "block_id": "B-0477",
       "block_type": "table",
       "page": 32,
       "para_index": 22,
@@ -13704,7 +13314,7 @@
       }
     },
     {
-      "block_id": "B-0493",
+      "block_id": "B-0478",
       "block_type": "table",
       "page": 32,
       "para_index": 23,
@@ -13838,7 +13448,7 @@
       }
     },
     {
-      "block_id": "B-0494",
+      "block_id": "B-0479",
       "block_type": "paragraph",
       "page": 33,
       "para_index": 0,
@@ -13864,7 +13474,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0495",
+      "block_id": "B-0480",
       "block_type": "paragraph",
       "page": 33,
       "para_index": 1,
@@ -13890,7 +13500,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0496",
+      "block_id": "B-0481",
       "block_type": "paragraph",
       "page": 33,
       "para_index": 2,
@@ -13916,7 +13526,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0497",
+      "block_id": "B-0482",
       "block_type": "paragraph",
       "page": 33,
       "para_index": 3,
@@ -13942,7 +13552,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0498",
+      "block_id": "B-0483",
       "block_type": "paragraph",
       "page": 33,
       "para_index": 4,
@@ -13968,7 +13578,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0499",
+      "block_id": "B-0484",
       "block_type": "paragraph",
       "page": 33,
       "para_index": 5,
@@ -13994,7 +13604,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0500",
+      "block_id": "B-0485",
       "block_type": "paragraph",
       "page": 33,
       "para_index": 6,
@@ -14020,7 +13630,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0501",
+      "block_id": "B-0486",
       "block_type": "paragraph",
       "page": 33,
       "para_index": 7,
@@ -14046,7 +13656,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0502",
+      "block_id": "B-0487",
       "block_type": "paragraph",
       "page": 33,
       "para_index": 8,
@@ -14072,7 +13682,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0503",
+      "block_id": "B-0488",
       "block_type": "paragraph",
       "page": 33,
       "para_index": 9,
@@ -14098,7 +13708,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0504",
+      "block_id": "B-0489",
       "block_type": "paragraph",
       "page": 33,
       "para_index": 10,
@@ -14124,7 +13734,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0505",
+      "block_id": "B-0490",
       "block_type": "paragraph",
       "page": 33,
       "para_index": 11,
@@ -14150,7 +13760,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0506",
+      "block_id": "B-0491",
       "block_type": "paragraph",
       "page": 33,
       "para_index": 12,
@@ -14176,7 +13786,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0507",
+      "block_id": "B-0492",
       "block_type": "paragraph",
       "page": 33,
       "para_index": 13,
@@ -14202,7 +13812,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0508",
+      "block_id": "B-0493",
       "block_type": "paragraph",
       "page": 33,
       "para_index": 14,
@@ -14228,7 +13838,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0509",
+      "block_id": "B-0494",
       "block_type": "paragraph",
       "page": 33,
       "para_index": 15,
@@ -14254,7 +13864,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0510",
+      "block_id": "B-0495",
       "block_type": "table",
       "page": 33,
       "para_index": 16,
@@ -14336,7 +13946,7 @@
       }
     },
     {
-      "block_id": "B-0511",
+      "block_id": "B-0496",
       "block_type": "table",
       "page": 33,
       "para_index": 17,
@@ -14509,7 +14119,7 @@
       }
     },
     {
-      "block_id": "B-0512",
+      "block_id": "B-0497",
       "block_type": "paragraph",
       "page": 34,
       "para_index": 0,
@@ -14535,7 +14145,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0513",
+      "block_id": "B-0498",
       "block_type": "paragraph",
       "page": 34,
       "para_index": 1,
@@ -14561,7 +14171,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0514",
+      "block_id": "B-0499",
       "block_type": "paragraph",
       "page": 35,
       "para_index": 0,
@@ -14587,7 +14197,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0515",
+      "block_id": "B-0500",
       "block_type": "paragraph",
       "page": 35,
       "para_index": 1,
@@ -14602,7 +14212,7 @@
       "toc_confirmed": true,
       "body_confirmed": false,
       "low_confidence_confirmation": false,
-      "text": "FR6 FR7 FR8 FR24 FR27 QR6 QR7 QR9 QR12 QR22",
+      "text": "FR6 FR7 FR8 FR24 FR27 QR6 QR7 QR9 QR12 QR22\nCost 5,31% 9,18% 7,91% 7,65% 1,73% 22,55% 13,92% 15,43% 12,60% 3,71%\nValue 13,60% 7,12% 4,80% 5,93% 4,45% 23,41% 13,78% 10,31% 15,06% 1,53%",
       "source_locator": {
         "page": 35,
         "para": 1
@@ -14613,62 +14223,10 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0516",
-      "block_type": "paragraph",
-      "page": 35,
-      "para_index": 2,
-      "section_path": "A.2",
-      "section_title": "Prioritization Result of 10 selected Requirements Using Cost-Value Approach",
-      "section_semantic_type": "prioritization",
-      "section_id": "SEC-A.2",
-      "structural_role": "prose_content",
-      "candidate_req_id": null,
-      "candidate_dependencies": [],
-      "skip": false,
-      "toc_confirmed": true,
-      "body_confirmed": false,
-      "low_confidence_confirmation": false,
-      "text": "Cost 5,31% 9,18% 7,91% 7,65% 1,73% 22,55% 13,92% 15,43% 12,60% 3,71%",
-      "source_locator": {
-        "page": 35,
-        "para": 2
-      },
-      "doc_id": "DOC-SRS_EXAMPLE",
-      "doc_type": "SRS",
-      "module": "UNKNOWN",
-      "version": "1.0"
-    },
-    {
-      "block_id": "B-0517",
-      "block_type": "paragraph",
-      "page": 35,
-      "para_index": 3,
-      "section_path": "A.2",
-      "section_title": "Prioritization Result of 10 selected Requirements Using Cost-Value Approach",
-      "section_semantic_type": "prioritization",
-      "section_id": "SEC-A.2",
-      "structural_role": "prose_content",
-      "candidate_req_id": null,
-      "candidate_dependencies": [],
-      "skip": false,
-      "toc_confirmed": true,
-      "body_confirmed": false,
-      "low_confidence_confirmation": false,
-      "text": "Value 13,60% 7,12% 4,80% 5,93% 4,45% 23,41% 13,78% 10,31% 15,06% 1,53%",
-      "source_locator": {
-        "page": 35,
-        "para": 3
-      },
-      "doc_id": "DOC-SRS_EXAMPLE",
-      "doc_type": "SRS",
-      "module": "UNKNOWN",
-      "version": "1.0"
-    },
-    {
-      "block_id": "B-0518",
+      "block_id": "B-0501",
       "block_type": "table",
       "page": 35,
-      "para_index": 4,
+      "para_index": 2,
       "section_path": "A.2",
       "section_title": "Prioritization Result of 10 selected Requirements Using Cost-Value Approach",
       "section_semantic_type": "prioritization",
@@ -14683,7 +14241,7 @@
       "text": "Table 6 - The value distribution and estimated cost |  |  |  |  |  |  |  |  |  | \n | FR6 | FR7 | FR8 | FR24 | FR27 | QR6 | QR7 | QR9 | QR12 | QR22\nCost | 5,31% | 9,18% | 7,91% | 7,65% | 1,73% | 22,55% | 13,92% | 15,43% | 12,60% | 3,71%\nValue | 13,60% | 7,12% | 4,80% | 5,93% | 4,45% | 23,41% | 13,78% | 10,31% | 15,06% | 1,53%",
       "source_locator": {
         "page": 35,
-        "para": 4
+        "para": 2
       },
       "doc_id": "DOC-SRS_EXAMPLE",
       "doc_type": "SRS",
@@ -14747,7 +14305,7 @@
       }
     },
     {
-      "block_id": "B-0519",
+      "block_id": "B-0502",
       "block_type": "heading",
       "page": 36,
       "para_index": 0,
@@ -14773,7 +14331,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0520",
+      "block_id": "B-0503",
       "block_type": "paragraph",
       "page": 36,
       "para_index": 1,
@@ -14799,7 +14357,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0521",
+      "block_id": "B-0504",
       "block_type": "paragraph",
       "page": 36,
       "para_index": 2,
@@ -14825,7 +14383,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0522",
+      "block_id": "B-0505",
       "block_type": "table",
       "page": 36,
       "para_index": 3,
@@ -15368,7 +14926,7 @@
       }
     },
     {
-      "block_id": "B-0523",
+      "block_id": "B-0506",
       "block_type": "paragraph",
       "page": 37,
       "para_index": 0,
@@ -15394,7 +14952,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0524",
+      "block_id": "B-0507",
       "block_type": "table",
       "page": 37,
       "para_index": 1,
@@ -15946,7 +15504,7 @@
       }
     },
     {
-      "block_id": "B-0525",
+      "block_id": "B-0508",
       "block_type": "paragraph",
       "page": 38,
       "para_index": 0,
@@ -15972,7 +15530,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0526",
+      "block_id": "B-0509",
       "block_type": "table",
       "page": 38,
       "para_index": 1,
@@ -16524,7 +16082,7 @@
       }
     },
     {
-      "block_id": "B-0527",
+      "block_id": "B-0510",
       "block_type": "paragraph",
       "page": 39,
       "para_index": 0,
@@ -16550,7 +16108,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0528",
+      "block_id": "B-0511",
       "block_type": "table",
       "page": 39,
       "para_index": 1,
@@ -17102,7 +16660,7 @@
       }
     },
     {
-      "block_id": "B-0529",
+      "block_id": "B-0512",
       "block_type": "paragraph",
       "page": 40,
       "para_index": 0,
@@ -17128,7 +16686,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0530",
+      "block_id": "B-0513",
       "block_type": "table",
       "page": 40,
       "para_index": 1,
@@ -17662,7 +17220,7 @@
       }
     },
     {
-      "block_id": "B-0531",
+      "block_id": "B-0514",
       "block_type": "paragraph",
       "page": 41,
       "para_index": 0,
@@ -17688,7 +17246,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0532",
+      "block_id": "B-0515",
       "block_type": "table",
       "page": 41,
       "para_index": 1,
@@ -18222,7 +17780,7 @@
       }
     },
     {
-      "block_id": "B-0533",
+      "block_id": "B-0516",
       "block_type": "paragraph",
       "page": 42,
       "para_index": 0,
@@ -18248,7 +17806,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0534",
+      "block_id": "B-0517",
       "block_type": "table",
       "page": 42,
       "para_index": 1,
@@ -18800,7 +18358,7 @@
       }
     },
     {
-      "block_id": "B-0535",
+      "block_id": "B-0518",
       "block_type": "paragraph",
       "page": 43,
       "para_index": 0,
@@ -18826,7 +18384,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0536",
+      "block_id": "B-0519",
       "block_type": "table",
       "page": 43,
       "para_index": 1,
@@ -19378,7 +18936,7 @@
       }
     },
     {
-      "block_id": "B-0537",
+      "block_id": "B-0520",
       "block_type": "paragraph",
       "page": 44,
       "para_index": 0,
@@ -19404,7 +18962,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0538",
+      "block_id": "B-0521",
       "block_type": "table",
       "page": 44,
       "para_index": 1,
@@ -19956,7 +19514,7 @@
       }
     },
     {
-      "block_id": "B-0539",
+      "block_id": "B-0522",
       "block_type": "paragraph",
       "page": 45,
       "para_index": 0,
@@ -19982,7 +19540,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0540",
+      "block_id": "B-0523",
       "block_type": "paragraph",
       "page": 45,
       "para_index": 1,
@@ -20008,7 +19566,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0541",
+      "block_id": "B-0524",
       "block_type": "table",
       "page": 45,
       "para_index": 2,
@@ -20326,7 +19884,7 @@
       }
     },
     {
-      "block_id": "B-0542",
+      "block_id": "B-0525",
       "block_type": "table",
       "page": 45,
       "para_index": 3,
@@ -20364,7 +19922,7 @@
       }
     },
     {
-      "block_id": "B-0543",
+      "block_id": "B-0526",
       "block_type": "paragraph",
       "page": 46,
       "para_index": 0,
@@ -20390,7 +19948,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0544",
+      "block_id": "B-0527",
       "block_type": "heading",
       "page": 47,
       "para_index": 0,
@@ -20416,7 +19974,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0545",
+      "block_id": "B-0528",
       "block_type": "paragraph",
       "page": 47,
       "para_index": 1,
@@ -20442,7 +20000,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0546",
+      "block_id": "B-0529",
       "block_type": "paragraph",
       "page": 47,
       "para_index": 2,
@@ -20468,7 +20026,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0547",
+      "block_id": "B-0530",
       "block_type": "paragraph",
       "page": 47,
       "para_index": 3,
@@ -20494,7 +20052,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0548",
+      "block_id": "B-0531",
       "block_type": "paragraph",
       "page": 47,
       "para_index": 4,
@@ -20520,7 +20078,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0549",
+      "block_id": "B-0532",
       "block_type": "paragraph",
       "page": 47,
       "para_index": 5,
@@ -20546,7 +20104,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0550",
+      "block_id": "B-0533",
       "block_type": "paragraph",
       "page": 47,
       "para_index": 6,
@@ -20572,7 +20130,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0551",
+      "block_id": "B-0534",
       "block_type": "paragraph",
       "page": 47,
       "para_index": 7,
@@ -20598,7 +20156,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0552",
+      "block_id": "B-0535",
       "block_type": "paragraph",
       "page": 47,
       "para_index": 8,
@@ -20624,7 +20182,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0553",
+      "block_id": "B-0536",
       "block_type": "paragraph",
       "page": 47,
       "para_index": 9,
@@ -20650,7 +20208,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0554",
+      "block_id": "B-0537",
       "block_type": "paragraph",
       "page": 47,
       "para_index": 10,
@@ -20676,7 +20234,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0555",
+      "block_id": "B-0538",
       "block_type": "table",
       "page": 47,
       "para_index": 11,
@@ -20786,7 +20344,7 @@
       }
     },
     {
-      "block_id": "B-0556",
+      "block_id": "B-0539",
       "block_type": "paragraph",
       "page": 48,
       "para_index": 0,
@@ -20812,7 +20370,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0557",
+      "block_id": "B-0540",
       "block_type": "paragraph",
       "page": 48,
       "para_index": 1,
@@ -20838,7 +20396,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0558",
+      "block_id": "B-0541",
       "block_type": "paragraph",
       "page": 48,
       "para_index": 2,
@@ -20864,7 +20422,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0559",
+      "block_id": "B-0542",
       "block_type": "paragraph",
       "page": 48,
       "para_index": 3,
@@ -20890,7 +20448,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0560",
+      "block_id": "B-0543",
       "block_type": "paragraph",
       "page": 48,
       "para_index": 4,
@@ -20916,7 +20474,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0561",
+      "block_id": "B-0544",
       "block_type": "paragraph",
       "page": 48,
       "para_index": 5,
@@ -20942,7 +20500,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0562",
+      "block_id": "B-0545",
       "block_type": "paragraph",
       "page": 48,
       "para_index": 6,
@@ -20968,7 +20526,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0563",
+      "block_id": "B-0546",
       "block_type": "paragraph",
       "page": 48,
       "para_index": 7,
@@ -20994,7 +20552,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0564",
+      "block_id": "B-0547",
       "block_type": "paragraph",
       "page": 48,
       "para_index": 8,
@@ -21020,7 +20578,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0565",
+      "block_id": "B-0548",
       "block_type": "paragraph",
       "page": 48,
       "para_index": 9,
@@ -21046,7 +20604,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0566",
+      "block_id": "B-0549",
       "block_type": "table",
       "page": 48,
       "para_index": 10,
@@ -21148,7 +20706,7 @@
       }
     },
     {
-      "block_id": "B-0567",
+      "block_id": "B-0550",
       "block_type": "paragraph",
       "page": 49,
       "para_index": 0,
@@ -21174,7 +20732,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0568",
+      "block_id": "B-0551",
       "block_type": "paragraph",
       "page": 49,
       "para_index": 1,
@@ -21200,7 +20758,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0569",
+      "block_id": "B-0552",
       "block_type": "paragraph",
       "page": 49,
       "para_index": 2,
@@ -21226,7 +20784,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0570",
+      "block_id": "B-0553",
       "block_type": "paragraph",
       "page": 49,
       "para_index": 3,
@@ -21252,7 +20810,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0571",
+      "block_id": "B-0554",
       "block_type": "paragraph",
       "page": 49,
       "para_index": 4,
@@ -21278,7 +20836,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0572",
+      "block_id": "B-0555",
       "block_type": "paragraph",
       "page": 49,
       "para_index": 5,
@@ -21304,7 +20862,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0573",
+      "block_id": "B-0556",
       "block_type": "paragraph",
       "page": 49,
       "para_index": 6,
@@ -21330,7 +20888,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0574",
+      "block_id": "B-0557",
       "block_type": "paragraph",
       "page": 49,
       "para_index": 7,
@@ -21356,7 +20914,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0575",
+      "block_id": "B-0558",
       "block_type": "paragraph",
       "page": 49,
       "para_index": 8,
@@ -21382,7 +20940,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0576",
+      "block_id": "B-0559",
       "block_type": "table",
       "page": 49,
       "para_index": 9,
@@ -21476,7 +21034,7 @@
       }
     },
     {
-      "block_id": "B-0577",
+      "block_id": "B-0560",
       "block_type": "paragraph",
       "page": 50,
       "para_index": 0,
@@ -21502,7 +21060,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0578",
+      "block_id": "B-0561",
       "block_type": "paragraph",
       "page": 50,
       "para_index": 1,
@@ -21528,7 +21086,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0579",
+      "block_id": "B-0562",
       "block_type": "paragraph",
       "page": 50,
       "para_index": 2,
@@ -21554,7 +21112,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0580",
+      "block_id": "B-0563",
       "block_type": "paragraph",
       "page": 50,
       "para_index": 3,
@@ -21580,7 +21138,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0581",
+      "block_id": "B-0564",
       "block_type": "paragraph",
       "page": 50,
       "para_index": 4,
@@ -21606,7 +21164,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0582",
+      "block_id": "B-0565",
       "block_type": "paragraph",
       "page": 50,
       "para_index": 5,
@@ -21632,7 +21190,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0583",
+      "block_id": "B-0566",
       "block_type": "paragraph",
       "page": 50,
       "para_index": 6,
@@ -21658,7 +21216,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0584",
+      "block_id": "B-0567",
       "block_type": "paragraph",
       "page": 50,
       "para_index": 7,
@@ -21684,7 +21242,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0585",
+      "block_id": "B-0568",
       "block_type": "paragraph",
       "page": 50,
       "para_index": 8,
@@ -21710,7 +21268,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0586",
+      "block_id": "B-0569",
       "block_type": "paragraph",
       "page": 50,
       "para_index": 9,
@@ -21736,7 +21294,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0587",
+      "block_id": "B-0570",
       "block_type": "table",
       "page": 50,
       "para_index": 10,
@@ -21838,7 +21396,7 @@
       }
     },
     {
-      "block_id": "B-0588",
+      "block_id": "B-0571",
       "block_type": "paragraph",
       "page": 51,
       "para_index": 0,
@@ -21864,7 +21422,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0589",
+      "block_id": "B-0572",
       "block_type": "paragraph",
       "page": 51,
       "para_index": 1,
@@ -21890,7 +21448,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0590",
+      "block_id": "B-0573",
       "block_type": "paragraph",
       "page": 51,
       "para_index": 2,
@@ -21916,7 +21474,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0591",
+      "block_id": "B-0574",
       "block_type": "paragraph",
       "page": 51,
       "para_index": 3,
@@ -21942,7 +21500,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0592",
+      "block_id": "B-0575",
       "block_type": "paragraph",
       "page": 51,
       "para_index": 4,
@@ -21968,7 +21526,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0593",
+      "block_id": "B-0576",
       "block_type": "paragraph",
       "page": 51,
       "para_index": 5,
@@ -21994,7 +21552,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0594",
+      "block_id": "B-0577",
       "block_type": "paragraph",
       "page": 51,
       "para_index": 6,
@@ -22020,7 +21578,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0595",
+      "block_id": "B-0578",
       "block_type": "paragraph",
       "page": 51,
       "para_index": 7,
@@ -22046,7 +21604,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0596",
+      "block_id": "B-0579",
       "block_type": "paragraph",
       "page": 51,
       "para_index": 8,
@@ -22072,7 +21630,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0597",
+      "block_id": "B-0580",
       "block_type": "table",
       "page": 51,
       "para_index": 9,
@@ -22166,7 +21724,7 @@
       }
     },
     {
-      "block_id": "B-0598",
+      "block_id": "B-0581",
       "block_type": "paragraph",
       "page": 52,
       "para_index": 0,
@@ -22192,7 +21750,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0599",
+      "block_id": "B-0582",
       "block_type": "paragraph",
       "page": 52,
       "para_index": 1,
@@ -22218,7 +21776,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0600",
+      "block_id": "B-0583",
       "block_type": "paragraph",
       "page": 52,
       "para_index": 2,
@@ -22244,7 +21802,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0601",
+      "block_id": "B-0584",
       "block_type": "paragraph",
       "page": 52,
       "para_index": 3,
@@ -22270,7 +21828,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0602",
+      "block_id": "B-0585",
       "block_type": "paragraph",
       "page": 52,
       "para_index": 4,
@@ -22296,7 +21854,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0603",
+      "block_id": "B-0586",
       "block_type": "paragraph",
       "page": 52,
       "para_index": 5,
@@ -22322,7 +21880,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0604",
+      "block_id": "B-0587",
       "block_type": "paragraph",
       "page": 52,
       "para_index": 6,
@@ -22348,7 +21906,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0605",
+      "block_id": "B-0588",
       "block_type": "paragraph",
       "page": 52,
       "para_index": 7,
@@ -22374,7 +21932,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0606",
+      "block_id": "B-0589",
       "block_type": "paragraph",
       "page": 52,
       "para_index": 8,
@@ -22400,7 +21958,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0607",
+      "block_id": "B-0590",
       "block_type": "paragraph",
       "page": 52,
       "para_index": 9,
@@ -22426,7 +21984,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0608",
+      "block_id": "B-0591",
       "block_type": "paragraph",
       "page": 52,
       "para_index": 10,
@@ -22452,7 +22010,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0609",
+      "block_id": "B-0592",
       "block_type": "table",
       "page": 52,
       "para_index": 11,
@@ -22562,7 +22120,7 @@
       }
     },
     {
-      "block_id": "B-0610",
+      "block_id": "B-0593",
       "block_type": "paragraph",
       "page": 53,
       "para_index": 0,
@@ -22588,7 +22146,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0611",
+      "block_id": "B-0594",
       "block_type": "paragraph",
       "page": 53,
       "para_index": 1,
@@ -22614,7 +22172,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0612",
+      "block_id": "B-0595",
       "block_type": "paragraph",
       "page": 53,
       "para_index": 2,
@@ -22640,7 +22198,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0613",
+      "block_id": "B-0596",
       "block_type": "table",
       "page": 53,
       "para_index": 3,
@@ -22677,7 +22235,7 @@
       }
     },
     {
-      "block_id": "B-0614",
+      "block_id": "B-0597",
       "block_type": "paragraph",
       "page": 54,
       "para_index": 0,
@@ -22703,7 +22261,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0615",
+      "block_id": "B-0598",
       "block_type": "heading",
       "page": 55,
       "para_index": 0,
@@ -22729,7 +22287,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0616",
+      "block_id": "B-0599",
       "block_type": "paragraph",
       "page": 55,
       "para_index": 1,
@@ -22755,7 +22313,7 @@
       "version": "1.0"
     },
     {
-      "block_id": "B-0617",
+      "block_id": "B-0600",
       "block_type": "paragraph",
       "page": 56,
       "para_index": 0,

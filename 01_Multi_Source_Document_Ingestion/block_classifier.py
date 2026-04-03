@@ -69,6 +69,7 @@ _IGNORE_DEPS = {"none", "n/a", "na"}
 _RE_INTRO       = re.compile(r'^1(\.|$)')
 _RE_FUNC        = re.compile(r'^3\.2(\.|$)')
 _RE_PERF        = re.compile(r'^3\.3(\.|$)')   # used only for title fallback
+_RE_SYSATTR = re.compile(r'^3\.5(\.|$)')
 _RE_SECT4       = re.compile(r'^4(\.|$)')
 _RE_APPENDIX    = re.compile(r'^A\.')
 
@@ -100,10 +101,15 @@ def _classify_section(section_path: str, section_title: str) -> str:
     if any(kw in title for kw in ("reference", "bibliography", "related document")):
         return "references"
 
+    # design_constraints
+    if any(kw in title for kw in
+           ("design constraint", "standard", "regulatory", "compliance")):
+        return "design_constraints"
+
     # system_overview
     if any(kw in title for kw in (
         "overall description", "product perspective", "product function",
-        "user characteristic", "constraint", "assumption", "dependency",
+        "user characteristic", "assumption", "dependency",
         "apportioning",
     )):
         return "system_overview"
@@ -122,6 +128,10 @@ def _classify_section(section_path: str, section_title: str) -> str:
     # performance_requirements — path rule
     if _RE_PERF.match(section_path):
         return "performance_requirements"
+    
+    if _RE_SYSATTR.match(section_path):      # ← ADD THIS BLOCK
+        return "quality_attributes"
+
     if any(kw in title for kw in
            ("functional requirement", "user class", "use case")):
         return "functional_requirements"
@@ -131,10 +141,6 @@ def _classify_section(section_path: str, section_title: str) -> str:
            ("performance", "speed", "capacity", "reliability", "availability")):
         return "performance_requirements"
 
-    # design_constraints
-    if any(kw in title for kw in
-           ("design constraint", "standard", "regulatory", "compliance")):
-        return "design_constraints"
 
     # quality_attributes
     if any(kw in title for kw in (
@@ -264,6 +270,19 @@ def classify_blocks(blocks: list, document_skeleton: dict) -> list:
             entry = document_skeleton.get(sec_path, {})
             title = entry.get("title", sec_title) if entry else sec_title
             sst_cache[sec_path] = _classify_section(sec_path, title)
+            if entry:
+                entry["section_semantic_type"] = sst_cache[sec_path]
+            sst = sst_cache[sec_path]
+
+            # If local classification falls back to "other", inherit from an
+            # already-classified parent section instead of recursing without title.
+            if sst == "other" and "." in sec_path:
+                parent_path = sec_path.rsplit(".", 1)[0]
+                cached_parent = sst_cache.get(parent_path)
+                if cached_parent and cached_parent != "other":
+                    sst = cached_parent
+                    sst_cache[sec_path] = sst
+                    entry["section_semantic_type"] = sst
 
         sst = sst_cache[sec_path]
         block["section_semantic_type"] = sst
