@@ -1,9 +1,9 @@
 {
   "metadata": {
     "pipeline_stage": "02_requirement_understanding",
-    "generated_at": "2026-04-03T11:34:50Z",
-    "blocks_file": "../01_Multi_Source_Document_Ingestion/01_output/DOC-SRS_EXAMPLE_blocks.json",
-    "skeleton_file": "../01_Multi_Source_Document_Ingestion/01_output/DOC-SRS_EXAMPLE_skeleton.json",
+    "generated_at": "2026-04-03T15:21:43Z",
+    "blocks_file": "..\\01_Multi_Source_Document_Ingestion\\01_output\\DOC-SRS_EXAMPLE_blocks.json",
+    "skeleton_file": "..\\01_Multi_Source_Document_Ingestion\\01_output\\DOC-SRS_EXAMPLE_skeleton.json",
     "model": "qwen2.5:14b-instruct",
     "total_groups": 47,
     "extracted_count": 47,
@@ -843,19 +843,14 @@
       "actions": [
         "wants to create an account",
         "does not have an account",
-        "registers on the web-portal by providing user-name",
-        "registers on the web-portal by providing password",
-        "registers on the web-portal by providing address",
-        "registers on the web-portal by providing e-mail address",
-        "registers on the web-portal by providing phone number",
-        "registers on the web-portal by providing mobile number",
+        "registers on the web-portal by providing user-name And password And address And e-mail address And phone number And mobile number",
         "applies for verification",
         "receives a confirmation e-mail"
       ],
-      "description": "A restaurant owner should be able to register and apply for verification on the web portal.",
+      "description": "A restaurant owner should be able to register and apply for verification through the web portal.",
       "constraints": null,
       "dependencies": [],
-      "acceptance_criteria": null,
+      "acceptance_criteria": "A restaurant owner should be able to register and apply for verification through the web portal.",
       "outputs": null,
       "planguage_table": null,
       "scenarios": [
@@ -904,10 +899,10 @@
         "enters his/her email address in the “Retrieve password” form",
         "submits the form"
       ],
-      "description": "Allows a restaurant owner to log into the web-portal.",
+      "description": "A restaurant owner should be logged into the web-portal.",
       "constraints": null,
       "dependencies": [],
-      "acceptance_criteria": null,
+      "acceptance_criteria": "A restaurant owner should be logged into the web-portal.",
       "outputs": null,
       "planguage_table": null,
       "scenarios": [
@@ -942,19 +937,21 @@
       "section_semantic_type": "functional_requirements",
       "input_format": "gherkin",
       "extraction_method": "llm",
-      "title": "Manage information",
+      "title": "Manage information In order to manage information",
       "actor": "Restaurant Owner",
       "actions": [
-        "managing information",
-        "filling mandatory fields",
-        "filling optional fields",
-        "deleting information",
-        "editing information"
+        "log in",
+        "manage information",
+        "fill in mandatory fields",
+        "fill in optional fields",
+        "add information",
+        "delete information",
+        "edit information"
       ],
-      "description": "A restaurant owner should be able to manage their information through the web-portal.",
+      "description": "Allows a restaurant owner to log into the web-portal and manage information about their restaurant.",
       "constraints": null,
       "dependencies": [],
-      "acceptance_criteria": null,
+      "acceptance_criteria": "Allows a restaurant owner to log into the web-portal and manage information about their restaurant.",
       "outputs": null,
       "planguage_table": null,
       "scenarios": [
@@ -1030,10 +1027,10 @@
       "actions": [
         "selects a preferred language"
       ],
-      "description": "A restaurant owner should be able to select a preferred language for the web-portal in order to understand it.",
+      "description": "A restaurant owner should be able to select a preferred language for understanding the web-portal.",
       "constraints": null,
       "dependencies": [],
-      "acceptance_criteria": null,
+      "acceptance_criteria": "A restaurant owner should be able to select a preferred language for understanding the web-portal.",
       "outputs": null,
       "planguage_table": null,
       "scenarios": [
@@ -1083,13 +1080,12 @@
       "title": "Administrator log in",
       "actor": "Administrator",
       "actions": [
-        "wants to log in",
-        "logs in with an administrator account"
+        "logs in"
       ],
-      "description": "An administrator should be logged in to the web-portal.",
+      "description": "An administrator should be able to log in to the web-portal.",
       "constraints": null,
       "dependencies": [],
-      "acceptance_criteria": null,
+      "acceptance_criteria": "An administrator should be able to log in to the web-portal.",
       "outputs": null,
       "planguage_table": null,
       "scenarios": [
@@ -1121,13 +1117,14 @@
       "title": "Verify restaurant owner",
       "actor": "Administrator",
       "actions": [
-        "verifies a restaurant owner",
-        "rejects a restaurant owner"
+        "log in",
+        "verify a restaurant owner",
+        "reject a restaurant owner"
       ],
-      "description": "Allow an administrator to verify or reject a restaurant owner.",
+      "description": "Allows an administrator to verify or reject a restaurant owner for system access.",
       "constraints": null,
       "dependencies": [],
-      "acceptance_criteria": null,
+      "acceptance_criteria": "Allows an administrator to verify or reject a restaurant owner for system access.",
       "outputs": null,
       "planguage_table": null,
       "scenarios": [
@@ -1165,14 +1162,15 @@
       "title": "Manage restaurant types",
       "actor": "Administrator",
       "actions": [
-        "create",
-        "edit",
-        "delete"
+        "logs in",
+        "creates a new restaurant type",
+        "edits an existing restaurant type",
+        "deletes a restaurant type"
       ],
-      "description": "Allows an administrator to manage a list of restaurant types.",
+      "description": "Allows the administrator to manage the list of restaurant types.",
       "constraints": null,
       "dependencies": [],
-      "acceptance_criteria": null,
+      "acceptance_criteria": "Allows the administrator to manage the list of restaurant types.",
       "outputs": null,
       "planguage_table": null,
       "scenarios": [
@@ -1216,15 +1214,15 @@
       "title": "Manage restaurant dishes",
       "actor": "Administrator",
       "actions": [
-        "manage",
-        "create",
-        "edit",
-        "delete"
+        "logs in",
+        "creates a new dish",
+        "edits an existing dish",
+        "deletes a dish"
       ],
-      "description": "Allow administrators to manage a list of dishes.",
+      "description": "Allows the administrator to manage dishes in the list.",
       "constraints": null,
       "dependencies": [],
-      "acceptance_criteria": null,
+      "acceptance_criteria": "Allows the administrator to manage dishes in the list.",
       "outputs": null,
       "planguage_table": null,
       "scenarios": [
@@ -1268,15 +1266,14 @@
       "title": "Manage restaurant information",
       "actor": "Administrator",
       "actions": [
-        "logs in",
         "adds restaurant information",
-        "deletes restaurant information",
-        "edits restaurant information"
+        "deletes the information",
+        "edits the information"
       ],
-      "description": "An administrator should manage restaurant information on the web-portal.",
+      "description": "An administrator should manage restaurant information through the web-portal.",
       "constraints": null,
       "dependencies": [],
-      "acceptance_criteria": null,
+      "acceptance_criteria": "An administrator should manage restaurant information through the web-portal.",
       "outputs": null,
       "planguage_table": null,
       "scenarios": [
@@ -1288,13 +1285,13 @@
         },
         {
           "name": "Delete restaurant information",
-          "given": "the administrator is logged in information about a restaurant exists",
+          "given": "the administrator is logged in",
           "when": "the administrator deletes the information",
           "then": "the information about the restaurant should be deleted"
         },
         {
           "name": "Edit restaurant information",
-          "given": "the administrator is logged in information about a restaurant exists",
+          "given": "the administrator is logged in And information about a restaurant exists",
           "when": "the administrator edits the information",
           "then": "the information about the restaurant should be edited"
         }
@@ -1323,10 +1320,10 @@
         "edits an existing user",
         "deletes an existing user"
       ],
-      "description": "An administrator should be able to manage the users.",
+      "description": "An administrator should manage user information by editing and deleting.",
       "constraints": null,
       "dependencies": [],
-      "acceptance_criteria": null,
+      "acceptance_criteria": "An administrator should manage user information by editing and deleting.",
       "outputs": null,
       "planguage_table": null,
       "scenarios": [
@@ -1372,7 +1369,7 @@
       "description": "An administrator should be able to manage the restaurant owners.",
       "constraints": null,
       "dependencies": [],
-      "acceptance_criteria": null,
+      "acceptance_criteria": "An administrator should be able to manage the restaurant owners.",
       "outputs": null,
       "planguage_table": null,
       "scenarios": [
@@ -1416,16 +1413,15 @@
       "title": "Administrator - Selecting preferred language on the web-portal",
       "actor": "Administrator",
       "actions": [
-        "wants to select a preferred language",
-        "selects English as a new language",
-        "selects Swedish as a new language",
-        "selects French as a new language",
-        "selects Spanish as a new language"
+        "selects English",
+        "selects Swedish",
+        "selects French",
+        "selects Spanish"
       ],
-      "description": "In order to understand the web-portal, an administrator should be able to select a preferred language for the web-portal.",
+      "description": "Allow administrator to select a preferred language for the web-portal.",
       "constraints": null,
       "dependencies": [],
-      "acceptance_criteria": null,
+      "acceptance_criteria": "Allow administrator to select a preferred language for the web-portal.",
       "outputs": null,
       "planguage_table": null,
       "scenarios": [
@@ -1625,14 +1621,14 @@
       "section_semantic_type": "performance_requirements",
       "input_format": "prose",
       "extraction_method": "llm",
-      "title": "Response time",
+      "title": "Response Time",
       "actor": "System",
       "actions": [],
       "description": "The fastness of the search",
-      "constraints": "MUST: No more than 2 seconds 100% of the time. WISH: No more than 1 second 100% of the time.",
+      "constraints": "No more than 2 seconds 100% of the time.",
       "dependencies": [],
-      "acceptance_criteria": null,
-      "outputs": "Measurements obtained from 1000 searches during testing.",
+      "acceptance_criteria": "Measurements obtained from 1000 searches during testing.",
+      "outputs": "No more than 1 second 100% of the time.",
       "planguage_table": null,
       "scenarios": null,
       "confidence": "medium",
@@ -1662,7 +1658,7 @@
       "description": "The fault tolerance of the system.",
       "constraints": null,
       "dependencies": [],
-      "acceptance_criteria": "100% of the time during 1000 hours of usage testing",
+      "acceptance_criteria": "100% of the time, measurements obtained from 1000 hours of usage during testing",
       "outputs": null,
       "planguage_table": null,
       "scenarios": null,
@@ -1690,7 +1686,7 @@
       "description": "The application’s need of hard drive space.",
       "constraints": "No more than 20 MB",
       "dependencies": [],
-      "acceptance_criteria": "PLAN: No more than 15 MB. WISH: No more than 10 MB.",
+      "acceptance_criteria": "PLAN: No more than 15 MB. WISH: No more than 10 MB",
       "outputs": null,
       "planguage_table": null,
       "scenarios": null,

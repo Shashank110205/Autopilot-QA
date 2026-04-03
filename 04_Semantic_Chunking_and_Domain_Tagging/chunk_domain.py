@@ -1,458 +1,405 @@
 """
-Stage 4: Semantic Chunking & Capability Tagging
-Pure enrichment and packaging layer between CRU normalization and test generation
+Layer 4: Semantic Chunking & Domain Tagging
 
-Purpose:
-- Group CRUs into semantically cohesive chunks
-- Attach application domain (from fixed vocabulary)
-- Attach capability tags (lightweight labels from CRU content)
-- Prepare LLM-friendly payloads
-- Preserve full traceability
+Reads Layer 3 cru_units.json, groups CRUs into LLM-friendly semantic chunks,
+attaches one fixed application domain for the whole run, generates lightweight
+capability tags, and preserves traceability for downstream test generation.
 
-This module does NOT reason, infer, or invent semantics.
-It only organizes and labels what already exists in CRUs.
+Design rules:
+- Deterministic only. No LLM calls here.
+- One project/run has one application domain.
+- Chunk primarily by parent_requirement_id.
+- Never mix unrelated requirements in one chunk.
+- Preserve title + acceptance_criteria in chunk CRU payload for Layer 5.
+- Preserve traceability strongly enough for GraphRAG and audit.
 """
 
+from __future__ import annotations
+
+import argparse
 import json
-from typing import List, Dict, Any, Tuple
-from collections import defaultdict
+from collections import Counter, defaultdict
 from pathlib import Path
+from typing import Any
+
 from domains import APPLICATION_DOMAINS
 
 
-# ======================
-# Configuration
-# ======================
-
-# Application domain - ONE per project/run (not inferred per chunk)
-# Override via CLI argument or set here
-DEFAULT_APPLICATION_DOMAIN = "Task Management / Productivity Tools"
+DEFAULT_APPLICATION_DOMAIN = "Restaurant/Food Service"
 
 CONFIG = {
-    "max_crus_per_chunk": 5,
-    "min_crus_per_chunk": 2,
+    "max_crus_per_chunk": 4,
+    "min_crus_per_chunk": 1,
 }
 
-# Capability tag patterns derived from CRU types and actions
-# These are CAPABILITY/QUALITY labels - NOT application domains
-# These are LABELS ONLY - no compliance, no business logic
+
 CAPABILITY_TAG_PATTERNS = {
-    "Authentication": ["authenticate", "login", "signup", "register", "establishes account", "validates hash"],
-    "CRUD Operations": ["create", "update", "delete", "insert", "edit", "remove"],
-    "Data Management": ["persist", "store", "fetch", "query", "ensures data integrity"],
-    "Filtering": ["filter", "search", "query"],
-    "Performance": ["handle users", "response time", "latency", "concurrent"],
-    "Security": ["hash", "encrypt", "validate", "credential", "auth"],
-    "Reliability": ["uptime", "backup", "recovery", "causes outage"],
-    "Portability": ["compatibility", "browser", "platform", "OS"],
-    "User Interface": ["display", "render", "show", "UI"],
+    "Authentication": [
+        "login", "log in", "register", "signup", "sign up",
+        "password", "credential", "authenticate", "account"
+    ],
+    "Search & Filtering": [
+        "search", "filter", "query", "sort", "find"
+    ],
+    "Location & Maps": [
+        "map", "location", "gps", "distance", "position", "pin"
+    ],
+    "Restaurant Discovery": [
+        "restaurant", "dish", "menu", "food", "price"
+    ],
+    "Reservation & Booking": [
+        "reserve", "reservation", "book", "booking", "table"
+    ],
+    "Profile & Account Management": [
+        "profile", "account", "update profile", "edit profile"
+    ],
+    "CRUD Operations": [
+        "create", "update", "delete", "edit", "remove", "insert"
+    ],
+    "Notifications": [
+        "notify", "notification", "email", "mail", "alert"
+    ],
+    "Reporting & Admin": [
+        "admin", "administrator", "report", "manage", "dashboard"
+    ],
+    "Performance": [
+        "response time", "latency", "concurrent", "throughput", "seconds"
+    ],
+    "Security": [
+        "encrypt", "hash", "secure", "credential", "auth", "password"
+    ],
+    "Reliability": [
+        "uptime", "backup", "recovery", "availability", "failure"
+    ],
+    "Portability": [
+        "browser", "platform", "compatibility", "os", "device"
+    ],
+    "User Interface": [
+        "display", "show", "render", "screen", "button", "view", "page"
+    ],
 }
 
 
-# ======================
-# CRU Chunking
-# ======================
+def load_cru_units(path: str) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    """
+    Load Layer 3 output.
+    Supports the current contract key 'cru_units' and backward-compatible fallback 'crus'.
+    """
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
 
-def group_crus_by_requirement(crus: List[Dict[str, Any]]) -> Dict[str, List[Dict[str, Any]]]:
-    """Group CRUs by parent requirement ID."""
-    grouped = defaultdict(list)
+    crus = data.get("cru_units")
+    if crus is None:
+        crus = data.get("crus", [])
+
+    if not isinstance(crus, list):
+        raise ValueError("Input JSON must contain a list under 'cru_units' or 'crus'.")
+
+    return crus, data.get("metadata", {})
+
+
+def group_crus_by_requirement(crus: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
+    grouped: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for cru in crus:
-        parent_id = cru.get("parent_requirement_id", "UNKNOWN")
+        parent_id = cru.get("parent_requirement_id") or "UNKNOWN"
         grouped[parent_id].append(cru)
     return dict(grouped)
 
 
-def group_crus_by_type(crus: List[Dict[str, Any]]) -> Dict[str, List[Dict[str, Any]]]:
-    """Group CRUs by type (functional, performance, etc.)."""
-    grouped = defaultdict(list)
-    for cru in crus:
-        cru_type = cru.get("type", "other")
-        grouped[cru_type].append(cru)
-    return dict(grouped)
-
-
-def create_chunks(crus: List[Dict[str, Any]], application_domain: str) -> List[Dict[str, Any]]:
-    """Create semantically cohesive chunks from CRUs.
-    
-    Chunking strategy:
-    1. Group by parent requirement (natural semantic boundary)
-    2. Group by type if same parent
-    3. Respect max chunk size
-    
-    Args:
-        crus: List of CRU dictionaries
-        application_domain: Single application domain for all chunks
-        
-    Returns:
-        List of chunk dictionaries
+def stable_sort_crus(crus: list[dict[str, Any]]) -> list[dict[str, Any]]:
     """
-    print("\n🔍 Creating semantic chunks...")
-    
-    # First, group by parent requirement
-    req_groups = group_crus_by_requirement(crus)
-    
-    chunks = []
-    chunk_counter = 1
-    
-    for parent_req_id, req_crus in sorted(req_groups.items()):
-        # If requirement has <= max_crus_per_chunk, make it a single chunk
-        if len(req_crus) <= CONFIG["max_crus_per_chunk"]:
-            chunk = create_chunk_from_crus(
-                req_crus, 
-                chunk_id=f"CHUNK_{chunk_counter:02d}",
-                parent_req_id=parent_req_id,
-                application_domain=application_domain
-            )
-            chunks.append(chunk)
-            chunk_counter += 1
-        else:
-            # Split large requirement into multiple chunks
-            # Keep CRUs with same type together
-            type_groups = group_crus_by_type(req_crus)
-            
-            for cru_type, type_crus in sorted(type_groups.items()):
-                # Split into chunks of max size
-                for i in range(0, len(type_crus), CONFIG["max_crus_per_chunk"]):
-                    chunk_crus = type_crus[i:i + CONFIG["max_crus_per_chunk"]]
-                    
-                    # Only create chunk if meets minimum size (unless it's the only CRU)
-                    if len(chunk_crus) >= CONFIG["min_crus_per_chunk"] or len(type_crus) == 1:
-                        chunk = create_chunk_from_crus(
-                            chunk_crus,
-                            chunk_id=f"CHUNK_{chunk_counter:02d}",
-                            parent_req_id=parent_req_id,
-                            application_domain=application_domain
-                        )
-                        chunks.append(chunk)
-                        chunk_counter += 1
-    
-    print(f"✅ Created {len(chunks)} chunks")
-    return chunks
+    Keep ordering deterministic for reproducible chunks.
+    """
+    return sorted(
+        crus,
+        key=lambda c: (
+            c.get("parent_requirement_id") or "",
+            c.get("traceability", {}).get("section_path") or "",
+            c.get("cru_id") or "",
+        ),
+    )
+
+
+def slice_requirement_group(req_crus: list[dict[str, Any]], max_size: int) -> list[list[dict[str, Any]]]:
+    """
+    Split one requirement's CRUs into smaller LLM-friendly slices.
+    Never mixes different parent requirements.
+    """
+    ordered = stable_sort_crus(req_crus)
+    return [ordered[i:i + max_size] for i in range(0, len(ordered), max_size)]
+
+
+def infer_chunk_type(crus: list[dict[str, Any]]) -> str:
+    types = [c.get("type", "other") for c in crus]
+    distinct = sorted(set(types))
+    return distinct[0] if len(distinct) == 1 else "mixed"
+
+
+def create_cru_payload(cru: dict[str, Any]) -> dict[str, Any]:
+    """
+    Minimal but sufficient payload for Layer 5.
+    """
+    return {
+        "cru_id": cru.get("cru_id"),
+        "actor": cru.get("actor"),
+        "action": cru.get("action"),
+        "constraint": cru.get("constraint"),
+        "confidence": cru.get("confidence"),
+        "title": cru.get("title"),
+        "acceptance_criteria": cru.get("acceptance_criteria"),
+    }
+
+
+def generate_capability_tags(crus: list[dict[str, Any]]) -> list[str]:
+    """
+    Deterministic label assignment from action/title/type text.
+    Returns top matching labels only.
+    """
+    texts: list[str] = []
+
+    for cru in crus:
+        action = (cru.get("action") or "").lower()
+        title = (cru.get("title") or "").lower()
+        cru_type = (cru.get("type") or "").lower()
+        text = " ".join(x for x in [action, title, cru_type] if x)
+        if text:
+            texts.append(text)
+
+    if not texts:
+        return ["Generic"]
+
+    scores: Counter[str] = Counter()
+
+    for text in texts:
+        for label, patterns in CAPABILITY_TAG_PATTERNS.items():
+            if any(pattern in text for pattern in patterns):
+                scores[label] += 1
+
+    cru_types = {c.get("type") for c in crus}
+    if "performance" in cru_types:
+        scores["Performance"] += 2
+    if "security" in cru_types:
+        scores["Security"] += 2
+    if "reliability" in cru_types:
+        scores["Reliability"] += 2
+    if "portability" in cru_types:
+        scores["Portability"] += 2
+    if "usability" in cru_types:
+        scores["User Interface"] += 2
+
+    if not scores:
+        return ["Generic"]
+
+    top_tags = [label for label, _ in scores.most_common(3)]
+    return top_tags
+
+
+def build_chunk_traceability(crus: list[dict[str, Any]]) -> dict[str, Any]:
+    source_requirements = sorted({
+        c.get("parent_requirement_id")
+        for c in crus
+        if c.get("parent_requirement_id")
+    })
+
+    sections = sorted({
+        c.get("traceability", {}).get("section_path") or c.get("traceability", {}).get("section")
+        for c in crus
+        if c.get("traceability")
+    })
+
+    doc_ids = sorted({
+        c.get("traceability", {}).get("doc_id")
+        for c in crus
+        if c.get("traceability", {}).get("doc_id")
+    })
+
+    source_locators = []
+    seen = set()
+    for c in crus:
+        trace = c.get("traceability", {})
+        locator = trace.get("source_locator")
+        if locator:
+            key = json.dumps(locator, sort_keys=True)
+            if key not in seen:
+                seen.add(key)
+                source_locators.append(locator)
+
+    return {
+        "source_requirements": source_requirements,
+        "sections": sections,
+        "doc_ids": doc_ids,
+        "source_locators": source_locators,
+    }
 
 
 def create_chunk_from_crus(
-    crus: List[Dict[str, Any]], 
+    crus: list[dict[str, Any]],
     chunk_id: str,
-    parent_req_id: str,
-    application_domain: str
-) -> Dict[str, Any]:
-    """Create a single chunk from a list of CRUs."""
-    
-    # Determine chunk type
-    cru_types = [cru.get("type", "other") for cru in crus]
-    type_counts = defaultdict(int)
-    for t in cru_types:
-        type_counts[t] += 1
-    
-    # If all same type, use that; otherwise "mixed"
-    if len(type_counts) == 1:
-        chunk_type = list(type_counts.keys())[0]
-    else:
-        chunk_type = "mixed"
-    
-    # Extract CRU IDs
-    cru_ids = [cru.get("cru_id") for cru in crus]
-    
-    # Create CRU payload (lightweight, essential fields only)
-    cru_payload = []
-    for cru in crus:
-        payload_cru = {
-            "cru_id": cru.get("cru_id"),
-            "actor": cru.get("actor"),
-            "action": cru.get("action"),
-            "constraint": cru.get("constraint"),
-            "confidence": cru.get("confidence")
-        }
-        cru_payload.append(payload_cru)
-    
-    # Generate capability tags (NOT domain tags)
-    capability_tags = generate_capability_tags(crus)
-    
-    # Extract traceability
-    source_requirements = list(set(cru.get("parent_requirement_id") for cru in crus))
-    sections = list(set(
-        cru.get("traceability", {}).get("section") 
-        for cru in crus 
-        if cru.get("traceability", {}).get("section")
-    ))
-    
+    application_domain: str,
+) -> dict[str, Any]:
     chunk = {
         "chunk_id": chunk_id,
-        "chunk_type": chunk_type,
-        "application_domain": [application_domain],  # Single domain per project
-        "capability_tags": capability_tags,
-        "cru_ids": cru_ids,
-        "crus": cru_payload,  # Renamed from cru_payload for clarity
-        "traceability": {
-            "source_requirements": source_requirements,
-            "sections": sections
-        }
+        "chunk_type": infer_chunk_type(crus),
+        "application_domain": [application_domain],
+        "capability_tags": generate_capability_tags(crus),
+        "cru_ids": [c.get("cru_id") for c in crus],
+        "crus": [create_cru_payload(c) for c in crus],
+        "traceability": build_chunk_traceability(crus),
     }
-    
     return chunk
 
 
-# ======================
-# Capability Tagging
-# ======================
-
-def generate_capability_tags(crus: List[Dict[str, Any]]) -> List[str]:
-    """Generate capability tags from CRU actions and types.
-    
-    Tags are CAPABILITY/QUALITY LABELS derived from CRU text.
-    NOT application domains, NOT compliance, NOT business logic.
-    
-    Args:
-        crus: List of CRUs in this chunk
-        
-    Returns:
-        List of capability tag labels (strings only, no confidence)
+def create_chunks(crus: list[dict[str, Any]], application_domain: str) -> list[dict[str, Any]]:
     """
-    # Collect actions and types from all CRUs
-    actions = []
-    types = []
-    
-    for cru in crus:
-        action = cru.get("action", "").lower()
-        cru_type = cru.get("type", "")
-        
-        if action:
-            actions.append(action)
-        if cru_type:
-            types.append(cru_type)
-    
-    # Match against capability tag patterns
-    tag_scores = defaultdict(float)
-    
-    for capability_label, patterns in CAPABILITY_TAG_PATTERNS.items():
-        matches = 0
-        total_actions = len(actions)
-        
-        for action in actions:
-            for pattern in patterns:
-                if pattern.lower() in action:
-                    matches += 1
-                    break
-        
-        if matches > 0 and total_actions > 0:
-            confidence = matches / total_actions
-            tag_scores[capability_label] = confidence
-    
-    # Also tag based on CRU types
-    if types:
-        # Map CRU type to capability label
-        type_to_label = {
-            "performance": "Performance",
-            "security": "Security",
-            "reliability": "Reliability",
-            "portability": "Portability",
-            "usability": "User Interface"
-        }
-        
-        for cru_type in set(types):
-            if cru_type in type_to_label:
-                label = type_to_label[cru_type]
-                # Boost confidence if type-based
-                tag_scores[label] = max(tag_scores.get(label, 0), 0.8)
-    
-    # Convert to list of labels (strings only, no confidence in output)
-    capability_tags = []
-    for label, confidence in sorted(tag_scores.items(), key=lambda x: x[1], reverse=True):
-        if confidence >= 0.5:  # Minimum confidence threshold
-            capability_tags.append(label)
-    
-    # If no confident tags, use "Generic"
-    if not capability_tags:
-        capability_tags.append("Generic")
-    
-    return capability_tags
-
-
-# ======================
-# Validation
-# ======================
-
-def validate_chunks(chunks: List[Dict[str, Any]], total_crus: int, application_domain: str) -> Dict[str, Any]:
-    """Validate chunk output meets requirements.
-    
-    Returns: Validation report
+    Chunk strategy:
+    - group by parent_requirement_id
+    - split only if a single requirement has too many CRUs
     """
-    all_cru_ids = set()
-    max_size = 0
-    min_size = float('inf')
-    
-    # Check that all chunks have the same application domain
+    req_groups = group_crus_by_requirement(crus)
+
+    chunks: list[dict[str, Any]] = []
+    chunk_counter = 1
+
+    for _, req_crus in sorted(req_groups.items(), key=lambda item: item[0]):
+        subgroups = slice_requirement_group(req_crus, CONFIG["max_crus_per_chunk"])
+        for subgroup in subgroups:
+            chunks.append(
+                create_chunk_from_crus(
+                    crus=subgroup,
+                    chunk_id=f"CHUNK_{chunk_counter:03d}",
+                    application_domain=application_domain,
+                )
+            )
+            chunk_counter += 1
+
+    return chunks
+
+
+def validate_chunks(
+    chunks: list[dict[str, Any]],
+    total_crus: int,
+    application_domain: str,
+) -> dict[str, Any]:
+    all_cru_ids: list[str] = []
+    chunk_sizes: list[int] = []
+
+    for chunk in chunks:
+        cru_ids = chunk.get("cru_ids", [])
+        all_cru_ids.extend(cru_ids)
+        chunk_sizes.append(len(cru_ids))
+
+    unique_cru_ids = set(all_cru_ids)
+
     domain_consistency = all(
         chunk.get("application_domain", [None])[0] == application_domain
         for chunk in chunks
     )
-    
-    for chunk in chunks:
-        cru_ids = chunk.get("cru_ids", [])
-        all_cru_ids.update(cru_ids)
-        
-        chunk_size = len(cru_ids)
-        max_size = max(max_size, chunk_size)
-        min_size = min(min_size, chunk_size)
-    
-    report = {
+
+    return {
         "total_chunks": len(chunks),
-        "total_cru_ids_in_chunks": len(all_cru_ids),
         "expected_crus": total_crus,
-        "all_crus_present": len(all_cru_ids) == total_crus,
-        "max_chunk_size": max_size,
-        "min_chunk_size": min_size,
-        "size_limit_violated": max_size > CONFIG["max_crus_per_chunk"],
+        "total_cru_ids_in_chunks": len(all_cru_ids),
+        "unique_cru_ids_in_chunks": len(unique_cru_ids),
+        "all_crus_present": len(unique_cru_ids) == total_crus,
+        "duplicate_cru_ids_found": len(all_cru_ids) != len(unique_cru_ids),
+        "max_chunk_size": max(chunk_sizes) if chunk_sizes else 0,
+        "min_chunk_size": min(chunk_sizes) if chunk_sizes else 0,
+        "avg_chunk_size": round(sum(chunk_sizes) / len(chunk_sizes), 2) if chunk_sizes else 0.0,
+        "size_limit_violated": any(size > CONFIG["max_crus_per_chunk"] for size in chunk_sizes),
         "domain_consistency": domain_consistency,
-        "application_domain": application_domain
+        "application_domain": application_domain,
     }
-    
-    return report
 
-
-# ======================
-# Main Pipeline
-# ======================
 
 def chunk_and_tag_crus(
     cru_json_path: str,
     output_path: str,
-    application_domain: str = DEFAULT_APPLICATION_DOMAIN
-) -> Dict[str, Any]:
-    """Main pipeline: Load CRUs, chunk them, tag with capability labels.
-    
-    Args:
-        cru_json_path: Path to cru_units.json
-        output_path: Path to save chunked output
-        application_domain: Application domain from fixed vocabulary
-        
-    Returns:
-        Output dictionary
-    """
-    print("="*70)
-    print("🚀 STAGE 4: SEMANTIC CHUNKING & CAPABILITY TAGGING")
-    print("="*70)
-    
-    # Validate application domain
+    application_domain: str = DEFAULT_APPLICATION_DOMAIN,
+) -> dict[str, Any]:
     if application_domain not in APPLICATION_DOMAINS:
-        print(f"⚠️  WARNING: '{application_domain}' not in APPLICATION_DOMAINS")
-        print(f"    Available domains: {', '.join(APPLICATION_DOMAINS)}")
-        print(f"    Proceeding with provided domain...")
-    
-    print(f"\n🏷️  Application Domain: {application_domain}")
-    
-    # Load CRUs
-    print(f"\n📂 Loading CRUs from: {cru_json_path}")
-    with open(cru_json_path, 'r', encoding='utf-8') as f:
-        cru_data = json.load(f)
-    
-    crus = cru_data.get("crus", [])
-    print(f"✅ Loaded {len(crus)} CRUs")
-    
-    # Create chunks
+        raise ValueError(
+            f"Invalid domain '{application_domain}'. Must be one of: {APPLICATION_DOMAINS}"
+        )
+
+    crus, input_metadata = load_cru_units(cru_json_path)
     chunks = create_chunks(crus, application_domain)
-    
-    # Validate
-    print("\n🔍 Validating chunks...")
-    validation_report = validate_chunks(chunks, len(crus), application_domain)
-    
-    if not validation_report["all_crus_present"]:
-        print(f"⚠️  WARNING: Not all CRUs present in chunks!")
-        print(f"   Expected: {validation_report['expected_crus']}")
-        print(f"   Found: {validation_report['total_cru_ids_in_chunks']}")
-    
-    if validation_report["size_limit_violated"]:
-        print(f"⚠️  WARNING: Chunk size limit violated!")
-        print(f"   Max allowed: {CONFIG['max_crus_per_chunk']}")
-        print(f"   Found: {validation_report['max_chunk_size']}")
-    
-    if not validation_report["domain_consistency"]:
-        print(f"⚠️  WARNING: Inconsistent application domains across chunks!")
-    
-    print("✅ Validation complete")
-    
-    # Calculate statistics
-    avg_chunk_size = sum(len(c["cru_ids"]) for c in chunks) / len(chunks) if chunks else 0
-    
-    # Count capability tag distribution
-    capability_tag_counts = defaultdict(int)
+    validation = validate_chunks(chunks, len(crus), application_domain)
+
+    capability_distribution: Counter[str] = Counter()
+    chunk_type_distribution: Counter[str] = Counter()
+
     for chunk in chunks:
+        chunk_type_distribution[chunk["chunk_type"]] += 1
         for tag in chunk.get("capability_tags", []):
-            capability_tag_counts[tag] += 1
-    
-    # Prepare output
+            capability_distribution[tag] += 1
+
     output = {
         "metadata": {
-            "total_crus": len(crus),
-            "total_chunks": len(chunks),
-            "avg_chunk_size": round(avg_chunk_size, 2),
-            "max_chunk_size": validation_report["max_chunk_size"],
-            "min_chunk_size": validation_report["min_chunk_size"],
-            "application_domain": application_domain,
-            "capability_tag_distribution": dict(capability_tag_counts),
             "stage": "Stage 4: Semantic Chunking & Capability Tagging",
-            "version": "2.0"
+            "version": "2.1",
+            "input_total_crus": len(crus),
+            "source_stage_metadata": input_metadata,
+            "total_chunks": validation["total_chunks"],
+            "avg_chunk_size": validation["avg_chunk_size"],
+            "max_chunk_size": validation["max_chunk_size"],
+            "min_chunk_size": validation["min_chunk_size"],
+            "application_domain": application_domain,
+            "chunk_type_distribution": dict(chunk_type_distribution),
+            "capability_tag_distribution": dict(capability_distribution),
+            "all_crus_present": validation["all_crus_present"],
+            "duplicate_cru_ids_found": validation["duplicate_cru_ids_found"],
+            "size_limit_violated": validation["size_limit_violated"],
+            "domain_consistency": validation["domain_consistency"],
         },
-        "chunks": chunks
+        "chunks": chunks,
     }
-    
-    # Save output
+
     output_path_obj = Path(output_path)
     output_path_obj.parent.mkdir(parents=True, exist_ok=True)
-    
-    with open(output_path, 'w', encoding='utf-8') as f:
+
+    with open(output_path_obj, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
-    
-    print(f"\n💾 Saved output to: {output_path}")
-    
+
     return output
 
 
-# ======================
-# CLI Entry Point
-# ======================
+def main() -> None:
+    parser = argparse.ArgumentParser(
+        description="Layer 4: Semantic Chunking & Domain Tagging"
+    )
+    parser.add_argument(
+        "--input",
+        required=True,
+        help="Path to Layer 3 cru_units.json",
+    )
+    parser.add_argument(
+        "--output",
+        required=True,
+        help="Path to output chunked_crus_with_domain.json",
+    )
+    parser.add_argument(
+        "--domain",
+        default=DEFAULT_APPLICATION_DOMAIN,
+        help=f"Application domain. Default: {DEFAULT_APPLICATION_DOMAIN}",
+    )
+    args = parser.parse_args()
+
+    result = chunk_and_tag_crus(
+        cru_json_path=args.input,
+        output_path=args.output,
+        application_domain=args.domain,
+    )
+
+    print("=" * 70)
+    print("STAGE 4 COMPLETE")
+    print("=" * 70)
+    print(f"Application Domain: {result['metadata']['application_domain']}")
+    print(f"Total Chunks:       {result['metadata']['total_chunks']}")
+    print(f"Avg Chunk Size:     {result['metadata']['avg_chunk_size']}")
+    print(f"Max Chunk Size:     {result['metadata']['max_chunk_size']}")
+    print(f"All CRUs Present:   {result['metadata']['all_crus_present']}")
+    print(f"Duplicate CRUs:     {result['metadata']['duplicate_cru_ids_found']}")
+
 
 if __name__ == "__main__":
-    import argparse
-    
-    parser = argparse.ArgumentParser(description="Stage 4: Chunk CRUs and tag with capability labels")
-    parser.add_argument("--input", required=True, help="Input CRU units JSON file")
-    parser.add_argument("--output", required=True, help="Output chunked JSON file")
-    parser.add_argument("--domain", default=DEFAULT_APPLICATION_DOMAIN, 
-                       help=f"Application domain (default: {DEFAULT_APPLICATION_DOMAIN})")
-    args = parser.parse_args()
-    
-    # Run pipeline
-    result = chunk_and_tag_crus(args.input, args.output, args.domain)
-    
-    # Display summary
-    print(f"\n{'='*70}")
-    print("📊 SUMMARY")
-    print(f"{'='*70}")
-    print(f"Application Domain:   {result['metadata']['application_domain']}")
-    print(f"Total CRUs:           {result['metadata']['total_crus']}")
-    print(f"Total Chunks:         {result['metadata']['total_chunks']}")
-    print(f"Avg Chunk Size:       {result['metadata']['avg_chunk_size']}")
-    print(f"Max Chunk Size:       {result['metadata']['max_chunk_size']}")
-    print(f"Min Chunk Size:       {result['metadata']['min_chunk_size']}")
-    
-    print(f"\nCapability Tag Distribution:")
-    for label, count in sorted(result['metadata']['capability_tag_distribution'].items(), 
-                                key=lambda x: x[1], reverse=True):
-        print(f"  {label:20s}  {count}")
-    
-    # Show sample chunk
-    if result['chunks']:
-        print(f"\n🔹 Sample Chunk:")
-        sample = result['chunks'][0]
-        print(f"  Chunk ID:           {sample['chunk_id']}")
-        print(f"  Chunk Type:         {sample['chunk_type']}")
-        print(f"  Application Domain: {', '.join(sample['application_domain'])}")
-        print(f"  Capability Tags:    {', '.join(sample['capability_tags'])}")
-        print(f"  CRU Count:          {len(sample['cru_ids'])}")
-        print(f"  CRU IDs:            {', '.join(sample['cru_ids'])}")
-        print(f"  Requirements:       {', '.join(sample['traceability']['source_requirements'])}")
-    
-    print(f"{'='*70}")
-    print("✅ STAGE 4 COMPLETE")
-    print(f"{'='*70}")
+    main()

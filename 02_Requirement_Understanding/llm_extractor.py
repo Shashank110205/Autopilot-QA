@@ -265,11 +265,16 @@ def extract_llm(
     actor        = _clean_optional(parsed.get("actor")) or "System"
     actions      = _normalise_actions(parsed.get("actions"))
     description  = _clean_optional(parsed.get("description"))
-    # BUG 4 FIX: _clean_optional now joins lists instead of str()-ing them
-    constraints         = _clean_optional(parsed.get("constraints"))
-    dependencies        = _normalise_dependencies(parsed.get("dependencies"))
-    acceptance_criteria = _clean_optional(parsed.get("acceptance_criteria"))
-    outputs             = _clean_optional(parsed.get("outputs"))
+    constraints  = _clean_optional(parsed.get("constraints"))
+    dependencies = _normalise_dependencies(parsed.get("dependencies"))
+    acceptance_criteria = _clean_optional(
+        parsed.get("acceptance_criteria")
+        or parsed.get("acceptancecriteria")
+        or parsed.get("acceptance criteria")
+    )
+    if not acceptance_criteria:
+        acceptance_criteria = description
+    outputs      = _clean_optional(parsed.get("outputs"))
 
     # BUG 3 FIX: extract scenarios for gherkin format
     scenarios: Optional[list[dict]] = None

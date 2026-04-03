@@ -11,8 +11,8 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-FAST_MODEL = "qwen2.5:14b-instruct"       # Phase 1: fast, cheap
-DEEP_MODEL = "qwen2.5:14b-instruct"       # Phase 2: comprehensive
+FAST_MODEL = "llama3:8b"
+DEEP_MODEL = "llama3:8b"
 
 
 # ============================================
@@ -50,6 +50,7 @@ class TestCase:
     generation_phase: str = "unknown"
     srs_section: str = ""
     depends_on: List[str] = field(default_factory=list)
+    traceability: Dict[str, Any] = field(default_factory=dict)
 
 
 # ============================================
@@ -143,7 +144,10 @@ class EnhancedSRSPromptGenerator:
         """Generate prompt using JSON template"""
         
         req_id = requirement.get('cru_id', '')
-        parent_req = requirement.get('parent_requirement', '')
+        parent_req = (
+            requirement.get('parent_requirement')
+            or (requirement.get('traceability', {}).get('source_requirements') or [''])[0]
+        )
         req_description = requirement.get('action', '')  # CRUs have 'action' field
         req_rationale = requirement.get('rationale', '')
         dependencies = requirement.get('dependencies', [])
@@ -169,7 +173,7 @@ DO NOT generate generic tests. Each test must address one of the above requireme
         prompt = prompt_template.format(
             srs_specific_section=srs_specific_section,
             req_id=req_id,
-            req_title=f"{requirement.get('actor', '')} {requirement.get('action', '')}",  # CRU structure
+            req_title=requirement.get('title', f"{requirement.get('actor', '')} {requirement.get('action', '')}"),  # CRU structure
             req_description=req_description,
             req_rationale=req_rationale,
             dependencies=', '.join(dependencies) if dependencies else 'None',
@@ -211,7 +215,7 @@ Your {test_type.upper()} test cases MUST address these specific SRS requirements
             test_type=test_type,
             test_type_upper=test_type.upper(),
             req_id=req_id,
-            req_title=f"{requirement.get('actor', '')} {requirement.get('action', '')}",
+            req_title=requirement.get('title', f"{requirement.get('actor', '')} {requirement.get('action', '')}"),
             req_description=req_description,
             req_rationale=req_rationale,
             dependencies=', '.join(dependencies) if dependencies else 'None',
@@ -252,7 +256,10 @@ class EnhancedSRSValidator:
         req_id = requirement.get('cru_id', '')
         
         # Get SRS specifics for this requirement
-        parent_req = requirement.get('parent_requirement', '')
+        parent_req = (
+            requirement.get('parent_requirement')
+            or (requirement.get('traceability', {}).get('source_requirements') or [''])[0]
+        )
         srs_specifics = SRSRequirementAnalyzer.get_srs_specifics(parent_req)
         
         for idx, tc in enumerate(test_cases):
@@ -354,7 +361,10 @@ class EnhancedSRSValidator:
             
             # 13. Add SRS section
             if not tc.get('srs_section'):
-                tc['srs_section'] = requirement.get('srs_section', '')
+                tc['srs_section'] = (
+                    requirement.get('srs_section')
+                    or (requirement.get('traceability', {}).get('sections') or [''])[0]
+                )
             
             # 14. Add dependencies
             if not tc.get('depends_on'):
@@ -370,7 +380,7 @@ class EnhancedSRSValidator:
 # ============================================
 
 class OptimizedHybridEngine:
-    def __init__(self, model_name: str = "qwen2.5:14b-instruct", prompts_file: str = "prompts.json"):
+    def __init__(self, model_name: str = "qwen2.5-coder:7b-instruct", prompts_file: str = "prompts.json"):
         self.model_name = model_name
         self.prompt_gen = EnhancedSRSPromptGenerator(prompts_file)
         self.validator = EnhancedSRSValidator()
@@ -408,10 +418,11 @@ class OptimizedHybridEngine:
                 model=self.model_name,
                 prompt=prompt,
                 options={
-                    'temperature': 0.3 if is_comprehensive else 0.2,
+                    'temperature': 0.15,
                     'top_p': 0.9,
-                    'num_predict': 8000 if is_comprehensive else 5000,
-                    'repeat_penalty': 1.1
+                    'num_predict': 3000,
+                    'repeat_penalty': 1.1,
+                    'num_ctx': 4096
                 }
             )
             response_text = response['response']
@@ -425,48 +436,6 @@ class OptimizedHybridEngine:
             import traceback
             traceback.print_exc()
             return None
-
-    """def _call_llm(self, prompt: str, is_comprehensive: bool = False) -> Optional[str]:
-        print(f"      Calling LLM... (prompt length: {len(prompt)} chars)")
-
-        for attempt in range(3):
-            try:
-                response = self.client.chat.completions.create(
-                    model=self.model_name,
-                    messages=[
-                        {
-                            "role": "system",
-                            "content": (
-                                "You are a senior QA automation engineer. "
-                                "You MUST return ONLY valid JSON. "
-                                "No explanations, no markdown."
-                                "Follow the user's instructions exactly."
-                            )
-                        },
-                        {"role": "user", "content": prompt}
-                    ],
-                    temperature=0.3 if is_comprehensive else 0.2,
-                    top_p=0.9,
-                    max_tokens=2500 if is_comprehensive else 1800
-                )
-
-                response_text = response.choices[0].message.content
-                time.sleep(12)
-                print(f"      LLM response length: {len(response_text)} chars")
-                print(f"      First 200 chars: {response_text[:200]}")
-                return response_text
-
-            except groq.RateLimitError:
-                wait = 3 + attempt * 2
-                print(f"⏳ Rate limit hit. Sleeping {wait}s...")
-                time.sleep(wait)
-
-            except Exception as e:
-                print(f"   LLM error: {e}")
-                return None
-
-        print("   LLM failed after retries")
-        return None"""
  
 
     def _parse_json(self, response: str) -> List[Dict]:
@@ -530,7 +499,8 @@ class OptimizedHybridEngine:
                 priority=tc['priority'],
                 generation_phase='fast_batch',
                 srs_section=tc.get('srs_section', ''),
-                depends_on=tc.get('depends_on', [])
+                depends_on=tc.get('depends_on', []),
+                traceability=requirement.get('traceability', {})
             )
             test_cases.append(test_case)
             self.test_counter += 1
@@ -568,7 +538,8 @@ class OptimizedHybridEngine:
                     priority=tc['priority'],
                     generation_phase='comprehensive',
                     srs_section=tc.get('srs_section', ''),
-                    depends_on=tc.get('depends_on', [])
+                    depends_on=tc.get('depends_on', []),
+                    traceability=requirement.get('traceability', {})
                 )
                 all_test_cases.append(test_case)
                 self.test_counter += 1
@@ -633,7 +604,10 @@ class OptimizedHybridEngine:
             print(f"\n  [{idx}/{total}] {req_id}: {req_title[:60]}...")
             
             # Flag if this is a critical SRS requirement
-            parent_req = req.get('parent_requirement', req_id)
+            parent_req = (
+                req.get('parent_requirement')
+                or (req.get('traceability', {}).get('source_requirements') or [req_id])[0]
+            )
             if SRSRequirementAnalyzer.has_srs_specifics(parent_req):
                 print(f"       SRS-critical requirement - enhanced testing")
             
@@ -663,7 +637,7 @@ class OptimizedHybridEngine:
 class OptimizedHybridGenerator:
     """Optimized SRS-aware hybrid test generator with deduplication"""
     
-    def __init__(self, input_file: str, model_name: str = "qwen2.5:14b-instruct", prompts_file: str = "prompts.json"):
+    def __init__(self, input_file: str, model_name: str = "qwen2.5-coder:7b-instruct", prompts_file: str = "prompts.json"):
         self.input_file = input_file
         self.engine = OptimizedHybridEngine(model_name, prompts_file=prompts_file)
         self.data = None
@@ -671,7 +645,7 @@ class OptimizedHybridGenerator:
         self.phase2_test_cases = []
         
         self.phase1_types = ['positive', 'negative', 'edge', 'integration']
-        self.phase2_types = ['performance', 'security', 'usability', 'compatibility', 'api', 'data_integrity', 'reliability', 'boundary', 'error_handling']
+        self.phase2_types = ['performance', 'security', 'usability', 'compatibility', 'api', 'data_integrity', 'reliability']
                 
         print(f"Phase 1 types: {self.phase1_types}")
         print(f"Phase 2 types: {self.phase2_types}\n")
@@ -682,7 +656,7 @@ class OptimizedHybridGenerator:
             self.data = json.load(f)
         
         # Calculate overlap
-        total_instances = sum(len(chunk['requirements']) for chunk in self.data['chunks'])
+        total_instances = sum(len(chunk['crus']) for chunk in self.data['chunks'])
         unique_count = len(self._deduplicate_requirements())
         overlap_count = total_instances - unique_count
         
@@ -695,20 +669,25 @@ class OptimizedHybridGenerator:
             print(f" Overlap detected: {overlap_count} duplicate instances ({overlap_count/total_instances*100:.1f}%)")
             print(f" Deduplication will be applied")
         print(f"Chunks: {self.data['metadata']['total_chunks']}")
-        print(f"Domain: {self.data['domain_classification']['primary_domain']}")
+        domain = self.data['chunks'][0]['application_domain'][0] if self.data.get('chunks') else "Unknown"
+        print(f"Domain: {domain}")
         print(f"{'='*80}\n")
     
     def _deduplicate_requirements(self) -> List[Dict]:
-        """Extract unique requirements from all chunks (fixes 22% overlap issue)"""
         all_requirements = []
         seen_req_ids = set()
-        
+
         for chunk in self.data['chunks']:
-            for req in chunk['requirements']:
-                if req['cru_id'] not in seen_req_ids:
-                    all_requirements.append(req)
-                    seen_req_ids.add(req['cru_id'])
-        
+            for req in chunk['crus']:
+                print("DEBUG:", req.get('cru_id'))
+                cru_id = req.get('cru_id')
+                if cru_id and cru_id not in seen_req_ids:
+                    req_copy = dict(req)
+                    req_copy['capability_tags'] = chunk.get('capability_tags', [])
+                    req_copy['application_domain'] = chunk.get('application_domain', [])
+                    all_requirements.append(req_copy)
+                    seen_req_ids.add(cru_id)
+
         return all_requirements
     
     def identify_critical_requirements(self, top_n: int = 15) -> List[Dict]:
@@ -721,7 +700,10 @@ class OptimizedHybridGenerator:
         
         # Priority 1: SRS-critical (check parent_requirement)
         for req in all_requirements:
-            parent_req = req.get('parent_requirement', '')
+            parent_req = (
+                req.get('parent_requirement')
+                or (req.get('traceability', {}).get('source_requirements') or [''])[0]
+            )
             if SRSRequirementAnalyzer.has_srs_specifics(parent_req):
                 critical_reqs.append(req)
         
@@ -757,7 +739,7 @@ class OptimizedHybridGenerator:
     
     def generate_phase1(self):
         """Phase 1: Fast batch with deduplication"""
-        domain = self.data['domain_classification']['primary_domain']
+        domain = self.data['chunks'][0]['application_domain'][0] if self.data.get('chunks') else "Unknown"
         
         # Deduplicate requirements (fixes 22% overlap)
         all_requirements = self._deduplicate_requirements()
@@ -772,7 +754,7 @@ class OptimizedHybridGenerator:
     
     def generate_phase2(self, critical_requirements: List[Dict]):
         """Phase 2: Comprehensive"""
-        domain = self.data['domain_classification']['primary_domain']
+        domain = self.data['chunks'][0]['application_domain'][0] if self.data.get('chunks') else "Unknown"
         
         self.engine.set_model(DEEP_MODEL)
 
@@ -934,16 +916,10 @@ class OptimizedHybridGenerator:
 # ============================================
 
 def main():
-    INPUT_FILE = "../03_Chunking_Domain_Understanding/output/chunked_crus_with_domain.json"
-    PROMPTS_FILE = "../04_AI_powered_TestCaseGeneration/prompts.json"
-    OUTPUT_DIR = "./output"
-    OUTPUT_PREFIX = os.path.join(OUTPUT_DIR, "optimized_test_cases")
-    FAST_MODEL = os.getenv("FAST_MODEL", "qwen2.5:14b-instruct")
-    DEEP_MODEL = os.getenv("DEEP_MODEL", "qwen2.5:14b-instruct")
+    INPUT_FILE = "../04_Semantic_Chunking_and_Domain_Tagging/output/chunked_crus_with_domain.json"
+    PROMPTS_FILE = "../05_AI_powered_TestCaseGeneration/prompts.json"
+    OUTPUT_PREFIX = "../05_AI_powered_TestCaseGeneration/output/optimized_test_cases"
     NUM_CRITICAL = int(os.getenv("NUM_CRITICAL_REQUIREMENTS", "25"))
-    
-    # Create output directory if it doesn't exist
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
     
     print("="*80)
     print(" " * 10 + "⚡ OPTIMIZED SRS-AWARE HYBRID TEST GENERATION")

@@ -1,13 +1,13 @@
 {
   "metadata": {
     "pipeline_stage": "03_cru_normalization",
-    "generated_at": "2026-04-03T12:14:16.916498+00:00",
-    "requirements_file": "../02_Requirement_Understanding/output/requirements.json",
-    "skeleton_file": "../01_Multi_Source_Document_Ingestion/01_output/DOC-SRS_EXAMPLE_skeleton.json",
-    "total_crus": 110,
+    "generated_at": "2026-04-03T15:22:02.490532+00:00",
+    "requirements_file": "..\\02_Requirement_Understanding\\output\\requirements.json",
+    "skeleton_file": "..\\01_Multi_Source_Document_Ingestion\\01_output\\DOC-SRS_EXAMPLE_skeleton.json",
+    "total_crus": 108,
     "invalid_crus": 0,
     "clean": true,
-    "builder_flags": 14,
+    "builder_flags": 12,
     "validation_flags": 0
   },
   "cru_units": [
@@ -1688,12 +1688,12 @@
       "parent_requirement_id": "FR22",
       "type": "functional",
       "actor": "Restaurant Owner",
-      "action": "registers on the web-portal by providing user-name",
+      "action": "registers on the web-portal by providing user-name And password And address And e-mail address And phone number And mobile number",
       "constraint": null,
       "confidence": "medium",
       "title": "Create an account",
-      "description": "A restaurant owner should be able to register and apply for verification on the web portal.",
-      "acceptance_criteria": null,
+      "description": "A restaurant owner should be able to register and apply for verification through the web portal.",
+      "acceptance_criteria": "A restaurant owner should be able to register and apply for verification through the web portal.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -1737,12 +1737,12 @@
       "parent_requirement_id": "FR22",
       "type": "functional",
       "actor": "Restaurant Owner",
-      "action": "registers on the web-portal by providing password",
+      "action": "applies for verification",
       "constraint": null,
       "confidence": "medium",
       "title": "Create an account",
-      "description": "A restaurant owner should be able to register and apply for verification on the web portal.",
-      "acceptance_criteria": null,
+      "description": "A restaurant owner should be able to register and apply for verification through the web portal.",
+      "acceptance_criteria": "A restaurant owner should be able to register and apply for verification through the web portal.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -1786,257 +1786,12 @@
       "parent_requirement_id": "FR22",
       "type": "functional",
       "actor": "Restaurant Owner",
-      "action": "registers on the web-portal by providing address",
-      "constraint": null,
-      "confidence": "medium",
-      "title": "Create an account",
-      "description": "A restaurant owner should be able to register and apply for verification on the web portal.",
-      "acceptance_criteria": null,
-      "outputs": null,
-      "dependencies": [],
-      "scenarios": [
-        {
-          "name": "Required information for registration",
-          "given": "the restaurant owner wants to create an account And the restaurant owner does not have an account",
-          "when": "the restaurant owner registers on the web-portal by providing user-name And password And address And e-mail address And phone number",
-          "then": "the restaurant owner should be able to apply for verification"
-        },
-        {
-          "name": "Full information for registration",
-          "given": "the restaurant owner wants to create an account And the restaurant owner does not have an account",
-          "when": "the restaurant owner registers on the web-portal by providing user name And password And address And e-mail address And phone number And mobile number",
-          "then": "the restaurant owner should be able to apply for verification"
-        },
-        {
-          "name": "Confirmed registration",
-          "given": "the restaurant owner has applied for verification And has not received a confirmation e-mail after registration",
-          "when": "the restaurant owner receives a confirmation e-mail",
-          "then": "the restaurant owner should be able to log in"
-        }
-      ],
-      "traceability": {
-        "section": "3.2.2.1",
-        "section_path": "3.2.2.1",
-        "source_locator": {
-          "page": 14,
-          "para": 18
-        },
-        "doc_id": "DOC-SRS_EXAMPLE",
-        "doc_type": null,
-        "module": "UNKNOWN",
-        "version": "1.0"
-      },
-      "extraction_method": "llm",
-      "input_format": "gherkin",
-      "invalid": false
-    },
-    {
-      "cru_id": "CRU-FR22-04",
-      "parent_requirement_id": "FR22",
-      "type": "functional",
-      "actor": "Restaurant Owner",
-      "action": "registers on the web-portal by providing e-mail address",
-      "constraint": null,
-      "confidence": "medium",
-      "title": "Create an account",
-      "description": "A restaurant owner should be able to register and apply for verification on the web portal.",
-      "acceptance_criteria": null,
-      "outputs": null,
-      "dependencies": [],
-      "scenarios": [
-        {
-          "name": "Required information for registration",
-          "given": "the restaurant owner wants to create an account And the restaurant owner does not have an account",
-          "when": "the restaurant owner registers on the web-portal by providing user-name And password And address And e-mail address And phone number",
-          "then": "the restaurant owner should be able to apply for verification"
-        },
-        {
-          "name": "Full information for registration",
-          "given": "the restaurant owner wants to create an account And the restaurant owner does not have an account",
-          "when": "the restaurant owner registers on the web-portal by providing user name And password And address And e-mail address And phone number And mobile number",
-          "then": "the restaurant owner should be able to apply for verification"
-        },
-        {
-          "name": "Confirmed registration",
-          "given": "the restaurant owner has applied for verification And has not received a confirmation e-mail after registration",
-          "when": "the restaurant owner receives a confirmation e-mail",
-          "then": "the restaurant owner should be able to log in"
-        }
-      ],
-      "traceability": {
-        "section": "3.2.2.1",
-        "section_path": "3.2.2.1",
-        "source_locator": {
-          "page": 14,
-          "para": 18
-        },
-        "doc_id": "DOC-SRS_EXAMPLE",
-        "doc_type": null,
-        "module": "UNKNOWN",
-        "version": "1.0"
-      },
-      "extraction_method": "llm",
-      "input_format": "gherkin",
-      "invalid": false
-    },
-    {
-      "cru_id": "CRU-FR22-05",
-      "parent_requirement_id": "FR22",
-      "type": "functional",
-      "actor": "Restaurant Owner",
-      "action": "registers on the web-portal by providing phone number",
-      "constraint": null,
-      "confidence": "medium",
-      "title": "Create an account",
-      "description": "A restaurant owner should be able to register and apply for verification on the web portal.",
-      "acceptance_criteria": null,
-      "outputs": null,
-      "dependencies": [],
-      "scenarios": [
-        {
-          "name": "Required information for registration",
-          "given": "the restaurant owner wants to create an account And the restaurant owner does not have an account",
-          "when": "the restaurant owner registers on the web-portal by providing user-name And password And address And e-mail address And phone number",
-          "then": "the restaurant owner should be able to apply for verification"
-        },
-        {
-          "name": "Full information for registration",
-          "given": "the restaurant owner wants to create an account And the restaurant owner does not have an account",
-          "when": "the restaurant owner registers on the web-portal by providing user name And password And address And e-mail address And phone number And mobile number",
-          "then": "the restaurant owner should be able to apply for verification"
-        },
-        {
-          "name": "Confirmed registration",
-          "given": "the restaurant owner has applied for verification And has not received a confirmation e-mail after registration",
-          "when": "the restaurant owner receives a confirmation e-mail",
-          "then": "the restaurant owner should be able to log in"
-        }
-      ],
-      "traceability": {
-        "section": "3.2.2.1",
-        "section_path": "3.2.2.1",
-        "source_locator": {
-          "page": 14,
-          "para": 18
-        },
-        "doc_id": "DOC-SRS_EXAMPLE",
-        "doc_type": null,
-        "module": "UNKNOWN",
-        "version": "1.0"
-      },
-      "extraction_method": "llm",
-      "input_format": "gherkin",
-      "invalid": false
-    },
-    {
-      "cru_id": "CRU-FR22-06",
-      "parent_requirement_id": "FR22",
-      "type": "functional",
-      "actor": "Restaurant Owner",
-      "action": "registers on the web-portal by providing mobile number",
-      "constraint": null,
-      "confidence": "medium",
-      "title": "Create an account",
-      "description": "A restaurant owner should be able to register and apply for verification on the web portal.",
-      "acceptance_criteria": null,
-      "outputs": null,
-      "dependencies": [],
-      "scenarios": [
-        {
-          "name": "Required information for registration",
-          "given": "the restaurant owner wants to create an account And the restaurant owner does not have an account",
-          "when": "the restaurant owner registers on the web-portal by providing user-name And password And address And e-mail address And phone number",
-          "then": "the restaurant owner should be able to apply for verification"
-        },
-        {
-          "name": "Full information for registration",
-          "given": "the restaurant owner wants to create an account And the restaurant owner does not have an account",
-          "when": "the restaurant owner registers on the web-portal by providing user name And password And address And e-mail address And phone number And mobile number",
-          "then": "the restaurant owner should be able to apply for verification"
-        },
-        {
-          "name": "Confirmed registration",
-          "given": "the restaurant owner has applied for verification And has not received a confirmation e-mail after registration",
-          "when": "the restaurant owner receives a confirmation e-mail",
-          "then": "the restaurant owner should be able to log in"
-        }
-      ],
-      "traceability": {
-        "section": "3.2.2.1",
-        "section_path": "3.2.2.1",
-        "source_locator": {
-          "page": 14,
-          "para": 18
-        },
-        "doc_id": "DOC-SRS_EXAMPLE",
-        "doc_type": null,
-        "module": "UNKNOWN",
-        "version": "1.0"
-      },
-      "extraction_method": "llm",
-      "input_format": "gherkin",
-      "invalid": false
-    },
-    {
-      "cru_id": "CRU-FR22-07",
-      "parent_requirement_id": "FR22",
-      "type": "functional",
-      "actor": "Restaurant Owner",
-      "action": "applies for verification",
-      "constraint": null,
-      "confidence": "medium",
-      "title": "Create an account",
-      "description": "A restaurant owner should be able to register and apply for verification on the web portal.",
-      "acceptance_criteria": null,
-      "outputs": null,
-      "dependencies": [],
-      "scenarios": [
-        {
-          "name": "Required information for registration",
-          "given": "the restaurant owner wants to create an account And the restaurant owner does not have an account",
-          "when": "the restaurant owner registers on the web-portal by providing user-name And password And address And e-mail address And phone number",
-          "then": "the restaurant owner should be able to apply for verification"
-        },
-        {
-          "name": "Full information for registration",
-          "given": "the restaurant owner wants to create an account And the restaurant owner does not have an account",
-          "when": "the restaurant owner registers on the web-portal by providing user name And password And address And e-mail address And phone number And mobile number",
-          "then": "the restaurant owner should be able to apply for verification"
-        },
-        {
-          "name": "Confirmed registration",
-          "given": "the restaurant owner has applied for verification And has not received a confirmation e-mail after registration",
-          "when": "the restaurant owner receives a confirmation e-mail",
-          "then": "the restaurant owner should be able to log in"
-        }
-      ],
-      "traceability": {
-        "section": "3.2.2.1",
-        "section_path": "3.2.2.1",
-        "source_locator": {
-          "page": 14,
-          "para": 18
-        },
-        "doc_id": "DOC-SRS_EXAMPLE",
-        "doc_type": null,
-        "module": "UNKNOWN",
-        "version": "1.0"
-      },
-      "extraction_method": "llm",
-      "input_format": "gherkin",
-      "invalid": false
-    },
-    {
-      "cru_id": "CRU-FR22-08",
-      "parent_requirement_id": "FR22",
-      "type": "functional",
-      "actor": "Restaurant Owner",
       "action": "receives a confirmation e-mail",
       "constraint": null,
       "confidence": "medium",
       "title": "Create an account",
-      "description": "A restaurant owner should be able to register and apply for verification on the web portal.",
-      "acceptance_criteria": null,
+      "description": "A restaurant owner should be able to register and apply for verification through the web portal.",
+      "acceptance_criteria": "A restaurant owner should be able to register and apply for verification through the web portal.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -2084,8 +1839,8 @@
       "constraint": null,
       "confidence": "medium",
       "title": "Restaurant owner log-in",
-      "description": "Allows a restaurant owner to log into the web-portal.",
-      "acceptance_criteria": null,
+      "description": "A restaurant owner should be logged into the web-portal.",
+      "acceptance_criteria": "A restaurant owner should be logged into the web-portal.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -2127,8 +1882,8 @@
       "constraint": null,
       "confidence": "medium",
       "title": "Restaurant owner log-in",
-      "description": "Allows a restaurant owner to log into the web-portal.",
-      "acceptance_criteria": null,
+      "description": "A restaurant owner should be logged into the web-portal.",
+      "acceptance_criteria": "A restaurant owner should be logged into the web-portal.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -2170,8 +1925,8 @@
       "constraint": null,
       "confidence": "medium",
       "title": "Restaurant owner log-in",
-      "description": "Allows a restaurant owner to log into the web-portal.",
-      "acceptance_criteria": null,
+      "description": "A restaurant owner should be logged into the web-portal.",
+      "acceptance_criteria": "A restaurant owner should be logged into the web-portal.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -2209,12 +1964,12 @@
       "parent_requirement_id": "FR24",
       "type": "functional",
       "actor": "Restaurant Owner",
-      "action": "managing information",
+      "action": "log in",
       "constraint": null,
       "confidence": "medium",
-      "title": "Manage information",
-      "description": "A restaurant owner should be able to manage their information through the web-portal.",
-      "acceptance_criteria": null,
+      "title": "Manage information In order to manage information",
+      "description": "Allows a restaurant owner to log into the web-portal and manage information about their restaurant.",
+      "acceptance_criteria": "Allows a restaurant owner to log into the web-portal and manage information about their restaurant.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -2288,12 +2043,12 @@
       "parent_requirement_id": "FR24",
       "type": "functional",
       "actor": "Restaurant Owner",
-      "action": "filling mandatory fields",
+      "action": "manage information",
       "constraint": null,
       "confidence": "medium",
-      "title": "Manage information",
-      "description": "A restaurant owner should be able to manage their information through the web-portal.",
-      "acceptance_criteria": null,
+      "title": "Manage information In order to manage information",
+      "description": "Allows a restaurant owner to log into the web-portal and manage information about their restaurant.",
+      "acceptance_criteria": "Allows a restaurant owner to log into the web-portal and manage information about their restaurant.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -2367,12 +2122,12 @@
       "parent_requirement_id": "FR24",
       "type": "functional",
       "actor": "Restaurant Owner",
-      "action": "filling optional fields",
+      "action": "fill in mandatory fields",
       "constraint": null,
       "confidence": "medium",
-      "title": "Manage information",
-      "description": "A restaurant owner should be able to manage their information through the web-portal.",
-      "acceptance_criteria": null,
+      "title": "Manage information In order to manage information",
+      "description": "Allows a restaurant owner to log into the web-portal and manage information about their restaurant.",
+      "acceptance_criteria": "Allows a restaurant owner to log into the web-portal and manage information about their restaurant.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -2446,12 +2201,12 @@
       "parent_requirement_id": "FR24",
       "type": "functional",
       "actor": "Restaurant Owner",
-      "action": "deleting information",
+      "action": "fill in optional fields",
       "constraint": null,
       "confidence": "medium",
-      "title": "Manage information",
-      "description": "A restaurant owner should be able to manage their information through the web-portal.",
-      "acceptance_criteria": null,
+      "title": "Manage information In order to manage information",
+      "description": "Allows a restaurant owner to log into the web-portal and manage information about their restaurant.",
+      "acceptance_criteria": "Allows a restaurant owner to log into the web-portal and manage information about their restaurant.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -2525,12 +2280,170 @@
       "parent_requirement_id": "FR24",
       "type": "functional",
       "actor": "Restaurant Owner",
-      "action": "editing information",
+      "action": "add information",
       "constraint": null,
       "confidence": "medium",
-      "title": "Manage information",
-      "description": "A restaurant owner should be able to manage their information through the web-portal.",
-      "acceptance_criteria": null,
+      "title": "Manage information In order to manage information",
+      "description": "Allows a restaurant owner to log into the web-portal and manage information about their restaurant.",
+      "acceptance_criteria": "Allows a restaurant owner to log into the web-portal and manage information about their restaurant.",
+      "outputs": null,
+      "dependencies": [],
+      "scenarios": [
+        {
+          "name": "Show fields for managing information",
+          "given": "the restaurant owner is logged in",
+          "when": "the restaurant owner wants to manage information",
+          "then": "the restaurant owner should be able to manage information in a form"
+        },
+        {
+          "name": "Filling in mandatory fields",
+          "given": "the restaurant owner wants to fill in the mandatory fields of the form",
+          "when": "the restaurant owner provides average price And address And e-mail address And phone number And restaurant name",
+          "then": "the restaurant owner has filled the mandatory fields of the form"
+        },
+        {
+          "name": "Filling in optional fields",
+          "given": "the restaurant owner of a restaurant wants to fill in optional fields in the form",
+          "when": "the restaurant owner provides restaurant description And menu And type of restaurant And picture of restaurant And mobile phone",
+          "then": "the restaurant owner has filled in optional fields in the form"
+        },
+        {
+          "name": "Filling in menu field",
+          "given": "the restaurant owner wants to fill in the menu field in the form",
+          "when": "the restaurant owner provides dish name And dish description And dish price",
+          "then": "the restaurant owner has filled in the menu field in the form"
+        },
+        {
+          "name": "Adding information with mandatory fields",
+          "given": "the restaurant owner has filled in the mandatory fields of the form",
+          "when": "the restaurant owner submits the form",
+          "then": "the information about the restaurant should be added"
+        },
+        {
+          "name": "Adding information with mandatory and optional fields",
+          "given": "the restaurant owner has filled in the mandatory fields of the form And filled in one or more optional fields of the form",
+          "when": "the restaurant owner submits the form",
+          "then": "the information about the restaurant should be added"
+        },
+        {
+          "name": "Deleting information",
+          "given": "the restaurant owner is logged in And information exists",
+          "when": "the restaurant owner deletes information",
+          "then": "the information should be deleted"
+        },
+        {
+          "name": "Editing information",
+          "given": "the restaurant owner is logged in And information exists",
+          "when": "the restaurant owner edits information",
+          "then": "the information should be edited"
+        }
+      ],
+      "traceability": {
+        "section": "3.2.2.3",
+        "section_path": "3.2.2.3",
+        "source_locator": {
+          "page": 16,
+          "para": 0
+        },
+        "doc_id": "DOC-SRS_EXAMPLE",
+        "doc_type": null,
+        "module": "UNKNOWN",
+        "version": "1.0"
+      },
+      "extraction_method": "llm",
+      "input_format": "gherkin",
+      "invalid": false
+    },
+    {
+      "cru_id": "CRU-FR24-06",
+      "parent_requirement_id": "FR24",
+      "type": "functional",
+      "actor": "Restaurant Owner",
+      "action": "delete information",
+      "constraint": null,
+      "confidence": "medium",
+      "title": "Manage information In order to manage information",
+      "description": "Allows a restaurant owner to log into the web-portal and manage information about their restaurant.",
+      "acceptance_criteria": "Allows a restaurant owner to log into the web-portal and manage information about their restaurant.",
+      "outputs": null,
+      "dependencies": [],
+      "scenarios": [
+        {
+          "name": "Show fields for managing information",
+          "given": "the restaurant owner is logged in",
+          "when": "the restaurant owner wants to manage information",
+          "then": "the restaurant owner should be able to manage information in a form"
+        },
+        {
+          "name": "Filling in mandatory fields",
+          "given": "the restaurant owner wants to fill in the mandatory fields of the form",
+          "when": "the restaurant owner provides average price And address And e-mail address And phone number And restaurant name",
+          "then": "the restaurant owner has filled the mandatory fields of the form"
+        },
+        {
+          "name": "Filling in optional fields",
+          "given": "the restaurant owner of a restaurant wants to fill in optional fields in the form",
+          "when": "the restaurant owner provides restaurant description And menu And type of restaurant And picture of restaurant And mobile phone",
+          "then": "the restaurant owner has filled in optional fields in the form"
+        },
+        {
+          "name": "Filling in menu field",
+          "given": "the restaurant owner wants to fill in the menu field in the form",
+          "when": "the restaurant owner provides dish name And dish description And dish price",
+          "then": "the restaurant owner has filled in the menu field in the form"
+        },
+        {
+          "name": "Adding information with mandatory fields",
+          "given": "the restaurant owner has filled in the mandatory fields of the form",
+          "when": "the restaurant owner submits the form",
+          "then": "the information about the restaurant should be added"
+        },
+        {
+          "name": "Adding information with mandatory and optional fields",
+          "given": "the restaurant owner has filled in the mandatory fields of the form And filled in one or more optional fields of the form",
+          "when": "the restaurant owner submits the form",
+          "then": "the information about the restaurant should be added"
+        },
+        {
+          "name": "Deleting information",
+          "given": "the restaurant owner is logged in And information exists",
+          "when": "the restaurant owner deletes information",
+          "then": "the information should be deleted"
+        },
+        {
+          "name": "Editing information",
+          "given": "the restaurant owner is logged in And information exists",
+          "when": "the restaurant owner edits information",
+          "then": "the information should be edited"
+        }
+      ],
+      "traceability": {
+        "section": "3.2.2.3",
+        "section_path": "3.2.2.3",
+        "source_locator": {
+          "page": 16,
+          "para": 0
+        },
+        "doc_id": "DOC-SRS_EXAMPLE",
+        "doc_type": null,
+        "module": "UNKNOWN",
+        "version": "1.0"
+      },
+      "extraction_method": "llm",
+      "input_format": "gherkin",
+      "invalid": false
+    },
+    {
+      "cru_id": "CRU-FR24-07",
+      "parent_requirement_id": "FR24",
+      "type": "functional",
+      "actor": "Restaurant Owner",
+      "action": "edit information",
+      "constraint": null,
+      "confidence": "medium",
+      "title": "Manage information In order to manage information",
+      "description": "Allows a restaurant owner to log into the web-portal and manage information about their restaurant.",
+      "acceptance_criteria": "Allows a restaurant owner to log into the web-portal and manage information about their restaurant.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -2608,8 +2521,8 @@
       "constraint": null,
       "confidence": "medium",
       "title": "Restaurant owner - Selecting preferred language on the web-portal",
-      "description": "A restaurant owner should be able to select a preferred language for the web-portal in order to understand it.",
-      "acceptance_criteria": null,
+      "description": "A restaurant owner should be able to select a preferred language for understanding the web-portal.",
+      "acceptance_criteria": "A restaurant owner should be able to select a preferred language for understanding the web-portal.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -2659,12 +2572,12 @@
       "parent_requirement_id": "FR26",
       "type": "functional",
       "actor": "Administrator",
-      "action": "logs in with an administrator account",
+      "action": "logs in",
       "constraint": null,
       "confidence": "medium",
       "title": "Administrator log in",
-      "description": "An administrator should be logged in to the web-portal.",
-      "acceptance_criteria": null,
+      "description": "An administrator should be able to log in to the web-portal.",
+      "acceptance_criteria": "An administrator should be able to log in to the web-portal.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -2696,12 +2609,12 @@
       "parent_requirement_id": "FR27",
       "type": "functional",
       "actor": "Administrator",
-      "action": "verifies a restaurant owner",
+      "action": "log in",
       "constraint": null,
       "confidence": "medium",
       "title": "Verify restaurant owner",
-      "description": "Allow an administrator to verify or reject a restaurant owner.",
-      "acceptance_criteria": null,
+      "description": "Allows an administrator to verify or reject a restaurant owner for system access.",
+      "acceptance_criteria": "Allows an administrator to verify or reject a restaurant owner for system access.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -2739,12 +2652,55 @@
       "parent_requirement_id": "FR27",
       "type": "functional",
       "actor": "Administrator",
-      "action": "rejects a restaurant owner",
+      "action": "verify a restaurant owner",
       "constraint": null,
       "confidence": "medium",
       "title": "Verify restaurant owner",
-      "description": "Allow an administrator to verify or reject a restaurant owner.",
-      "acceptance_criteria": null,
+      "description": "Allows an administrator to verify or reject a restaurant owner for system access.",
+      "acceptance_criteria": "Allows an administrator to verify or reject a restaurant owner for system access.",
+      "outputs": null,
+      "dependencies": [],
+      "scenarios": [
+        {
+          "name": "Verify a restaurant owner",
+          "given": "the administrator is logged in",
+          "when": "the administrator verifies a restaurant owner",
+          "then": "the restaurant owner should be able to log in And the restaurant owner should be notified by a confirmation email"
+        },
+        {
+          "name": "Reject a restaurant owner",
+          "given": "the administrator is logged in",
+          "when": "the administrator rejects a restaurant owner",
+          "then": "the restaurant owner should not be able to log in And the restaurant owner should be notified by a rejection email"
+        }
+      ],
+      "traceability": {
+        "section": "3.2.3.2",
+        "section_path": "3.2.3.2",
+        "source_locator": {
+          "page": 18,
+          "para": 4
+        },
+        "doc_id": "DOC-SRS_EXAMPLE",
+        "doc_type": null,
+        "module": "UNKNOWN",
+        "version": "1.0"
+      },
+      "extraction_method": "llm",
+      "input_format": "gherkin",
+      "invalid": false
+    },
+    {
+      "cru_id": "CRU-FR27-03",
+      "parent_requirement_id": "FR27",
+      "type": "functional",
+      "actor": "Administrator",
+      "action": "reject a restaurant owner",
+      "constraint": null,
+      "confidence": "medium",
+      "title": "Verify restaurant owner",
+      "description": "Allows an administrator to verify or reject a restaurant owner for system access.",
+      "acceptance_criteria": "Allows an administrator to verify or reject a restaurant owner for system access.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -2782,12 +2738,12 @@
       "parent_requirement_id": "FR28",
       "type": "functional",
       "actor": "Administrator",
-      "action": "create",
+      "action": "logs in",
       "constraint": null,
       "confidence": "medium",
       "title": "Manage restaurant types",
-      "description": "Allows an administrator to manage a list of restaurant types.",
-      "acceptance_criteria": null,
+      "description": "Allows the administrator to manage the list of restaurant types.",
+      "acceptance_criteria": "Allows the administrator to manage the list of restaurant types.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -2831,12 +2787,12 @@
       "parent_requirement_id": "FR28",
       "type": "functional",
       "actor": "Administrator",
-      "action": "edit",
+      "action": "creates a new restaurant type",
       "constraint": null,
       "confidence": "medium",
       "title": "Manage restaurant types",
-      "description": "Allows an administrator to manage a list of restaurant types.",
-      "acceptance_criteria": null,
+      "description": "Allows the administrator to manage the list of restaurant types.",
+      "acceptance_criteria": "Allows the administrator to manage the list of restaurant types.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -2880,12 +2836,61 @@
       "parent_requirement_id": "FR28",
       "type": "functional",
       "actor": "Administrator",
-      "action": "delete",
+      "action": "edits an existing restaurant type",
       "constraint": null,
       "confidence": "medium",
       "title": "Manage restaurant types",
-      "description": "Allows an administrator to manage a list of restaurant types.",
-      "acceptance_criteria": null,
+      "description": "Allows the administrator to manage the list of restaurant types.",
+      "acceptance_criteria": "Allows the administrator to manage the list of restaurant types.",
+      "outputs": null,
+      "dependencies": [],
+      "scenarios": [
+        {
+          "name": "Add a new restaurant type",
+          "given": "the administrator is logged in",
+          "when": "the administrator creates a new restaurant type",
+          "then": "the new restaurant type should be added to the list of restaurant types"
+        },
+        {
+          "name": "Editing an existing restaurant type",
+          "given": "the administrator is logged in",
+          "when": "the administrator edits an existing restaurant type",
+          "then": "the restaurant type should be updated in the list of restaurant types"
+        },
+        {
+          "name": "Delete a restaurant type",
+          "given": "the administrator is logged in",
+          "when": "the administrator deletes a restaurant type",
+          "then": "the deleted restaurant type should be removed from the list of restaurant types"
+        }
+      ],
+      "traceability": {
+        "section": "3.2.3.3",
+        "section_path": "3.2.3.3",
+        "source_locator": {
+          "page": 18,
+          "para": 8
+        },
+        "doc_id": "DOC-SRS_EXAMPLE",
+        "doc_type": null,
+        "module": "UNKNOWN",
+        "version": "1.0"
+      },
+      "extraction_method": "llm",
+      "input_format": "gherkin",
+      "invalid": false
+    },
+    {
+      "cru_id": "CRU-FR28-04",
+      "parent_requirement_id": "FR28",
+      "type": "functional",
+      "actor": "Administrator",
+      "action": "deletes a restaurant type",
+      "constraint": null,
+      "confidence": "medium",
+      "title": "Manage restaurant types",
+      "description": "Allows the administrator to manage the list of restaurant types.",
+      "acceptance_criteria": "Allows the administrator to manage the list of restaurant types.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -2929,12 +2934,12 @@
       "parent_requirement_id": "FR29",
       "type": "functional",
       "actor": "Administrator",
-      "action": "manage",
+      "action": "logs in",
       "constraint": null,
       "confidence": "medium",
       "title": "Manage restaurant dishes",
-      "description": "Allow administrators to manage a list of dishes.",
-      "acceptance_criteria": null,
+      "description": "Allows the administrator to manage dishes in the list.",
+      "acceptance_criteria": "Allows the administrator to manage dishes in the list.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -2978,12 +2983,12 @@
       "parent_requirement_id": "FR29",
       "type": "functional",
       "actor": "Administrator",
-      "action": "create",
+      "action": "creates a new dish",
       "constraint": null,
       "confidence": "medium",
       "title": "Manage restaurant dishes",
-      "description": "Allow administrators to manage a list of dishes.",
-      "acceptance_criteria": null,
+      "description": "Allows the administrator to manage dishes in the list.",
+      "acceptance_criteria": "Allows the administrator to manage dishes in the list.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -3027,12 +3032,12 @@
       "parent_requirement_id": "FR29",
       "type": "functional",
       "actor": "Administrator",
-      "action": "edit",
+      "action": "edits an existing dish",
       "constraint": null,
       "confidence": "medium",
       "title": "Manage restaurant dishes",
-      "description": "Allow administrators to manage a list of dishes.",
-      "acceptance_criteria": null,
+      "description": "Allows the administrator to manage dishes in the list.",
+      "acceptance_criteria": "Allows the administrator to manage dishes in the list.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -3076,12 +3081,12 @@
       "parent_requirement_id": "FR29",
       "type": "functional",
       "actor": "Administrator",
-      "action": "delete",
+      "action": "deletes a dish",
       "constraint": null,
       "confidence": "medium",
       "title": "Manage restaurant dishes",
-      "description": "Allow administrators to manage a list of dishes.",
-      "acceptance_criteria": null,
+      "description": "Allows the administrator to manage dishes in the list.",
+      "acceptance_criteria": "Allows the administrator to manage dishes in the list.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -3125,12 +3130,12 @@
       "parent_requirement_id": "FR30",
       "type": "functional",
       "actor": "Administrator",
-      "action": "logs in",
+      "action": "adds restaurant information",
       "constraint": null,
       "confidence": "medium",
       "title": "Manage restaurant information",
-      "description": "An administrator should manage restaurant information on the web-portal.",
-      "acceptance_criteria": null,
+      "description": "An administrator should manage restaurant information through the web-portal.",
+      "acceptance_criteria": "An administrator should manage restaurant information through the web-portal.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -3142,13 +3147,13 @@
         },
         {
           "name": "Delete restaurant information",
-          "given": "the administrator is logged in information about a restaurant exists",
+          "given": "the administrator is logged in",
           "when": "the administrator deletes the information",
           "then": "the information about the restaurant should be deleted"
         },
         {
           "name": "Edit restaurant information",
-          "given": "the administrator is logged in information about a restaurant exists",
+          "given": "the administrator is logged in And information about a restaurant exists",
           "when": "the administrator edits the information",
           "then": "the information about the restaurant should be edited"
         }
@@ -3174,12 +3179,12 @@
       "parent_requirement_id": "FR30",
       "type": "functional",
       "actor": "Administrator",
-      "action": "adds restaurant information",
+      "action": "deletes the information",
       "constraint": null,
       "confidence": "medium",
       "title": "Manage restaurant information",
-      "description": "An administrator should manage restaurant information on the web-portal.",
-      "acceptance_criteria": null,
+      "description": "An administrator should manage restaurant information through the web-portal.",
+      "acceptance_criteria": "An administrator should manage restaurant information through the web-portal.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -3191,13 +3196,13 @@
         },
         {
           "name": "Delete restaurant information",
-          "given": "the administrator is logged in information about a restaurant exists",
+          "given": "the administrator is logged in",
           "when": "the administrator deletes the information",
           "then": "the information about the restaurant should be deleted"
         },
         {
           "name": "Edit restaurant information",
-          "given": "the administrator is logged in information about a restaurant exists",
+          "given": "the administrator is logged in And information about a restaurant exists",
           "when": "the administrator edits the information",
           "then": "the information about the restaurant should be edited"
         }
@@ -3223,12 +3228,12 @@
       "parent_requirement_id": "FR30",
       "type": "functional",
       "actor": "Administrator",
-      "action": "deletes restaurant information",
+      "action": "edits the information",
       "constraint": null,
       "confidence": "medium",
       "title": "Manage restaurant information",
-      "description": "An administrator should manage restaurant information on the web-portal.",
-      "acceptance_criteria": null,
+      "description": "An administrator should manage restaurant information through the web-portal.",
+      "acceptance_criteria": "An administrator should manage restaurant information through the web-portal.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -3240,62 +3245,13 @@
         },
         {
           "name": "Delete restaurant information",
-          "given": "the administrator is logged in information about a restaurant exists",
-          "when": "the administrator deletes the information",
-          "then": "the information about the restaurant should be deleted"
-        },
-        {
-          "name": "Edit restaurant information",
-          "given": "the administrator is logged in information about a restaurant exists",
-          "when": "the administrator edits the information",
-          "then": "the information about the restaurant should be edited"
-        }
-      ],
-      "traceability": {
-        "section": "3.2.3.5",
-        "section_path": "3.2.3.5",
-        "source_locator": {
-          "page": 19,
-          "para": 7
-        },
-        "doc_id": "DOC-SRS_EXAMPLE",
-        "doc_type": null,
-        "module": "UNKNOWN",
-        "version": "1.0"
-      },
-      "extraction_method": "llm",
-      "input_format": "gherkin",
-      "invalid": false
-    },
-    {
-      "cru_id": "CRU-FR30-04",
-      "parent_requirement_id": "FR30",
-      "type": "functional",
-      "actor": "Administrator",
-      "action": "edits restaurant information",
-      "constraint": null,
-      "confidence": "medium",
-      "title": "Manage restaurant information",
-      "description": "An administrator should manage restaurant information on the web-portal.",
-      "acceptance_criteria": null,
-      "outputs": null,
-      "dependencies": [],
-      "scenarios": [
-        {
-          "name": "Add restaurant information",
           "given": "the administrator is logged in",
-          "when": "the administrator adds restaurant information",
-          "then": "the information should be added to the restaurant"
-        },
-        {
-          "name": "Delete restaurant information",
-          "given": "the administrator is logged in information about a restaurant exists",
           "when": "the administrator deletes the information",
           "then": "the information about the restaurant should be deleted"
         },
         {
           "name": "Edit restaurant information",
-          "given": "the administrator is logged in information about a restaurant exists",
+          "given": "the administrator is logged in And information about a restaurant exists",
           "when": "the administrator edits the information",
           "then": "the information about the restaurant should be edited"
         }
@@ -3325,8 +3281,8 @@
       "constraint": null,
       "confidence": "medium",
       "title": "Manage users",
-      "description": "An administrator should be able to manage the users.",
-      "acceptance_criteria": null,
+      "description": "An administrator should manage user information by editing and deleting.",
+      "acceptance_criteria": "An administrator should manage user information by editing and deleting.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -3368,8 +3324,8 @@
       "constraint": null,
       "confidence": "medium",
       "title": "Manage users",
-      "description": "An administrator should be able to manage the users.",
-      "acceptance_criteria": null,
+      "description": "An administrator should manage user information by editing and deleting.",
+      "acceptance_criteria": "An administrator should manage user information by editing and deleting.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -3412,7 +3368,7 @@
       "confidence": "medium",
       "title": "Manage restaurant owners",
       "description": "An administrator should be able to manage the restaurant owners.",
-      "acceptance_criteria": null,
+      "acceptance_criteria": "An administrator should be able to manage the restaurant owners.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -3461,7 +3417,7 @@
       "confidence": "medium",
       "title": "Manage restaurant owners",
       "description": "An administrator should be able to manage the restaurant owners.",
-      "acceptance_criteria": null,
+      "acceptance_criteria": "An administrator should be able to manage the restaurant owners.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -3510,7 +3466,7 @@
       "confidence": "medium",
       "title": "Manage restaurant owners",
       "description": "An administrator should be able to manage the restaurant owners.",
-      "acceptance_criteria": null,
+      "acceptance_criteria": "An administrator should be able to manage the restaurant owners.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -3554,12 +3510,12 @@
       "parent_requirement_id": "FR33",
       "type": "functional",
       "actor": "Administrator",
-      "action": "selects English as a new language",
+      "action": "selects English",
       "constraint": null,
       "confidence": "medium",
       "title": "Administrator - Selecting preferred language on the web-portal",
-      "description": "In order to understand the web-portal, an administrator should be able to select a preferred language for the web-portal.",
-      "acceptance_criteria": null,
+      "description": "Allow administrator to select a preferred language for the web-portal.",
+      "acceptance_criteria": "Allow administrator to select a preferred language for the web-portal.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -3609,12 +3565,12 @@
       "parent_requirement_id": "FR33",
       "type": "functional",
       "actor": "Administrator",
-      "action": "selects Swedish as a new language",
+      "action": "selects Swedish",
       "constraint": null,
       "confidence": "medium",
       "title": "Administrator - Selecting preferred language on the web-portal",
-      "description": "In order to understand the web-portal, an administrator should be able to select a preferred language for the web-portal.",
-      "acceptance_criteria": null,
+      "description": "Allow administrator to select a preferred language for the web-portal.",
+      "acceptance_criteria": "Allow administrator to select a preferred language for the web-portal.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -3664,12 +3620,12 @@
       "parent_requirement_id": "FR33",
       "type": "functional",
       "actor": "Administrator",
-      "action": "selects French as a new language",
+      "action": "selects French",
       "constraint": null,
       "confidence": "medium",
       "title": "Administrator - Selecting preferred language on the web-portal",
-      "description": "In order to understand the web-portal, an administrator should be able to select a preferred language for the web-portal.",
-      "acceptance_criteria": null,
+      "description": "Allow administrator to select a preferred language for the web-portal.",
+      "acceptance_criteria": "Allow administrator to select a preferred language for the web-portal.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -3719,12 +3675,12 @@
       "parent_requirement_id": "FR33",
       "type": "functional",
       "actor": "Administrator",
-      "action": "selects Spanish as a new language",
+      "action": "selects Spanish",
       "constraint": null,
       "confidence": "medium",
       "title": "Administrator - Selecting preferred language on the web-portal",
-      "description": "In order to understand the web-portal, an administrator should be able to select a preferred language for the web-portal.",
-      "acceptance_criteria": null,
+      "description": "Allow administrator to select a preferred language for the web-portal.",
+      "acceptance_criteria": "Allow administrator to select a preferred language for the web-portal.",
       "outputs": null,
       "dependencies": [],
       "scenarios": [
@@ -4015,12 +3971,12 @@
       "type": "performance",
       "actor": "System",
       "action": null,
-      "constraint": "MUST: No more than 2 seconds 100% of the time. WISH: No more than 1 second 100% of the time.",
+      "constraint": "No more than 2 seconds 100% of the time.",
       "confidence": "medium",
-      "title": "Response time",
+      "title": "Response Time",
       "description": "The fastness of the search",
-      "acceptance_criteria": null,
-      "outputs": "Measurements obtained from 1000 searches during testing.",
+      "acceptance_criteria": "Measurements obtained from 1000 searches during testing.",
+      "outputs": "No more than 1 second 100% of the time.",
       "dependencies": [],
       "scenarios": null,
       "traceability": {
@@ -4049,7 +4005,7 @@
       "confidence": "medium",
       "title": "System dependability",
       "description": "The fault tolerance of the system.",
-      "acceptance_criteria": "100% of the time during 1000 hours of usage testing",
+      "acceptance_criteria": "100% of the time, measurements obtained from 1000 hours of usage during testing",
       "outputs": null,
       "dependencies": [],
       "scenarios": null,
@@ -4079,7 +4035,7 @@
       "confidence": "medium",
       "title": "System dependability",
       "description": "The fault tolerance of the system.",
-      "acceptance_criteria": "100% of the time during 1000 hours of usage testing",
+      "acceptance_criteria": "100% of the time, measurements obtained from 1000 hours of usage during testing",
       "outputs": null,
       "dependencies": [],
       "scenarios": null,
@@ -4109,7 +4065,7 @@
       "confidence": "medium",
       "title": "Hard drive space",
       "description": "The application’s need of hard drive space.",
-      "acceptance_criteria": "PLAN: No more than 15 MB. WISH: No more than 10 MB.",
+      "acceptance_criteria": "PLAN: No more than 15 MB. WISH: No more than 10 MB",
       "outputs": null,
       "dependencies": [],
       "scenarios": null,
@@ -4331,20 +4287,8 @@
     },
     {
       "code": "INFO-GHERKIN-ACTION-FILTERED",
-      "req_id": "FR26",
-      "message": "Precondition-state string filtered: \"wants to log in\"",
-      "severity": "info"
-    },
-    {
-      "code": "INFO-GHERKIN-ACTION-FILTERED",
       "req_id": "FR32",
       "message": "Precondition-state string filtered: \"logged in\"",
-      "severity": "info"
-    },
-    {
-      "code": "INFO-GHERKIN-ACTION-FILTERED",
-      "req_id": "FR33",
-      "message": "Precondition-state string filtered: \"wants to select a preferred language\"",
       "severity": "info"
     },
     {

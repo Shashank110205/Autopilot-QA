@@ -47,7 +47,7 @@ def _build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--blocks",      required=True,  help="Path to Layer 1 blocks JSON file.")
     parser.add_argument("--skeleton",    required=True,  help="Path to Layer 1 skeleton JSON file.")
     parser.add_argument("--output",      required=True,  help="Path for the output JSON file.")
-    parser.add_argument("--model",       default="mistral",                help="Ollama model name.")
+    parser.add_argument("--model",       default="qwen2.5:14b-instruct",                help="Ollama model name.")
     parser.add_argument("--ollama-url",  default="http://localhost:11434", help="Ollama base URL.")
     parser.add_argument("--timeout",     default=60.0, type=float,         help="LLM request timeout (seconds).")
     return parser
