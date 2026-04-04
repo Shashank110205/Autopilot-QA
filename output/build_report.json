@@ -1,0 +1,11 @@
+{
+  "status": "failed",
+  "timestamp_utc": "2026-04-04T17:16:41.301720+00:00",
+  "error": "'GraphStore' object has no attribute 'insert_node'",
+  "inputs": {
+    "db": "output\\test_graph.duckdb",
+    "cru": "03_CRU_Normalization\\output\\cru_units.json",
+    "chunks": "04_Semantic_Chunking_and_Domain_Tagging\\output\\chunked_crus_with_domain.json",
+    "tests": "05_AI_powered_TestCaseGeneration\\output\\optimized_test_cases_20260403_225627.json"
+  }
+}

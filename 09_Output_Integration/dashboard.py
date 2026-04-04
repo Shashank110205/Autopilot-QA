@@ -23,7 +23,7 @@ st.sidebar.header("📁 Data Sources")
 
 test_cases_file = st.sidebar.text_input(
     "Test Cases JSON",
-    value="../04_AI_powered_TestCaseGeneration/optimized_test_cases_20251017_000535.json"
+    value="../05_AI_powered_TestCaseGeneration/output/optimized_test_cases_20260403_225627.json"
 )
 
 validation_file = st.sidebar.text_input(

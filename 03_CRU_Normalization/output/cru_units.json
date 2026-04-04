@@ -1,7 +1,7 @@
 {
   "metadata": {
     "pipeline_stage": "03_cru_normalization",
-    "generated_at": "2026-04-03T15:22:02.490532+00:00",
+    "generated_at": "2026-04-03T23:54:13.820458+00:00",
     "requirements_file": "..\\02_Requirement_Understanding\\output\\requirements.json",
     "skeleton_file": "..\\01_Multi_Source_Document_Ingestion\\01_output\\DOC-SRS_EXAMPLE_skeleton.json",
     "total_crus": 108,
