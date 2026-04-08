@@ -246,19 +246,8 @@ cru_options = sorted([cru_key(c) for c in crus if cru_key(c)])
 # ----------------
 
 sidebar = st.sidebar
-sidebar.markdown("### CRU Debug")
-sidebar.write(
-    f"**CRU file:** {CRU_PATH} ({'exists' if CRU_PATH.exists() else 'MISSING'})"
-)
-if isinstance(cru_data, dict):
-    sidebar.write(f"**Keys found:** {list(cru_data.keys())}")
-    sidebar.write(f"**cru_units len:** {len(cru_data.get('cru_units', []))}")
-    sidebar.write(f"**cruunits len:** {len(cru_data.get('cruunits', []))}")
-    if crus:
-        first_cru = crus[0]
-        sidebar.write("**First CRU ID:** " + cru_key(first_cru))
-else:
-    sidebar.error("CRU file failed to load")
+
+
 
 sidebar.header("Query controls")
 selected_req = sidebar.selectbox("Requirement ID", [""] + req_options)
@@ -285,11 +274,6 @@ with summary_col:
     st.subheader("Workspace status")
     st.write(
         {
-            "root": str(ROOT),
-            "db_path": str(DB_PATH),
-            "cru_path": str(CRU_PATH),
-            "req_path": str(REQ_PATH),
-            "chunk_path": str(CHUNK_PATH),
             "duckdb_exists": DB_PATH.exists(),
             "requirements": len(reqs),
             "crus": len(crus),

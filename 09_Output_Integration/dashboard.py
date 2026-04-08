@@ -28,12 +28,12 @@ test_cases_file = st.sidebar.text_input(
 
 validation_file = st.sidebar.text_input(
     "Validation Report",
-    value="../06_Validation_QA/validation_report.xlsx"
+    value="../07_Validation_QA/validation_report.xlsx"
 )
 
 rtm_file = st.sidebar.text_input(
     "RTM Report",
-    value="../05_RTM_Generation/rtm_report.xlsx"
+    value="../06_RTM_Generation/rtm_report.xlsx"
 )
 
 # Load data

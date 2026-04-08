@@ -124,55 +124,72 @@ class RTMDataIngestion:
         self.conn = db.conn
     
     def ingest_requirements(self, requirements_json: str):
-        """Ingest requirements from chunked JSON file"""
-        
-        print("="*80)
+        print("=" * 80)
         print("STEP 2A: Ingesting Requirements")
-        print("="*80)
-        
+        print("=" * 80)
+
         with open(requirements_json, 'r', encoding='utf-8') as f:
             data = json.load(f)
-        
+
         requirements = []
-        for chunk in data['chunks']:
-            for req in chunk['requirements']:
+
+        for chunk in data.get("chunks", []):
+            source_requirements = (
+                chunk.get("traceability", {}).get("source_requirements", [])
+            )
+
+            if isinstance(source_requirements, str):
+                source_requirements = [source_requirements]
+
+            for cru in chunk.get("crus", []):
+                # ✅ FIX: Use cru_id as primary key — matches requirement_id in test_cases JSON
+                req_id = str(cru.get("cru_id", "")).strip()
+
+                if not req_id:
+                    continue
+
                 requirements.append({
-                    'id': req['id'],
-                    'title': req['title'],
-                    'content': req['description'],
-                    'type': 'functional' if req['id'].startswith('FR') else 'non_functional',
-                    'priority': 1 if req.get('priority') == 'High' else (2 if req.get('priority') == 'Medium' else 3),
-                    'domain': data['domain_classification']['primary_domain'],
-                    'dependencies': json.dumps(req.get('dependencies', [])),
-                    'rationale': req.get('rationale', ''),
-                    'created_timestamp': datetime.now()
+                    "id": req_id,
+                    "title": str(cru.get("title", "")).strip(),
+                    "content": str(cru.get("action") or cru.get("constraint") or "").strip(),
+                    # ✅ FIX: Check for "FR" anywhere in the cru_id (e.g. "CRU-FR1-01")
+                    "type": "functional" if "FR" in req_id else "non_functional",
+                    "priority": 2,
+                    "domain": data.get("metadata", {}).get("application_domain", ""),
+                    "dependencies": json.dumps([]),
+                    "rationale": str(cru.get("acceptance_criteria", "")).strip(),
+                    "created_timestamp": datetime.now()
                 })
-        
-        # Deduplicate requirements
-        seen_ids = set()
-        unique_requirements = []
-        for req in requirements:
-            if req['id'] not in seen_ids:
-                unique_requirements.append(req)
-                seen_ids.add(req['id'])
-        
-        # Insert into database
-        df = pd.DataFrame(unique_requirements)
+
+        df = pd.DataFrame(requirements)
+
+        if df.empty:
+            raise ValueError("No valid requirements found in input JSON")
+
+        df["id"] = df["id"].astype(str).str.strip()
+        df = df[df["id"] != ""]
+        df = df.drop_duplicates(subset=["id"])
+
+        if df.empty:
+            raise ValueError("No valid requirements found in input JSON after cleaning")
+
         self.conn.execute("DELETE FROM requirements")
-        self.conn.execute("INSERT INTO requirements SELECT * FROM df")
-        
+        self.conn.register("req_df", df)
+        self.conn.execute("INSERT INTO requirements SELECT * FROM req_df")
+
         count = self.conn.execute("SELECT COUNT(*) FROM requirements").fetchone()[0]
         print(f"✅ Ingested {count} unique requirements")
-        
+
         sample = self.conn.execute("""
-            SELECT id, title, type, priority 
-            FROM requirements 
+            SELECT id, title, type, priority
+            FROM requirements
             LIMIT 5
         """).fetchdf()
+
         print("\nSample Requirements:")
         print(sample.to_string(index=False))
         print()
-        
+
         return count
     
     def ingest_test_cases(self, test_cases_json: str):
@@ -227,34 +244,27 @@ class RTMDataIngestion:
         return count
     
     def create_traceability_mappings(self):
-        """Create bi-directional traceability mappings"""
-        
         print("="*80)
         print("STEP 2C: Creating Traceability Mappings")
         print("="*80)
-        
+
+        self.conn.execute("DELETE FROM rtm_mapping")
+
         self.conn.execute("""
             INSERT INTO rtm_mapping (requirement_id, test_case_id, mapping_confidence, mapping_type)
-            SELECT 
+            SELECT DISTINCT
                 tc.requirement_id,
                 tc.id AS test_case_id,
                 tc.confidence_score AS mapping_confidence,
                 'direct' AS mapping_type
             FROM test_cases tc
+            INNER JOIN requirements r
+                ON r.id = tc.requirement_id
+            ON CONFLICT (requirement_id, test_case_id) DO NOTHING
         """)
-        
+
         count = self.conn.execute("SELECT COUNT(*) FROM rtm_mapping").fetchone()[0]
         print(f"✅ Created {count} traceability mappings")
-        
-        sample = self.conn.execute("""
-            SELECT requirement_id, test_case_id, mapping_confidence, mapping_type
-            FROM rtm_mapping
-            LIMIT 5
-        """).fetchdf()
-        print("\nSample Mappings:")
-        print(sample.to_string(index=False))
-        print()
-        
         return count
 
 
@@ -270,63 +280,66 @@ class CoverageAnalyzer:
         self.conn = db.conn
     
     def calculate_functional_coverage(self) -> float:
-        """Calculate % of requirements with test cases (Target: 95%)"""
-        
         result = self.conn.execute("""
             WITH req_coverage AS (
                 SELECT 
                     r.id,
-                    COUNT(DISTINCT tc.id) as test_count
+                    COUNT(DISTINCT tc.id) AS test_count
                 FROM requirements r
                 LEFT JOIN test_cases tc ON r.id = tc.requirement_id
                 GROUP BY r.id
             )
-            SELECT 
-                COUNT(*) FILTER (WHERE test_count > 0) * 100.0 / COUNT(*) as coverage_pct
+            SELECT COALESCE(
+                COUNT(*) FILTER (WHERE test_count > 0) * 100.0 / NULLIF(COUNT(*), 0),
+                0.0
+            ) AS coverage_pct
             FROM req_coverage
         """).fetchone()
-        
-        return result[0] if result else 0.0
+
+        return float(result[0] or 0.0)
     
     def calculate_edge_case_coverage(self) -> float:
-        """Calculate % of requirements with edge/negative test cases (Target: 80%)"""
-        
         result = self.conn.execute("""
             WITH edge_coverage AS (
                 SELECT 
                     r.id,
-                    COUNT(DISTINCT tc.id) FILTER (WHERE tc.test_type IN ('edge', 'negative')) as edge_count
+                    COUNT(DISTINCT tc.id) FILTER (
+                        WHERE tc.test_type IN ('edge', 'negative')
+                    ) AS edge_count
                 FROM requirements r
                 LEFT JOIN test_cases tc ON r.id = tc.requirement_id
                 GROUP BY r.id
             )
-            SELECT 
-                COUNT(*) FILTER (WHERE edge_count > 0) * 100.0 / COUNT(*) as coverage_pct
+            SELECT COALESCE(
+                COUNT(*) FILTER (WHERE edge_count > 0) * 100.0 / NULLIF(COUNT(*), 0),
+                0.0
+            ) AS coverage_pct
             FROM edge_coverage
         """).fetchone()
-        
-        return result[0] if result else 0.0
-    
+
+        return float(result[0] or 0.0)
     def calculate_integration_coverage(self) -> float:
-        """Calculate % of requirements with dependencies having integration tests (Target: 85%)"""
-        
         result = self.conn.execute("""
             WITH integration_coverage AS (
                 SELECT 
                     r.id,
                     r.dependencies,
-                    COUNT(DISTINCT tc.id) FILTER (WHERE tc.test_type = 'integration') as integration_count
+                    COUNT(DISTINCT tc.id) FILTER (
+                        WHERE tc.test_type = 'integration'
+                    ) AS integration_count
                 FROM requirements r
                 LEFT JOIN test_cases tc ON r.id = tc.requirement_id
                 WHERE r.dependencies != '[]' AND r.dependencies IS NOT NULL
                 GROUP BY r.id, r.dependencies
             )
-            SELECT 
-                COUNT(*) FILTER (WHERE integration_count > 0) * 100.0 / NULLIF(COUNT(*), 0) as coverage_pct
+            SELECT COALESCE(
+                COUNT(*) FILTER (WHERE integration_count > 0) * 100.0 / NULLIF(COUNT(*), 0),
+                100.0
+            ) AS coverage_pct
             FROM integration_coverage
         """).fetchone()
-        
-        return result[0] if result else 100.0
+
+        return float(result[0] or 100.0)
     
     def calculate_test_type_distribution(self) -> pd.DataFrame:
         """Calculate distribution of test types"""
@@ -796,8 +809,8 @@ def main():
     print("="*80)
     print("\nStarting Requirements Traceability Matrix generation...\n")
     
-    REQUIREMENTS_FILE = "../03_Chunking_Domain_Understanding/chunked_requirements_with_domain.json"
-    TEST_CASES_FILE = "../04_AI_powered_TestCaseGeneration/optimized_test_cases_20251017_000535.json"
+    REQUIREMENTS_FILE = "../04_Semantic_Chunking_and_Domain_Tagging/output/chunked_crus_with_domain.json"
+    TEST_CASES_FILE = "../05_AI_powered_TestCaseGeneration/output/optimized_test_cases_20260403_225627.json"
     DB_PATH = "../05_RTM_Generation/rtm_database.duckdb"
     EXCEL_OUTPUT = "../05_RTM_Generation/rtm_report.xlsx"
     HTML_OUTPUT = "../05_RTM_Generation/rtm_dashboard.html"
