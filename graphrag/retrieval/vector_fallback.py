@@ -39,7 +39,7 @@ def vector_search(
 
     scored = []
     for row in rows:
-        emb = _from_bytes(row["embedding"])
+        emb = _from_bytes(row["embedding_bytes"])
         score = _cosine(q, emb)
         scored.append({
             "node_id": row["node_id"],
