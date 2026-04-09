@@ -1,17 +1,20 @@
 """
 graphrag/storage/graph_store.py
 ================================
-FIX SUMMARY (audit items addressed):
-  [1] Added auto-schema init in __init__  → build path no longer needs manual migration
-  [2] Added insert_node()                 → was missing; build_graph.py called it on an old API
-  [3] Added insert_edge()                 → same; also enforces confidence_reason in extra_json
-  [4] Added node_exists() / edge_exists() → required by edge_builder + integrity checker
-  [5] Added stats()                       → required by build_graph.py CLI
-  [6] get_edges_from / get_edges_to now   → accept optional rel_types list for whitelist filtering
-  [7] Removed INSERT OR REPLACE syntax    → DuckDB uses ON CONFLICT … DO UPDATE / DO NOTHING
-  [8] Embeddings column renamed 'embedding_bytes' to match schema.sql exactly
-"""
+FIXES IN THIS VERSION (on top of previous round's fixes):
+  [PARTIAL-5b] get_embedding_rows() now honors "doc_type" in filters.
+               Old version only filtered on module and version; doc_type was
+               silently ignored, making doc-type-constrained vector search
+               unreliable.
 
+All previous fixes retained:
+  - auto-schema init, insert_node, insert_edge, node_exists, edge_exists, stats
+  - confidence_reason enforcement in insert_edge
+  - INFERRED_SUPPORTED_BY rejection
+  - get_edges_from / get_edges_to with optional rel_types list
+  - upsert_embedding with correct column names (embedding_bytes, doc_type)
+  - ON CONFLICT … DO NOTHING / DO UPDATE (DuckDB syntax)
+"""
 from __future__ import annotations
 
 import json
@@ -29,9 +32,6 @@ class GraphStore:
         self.conn = duckdb.connect(db_path)
         self._init_schema()
 
-    # ------------------------------------------------------------------
-    # Schema bootstrap (idempotent – safe to call on every startup)
-    # ------------------------------------------------------------------
     def _init_schema(self) -> None:
         if not _SCHEMA_PATH.exists():
             raise FileNotFoundError(f"Schema file not found: {_SCHEMA_PATH}")
@@ -41,16 +41,11 @@ class GraphStore:
     # Write helpers
     # ------------------------------------------------------------------
     def insert_node(self, node: dict) -> None:
-        """
-        Idempotent upsert for nodes.
-        Required keys: node_id, node_type.
-        """
         required = {"node_id", "node_type"}
         missing = required - node.keys()
         if missing:
             raise ValueError(f"insert_node: missing required fields {missing}")
 
-        # Serialise extra_json if caller passed a dict
         extra = node.get("extra_json")
         if isinstance(extra, dict):
             extra = json.dumps(extra)
@@ -62,49 +57,36 @@ class GraphStore:
                  doc_type, section_path, source_locator_json, extra_json, created_at)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
             ON CONFLICT (node_id) DO UPDATE SET
-                node_type          = excluded.node_type,
-                title              = excluded.title,
-                text               = excluded.text,
-                module             = excluded.module,
-                version            = excluded.version,
-                doc_id             = excluded.doc_id,
-                doc_type           = excluded.doc_type,
-                section_path       = excluded.section_path,
-                source_locator_json= excluded.source_locator_json,
-                extra_json         = excluded.extra_json
+                node_type           = excluded.node_type,
+                title               = excluded.title,
+                text                = excluded.text,
+                module              = excluded.module,
+                version             = excluded.version,
+                doc_id              = excluded.doc_id,
+                doc_type            = excluded.doc_type,
+                section_path        = excluded.section_path,
+                source_locator_json = excluded.source_locator_json,
+                extra_json          = excluded.extra_json
             """,
             [
-                node["node_id"],
-                node["node_type"],
-                node.get("title"),
-                node.get("text"),
-                node.get("module"),
-                node.get("version"),
-                node.get("doc_id"),
-                node.get("doc_type"),
-                node.get("section_path"),
-                node.get("source_locator_json"),
+                node["node_id"], node["node_type"],
+                node.get("title"), node.get("text"),
+                node.get("module"), node.get("version"),
+                node.get("doc_id"), node.get("doc_type"),
+                node.get("section_path"), node.get("source_locator_json"),
                 extra,
             ],
         )
 
     def insert_edge(self, edge: dict) -> None:
-        """
-        Idempotent upsert for edges.
-        Required keys: src_id, src_type, rel_type, dst_id, dst_type, confidence.
-        extra_json MUST include 'confidence_reason'.
-        INFERRED_SUPPORTED_BY edges are rejected unless _allow_persist_inferred=True.
-        """
         required = {"src_id", "src_type", "rel_type", "dst_id", "dst_type", "confidence"}
         missing = required - edge.keys()
         if missing:
             raise ValueError(f"insert_edge: missing required fields {missing}")
 
-        # Reject persisting inferred edges without explicit approval
         if edge["rel_type"] == "INFERRED_SUPPORTED_BY" and not edge.get("_allow_persist_inferred"):
             raise ValueError(
-                "INFERRED_SUPPORTED_BY must not be persisted without human approval. "
-                "Set _allow_persist_inferred=True only after explicit validation."
+                "INFERRED_SUPPORTED_BY must not be persisted without human approval."
             )
 
         extra = edge.get("extra_json")
@@ -124,7 +106,7 @@ class GraphStore:
                         f"({edge['src_id']} --{edge['rel_type']}--> {edge['dst_id']})"
                     )
             except json.JSONDecodeError:
-                pass  # leave as-is; validation best-effort on raw strings
+                pass
         else:
             raise ValueError("insert_edge: extra_json is required and must be a dict or JSON string")
 
@@ -137,32 +119,25 @@ class GraphStore:
             ON CONFLICT (src_id, rel_type, dst_id) DO NOTHING
             """,
             [
-                edge["src_id"],
-                edge["src_type"],
-                edge["rel_type"],
-                edge["dst_id"],
-                edge["dst_type"],
-                float(edge["confidence"]),
-                edge.get("evidence_chunk_id"),
-                extra,
+                edge["src_id"], edge["src_type"], edge["rel_type"],
+                edge["dst_id"], edge["dst_type"], float(edge["confidence"]),
+                edge.get("evidence_chunk_id"), extra,
             ],
         )
 
     # ------------------------------------------------------------------
-    # Existence checks (required by edge_builder + integrity checker)
+    # Existence checks
     # ------------------------------------------------------------------
     def node_exists(self, node_id: str) -> bool:
-        row = self.conn.execute(
+        return self.conn.execute(
             "SELECT 1 FROM nodes WHERE node_id = ?", [node_id]
-        ).fetchone()
-        return row is not None
+        ).fetchone() is not None
 
     def edge_exists(self, src_id: str, rel_type: str, dst_id: str) -> bool:
-        row = self.conn.execute(
-            "SELECT 1 FROM edges WHERE src_id = ? AND rel_type = ? AND dst_id = ?",
+        return self.conn.execute(
+            "SELECT 1 FROM edges WHERE src_id=? AND rel_type=? AND dst_id=?",
             [src_id, rel_type, dst_id],
-        ).fetchone()
-        return row is not None
+        ).fetchone() is not None
 
     # ------------------------------------------------------------------
     # Read helpers
@@ -180,30 +155,26 @@ class GraphStore:
         rows = self.query("SELECT * FROM nodes WHERE node_id = ?", [node_id])
         return rows[0] if rows else None
 
-    def get_edges_from(
-        self, node_id: str, rel_types: Optional[List[str]] = None
-    ) -> List[Dict[str, Any]]:
+    def get_edges_from(self, node_id: str, rel_types: Optional[List[str]] = None) -> List[Dict[str, Any]]:
         if rel_types:
-            placeholders = ",".join("?" * len(rel_types))
+            ph = ",".join("?" * len(rel_types))
             return self.query(
-                f"SELECT * FROM edges WHERE src_id = ? AND rel_type IN ({placeholders})",
+                f"SELECT * FROM edges WHERE src_id=? AND rel_type IN ({ph})",
                 [node_id, *rel_types],
             )
-        return self.query("SELECT * FROM edges WHERE src_id = ?", [node_id])
+        return self.query("SELECT * FROM edges WHERE src_id=?", [node_id])
 
-    def get_edges_to(
-        self, node_id: str, rel_types: Optional[List[str]] = None
-    ) -> List[Dict[str, Any]]:
+    def get_edges_to(self, node_id: str, rel_types: Optional[List[str]] = None) -> List[Dict[str, Any]]:
         if rel_types:
-            placeholders = ",".join("?" * len(rel_types))
+            ph = ",".join("?" * len(rel_types))
             return self.query(
-                f"SELECT * FROM edges WHERE dst_id = ? AND rel_type IN ({placeholders})",
+                f"SELECT * FROM edges WHERE dst_id=? AND rel_type IN ({ph})",
                 [node_id, *rel_types],
             )
-        return self.query("SELECT * FROM edges WHERE dst_id = ?", [node_id])
+        return self.query("SELECT * FROM edges WHERE dst_id=?", [node_id])
 
     # ------------------------------------------------------------------
-    # Stats (required by build_graph.py CLI)
+    # Stats
     # ------------------------------------------------------------------
     def stats(self) -> Dict[str, Any]:
         node_rows = self.conn.execute(
@@ -228,10 +199,10 @@ class GraphStore:
         self,
         node_id: str,
         node_type: str,
-        module: str,
-        version: str,
-        doctype: str,
-        section_path: str,
+        module: Optional[str],
+        version: Optional[str],
+        doctype: Optional[str],
+        section_path: Optional[str],
         embedding_bytes: bytes,
         embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2",
     ) -> None:
@@ -243,7 +214,8 @@ class GraphStore:
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
             ON CONFLICT (node_id) DO UPDATE SET
                 embedding_bytes = excluded.embedding_bytes,
-                embedding_model = excluded.embedding_model
+                embedding_model = excluded.embedding_model,
+                doc_type        = excluded.doc_type
             """,
             [node_id, node_type, module, version, doctype, section_path,
              embedding_model, embedding_bytes],
@@ -257,14 +229,19 @@ class GraphStore:
         filters = filters or {}
         node_types = node_types or []
         clauses, params = [], []
+
         if node_types:
-            placeholders = ",".join("?" * len(node_types))
-            clauses.append(f"node_type IN ({placeholders})")
+            ph = ",".join("?" * len(node_types))
+            clauses.append(f"node_type IN ({ph})")
             params.extend(node_types)
-        for key in ("module", "version"):
-            if filters.get(key):
+
+        # [PARTIAL-5b] FIX: doc_type now included in filter keys
+        for key in ("module", "version", "doc_type"):
+            val = filters.get(key) or filters.get("doctype") if key == "doc_type" else filters.get(key)
+            if val:
                 clauses.append(f"{key} = ?")
-                params.append(filters[key])
+                params.append(val)
+
         where = f"WHERE {' AND '.join(clauses)}" if clauses else ""
         return self.query(f"SELECT * FROM node_embeddings {where}", params)
 

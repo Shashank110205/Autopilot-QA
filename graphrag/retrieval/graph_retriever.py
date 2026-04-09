@@ -1,18 +1,29 @@
 """
 graphrag/retrieval/graph_retriever.py
 =======================================
-FIX SUMMARY:
-  [1] Added path_confidence scoring: PRODUCT of edge.confidence along each path.
-      Old version collected chunks by BFS order with no scoring – traversal-order
-      dependent, not confidence-driven.
-  [2] Added hop_penalty (0.9 ** hops) per architecture §5.4.
-  [3] Added filter boost: +20% for module match, +10% for version match.
-  [4] Child chunks are ranked by final_score before return.
-  [5] path_confidence is preserved on each candidate so context_pack_builder and
-      warnings_builder can use it downstream.
-  [6] query_router.TASK_RELATIONS imported for relation whitelist (unchanged structure).
-  [7] import json moved to module level (was inside the while loop body —
-      re-imported on every BFS iteration).
+FIXES IN THIS VERSION:
+  [BUG-1] CRITICAL – provenance="graph" now stamped on every candidate node
+          returned from graph traversal.
+          
+          Root cause of the false MISSING_EVIDENCE warning:
+            graph_retriever returned nodes with no "provenance" key.
+            context_pack_builder then filtered evidence_nodes by
+            n.get("provenance") == "graph" before calling build_warnings().
+            That filter returned [] (empty), which triggered MISSING_EVIDENCE
+            even though evidence was present.
+          
+          Fix: add "provenance": "graph" to every best_candidate dict so
+          downstream code can trust the key is always present.
+
+  [PARTIAL-1] doc_type boost added alongside module/version boosts.
+          Exact match on doc_type (e.g. "SRS") gets +15% score boost.
+
+Previously-correct items retained unchanged:
+  - path_confidence = PRODUCT(edge.confidence) × HOP_PENALTY^hops
+  - filter boost for module (+20%) and version (+10%)
+  - child-chunk-only evidence collection
+  - ranking by final_score DESC before return
+  - forward + reverse traversal using TASK_RELATIONS whitelist
 """
 from __future__ import annotations
 
@@ -24,7 +35,7 @@ from graphrag.models.contracts import Anchor
 from graphrag.retrieval.query_router import TASK_RELATIONS
 from graphrag.storage.graph_store import GraphStore
 
-HOP_PENALTY = 0.9   # multiplied per hop beyond the anchor node
+HOP_PENALTY = 0.9
 
 
 def graph_retrieve(
@@ -39,7 +50,7 @@ def graph_retrieve(
 
     Returns:
       {
-        "evidence_nodes": [... with score, path_confidence, path_edges],
+        "evidence_nodes": [... with score, path_confidence, provenance, path_edges],
         "trace_paths":    [...],
         "related_nodes":  [...],
       }
@@ -49,15 +60,11 @@ def graph_retrieve(
     forward_rels = set(policy.get("forward", []))
     reverse_rels = set(policy.get("reverse", []))
 
-    # visited key: node_id (not (node_id, depth) – avoids duplicate scoring at
-    # different depths; we keep the highest-scoring path per chunk)
     best_score: Dict[str, float] = {}
     best_candidate: Dict[str, dict] = {}
-
     related: List[dict] = []
     visited_edges: set = set()
 
-    # queue: (node_id, depth, path_confidence, path_edges)
     queue: deque = deque()
     for anchor in anchors:
         queue.append((anchor.node_id, 0, 1.0, []))
@@ -76,30 +83,35 @@ def graph_retrieve(
 
         # ── Score and collect child CHUNK evidence ────────────────────────────
         if node.get("node_type") == "CHUNK" and depth > 0:
-            extra_raw = node.get("extra_json") or "{}"
             try:
-                extra = json.loads(extra_raw)
+                extra = json.loads(node.get("extra_json") or "{}")
             except Exception:
                 extra = {}
 
             if extra.get("chunk_type") == "child":
                 hop_penalty = HOP_PENALTY ** depth
 
-                # Filter boost
+                # Filter boosts
                 boost = 1.0
                 if filters.get("module") and node.get("module") == filters["module"]:
                     boost *= 1.2
                 if filters.get("version") and node.get("version") == filters["version"]:
                     boost *= 1.1
+                # [PARTIAL-1] doc_type boost
+                if filters.get("doc_type") and node.get("doc_type") == filters["doc_type"]:
+                    boost *= 1.15
 
                 final_score = round(path_conf * hop_penalty * boost, 6)
 
                 if final_score > best_score.get(node_id, -1):
                     best_score[node_id] = final_score
+                    # [BUG-1] FIX: stamp provenance="graph" on every graph candidate
                     best_candidate[node_id] = {
                         **node,
                         "score": final_score,
                         "path_confidence": round(path_conf, 6),
+                        "provenance": "graph",          # ← THIS WAS MISSING
+                        "needs_confirmation": False,
                         "hops": depth,
                         "path_edges": path_edges,
                     }
@@ -117,8 +129,10 @@ def graph_retrieve(
 
             new_conf = path_conf * edge["confidence"]
             new_path = path_edges + [{
-                "src": node_id, "rel": edge["rel_type"],
-                "dst": dst_id, "conf": edge["confidence"],
+                "src": node_id,
+                "rel": edge["rel_type"],
+                "dst": dst_id,
+                "conf": edge["confidence"],
             }]
             if dst_id not in queued or new_conf > best_score.get(dst_id, -1):
                 queued.add(dst_id)
@@ -140,8 +154,11 @@ def graph_retrieve(
 
             new_conf = path_conf * edge["confidence"]
             new_path = path_edges + [{
-                "src": src_id, "rel": edge["rel_type"],
-                "dst": node_id, "conf": edge["confidence"], "direction": "reverse",
+                "src": src_id,
+                "rel": edge["rel_type"],
+                "dst": node_id,
+                "conf": edge["confidence"],
+                "direction": "reverse",
             }]
             if src_id not in queued:
                 queued.add(src_id)
@@ -156,7 +173,6 @@ def graph_retrieve(
     # ── Rank child evidence by score DESC ─────────────────────────────────────
     ranked = sorted(best_candidate.values(), key=lambda x: x["score"], reverse=True)
 
-    # Build trace paths
     trace_paths = [
         {
             "why": f"evidence via task={task}",

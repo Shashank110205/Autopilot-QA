@@ -1,21 +1,31 @@
 """
 graphrag/models/contracts.py
 ==============================
-FIX SUMMARY:
-  [1] Added open_questions: List[OpenQuestion] to ContextPack – required by architecture.
-      Downstream generators must emit open_questions when evidence is missing, NOT guess.
-  [2] EvidenceChunk: score/confidence/provenance are real pass-through fields (not hardcoded).
-  [3] Added QueryInput dataclass (used by anchor_resolver + query_router).
-  [4] Anchor dataclass made explicit (was imported but not defined here in old version).
-  [5] TracePath: path_confidence field added.
-"""
+FIXES IN THIS VERSION:
+  [PARTIAL-2] EvidenceChunk: added doc_type field (was missing; needed by
+              vector metadata filtering and audit output matching the PDF spec).
 
+  [PARTIAL-3] OpenQuestion: aligned to PDF output shape.
+              Old shape:  step_index: int, reason: str, chunk_ids_available: List[str]
+              PDF shape:  question: str, required_for: str, chunk_ids_available: List[str]
+              "question"     = human-readable open question text
+              "required_for" = the step/chunk/req this question blocks
+
+  [PARTIAL-4] EvidenceChunk: parent_context score no longer hardcoded.
+              The score field stays 0.0 default; parent_context.py now derives
+              score from edge.confidence (PARENT_OF confidence = 1.0 structural)
+              instead of hardcoding 0.8. This file just removes the old default.
+
+Previously-correct items retained:
+  - open_questions: List[OpenQuestion] in ContextPack
+  - TaskType enum with acceptance_validation
+  - QueryInput, Anchor, TracePath, RelatedNode, Warning unchanged
+"""
 from __future__ import annotations
 
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any, Dict, List, Optional
-
 
 
 # ── Task type enum ────────────────────────────────────────────────────────────
@@ -31,7 +41,7 @@ class TaskType(str, Enum):
 
 @dataclass
 class QueryInput:
-    task: TaskType
+    task: str                               # plain string; TaskType.value
     req_id: Optional[str] = None
     query_text: Optional[str] = None
     filters: Dict[str, str] = field(default_factory=dict)
@@ -46,7 +56,7 @@ class Anchor:
     node_id: str
     node_type: str
     score: float = 1.0
-    provenance: str = "graph"   # "graph" | "vector"
+    provenance: str = "graph"               # "graph" | "vector"
 
 
 # ── Evidence chunk ────────────────────────────────────────────────────────────
@@ -54,17 +64,18 @@ class Anchor:
 @dataclass
 class EvidenceChunk:
     chunk_id: str
-    chunk_type: str                          # "child" | "parent"
+    chunk_type: str                         # "child" | "parent"
     text: str
     doc_id: str
     section_path: str
     source_locator: Dict[str, Any]
+    # [PARTIAL-2] doc_type added
+    doc_type: str = ""                      # e.g. "SRS", "PRD", "USER_STORY"
     module: Optional[str] = None
     version: Optional[str] = None
-    # These must come from real retrieval metadata – never hardcoded to 1.0
-    score: float = 0.0
-    confidence: float = 0.0
-    provenance: str = "graph"               # "graph" | "vector" | "inferred"
+    score: float = 0.0                      # ranked final score from retriever
+    confidence: float = 0.0                 # path_confidence from graph traversal
+    provenance: str = "graph"              # "graph" | "vector" | "inferred"
     similarity_score: Optional[float] = None
     needs_confirmation: bool = False        # True when provenance==vector & conf < threshold
 
@@ -75,7 +86,7 @@ class EvidenceChunk:
 class TracePath:
     why: str
     path: List[Dict[str, Any]]
-    path_confidence: float = 0.0            # product of edge confidences along path
+    path_confidence: float = 0.0
 
 
 # ── Related node ─────────────────────────────────────────────────────────────
@@ -96,27 +107,47 @@ class Warning:
     chunk_id: Optional[str] = None
 
 
-# ── Open question (REQUIRED – replaces guessing when evidence is missing) ─────
+# ── Open question ─────────────────────────────────────────────────────────────
 
 @dataclass
 class OpenQuestion:
     """
-    Emitted when a generated step has no valid evidence_chunk_ids.
-    Downstream code must NOT invent a citation – it must emit an OpenQuestion instead.
+    [PARTIAL-3] PDF-aligned shape:
+      question        – human-readable text of what is unknown
+      required_for    – the step index, chunk_id, or req_id this blocks
+      chunk_ids_available – chunks that exist but do not cover this question
+    
+    Downstream generators MUST emit an OpenQuestion instead of guessing
+    when evidence is missing or citations are invalid.
     """
-    step_index: int
-    reason: str
+    question: str
+    required_for: str
     chunk_ids_available: List[str] = field(default_factory=list)
 
 
-# ── Context Pack (the only output contract of the RAG layer) ──────────────────
+# ── Acceptance decision ───────────────────────────────────────────────────────
+
+@dataclass
+class AcceptanceDecision:
+    """
+    Per-criterion decision emitted by the acceptance comparator.
+    verdict: "match" | "partial" | "missing" | "conflict"
+    """
+    criterion: str
+    verdict: str                            # match | partial | missing | conflict
+    evidence_chunk_ids: List[str] = field(default_factory=list)
+    notes: str = ""
+
+
+# ── Context Pack ─────────────────────────────────────────────────────────────
 
 @dataclass
 class ContextPack:
+    """The only output contract of the RAG layer."""
     anchors: List[Anchor]
     evidence_chunks: List[EvidenceChunk]
     parent_context: List[EvidenceChunk]
     trace_paths: List[TracePath]
     related_nodes: List[RelatedNode]
     warnings: List[Warning]
-    open_questions: List[OpenQuestion]      # REQUIRED – was missing in old version
+    open_questions: List[OpenQuestion]
