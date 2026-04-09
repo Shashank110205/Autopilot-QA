@@ -2,28 +2,26 @@
 graphrag/cli/query_graph.py
 =============================
 FIXES IN THIS VERSION:
-  [PARTIAL-6] Normalized graph-first fusion replaces the simple sort.
-              Old: sorted by (provenance=="graph", score) – graph always wins regardless
-                   of actual score difference, vector items with very high similarity
-                   could be buried below low-confidence graph items.
-              New: graph candidates get a graph_bias bonus (default +0.3) added to
-                   their score before merging, then all candidates sort by adjusted score.
-                   This preserves graph-first bias while still allowing high-confidence
-                   vector evidence to surface when graph evidence is sparse.
+  [BUG-4] _debug_report() and _impact_report() now emit an explicit warning
+          when the graph contains no RUN or DEFECT nodes, explaining that
+          --runs / --defects must be provided to build_graph.py to populate
+          execution-trace data. Previously the reporters returned empty
+          results silently.
 
-  [PARTIAL-7] acceptance_validation: real AcceptanceComparator added.
-              For each evidence chunk, compares against anchor CRU's acceptance_criteria
-              and emits per-criterion decisions (match/partial/missing/conflict).
-              Open questions are generated for criteria with no evidence.
-
-  [BUG-1/2] build_embeddings now passes manifest_dir so embedding_manifest.json
-              is written to the --out directory on --rebuild-emb.
+  [BUG-5] _acceptance_report() acceptance comparator replaces the fragile
+          word-overlap heuristic (≥50 % raw word match) with embedding cosine
+          similarity using the same SentenceTransformer model already in the
+          stack (sentence-transformers/all-MiniLM-L6-v2).
+          Thresholds: cosine ≥ 0.75 → match, ≥ 0.50 → partial, < 0.50 → missing.
+          This is consistent with the rest of the retrieval pipeline and produces
+          semantically meaningful verdicts rather than lexical ones.
 
 Previously-correct fixes retained:
-  - SUPPORTED_BY typo fixed ("SUPPORTED_BY" not "SUPPORTEDBY")
-  - acceptance_validation task routable
-  - open_questions in context_pack_to_dict
-  - debug/impact reporters
+  - [PARTIAL-6] Normalized graph-first fusion
+  - [PARTIAL-7] AcceptanceComparator structure (criterion loop, open_questions)
+  - [BUG-1/2] build_embeddings manifest_dir
+  - SUPPORTED_BY typo fix, open_questions in context_pack_to_dict
+  - debug/impact reporter structure
   - real score/confidence/provenance from graph_result
 """
 from __future__ import annotations
@@ -41,7 +39,7 @@ from graphrag.retrieval.graph_retriever import graph_retrieve
 from graphrag.retrieval.query_router import route_query
 from graphrag.retrieval.vector_fallback import vector_search
 from graphrag.storage.graph_store import GraphStore
-from graphrag.vector.vector_index import build_embeddings
+from graphrag.vector.vector_index import build_embeddings, MODEL_NAME
 
 
 # ── Serialisation ─────────────────────────────────────────────────────────────
@@ -72,7 +70,7 @@ def context_pack_to_dict(pack) -> dict:
     }
 
 
-# ── Vector fallback gate (SUPPORTED_BY typo fixed in prev round, kept) ────────
+# ── Vector fallback gate ───────────────────────────────────────────────────────
 
 def should_trigger_vector_fallback(
     graph_result: dict,
@@ -154,33 +152,82 @@ def merge_graph_and_vector(
     return graph_result
 
 
+# ── [BUG-4] Execution-node presence check helper ──────────────────────────────
+
+def _has_execution_nodes(graph_store: GraphStore) -> bool:
+    """Return True if the graph contains any RUN or DEFECT nodes."""
+    stats = graph_store.stats()
+    node_counts = stats.get("nodes", {})
+    return bool(node_counts.get("RUN", 0) or node_counts.get("DEFECT", 0))
+
+
+_EXECUTION_NODES_WARNING = (
+    "No RUN or DEFECT nodes found in the graph. "
+    "Execution-trace data (EXECUTED_AS, RAISED_AS, AFFECTS edges) is absent. "
+    "To populate this data, supply --runs and --defects to build_graph.py and rebuild the graph."
+)
+
+
 # ── Task reporters ────────────────────────────────────────────────────────────
 
-def _debug_report(context_pack_dict: dict) -> dict:
+def _debug_report(context_pack_dict: dict, graph_store: GraphStore) -> dict:
     related = context_pack_dict.get("related_nodes", [])
     defects = [r for r in related if r.get("node_type") in ("DEFECT", "FAILURE", "RUN")]
+
+    warnings = list(context_pack_dict.get("warnings", []))
+
+    # [BUG-4] Warn explicitly when execution nodes are absent so the caller
+    # understands why trace data is empty rather than getting silent emptiness.
+    if not defects and not _has_execution_nodes(graph_store):
+        warnings.append(_EXECUTION_NODES_WARNING)
+
     return {
         "task": "debug",
         "status": "ok",
         "trace_to_failure": context_pack_dict.get("trace_paths", []),
         "related_defects_and_runs": defects,
-        "warnings": context_pack_dict.get("warnings", []),
+        "warnings": warnings,
         "open_questions": context_pack_dict.get("open_questions", []),
     }
 
 
-def _impact_report(context_pack_dict: dict) -> dict:
+def _impact_report(context_pack_dict: dict, graph_store: GraphStore) -> dict:
+    affected = context_pack_dict.get("related_nodes", [])
+
+    warnings = list(context_pack_dict.get("warnings", []))
+
+    # [BUG-4] Same check: AFFECTS edges require DEFECT nodes built from --defects.
+    if not affected and not _has_execution_nodes(graph_store):
+        warnings.append(_EXECUTION_NODES_WARNING)
+
     return {
         "task": "impact",
         "status": "ok",
-        "affected_nodes": context_pack_dict.get("related_nodes", []),
+        "affected_nodes": affected,
         "evidence_chunks": context_pack_dict.get("evidence_chunks", []),
-        "warnings": context_pack_dict.get("warnings", []),
+        "warnings": warnings,
         "open_questions": context_pack_dict.get("open_questions", []),
     }
 
 
-# ── [PARTIAL-7] Acceptance comparator ────────────────────────────────────────
+# ── [BUG-5] Embedding model singleton for acceptance comparator ───────────────
+
+_ACCEPTANCE_MODEL = None
+
+
+def _get_acceptance_model():
+    global _ACCEPTANCE_MODEL
+    if _ACCEPTANCE_MODEL is None:
+        from sentence_transformers import SentenceTransformer
+        _ACCEPTANCE_MODEL = SentenceTransformer(MODEL_NAME)
+    return _ACCEPTANCE_MODEL
+
+
+_MATCH_THRESHOLD   = 0.75   # cosine ≥ this → match
+_PARTIAL_THRESHOLD = 0.50   # cosine ≥ this → partial, else missing
+
+
+# ── [PARTIAL-7] + [BUG-5] Acceptance comparator ──────────────────────────────
 
 def _acceptance_report(
     context_pack_dict: dict,
@@ -188,25 +235,42 @@ def _acceptance_report(
     anchors: list,
 ) -> dict:
     """
-    Real acceptance comparator: for each anchor CRU, retrieve its
-    acceptance_criteria and compare against evidence chunks.
+    Acceptance comparator using embedding cosine similarity.
+
+    For each anchor CRU, retrieve its acceptance_criteria and compare each
+    criterion against every evidence chunk using the SentenceTransformer model
+    already present in the stack (sentence-transformers/all-MiniLM-L6-v2).
 
     Verdict per criterion:
-      match   – at least one evidence chunk clearly covers this criterion
-      partial – evidence exists but may not fully satisfy
-      missing – no evidence found at all
-      conflict – evidence contradicts the criterion (detected by keyword heuristic)
+      match   – cosine(criterion, chunk) ≥ 0.75 for at least one chunk
+      partial – best cosine ≥ 0.50 but < 0.75
+      missing – best cosine < 0.50 across all chunks
+      (conflict detection is intentionally left for a future pass; semantic
+       similarity alone cannot reliably detect contradiction.)
+
+    [BUG-5] Replaces the raw word-overlap heuristic (≥50 % word match) which
+    produced false matches on high-frequency words and missed paraphrased evidence.
     """
     import json as _json
+    import numpy as np
 
     decisions: List[dict] = []
     open_questions: List[dict] = []
-    evidence_ids = [
-        c.get("chunk_id") for c in context_pack_dict.get("evidence_chunks", [])
-    ]
+    evidence_chunks = context_pack_dict.get("evidence_chunks", [])
+    evidence_ids = [c.get("chunk_id") for c in evidence_chunks]
+
+    # Pre-encode all evidence chunk texts in one batch for efficiency.
+    # Fall back gracefully if there are no chunks.
+    chunk_texts = [c.get("text", "") for c in evidence_chunks]
+    if chunk_texts:
+        model = _get_acceptance_model()
+        chunk_vecs = model.encode(chunk_texts, normalize_embeddings=True)  # (N, dim)
+    else:
+        chunk_vecs = None
 
     for anchor in anchors:
-        node = graph_store.get_node(anchor.node_id if hasattr(anchor, "node_id") else anchor["node_id"])
+        node_id = anchor.node_id if hasattr(anchor, "node_id") else anchor["node_id"]
+        node = graph_store.get_node(node_id)
         if not node:
             continue
 
@@ -224,35 +288,50 @@ def _acceptance_report(
             })
             continue
 
-        # Split criteria into individual lines/items
+        # Normalise criteria to a flat list of strings.
         if isinstance(criteria_raw, list):
-            criteria = criteria_raw
+            criteria = [str(c).strip() for c in criteria_raw if str(c).strip()]
         else:
             criteria = [c.strip() for c in str(criteria_raw).split("\n") if c.strip()]
 
-        evidence_texts = [
-            c.get("text", "") for c in context_pack_dict.get("evidence_chunks", [])
-        ]
+        # Encode all criteria in one batch.
+        if criteria and chunk_vecs is not None:
+            model = _get_acceptance_model()
+            crit_vecs = model.encode(criteria, normalize_embeddings=True)  # (M, dim)
+            # Cosine similarity matrix: (M, N) — rows=criteria, cols=chunks.
+            # Vectors are L2-normalised so dot product == cosine similarity.
+            sim_matrix = crit_vecs @ chunk_vecs.T
+        else:
+            sim_matrix = None
 
-        for criterion in criteria:
-            criterion_lower = criterion.lower()
-            supporting_ids = []
+        for c_idx, criterion in enumerate(criteria):
+            supporting_ids: List[str] = []
             verdict = "missing"
 
-            for chunk in context_pack_dict.get("evidence_chunks", []):
-                chunk_text = chunk.get("text", "").lower()
-                # Simple keyword overlap heuristic
-                words = set(criterion_lower.split())
-                overlap = len(words & set(chunk_text.split()))
-                coverage = overlap / max(len(words), 1)
+            if sim_matrix is not None and len(evidence_chunks) > 0:
+                sims = sim_matrix[c_idx]          # cosine scores for this criterion
+                best_sim = float(np.max(sims))
 
-                if coverage >= 0.5:
-                    supporting_ids.append(chunk["chunk_id"])
+                if best_sim >= _MATCH_THRESHOLD:
                     verdict = "match"
-                elif coverage >= 0.2:
-                    supporting_ids.append(chunk["chunk_id"])
-                    if verdict == "missing":
-                        verdict = "partial"
+                elif best_sim >= _PARTIAL_THRESHOLD:
+                    verdict = "partial"
+                # else verdict stays "missing"
+
+                # Collect all chunk IDs that clear the partial threshold.
+                for ch_idx, sim in enumerate(sims):
+                    if sim >= _PARTIAL_THRESHOLD:
+                        cid = evidence_chunks[ch_idx].get("chunk_id")
+                        if cid:
+                            supporting_ids.append(cid)
+
+                notes = (
+                    f"cosine similarity: best={best_sim:.3f} "
+                    f"across {len(evidence_chunks)} chunks "
+                    f"(match≥{_MATCH_THRESHOLD}, partial≥{_PARTIAL_THRESHOLD})"
+                )
+            else:
+                notes = "no evidence chunks available for comparison"
 
             if verdict == "missing":
                 open_questions.append({
@@ -265,7 +344,7 @@ def _acceptance_report(
                 criterion=criterion,
                 verdict=verdict,
                 evidence_chunk_ids=supporting_ids,
-                notes=f"coverage heuristic on {len(evidence_texts)} chunks",
+                notes=notes,
             ))
 
     return {
@@ -274,7 +353,7 @@ def _acceptance_report(
         "decisions": [to_serializable(d) for d in decisions],
         "open_questions": open_questions,
         "warnings": context_pack_dict.get("warnings", []),
-        "evidence_chunks": context_pack_dict.get("evidence_chunks", []),
+        "evidence_chunks": evidence_chunks,
     }
 
 
@@ -302,7 +381,6 @@ def main():
 
     try:
         if args.rebuild_emb:
-            # [PARTIAL-5c] pass manifest_dir so embedding_manifest.json lands in --out dir
             build_embeddings(graph_store, force_rebuild=True, manifest_dir=out_dir)
 
         payload = {
@@ -355,13 +433,15 @@ def main():
                 generated_response = {"task": args.task, "status": "generation_failed", "error": str(e)}
 
         elif args.task == "debug":
-            generated_response = _debug_report(context_pack_dict)
+            # [BUG-4] pass graph_store so reporter can check for RUN/DEFECT nodes
+            generated_response = _debug_report(context_pack_dict, graph_store)
 
         elif args.task == "impact":
-            generated_response = _impact_report(context_pack_dict)
+            # [BUG-4] pass graph_store so reporter can check for RUN/DEFECT nodes
+            generated_response = _impact_report(context_pack_dict, graph_store)
 
         elif args.task == "acceptance_validation":
-            # [PARTIAL-7] real comparator
+            # [BUG-5] cosine-similarity comparator
             generated_response = _acceptance_report(context_pack_dict, graph_store, anchors)
 
         else:
