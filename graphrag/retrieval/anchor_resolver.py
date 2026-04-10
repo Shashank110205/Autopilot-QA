@@ -1,19 +1,12 @@
 """
 graphrag/retrieval/anchor_resolver.py
 =======================================
-FIX SUMMARY:
-  [1] Vector search now includes "CRU" in node_types (was "REQ" only).
-      Builders store requirement anchors as CRU; searching REQ causes silent
-      retrieval drift because the graph has no REQ nodes in the active path.
-  [2] Preference order: CRU anchors first, then CHUNK – unchanged logic but
-      correct types now.
 """
 from __future__ import annotations
 
 from typing import List
 
 from graphrag.models.contracts import Anchor, QueryInput
-from graphrag.retrieval.vector_fallback import vector_search
 from graphrag.storage.graph_store import GraphStore
 
 
@@ -33,6 +26,9 @@ def resolve_anchors(graph_store: GraphStore, query: QueryInput) -> List[Anchor]:
     # ── Vector search ─────────────────────────────────────────────────────────
     if not query.query_text:
         raise ValueError("Either req_id or query_text must be provided to resolve anchors")
+
+    # Lazy import – SentenceTransformer not loaded unless this branch runs
+    from graphrag.retrieval.vector_fallback import vector_search  # noqa: PLC0415
 
     # FIX: search CRU (active canonical type) + CHUNK, NOT "REQ" + "CHUNK"
     candidates = vector_search(

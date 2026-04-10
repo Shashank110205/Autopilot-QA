@@ -43,7 +43,7 @@ def _get_model():
 def vector_fallback(
     graph_store: GraphStore,
     query_text: str,
-    k: int = 10,
+    top_k: int = 10,
     node_types: Optional[List[str]] = None,
     filters: Optional[Dict[str, Any]] = None,
 ) -> List[Dict[str, Any]]:
@@ -84,7 +84,7 @@ def vector_fallback(
     scores = emb_matrix @ query_vec            # shape: (N,)
 
     # ── 5. Rank and return top-k ──────────────────────────────────────────────
-    top_indices = np.argsort(scores)[::-1][:k]
+    top_indices = np.argsort(scores)[::-1][:top_k]
 
     results = []
     for idx in top_indices:

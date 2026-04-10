@@ -237,7 +237,10 @@ class GraphStore:
 
         # [PARTIAL-5b] FIX: doc_type now included in filter keys
         for key in ("module", "version", "doc_type"):
-            val = filters.get(key) or filters.get("doctype") if key == "doc_type" else filters.get(key)
+            if key == "doc_type":
+                val = filters.get("doc_type") or filters.get("doctype")
+            else:
+                val = filters.get(key)
             if val:
                 clauses.append(f"{key} = ?")
                 params.append(val)

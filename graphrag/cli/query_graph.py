@@ -37,9 +37,9 @@ from graphrag.models.contracts import AcceptanceDecision, OpenQuestion
 from graphrag.retrieval.anchor_resolver import resolve_anchors
 from graphrag.retrieval.graph_retriever import graph_retrieve
 from graphrag.retrieval.query_router import route_query
-from graphrag.retrieval.vector_fallback import vector_search
 from graphrag.storage.graph_store import GraphStore
-from graphrag.vector.vector_index import build_embeddings, MODEL_NAME
+#NOTE: vector_fallback, vector_index, and sentence_transformers are NOT
+#       imported here. They are imported lazily at the call site.
 
 
 # ── Serialisation ─────────────────────────────────────────────────────────────
@@ -380,7 +380,9 @@ def main():
     graph_store = GraphStore(str(Path(args.db)))
 
     try:
+        # Lazy import: only load vector/ML stack when --rebuild-emb is passed
         if args.rebuild_emb:
+            from graphrag.vector.vector_index import build_embeddings  # noqa: PLC0415
             build_embeddings(graph_store, force_rebuild=True, manifest_dir=out_dir)
 
         payload = {
@@ -403,6 +405,8 @@ def main():
         )
 
         if should_trigger_vector_fallback(graph_result):
+            # Lazy import: only load vector stack when fallback is actually needed
+            from graphrag.retrieval.vector_fallback import vector_search  # noqa: PLC0415
             vector_hits = vector_search(
                 graph_store=graph_store,
                 query_text=query.query_text or query.req_id or "",
@@ -447,12 +451,21 @@ def main():
         else:
             generated_response = {"task": args.task, "status": "unsupported_task"}
 
+        output_data = {
+            "context_pack": context_pack_dict,
+            "result": to_serializable(generated_response),
+        }
+
         if args.json:
-            print(json.dumps({
-                "context_pack": context_pack_dict,
-                "result": to_serializable(generated_response),
-            }, indent=2, default=str))
-            return
+            print(json.dumps(output_data, indent=2, default=str))
+
+        # ALWAYS SAVE
+        Path(args.out).write_text(
+            json.dumps(output_data, indent=2, default=str),
+            encoding="utf-8"
+        )
+
+        print(f"✅ Output saved: {args.out}")
 
         Path(args.out).write_text(
             json.dumps(context_pack_dict, indent=2, default=str), encoding="utf-8"

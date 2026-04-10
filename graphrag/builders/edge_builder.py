@@ -1,16 +1,6 @@
 """
 graphrag/builders/edge_builder.py
 ===================================
-FIX SUMMARY (audit items addressed):
-  [1] REMOVED CRU → parent CHUNK SUPPORTED_BY edge.
-      Parents are connected via PARENT_OF only. Building SUPPORTED_BY to a parent
-      chunk makes broad section headings compete with atomic clause evidence as primary
-      proof — directly violating the architecture's child-first rule.
-  [2] ALL extra_json dicts now include 'confidence_reason' (enforced by GraphStore.insert_edge).
-  [3] build_test_edges: added EVIDENCE_FOR edges (TEST → CHUNK) from evidence_chunk_ids.
-  [4] Added build_execution_edges() for TEST→RUN (EXECUTED_AS) and RUN→DEFECT (RAISED_AS).
-  [5] Added build_affects_edges() for DEFECT→CRU (AFFECTS) when triaged.
-  [6] Removed stray top-level print() statement that was firing on module import.
 """
 
 from __future__ import annotations
@@ -190,6 +180,25 @@ def build_parent_of_edges(graph_store, chunked_crus_path: str) -> Dict:
 
 # ── TESTS + EVIDENCE_FOR (TEST → CRU, TEST → CHUNK) ──────────────────────────
 
+def _get_supported_by_chunk_ids(graph_store, cru_id: str) -> list:
+    """
+    Return a list of CHUNK node IDs that the given CRU points to via SUPPORTED_BY edges.
+
+    Uses GraphStore.get_edges_from(node_id, rel_types) directly — the existing
+    method on graphrag/storage/graph_store.py that queries:
+        SELECT * FROM edges WHERE src_id=? AND rel_type IN (?)
+
+    Returns only dst_ids whose dst_type is "CHUNK" as a safety guard, so a
+    future schema change that adds non-CHUNK SUPPORTED_BY targets cannot
+    accidentally create bad EVIDENCE_FOR edges.
+    """
+    edges = graph_store.get_edges_from(cru_id, rel_types=["SUPPORTED_BY"])
+    return [
+        edge["dst_id"]
+        for edge in edges
+        if edge.get("dst_type") == "CHUNK" and edge.get("dst_id")
+    ]
+
 def build_test_edges(graph_store, test_file_path: str) -> Dict:
     """
     Insert:
@@ -201,7 +210,8 @@ def build_test_edges(graph_store, test_file_path: str) -> Dict:
 
     all_tests = data.get("phase1_test_cases", []) + data.get("phase2_test_cases", [])
     tests_edges = 0
-    evidence_for_edges = 0
+    evidence_for_edges_explicit = 0
+    evidence_for_edges_derived = 0
     skipped = 0
 
     for test in all_tests:
@@ -233,8 +243,9 @@ def build_test_edges(graph_store, test_file_path: str) -> Dict:
         })
         tests_edges += 1
 
-        # TEST → CHUNK (EVIDENCE_FOR) – supports expected-result grounding
-        for chunk_id in test.get("evidence_chunk_ids", []):
+        # ── EVIDENCE_FOR: Pass A – explicit chunk IDs from test JSON ──────────
+        explicit_chunk_ids: list = test.get("evidence_chunk_ids") or []
+        for chunk_id in explicit_chunk_ids:
             if not graph_store.node_exists(chunk_id):
                 continue
             graph_store.insert_edge({
@@ -246,18 +257,47 @@ def build_test_edges(graph_store, test_file_path: str) -> Dict:
                 "confidence": 0.90,
                 "evidence_chunk_id": chunk_id,
                 "extra_json": {
-                    "kind": "expected_result_grounded",
+                    "kind": "explicit_evidence",
                     "confidence_reason": "test_expected_result_references_chunk",
                 },
             })
-            evidence_for_edges += 1
+            evidence_for_edges_explicit += 1
 
+        # ── EVIDENCE_FOR: Pass B – derive from CRU's SUPPORTED_BY edges ───────
+        # Only runs when the test JSON did not supply explicit chunk IDs.
+        # Traversal: TEST.req_id → CRU --SUPPORTED_BY--> CHUNK
+        if not explicit_chunk_ids:
+            derived_chunk_ids = _get_supported_by_chunk_ids(graph_store, req_id)
+            for chunk_id in derived_chunk_ids:
+                if not graph_store.node_exists(chunk_id):
+                    continue
+                graph_store.insert_edge({
+                    "src_id": test_id,
+                    "src_type": "TEST",
+                    "rel_type": "EVIDENCE_FOR",
+                    "dst_id": chunk_id,
+                    "dst_type": "CHUNK",
+                    "confidence": 0.80,
+                    "evidence_chunk_id": chunk_id,
+                    "extra_json": {
+                        "kind": "derived_evidence",
+                        "confidence_reason": "derived_from_requirement_supported_by",
+                    },
+                })
+                evidence_for_edges_derived += 1
+
+    evidence_for_total = evidence_for_edges_explicit + evidence_for_edges_derived
     print(
-        f"[TEST EDGES] TESTS={tests_edges}, EVIDENCE_FOR={evidence_for_edges}, skipped={skipped}"
+        f"[TEST EDGES] TESTS={tests_edges}, "
+        f"EVIDENCE_FOR={evidence_for_total} "
+        f"(explicit={evidence_for_edges_explicit}, derived={evidence_for_edges_derived}), "
+        f"skipped={skipped}"
     )
     return {
         "tests_edges_written": tests_edges,
-        "evidence_for_edges_written": evidence_for_edges,
+        "evidence_for_edges_written": evidence_for_total,
+        "evidence_for_explicit": evidence_for_edges_explicit,
+        "evidence_for_derived": evidence_for_edges_derived,
         "skipped": skipped,
     }
 

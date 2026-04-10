@@ -1,0 +1,41 @@
+{
+  "status": "success",
+  "timestamp_utc": "2026-04-10T13:02:35.402084+00:00",
+  "inputs": {
+    "db": "graphrag\\output\\graphrag.duckdb",
+    "cru": "03_CRU_Normalization\\output\\cru_units.json",
+    "chunks": "04_Semantic_Chunking_and_Domain_Tagging\\output\\chunked_crus_with_domain.json",
+    "tests": "05_AI_powered_TestCaseGeneration\\output\\optimized_test_cases_20260403_225627.json",
+    "runs": null,
+    "defects": null
+  },
+  "stats": {
+    "nodes": {
+      "CRU": 108,
+      "TEST": 876,
+      "CHUNK": 155
+    },
+    "edges": {
+      "EVIDENCE_FOR": 876,
+      "PARENT_OF": 108,
+      "SUPPORTED_BY": 108,
+      "TESTS": 876
+    },
+    "embeddings": 263
+  },
+  "edge_reports": [
+    {
+      "supported_by_edges_written": 108
+    },
+    {
+      "parent_of_edges_written": 108
+    },
+    {
+      "tests_edges_written": 876,
+      "evidence_for_edges_written": 876,
+      "evidence_for_explicit": 0,
+      "evidence_for_derived": 876,
+      "skipped": 0
+    }
+  ]
+}
