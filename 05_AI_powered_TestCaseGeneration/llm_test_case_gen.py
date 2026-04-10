@@ -51,7 +51,6 @@ class TestCase:
     srs_section: str = ""
     depends_on: List[str] = field(default_factory=list)
     traceability: Dict[str, Any] = field(default_factory=dict)
-    evidence_chunk_ids: List[str] = field(default_factory=list)
 
 
 # ============================================
@@ -501,8 +500,7 @@ class OptimizedHybridEngine:
                 generation_phase='fast_batch',
                 srs_section=tc.get('srs_section', ''),
                 depends_on=tc.get('depends_on', []),
-                traceability=requirement.get('traceability', {}),
-                evidence_chunk_ids=requirement.get('_chunk_ids', []),
+                traceability=requirement.get('traceability', {})
             )
             test_cases.append(test_case)
             self.test_counter += 1
@@ -541,8 +539,7 @@ class OptimizedHybridEngine:
                     generation_phase='comprehensive',
                     srs_section=tc.get('srs_section', ''),
                     depends_on=tc.get('depends_on', []),
-                    traceability=requirement.get('traceability', {}),
-                    evidence_chunk_ids=requirement.get('_chunk_ids', []),
+                    traceability=requirement.get('traceability', {})
                 )
                 all_test_cases.append(test_case)
                 self.test_counter += 1
@@ -658,17 +655,6 @@ class OptimizedHybridGenerator:
         with open(self.input_file, 'r', encoding='utf-8') as f:
             self.data = json.load(f)
         
-        # Build reverse index: cru_id → [chunk_id, ...]
-        # Used to populate evidence_chunk_ids on generated test cases.
-        self._cru_to_chunk_ids: Dict[str, List[str]] = {}
-        for chunk in self.data.get('chunks', []):
-            chunk_id = chunk.get('chunk_id')
-            if not chunk_id:
-                continue
-            for cru_id in chunk.get('cru_ids', []):
-                if cru_id:
-                    self._cru_to_chunk_ids.setdefault(cru_id, []).append(chunk_id)
-
         # Calculate overlap
         total_instances = sum(len(chunk['crus']) for chunk in self.data['chunks'])
         unique_count = len(self._deduplicate_requirements())
@@ -693,13 +679,12 @@ class OptimizedHybridGenerator:
 
         for chunk in self.data['chunks']:
             for req in chunk['crus']:
+                print("DEBUG:", req.get('cru_id'))
                 cru_id = req.get('cru_id')
                 if cru_id and cru_id not in seen_req_ids:
                     req_copy = dict(req)
                     req_copy['capability_tags'] = chunk.get('capability_tags', [])
                     req_copy['application_domain'] = chunk.get('application_domain', [])
-                    # Carry chunk_id so evidence_chunk_ids can be set without a second lookup
-                    req_copy['_chunk_ids'] = self._cru_to_chunk_ids.get(cru_id, [])
                     all_requirements.append(req_copy)
                     seen_req_ids.add(cru_id)
 
