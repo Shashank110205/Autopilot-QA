@@ -11,8 +11,8 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-FAST_MODEL = "llama3:8b"
-DEEP_MODEL = "llama3:8b"
+FAST_MODEL = "devstral:latest"
+DEEP_MODEL = "devstral:latest"
 
 
 # ============================================
@@ -380,7 +380,7 @@ class EnhancedSRSValidator:
 # ============================================
 
 class OptimizedHybridEngine:
-    def __init__(self, model_name: str = "llama3:8b", prompts_file: str = "prompts.json"):
+    def __init__(self, model_name: str = "devstral:latest", prompts_file: str = "prompts.json"):
         self.model_name = model_name
         self.prompt_gen = EnhancedSRSPromptGenerator(prompts_file)
         self.validator = EnhancedSRSValidator()
@@ -637,7 +637,7 @@ class OptimizedHybridEngine:
 class OptimizedHybridGenerator:
     """Optimized SRS-aware hybrid test generator with deduplication"""
     
-    def __init__(self, input_file: str, model_name: str = "llama3:8b", prompts_file: str = "prompts.json"):
+    def __init__(self, input_file: str, model_name: str = "devstral:latest", prompts_file: str = "prompts.json"):
         self.input_file = input_file
         self.engine = OptimizedHybridEngine(model_name, prompts_file=prompts_file)
         self.data = None

@@ -155,7 +155,7 @@ class TestCaseExportEngine:
 
 def main():
     """Main execution"""
-    TEST_CASES_FILE = "../05_AI_powered_TestCaseGeneration/output/optimized_test_cases_20260403_225627.json"
+    TEST_CASES_FILE = "../05_AI_powered_TestCaseGeneration/output/llama3-8b/after/llama.json"
     VALIDATION_FILE = "../07_Validation_QA/validation_report.xlsx"
     RTM_FILE = "../06_RTM_Generation/rtm_report.xlsx"
     OUTPUT_DIR = "../08_Output_Integration"

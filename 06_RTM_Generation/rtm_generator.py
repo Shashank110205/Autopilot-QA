@@ -810,7 +810,7 @@ def main():
     print("\nStarting Requirements Traceability Matrix generation...\n")
     
     REQUIREMENTS_FILE = "../04_Semantic_Chunking_and_Domain_Tagging/output/chunked_crus_with_domain.json"
-    TEST_CASES_FILE = "../05_AI_powered_TestCaseGeneration/output/optimized_test_cases_20260403_225627.json"
+    TEST_CASES_FILE = "../05_AI_powered_TestCaseGeneration/output/llama3-8b/after/llama.json"
     DB_PATH = "../05_RTM_Generation/rtm_database.duckdb"
     EXCEL_OUTPUT = "../05_RTM_Generation/rtm_report.xlsx"
     HTML_OUTPUT = "../05_RTM_Generation/rtm_dashboard.html"
