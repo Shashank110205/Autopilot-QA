@@ -359,78 +359,150 @@ def _parse_single_block(
 
 def _repair_burst_misassignment(cau: dict, label_hits: list[tuple[int, str, str]]) -> None:
     """
-    Detect and repair the pdfminer burst-column misassignment where the
-    description and/or precondition text ends up prepended to test_steps.
+    Detect and repair TWO distinct pdfminer burst-column misassignment patterns.
 
-    Detection heuristic (generic, not domain-specific):
+    ── Pattern A: description / precondition text swept into test_steps ──────
+    Detection (generic):
       - One or more of {description, precondition} is empty.
       - test_steps is non-empty.
       - The first item in test_steps does NOT look like a step (no leading
-        digit+dot/paren, no bullet).  That is: it appears to be prose, not
-        a numbered instruction.
-      - The label_hits sequence confirms that the empty fields appeared
-        BEFORE test_steps in the document (i.e. they were in the burst
-        column and their values were swept into the next field's buffer).
-
+        digit/bullet) — it appears to be prose that was swept in by the burst.
+      - The empty fields appear BEFORE test_steps in the label_hits sequence.
     Repair:
-      Walk the test_steps items.  Assign items to fields in the order they
-      appear in label_hits, using the first step-like item (starts with a
-      digit or bullet) as the boundary that marks where the real steps begin.
-      Items before that boundary are redistributed to the preceding empty
-      fields in label_hits order.
+      Walk test_steps items.  Use the first genuinely step-like item (leading
+      digit or bullet) as the boundary.  Items before that boundary are
+      redistributed to the preceding empty fields in label_hits order.
+
+    ── Pattern B: status / actual_result swept into a later field ───────────
+    Detection (generic):
+      - status is empty (or falsy) after the standard pass.
+      - actual_result is empty, OR actual_result contains what looks like
+        test_steps text (i.e. it starts with a step-like token or is very long
+        and the real test_steps field is also populated from the same burst).
+      - Another non-empty text field that appears AFTER status in label_hits
+        starts with a valid STATUS_VALUES token — meaning the burst pushed
+        status text into that later field's buffer.
+    Repair:
+      Scan non-empty string fields that appear after the status label in
+      label_hits order.  If one starts with a STATUS token, extract that token
+      as the status and strip it from the field it landed in.  Then check
+      whether actual_result is empty or contains test_steps text and
+      redistribute accordingly.
+
+    Both repairs are driven by label_hits order and config.STATUS_VALUES —
+    zero domain-specific terms are hardcoded here.
     """
     STEP_START = re.compile(r'^\s*(?:\d+[.)]\s|[•\-*]\s)')
 
     fields_in_order = [f for (_, f, _) in label_hits]
-    empty_before_steps = [
-        f for f in fields_in_order
-        if f in ('description', 'precondition')
-        and (not cau.get(f) or cau[f] == [] or cau[f] == '')
-        and fields_in_order.index(f) < fields_in_order.index('test_steps')
-    ] if 'test_steps' in fields_in_order else []
 
-    if not empty_before_steps:
-        return  # nothing to repair
+    # ── Pattern A ─────────────────────────────────────────────────────────
+    if 'test_steps' in fields_in_order:
+        empty_before_steps = [
+            f for f in fields_in_order
+            if f in ('description', 'precondition')
+            and (not cau.get(f) or cau[f] == [] or cau[f] == '')
+            and fields_in_order.index(f) < fields_in_order.index('test_steps')
+        ]
 
-    steps = cau.get('test_steps', [])
-    if not steps:
+        if empty_before_steps:
+            steps = cau.get('test_steps', [])
+            if steps:
+                first_step_idx = next(
+                    (i for i, item in enumerate(steps) if STEP_START.match(item)),
+                    None,
+                )
+                if first_step_idx is not None and first_step_idx > 0:
+                    preamble = steps[:first_step_idx]
+                    cau['test_steps'] = steps[first_step_idx:]
+                    for field in empty_before_steps:
+                        if not preamble:
+                            break
+                        value = preamble.pop(0)
+                        if field == 'precondition':
+                            cau['precondition'] = [value] if value else []
+                        else:
+                            cau[field] = value
+                    if preamble:
+                        logger.warning(
+                            "burst-column repair (Pattern A): %d preamble item(s) "
+                            "could not be redistributed and were returned to "
+                            "test_steps for uat_id=%s",
+                            len(preamble), cau.get('uat_id', '?'),
+                        )
+                        cau['test_steps'] = preamble + cau['test_steps']
+
+    # ── Pattern B: status empty, status token stranded in a later field ───
+    # Only attempt if status is currently empty/unknown.
+    current_status = cau.get('status', '')
+    if current_status and current_status.upper() in config.STATUS_VALUES:
+        return  # status already correctly populated; nothing to do
+
+    if 'status' not in fields_in_order:
         return
 
-    # Find the index of the first genuine step item
-    first_step_idx = next(
-        (i for i, item in enumerate(steps) if STEP_START.match(item)),
-        None,
+    status_pos = fields_in_order.index('status')
+
+    # Build an ordered list of string fields that appear AFTER the status
+    # label in the document and currently hold non-empty string content.
+    status_token_re = re.compile(
+        r'(?:^|\s)(' + '|'.join(re.escape(sv) for sv in config.STATUS_VALUES) + r')(?:\s|$)',
+        re.IGNORECASE,
     )
 
-    if first_step_idx is None or first_step_idx == 0:
-        # Either everything looks like steps already, or nothing does —
-        # in both cases we cannot safely redistribute without guessing.
-        return
+    candidate_fields_after_status = [
+        f for f in fields_in_order[status_pos + 1:]
+        if f not in ('test_steps', 'precondition', 'req_ids')
+        and isinstance(cau.get(f), str)
+        and cau.get(f, '').strip()
+    ]
 
-    # Items before first_step_idx are prose that belongs to the earlier fields.
-    preamble = steps[:first_step_idx]
-    cau['test_steps'] = steps[first_step_idx:]
+    for field in candidate_fields_after_status:
+        field_text = cau[field].strip()
+        m = status_token_re.search(field_text)
+        if not m:
+            continue
 
-    # Redistribute preamble items to the empty fields in their document order.
-    # If there are more preamble items than empty fields, extras stay in
-    # test_steps (prepended back) rather than being silently lost.
-    for field in empty_before_steps:
-        if not preamble:
-            break
-        value = preamble.pop(0)
-        if field == 'precondition':
-            cau['precondition'] = [value] if value else []
-        else:
-            cau[field] = value
+        # Found a status token in this field — extract it.
+        found_status = m.group(1).upper()
+        # Strip the matched token from the field's text.
+        remaining = (field_text[:m.start()] + field_text[m.end():]).strip()
+        cau['status'] = found_status
+        cau[field] = remaining
 
-    if preamble:
-        # Couldn't place all preamble — put leftovers back at the front of steps
-        logger.warning(
-            "burst-column repair: %d preamble item(s) could not be redistributed "
-            "and were returned to test_steps for uat_id=%s",
-            len(preamble), cau.get('uat_id', '?'),
+        logger.debug(
+            "burst-column repair (Pattern B): status='%s' extracted from "
+            "field '%s' for uat_id=%s; remaining text='%s'",
+            found_status, field, cau.get('uat_id', '?'), remaining[:80],
         )
-        cau['test_steps'] = preamble + cau['test_steps']
+
+        # Secondary check: if actual_result is empty but test_steps text
+        # appears to have been swept into expected_result (or vice-versa),
+        # attempt to recover actual_result from whichever text field
+        # immediately follows status in the label_hits sequence.
+        actual = cau.get('actual_result', '').strip()
+        if not actual:
+            # Look for the field that immediately follows 'status' and is
+            # non-empty — treat it as the real actual_result if it appears
+            # BEFORE any other content field in the post-status sequence.
+            for candidate in candidate_fields_after_status:
+                candidate_val = cau.get(candidate, '').strip()
+                if candidate_val and candidate != field:
+                    # Only reassign if actual_result label appears before
+                    # this candidate in the document order.
+                    if ('actual_result' in fields_in_order and
+                            fields_in_order.index('actual_result') <
+                            fields_in_order.index(candidate)):
+                        cau['actual_result'] = candidate_val
+                        cau[candidate] = ''
+                        logger.debug(
+                            "burst-column repair (Pattern B): actual_result "
+                            "recovered from field '%s' for uat_id=%s",
+                            candidate, cau.get('uat_id', '?'),
+                        )
+                    break
+
+        break  # only process the first field that contains a status token
 
 
 def _assign_field(cau: dict, field: str, buffer: list[str], req_id_pattern: str) -> None:
@@ -476,11 +548,21 @@ def _split_list_items(lines: list[str]) -> list[str]:
 
 
 def _normalise_status(raw: str) -> str:
-    """Return the canonical STATUS token or empty string."""
+    """Return the canonical STATUS token or empty string.
+
+    Fix: verbose strings like "NOT TESTED – SCHEDULED FOR NEXT RELEASE CYCLE"
+    were not matching the clean 'NOT_TESTED' token because the loop checks
+    sv IN upper — 'NOT_TESTED' is not a substring of 'NOT TESTED – SCHEDULED...'.
+    Added explicit check for 'NOT TESTED' (space variant) before the fallback.
+    """
     upper = raw.strip().upper()
+    # Check clean token membership first (handles PASS, FAIL, PARTIAL, NOT_TESTED)
     for sv in config.STATUS_VALUES:
         if sv in upper:
             return sv
+    # Catch verbose NOT TESTED strings: "NOT TESTED – ...", "NOT TESTED (SCHEDULED...)"
+    if 'NOT TESTED' in upper or 'NOT_TESTED' in upper:
+        return 'NOT_TESTED'
     return upper if upper else ''
 
 

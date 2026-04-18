@@ -6,22 +6,27 @@
   "summary": {
     "total_cau_units": 31,
     "uat_status_breakdown": {
-      "PASS": 22,
-      "PARTIAL": 3,
-      "NOT TESTED – SCHEDULED FOR NEXT RELEASE CYCLE": 1,
-      "UNKNOWN": 4,
-      "NOT TESTED – MUST BE EXECUTED BEFORE NEXT RELEASE": 1
+      "PASS": 25,
+      "PARTIAL_COVERAGE": 3,
+      "NOT_TESTED": 2,
+      "NO_CRU_MATCH": 1
     },
     "coverage_classification": {
-      "FULL_COVERAGE": 27,
+      "FULL_COVERAGE": 25,
       "PARTIAL_COVERAGE": 3,
+      "NOT_TESTED": 2,
       "NO_CRU_MATCH": 1
     },
     "total_crus_linked": 107,
     "total_test_cases_linked": 869,
     "uncovered_crus_count": 5,
     "missing_req_ids_count": 6,
-    "coverage_rate_percent": 87.1
+    "coverage_rate_percent": 80.6,
+    "verdict_breakdown": {
+      "PARTIAL": 9,
+      "MATCH": 88,
+      "MISSING": 10
+    }
   },
   "cau_units": [
     {
@@ -62,7 +67,9 @@
           "actor": "User",
           "action": "A user should be able to download the mobile application through either an application store or similar service on the mobile phone.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "PARTIAL",
+          "overlap_ratio": 0.2
         },
         {
           "cru_id": "CRU-FR1-02",
@@ -70,7 +77,9 @@
           "actor": "User",
           "action": "The application should be free to download.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.6667
         },
         {
           "cru_id": "CRU-FR3-01",
@@ -78,7 +87,9 @@
           "actor": "User",
           "action": "Given that a user has downloaded the mobile application, then the user should be able to register through the mobile application.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.2857
         },
         {
           "cru_id": "CRU-FR3-02",
@@ -86,7 +97,9 @@
           "actor": "User",
           "action": "The user must provide user-name, password and e-mail address.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MISSING",
+          "overlap_ratio": 0.0
         },
         {
           "cru_id": "CRU-FR3-03",
@@ -94,7 +107,9 @@
           "actor": "User",
           "action": "The user can choose to provide a regularly used phone number.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MISSING",
+          "overlap_ratio": 0.0
         }
       ],
       "linked_test_cases": [
@@ -453,13 +468,71 @@
           "test_title": "Phone number selection during registration integrates with contact list"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-FR1-01",
+          "verdict": "PARTIAL",
+          "overlap_ratio": 0.2,
+          "stem_overlap_ratio": 0.2,
+          "blended_ratio": 0.2,
+          "spec_text_used": "A user should be able to download the mobile application through either an application store or similar service on the mobile phone.",
+          "evidence_text_used": "The application was successfully downloaded at no cost. Registration was completed without errors by all testers. No issues were reported. Testers found the registration flow straightforward.",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR1-02",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.6667,
+          "stem_overlap_ratio": 0.6667,
+          "blended_ratio": 0.6667,
+          "spec_text_used": "The application should be free to download.",
+          "evidence_text_used": "The application was successfully downloaded at no cost. Registration was completed without errors by all testers. No issues were reported. Testers found the registration flow straightforward.",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR3-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.2857,
+          "stem_overlap_ratio": 0.4286,
+          "blended_ratio": 0.3286,
+          "spec_text_used": "Given that a user has downloaded the mobile application, then the user should be able to register through the mobile application.",
+          "evidence_text_used": "The application was successfully downloaded at no cost. Registration was completed without errors by all testers. No issues were reported. Testers found the registration flow straightforward.",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR3-02",
+          "verdict": "MISSING",
+          "overlap_ratio": 0.0,
+          "stem_overlap_ratio": 0.0,
+          "blended_ratio": 0.0,
+          "spec_text_used": "The user must provide user-name, password and e-mail address.",
+          "evidence_text_used": "The application was successfully downloaded at no cost. Registration was completed without errors by all testers. No issues were reported. Testers found the registration flow straightforward.",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR3-03",
+          "verdict": "MISSING",
+          "overlap_ratio": 0.0,
+          "stem_overlap_ratio": 0.0,
+          "blended_ratio": 0.0,
+          "spec_text_used": "The user can choose to provide a regularly used phone number.",
+          "evidence_text_used": "The application was successfully downloaded at no cost. Registration was completed without errors by all testers. No issues were reported. Testers found the registration flow straightforward.",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
         "classification": "FULL_COVERAGE",
         "cru_count": 5,
         "test_case_count": 59,
         "unmatched_req_ids": [],
         "summary": "UAT PASS. 5 CRU(s) and 59 test case(s) linked."
-      }
+      },
+      "coverage_classification": "FULL_COVERAGE"
     },
     {
       "cau_id": "CAU-UC1-02",
@@ -494,7 +567,9 @@
           "actor": "User",
           "action": "Given that a user has registered, then the user should be able to log in to the mobile application.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.8571
         },
         {
           "cru_id": "CRU-FR4-02",
@@ -502,7 +577,9 @@
           "actor": "User",
           "action": "The log-in information will be stored on the phone and in the future the user should be logged in automatically.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5
         }
       ],
       "linked_test_cases": [
@@ -555,13 +632,38 @@
           "test_title": "User log-in integrates with restaurant search feature"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-FR4-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.8571,
+          "stem_overlap_ratio": 0.8333,
+          "blended_ratio": 0.85,
+          "spec_text_used": "Given that a user has registered, then the user should be able to log in to the mobile application.",
+          "evidence_text_used": "Login succeeded for all testers. Automatic login on relaunch functioned correctly on all tested handsets. Testers appreciated the automatic login feature and noted it significantly reduced friction fo",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR4-02",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5,
+          "stem_overlap_ratio": 0.4286,
+          "blended_ratio": 0.4786,
+          "spec_text_used": "The log-in information will be stored on the phone and in the future the user should be logged in automatically.",
+          "evidence_text_used": "Login succeeded for all testers. Automatic login on relaunch functioned correctly on all tested handsets. Testers appreciated the automatic login feature and noted it significantly reduced friction fo",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
         "classification": "FULL_COVERAGE",
         "cru_count": 2,
         "test_case_count": 8,
         "unmatched_req_ids": [],
         "summary": "UAT PASS. 2 CRU(s) and 8 test case(s) linked."
-      }
+      },
+      "coverage_classification": "FULL_COVERAGE"
     },
     {
       "cau_id": "CAU-UC1-03",
@@ -627,7 +729,9 @@
           "actor": "User",
           "action": "Given that a user is logged in to the mobile application, then the first page that is shown should be the search page.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.3333
         },
         {
           "cru_id": "CRU-FR6-02",
@@ -635,7 +739,9 @@
           "actor": "User",
           "action": "The user should be able to search for a restaurant, according to several search options.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.7143
         },
         {
           "cru_id": "CRU-FR6-03",
@@ -643,7 +749,9 @@
           "actor": "User",
           "action": "There should also be a free- text search option.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.8
         },
         {
           "cru_id": "CRU-FR6-04",
@@ -651,7 +759,9 @@
           "actor": "User",
           "action": "A user should be able to select multiple search options in one search.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.7143
         },
         {
           "cru_id": "CRU-FR12-01",
@@ -659,7 +769,9 @@
           "actor": "User",
           "action": "A user should be able to input a maximum and a minimum price range.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.4286
         },
         {
           "cru_id": "CRU-FR13-01",
@@ -667,7 +779,9 @@
           "actor": "User",
           "action": "A user should be able to input a maximum and a minimum distance, according to his/her position.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "PARTIAL",
+          "overlap_ratio": 0.2
         },
         {
           "cru_id": "CRU-FR13-02",
@@ -675,7 +789,9 @@
           "actor": "User",
           "action": "The user should be able to input a higher or lower maximum distance and a higher minimum distance than set by default.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "PARTIAL",
+          "overlap_ratio": 0.2
         },
         {
           "cru_id": "CRU-FR15-01",
@@ -683,7 +799,9 @@
           "actor": "User",
           "action": "A user should be able to select a restaurant type in a given list as input.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5
         },
         {
           "cru_id": "CRU-FR16-01",
@@ -691,7 +809,9 @@
           "actor": "User",
           "action": "A user should be able to select a specific dish in a given list as input.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5
         },
         {
           "cru_id": "CRU-FR17-01",
@@ -699,7 +819,9 @@
           "actor": "User",
           "action": "A user should be able to conduct a search by providing either restaurant name, restaurant description, restaurant address, restaurant type or restaurant menu in the free-text search field.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.7333
         }
       ],
       "linked_test_cases": [
@@ -1604,13 +1726,126 @@
           "test_title": "GPS Signal Loss Behavior: Search Results Persistence"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-FR6-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.3333,
+          "stem_overlap_ratio": 0.3333,
+          "blended_ratio": 0.3333,
+          "spec_text_used": "Given that a user is logged in to the mobile application, then the first page that is shown should be the search page.",
+          "evidence_text_used": "Price, destination, restaurant type, and dish searches returned correct results. Free-text search returned accurate results for restaurant name and address but did not always match menu item terms. Te",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR6-02",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.7143,
+          "stem_overlap_ratio": 0.7143,
+          "blended_ratio": 0.7143,
+          "spec_text_used": "The user should be able to search for a restaurant, according to several search options.",
+          "evidence_text_used": "Price, destination, restaurant type, and dish searches returned correct results. Free-text search returned accurate results for restaurant name and address but did not always match menu item terms. Te",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR6-03",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.8,
+          "stem_overlap_ratio": 0.75,
+          "blended_ratio": 0.785,
+          "spec_text_used": "There should also be a free- text search option.",
+          "evidence_text_used": "Price, destination, restaurant type, and dish searches returned correct results. Free-text search returned accurate results for restaurant name and address but did not always match menu item terms. Te",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR6-04",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.7143,
+          "stem_overlap_ratio": 0.6667,
+          "blended_ratio": 0.7,
+          "spec_text_used": "A user should be able to select multiple search options in one search.",
+          "evidence_text_used": "Price, destination, restaurant type, and dish searches returned correct results. Free-text search returned accurate results for restaurant name and address but did not always match menu item terms. Te",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR12-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.4286,
+          "stem_overlap_ratio": 0.4286,
+          "blended_ratio": 0.4286,
+          "spec_text_used": "A user should be able to input a maximum and a minimum price range.",
+          "evidence_text_used": "Price, destination, restaurant type, and dish searches returned correct results. Free-text search returned accurate results for restaurant name and address but did not always match menu item terms. Te",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR13-01",
+          "verdict": "PARTIAL",
+          "overlap_ratio": 0.2,
+          "stem_overlap_ratio": 0.25,
+          "blended_ratio": 0.215,
+          "spec_text_used": "A user should be able to input a maximum and a minimum distance, according to his/her position.",
+          "evidence_text_used": "Price, destination, restaurant type, and dish searches returned correct results. Free-text search returned accurate results for restaurant name and address but did not always match menu item terms. Te",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR13-02",
+          "verdict": "PARTIAL",
+          "overlap_ratio": 0.2,
+          "stem_overlap_ratio": 0.2222,
+          "blended_ratio": 0.2067,
+          "spec_text_used": "The user should be able to input a higher or lower maximum distance and a higher minimum distance than set by default.",
+          "evidence_text_used": "Price, destination, restaurant type, and dish searches returned correct results. Free-text search returned accurate results for restaurant name and address but did not always match menu item terms. Te",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR15-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5,
+          "stem_overlap_ratio": 0.5,
+          "blended_ratio": 0.5,
+          "spec_text_used": "A user should be able to select a restaurant type in a given list as input.",
+          "evidence_text_used": "Price, destination, restaurant type, and dish searches returned correct results. Free-text search returned accurate results for restaurant name and address but did not always match menu item terms. Te",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR16-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5,
+          "stem_overlap_ratio": 0.5,
+          "blended_ratio": 0.5,
+          "spec_text_used": "A user should be able to select a specific dish in a given list as input.",
+          "evidence_text_used": "Price, destination, restaurant type, and dish searches returned correct results. Free-text search returned accurate results for restaurant name and address but did not always match menu item terms. Te",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR17-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.7333,
+          "stem_overlap_ratio": 0.7333,
+          "blended_ratio": 0.7333,
+          "spec_text_used": "A user should be able to conduct a search by providing either restaurant name, restaurant description, restaurant address, restaurant type or restaurant menu in the free-text search field.",
+          "evidence_text_used": "Price, destination, restaurant type, and dish searches returned correct results. Free-text search returned accurate results for restaurant name and address but did not always match menu item terms. Te",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
         "classification": "PARTIAL_COVERAGE",
         "cru_count": 10,
         "test_case_count": 150,
         "unmatched_req_ids": [],
         "summary": "UAT PARTIAL. 10 CRU(s) and 150 test case(s) linked."
-      }
+      },
+      "coverage_classification": "PARTIAL_COVERAGE"
     },
     {
       "cau_id": "CAU-UC1-04",
@@ -1649,7 +1884,9 @@
           "actor": "User",
           "action": " Search results can be viewed on a map.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.75
         },
         {
           "cru_id": "CRU-FR7-02",
@@ -1657,7 +1894,9 @@
           "actor": "User",
           "action": " A specific pin will represent a specific restaurant location.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.4
         },
         {
           "cru_id": "CRU-FR7-03",
@@ -1665,7 +1904,9 @@
           "actor": "User",
           "action": "On each pin there should be an information link.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5
         },
         {
           "cru_id": "CRU-FR7-04",
@@ -1673,7 +1914,9 @@
           "actor": "User",
           "action": " There should be maximally 100 results displayed.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.75
         },
         {
           "cru_id": "CRU-FR7-05",
@@ -1681,7 +1924,9 @@
           "actor": "User",
           "action": "The map view should have a default zoom.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.75
         },
         {
           "cru_id": "CRU-FR7-06",
@@ -1689,7 +1934,9 @@
           "actor": "User",
           "action": " The map view should include a button that, when selected, should display different filtering options in a filtering menu.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5
         },
         {
           "cru_id": "CRU-QR4-01",
@@ -1697,7 +1944,9 @@
           "actor": "User",
           "action": "The results displayed in the map view should be user friendly and easy to understand.",
           "type": "performance",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.375
         },
         {
           "cru_id": "CRU-QR4-02",
@@ -1705,7 +1954,9 @@
           "actor": "User",
           "action": "Selecting a pin on the map should only take one click.",
           "type": "performance",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.4286
         }
       ],
       "linked_test_cases": [
@@ -1878,13 +2129,104 @@
           "test_title": "Map view integration with restaurant list"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-FR7-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.75,
+          "stem_overlap_ratio": 0.6667,
+          "blended_ratio": 0.725,
+          "spec_text_used": " Search results can be viewed on a map.",
+          "evidence_text_used": "All elements functioned as specified. Map loaded correctly with GPS position shown. Filtering menu was accessible with a single tap. Testers commented positively on the clarity of pin placement. One t",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR7-02",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.4,
+          "stem_overlap_ratio": 0.5,
+          "blended_ratio": 0.43,
+          "spec_text_used": " A specific pin will represent a specific restaurant location.",
+          "evidence_text_used": "All elements functioned as specified. Map loaded correctly with GPS position shown. Filtering menu was accessible with a single tap. Testers commented positively on the clarity of pin placement. One t",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR7-03",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5,
+          "stem_overlap_ratio": 0.3333,
+          "blended_ratio": 0.45,
+          "spec_text_used": "On each pin there should be an information link.",
+          "evidence_text_used": "All elements functioned as specified. Map loaded correctly with GPS position shown. Filtering menu was accessible with a single tap. Testers commented positively on the clarity of pin placement. One t",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR7-04",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.75,
+          "stem_overlap_ratio": 1.0,
+          "blended_ratio": 0.825,
+          "spec_text_used": " There should be maximally 100 results displayed.",
+          "evidence_text_used": "All elements functioned as specified. Map loaded correctly with GPS position shown. Filtering menu was accessible with a single tap. Testers commented positively on the clarity of pin placement. One t",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR7-05",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.75,
+          "stem_overlap_ratio": 0.6667,
+          "blended_ratio": 0.725,
+          "spec_text_used": "The map view should have a default zoom.",
+          "evidence_text_used": "All elements functioned as specified. Map loaded correctly with GPS position shown. Filtering menu was accessible with a single tap. Testers commented positively on the clarity of pin placement. One t",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR7-06",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5,
+          "stem_overlap_ratio": 0.4444,
+          "blended_ratio": 0.4833,
+          "spec_text_used": " The map view should include a button that, when selected, should display different filtering options in a filtering menu.",
+          "evidence_text_used": "All elements functioned as specified. Map loaded correctly with GPS position shown. Filtering menu was accessible with a single tap. Testers commented positively on the clarity of pin placement. One t",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-QR4-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.375,
+          "stem_overlap_ratio": 0.2857,
+          "blended_ratio": 0.3482,
+          "spec_text_used": "The results displayed in the map view should be user friendly and easy to understand.",
+          "evidence_text_used": "All elements functioned as specified. Map loaded correctly with GPS position shown. Filtering menu was accessible with a single tap. Testers commented positively on the clarity of pin placement. One t",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-QR4-02",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.4286,
+          "stem_overlap_ratio": 0.0,
+          "blended_ratio": 0.3,
+          "spec_text_used": "Selecting a pin on the map should only take one click.",
+          "evidence_text_used": "All elements functioned as specified. Map loaded correctly with GPS position shown. Filtering menu was accessible with a single tap. Testers commented positively on the clarity of pin placement. One t",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
         "classification": "FULL_COVERAGE",
         "cru_count": 8,
         "test_case_count": 28,
         "unmatched_req_ids": [],
         "summary": "UAT PASS. 8 CRU(s) and 28 test case(s) linked."
-      }
+      },
+      "coverage_classification": "FULL_COVERAGE"
     },
     {
       "cau_id": "CAU-UC1-05",
@@ -1929,7 +2271,9 @@
           "actor": "User",
           "action": " Search results can be viewed in a list.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0
         },
         {
           "cru_id": "CRU-FR8-02",
@@ -1937,7 +2281,9 @@
           "actor": "User",
           "action": "Each element should include the restaurant name, telephone number, type of food, distance according to the user’s position, average price, a short two-line description, a link to the restaurant’s web-page and an information link.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5
         },
         {
           "cru_id": "CRU-FR8-03",
@@ -1945,7 +2291,9 @@
           "actor": "User",
           "action": " There should be maximally 100 results displayed.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.75
         },
         {
           "cru_id": "CRU-FR8-04",
@@ -1953,7 +2301,9 @@
           "actor": "User",
           "action": "If the result contains more restaurants than what can be displayed on the screen at one time, the user should be able to scroll through them.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.4167
         },
         {
           "cru_id": "CRU-FR8-05",
@@ -1961,7 +2311,9 @@
           "actor": "User",
           "action": " When searching by price the restaurants should be sorted according to the following order: 1.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.4286
         },
         {
           "cru_id": "CRU-FR8-06",
@@ -1969,7 +2321,9 @@
           "actor": "User",
           "action": "specific dish  When searching by a search option, other than price, the restaurants should be sorted according to the following order: 1.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.3636
         },
         {
           "cru_id": "CRU-FR8-07",
@@ -1977,7 +2331,9 @@
           "actor": "User",
           "action": "specific dish  The list view should include a header with different selectable sorting options.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.4
         },
         {
           "cru_id": "CRU-FR8-08",
@@ -1985,7 +2341,9 @@
           "actor": "User",
           "action": " The list view should include a button that, when selected, should display different filtering options in a filtering menu.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.3
         },
         {
           "cru_id": "CRU-FR19-01",
@@ -1993,7 +2351,9 @@
           "actor": "User",
           "action": "When viewing the results in a list, a user should be able to sort the results according to price, distance, restaurant type, specific dish or restaurant name.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.6429
         },
         {
           "cru_id": "CRU-FR19-02",
@@ -2001,7 +2361,9 @@
           "actor": "User",
           "action": " When sorting by restaurant name, specific dish or restaurant type the results should be ordered alphabetically.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.6667
         },
         {
           "cru_id": "CRU-FR19-03",
@@ -2009,7 +2371,9 @@
           "actor": "User",
           "action": " When sorting by price the results should be ordered from cheapest to most expensive.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.4286
         },
         {
           "cru_id": "CRU-FR19-04",
@@ -2017,7 +2381,9 @@
           "actor": "User",
           "action": " When sorting by distance the results should be ordered from closets to furthest distance according to the user’s position.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.3333
         },
         {
           "cru_id": "CRU-QR3-01",
@@ -2025,7 +2391,9 @@
           "actor": "User",
           "action": "The results displayed in the list view should be user friendly and easy to understand.",
           "type": "performance",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5
         },
         {
           "cru_id": "CRU-QR3-02",
@@ -2033,7 +2401,9 @@
           "actor": "User",
           "action": "Selecting an element in the result list should only take one click.",
           "type": "performance",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "PARTIAL",
+          "overlap_ratio": 0.25
         }
       ],
       "linked_test_cases": [
@@ -2758,13 +3128,170 @@
           "test_title": "Integration with search feature"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-FR8-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0,
+          "stem_overlap_ratio": 1.0,
+          "blended_ratio": 1.0,
+          "spec_text_used": " Search results can be viewed in a list.",
+          "evidence_text_used": "1. Perform a search by price and verify the list view appears by default. 2. Scroll through the results. 3. Use the sorting header to sort by each available option. 4. Verify each list item includes a",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR8-02",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5,
+          "stem_overlap_ratio": 0.6,
+          "blended_ratio": 0.53,
+          "spec_text_used": "Each element should include the restaurant name, telephone number, type of food, distance according to the user’s position, average price, a short two-line description, a link to the restaurant’s web-",
+          "evidence_text_used": "1. Perform a search by price and verify the list view appears by default. 2. Scroll through the results. 3. Use the sorting header to sort by each available option. 4. Verify each list item includes a",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR8-03",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.75,
+          "stem_overlap_ratio": 0.75,
+          "blended_ratio": 0.75,
+          "spec_text_used": " There should be maximally 100 results displayed.",
+          "evidence_text_used": "1. Perform a search by price and verify the list view appears by default. 2. Scroll through the results. 3. Use the sorting header to sort by each available option. 4. Verify each list item includes a",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR8-04",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.4167,
+          "stem_overlap_ratio": 0.5455,
+          "blended_ratio": 0.4553,
+          "spec_text_used": "If the result contains more restaurants than what can be displayed on the screen at one time, the user should be able to scroll through them.",
+          "evidence_text_used": "1. Perform a search by price and verify the list view appears by default. 2. Scroll through the results. 3. Use the sorting header to sort by each available option. 4. Verify each list item includes a",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR8-05",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.4286,
+          "stem_overlap_ratio": 0.5714,
+          "blended_ratio": 0.4714,
+          "spec_text_used": " When searching by price the restaurants should be sorted according to the following order: 1.",
+          "evidence_text_used": "1. Perform a search by price and verify the list view appears by default. 2. Scroll through the results. 3. Use the sorting header to sort by each available option. 4. Verify each list item includes a",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR8-06",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.3636,
+          "stem_overlap_ratio": 0.5,
+          "blended_ratio": 0.4045,
+          "spec_text_used": "specific dish  When searching by a search option, other than price, the restaurants should be sorted according to the following order: 1.",
+          "evidence_text_used": "1. Perform a search by price and verify the list view appears by default. 2. Scroll through the results. 3. Use the sorting header to sort by each available option. 4. Verify each list item includes a",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR8-07",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.4,
+          "stem_overlap_ratio": 0.6,
+          "blended_ratio": 0.46,
+          "spec_text_used": "specific dish  The list view should include a header with different selectable sorting options.",
+          "evidence_text_used": "1. Perform a search by price and verify the list view appears by default. 2. Scroll through the results. 3. Use the sorting header to sort by each available option. 4. Verify each list item includes a",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR8-08",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.3,
+          "stem_overlap_ratio": 0.4,
+          "blended_ratio": 0.33,
+          "spec_text_used": " The list view should include a button that, when selected, should display different filtering options in a filtering menu.",
+          "evidence_text_used": "1. Perform a search by price and verify the list view appears by default. 2. Scroll through the results. 3. Use the sorting header to sort by each available option. 4. Verify each list item includes a",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR19-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.6429,
+          "stem_overlap_ratio": 0.7143,
+          "blended_ratio": 0.6643,
+          "spec_text_used": "When viewing the results in a list, a user should be able to sort the results according to price, distance, restaurant type, specific dish or restaurant name.",
+          "evidence_text_used": "1. Perform a search by price and verify the list view appears by default. 2. Scroll through the results. 3. Use the sorting header to sort by each available option. 4. Verify each list item includes a",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR19-02",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.6667,
+          "stem_overlap_ratio": 0.7778,
+          "blended_ratio": 0.7,
+          "spec_text_used": " When sorting by restaurant name, specific dish or restaurant type the results should be ordered alphabetically.",
+          "evidence_text_used": "1. Perform a search by price and verify the list view appears by default. 2. Scroll through the results. 3. Use the sorting header to sort by each available option. 4. Verify each list item includes a",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR19-03",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.4286,
+          "stem_overlap_ratio": 0.4286,
+          "blended_ratio": 0.4286,
+          "spec_text_used": " When sorting by price the results should be ordered from cheapest to most expensive.",
+          "evidence_text_used": "1. Perform a search by price and verify the list view appears by default. 2. Scroll through the results. 3. Use the sorting header to sort by each available option. 4. Verify each list item includes a",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR19-04",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.3333,
+          "stem_overlap_ratio": 0.3333,
+          "blended_ratio": 0.3333,
+          "spec_text_used": " When sorting by distance the results should be ordered from closets to furthest distance according to the user’s position.",
+          "evidence_text_used": "1. Perform a search by price and verify the list view appears by default. 2. Scroll through the results. 3. Use the sorting header to sort by each available option. 4. Verify each list item includes a",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-QR3-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5,
+          "stem_overlap_ratio": 0.5,
+          "blended_ratio": 0.5,
+          "spec_text_used": "The results displayed in the list view should be user friendly and easy to understand.",
+          "evidence_text_used": "1. Perform a search by price and verify the list view appears by default. 2. Scroll through the results. 3. Use the sorting header to sort by each available option. 4. Verify each list item includes a",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-QR3-02",
+          "verdict": "PARTIAL",
+          "overlap_ratio": 0.25,
+          "stem_overlap_ratio": 0.2857,
+          "blended_ratio": 0.2607,
+          "spec_text_used": "Selecting an element in the result list should only take one click.",
+          "evidence_text_used": "1. Perform a search by price and verify the list view appears by default. 2. Scroll through the results. 3. Use the sorting header to sort by each available option. 4. Verify each list item includes a",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
         "classification": "FULL_COVERAGE",
         "cru_count": 14,
         "test_case_count": 120,
         "unmatched_req_ids": [],
         "summary": "UAT PASS. 14 CRU(s) and 120 test case(s) linked."
-      }
+      },
+      "coverage_classification": "FULL_COVERAGE"
     },
     {
       "cau_id": "CAU-UC1-06",
@@ -2799,7 +3326,9 @@
           "actor": "User",
           "action": "A user should be able to select a pin on a map or an element on a list.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.7143
         },
         {
           "cru_id": "CRU-FR9-02",
@@ -2807,7 +3336,9 @@
           "actor": "User",
           "action": "When a selection is made, the location of the restaurant should be sent to the mobile phone’s GPS-navigation program.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5
         },
         {
           "cru_id": "CRU-FR9-03",
@@ -2815,7 +3346,9 @@
           "actor": "User",
           "action": "The user should then be navigated to the destination.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.6667
         },
         {
           "cru_id": "CRU-FR9-04",
@@ -2823,7 +3356,9 @@
           "actor": "User",
           "action": "When the destination is reached, a user should be able to go back to the search page on the mobile application.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5
         }
       ],
       "linked_test_cases": [
@@ -2924,13 +3459,60 @@
           "test_title": "Integration test: Navigation to search page from destination with results"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-FR9-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.7143,
+          "stem_overlap_ratio": 0.8,
+          "blended_ratio": 0.74,
+          "spec_text_used": "A user should be able to select a pin on a map or an element on a list.",
+          "evidence_text_used": "Navigation handoff worked correctly on Android devices. On one iOS device, the handoff to the GPS Navigator required an additional confirmation step not anticipated by the specification. The variation",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR9-02",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5,
+          "stem_overlap_ratio": 0.4444,
+          "blended_ratio": 0.4833,
+          "spec_text_used": "When a selection is made, the location of the restaurant should be sent to the mobile phone’s GPS-navigation program.",
+          "evidence_text_used": "Navigation handoff worked correctly on Android devices. On one iOS device, the handoff to the GPS Navigator required an additional confirmation step not anticipated by the specification. The variation",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR9-03",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.6667,
+          "stem_overlap_ratio": 0.6667,
+          "blended_ratio": 0.6667,
+          "spec_text_used": "The user should then be navigated to the destination.",
+          "evidence_text_used": "Navigation handoff worked correctly on Android devices. On one iOS device, the handoff to the GPS Navigator required an additional confirmation step not anticipated by the specification. The variation",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR9-04",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5,
+          "stem_overlap_ratio": 0.5556,
+          "blended_ratio": 0.5167,
+          "spec_text_used": "When the destination is reached, a user should be able to go back to the search page on the mobile application.",
+          "evidence_text_used": "Navigation handoff worked correctly on Android devices. On one iOS device, the handoff to the GPS Navigator required an additional confirmation step not anticipated by the specification. The variation",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
         "classification": "PARTIAL_COVERAGE",
         "cru_count": 4,
         "test_case_count": 16,
         "unmatched_req_ids": [],
         "summary": "UAT PARTIAL. 4 CRU(s) and 16 test case(s) linked."
-      }
+      },
+      "coverage_classification": "PARTIAL_COVERAGE"
     },
     {
       "cau_id": "CAU-UC1-07",
@@ -2965,7 +3547,9 @@
           "actor": "User",
           "action": "When viewing the results in a list or a map, a user should be able to filter the results in a filtering menu.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.6667
         }
       ],
       "linked_test_cases": [
@@ -3120,13 +3704,27 @@
           "test_title": "Session Timeout Handling: Filter Results"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-FR20-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.6667,
+          "stem_overlap_ratio": 0.7143,
+          "blended_ratio": 0.681,
+          "spec_text_used": "When viewing the results in a list or a map, a user should be able to filter the results in a filtering menu.",
+          "evidence_text_used": "Filtering operated on existing results without issuing new server requests. Results updated correctly in both views. Testers found the filtering feature very useful when the initial search returned a ",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
         "classification": "FULL_COVERAGE",
         "cru_count": 1,
         "test_case_count": 25,
         "unmatched_req_ids": [],
         "summary": "UAT PASS. 1 CRU(s) and 25 test case(s) linked."
-      }
+      },
+      "coverage_classification": "FULL_COVERAGE"
     },
     {
       "cau_id": "CAU-UC1-08",
@@ -3161,7 +3759,9 @@
           "actor": "User",
           "action": "On the mobile application, a user should have a profile page.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0
         },
         {
           "cru_id": "CRU-FR21-02",
@@ -3169,7 +3769,9 @@
           "actor": "User",
           "action": "On the profile page a user can edit his/her information, which includes the password, e-mail address and phone number.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.6923
         },
         {
           "cru_id": "CRU-FR21-03",
@@ -3177,7 +3779,9 @@
           "actor": "User",
           "action": "A user should also be able to choose what language the mobile application should be set to.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5714
         }
       ],
       "linked_test_cases": [
@@ -3590,13 +4194,49 @@
           "test_title": "Session Timeout Handling: Profile Page"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-FR21-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0,
+          "stem_overlap_ratio": 1.0,
+          "blended_ratio": 1.0,
+          "spec_text_used": "On the mobile application, a user should have a profile page.",
+          "evidence_text_used": "Profile editing worked correctly. Language change was applied to all user-facing text on the mobile application. No issues were reported. The user should have a profile page allowing editing of e-mail",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR21-02",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.6923,
+          "stem_overlap_ratio": 0.8182,
+          "blended_ratio": 0.7301,
+          "spec_text_used": "On the profile page a user can edit his/her information, which includes the password, e-mail address and phone number.",
+          "evidence_text_used": "Profile editing worked correctly. Language change was applied to all user-facing text on the mobile application. No issues were reported. The user should have a profile page allowing editing of e-mail",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR21-03",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5714,
+          "stem_overlap_ratio": 0.6667,
+          "blended_ratio": 0.6,
+          "spec_text_used": "A user should also be able to choose what language the mobile application should be set to.",
+          "evidence_text_used": "Profile editing worked correctly. Language change was applied to all user-facing text on the mobile application. No issues were reported. The user should have a profile page allowing editing of e-mail",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
         "classification": "FULL_COVERAGE",
         "cru_count": 3,
         "test_case_count": 68,
         "unmatched_req_ids": [],
         "summary": "UAT PASS. 3 CRU(s) and 68 test case(s) linked."
-      }
+      },
+      "coverage_classification": "FULL_COVERAGE"
     },
     {
       "cau_id": "CAU-UC1-09",
@@ -3631,7 +4271,9 @@
           "actor": "User",
           "action": "The search feature should be prominent and easy to find for the user.",
           "type": "performance",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0
         }
       ],
       "linked_test_cases": [
@@ -3648,13 +4290,27 @@
           "test_title": "Search integration with dashboard"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-QR1-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0,
+          "stem_overlap_ratio": 1.0,
+          "blended_ratio": 1.0,
+          "spec_text_used": "The search feature should be prominent and easy to find for the user.",
+          "evidence_text_used": "The search page was presented as the default view upon login. The search input area and available search criteria were clearly presented at the top of the screen and were immediately visible to all te",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
         "classification": "FULL_COVERAGE",
         "cru_count": 1,
         "test_case_count": 2,
         "unmatched_req_ids": [],
         "summary": "UAT PASS. 1 CRU(s) and 2 test case(s) linked."
-      }
+      },
+      "coverage_classification": "FULL_COVERAGE"
     },
     {
       "cau_id": "CAU-UC1-10",
@@ -3689,7 +4345,9 @@
           "actor": "System",
           "action": "The different search options should be evident, simple and easy to understand.",
           "type": "performance",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0
         }
       ],
       "linked_test_cases": [
@@ -3706,13 +4364,27 @@
           "test_title": "Search results integration with dashboard"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-QR2-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0,
+          "stem_overlap_ratio": 1.0,
+          "blended_ratio": 1.0,
+          "spec_text_used": "The different search options should be evident, simple and easy to understand.",
+          "evidence_text_used": "All testers correctly identified the price, destination, restaurant type, dish, and free-text search options without instruction. Each search option was used successfully on the first attempt. Testers",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
         "classification": "FULL_COVERAGE",
         "cru_count": 1,
         "test_case_count": 2,
         "unmatched_req_ids": [],
         "summary": "UAT PASS. 1 CRU(s) and 2 test case(s) linked."
-      }
+      },
+      "coverage_classification": "FULL_COVERAGE"
     },
     {
       "cau_id": "CAU-UC1-11",
@@ -3754,7 +4426,9 @@
           "actor": "User",
           "action": "A user should be able to select the information link, which is included on all result items.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5
         },
         {
           "cru_id": "CRU-FR11-02",
@@ -3762,7 +4436,9 @@
           "actor": "User",
           "action": "The link will direct the user to an information page, which includes a picture of the restaurant, the restaurant name, address, phone number, e-mail address, type of food, average price, restaurant description and a menu with name, description and price of the different dishes.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "PARTIAL",
+          "overlap_ratio": 0.1429
         },
         {
           "cru_id": "CRU-QR5-01",
@@ -3770,7 +4446,9 @@
           "actor": "System",
           "action": "The information link should be prominent and it should be evident that it is a usable link.",
           "type": "performance",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0
         },
         {
           "cru_id": "CRU-QR5-02",
@@ -3778,7 +4456,9 @@
           "actor": "System",
           "action": "Selecting the information link should only take one click.",
           "type": "performance",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0
         }
       ],
       "linked_test_cases": [
@@ -4131,13 +4811,60 @@
           "test_title": "Integration test: Selecting information link from search results"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-FR11-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5,
+          "stem_overlap_ratio": 0.5,
+          "blended_ratio": 0.5,
+          "spec_text_used": "A user should be able to select the information link, which is included on all result items.",
+          "evidence_text_used": "The information link was visually distinct and all testers identified it as interactive without prompting. A single tap consistently opened the information page in both list and map views. No issues w",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR11-02",
+          "verdict": "PARTIAL",
+          "overlap_ratio": 0.1429,
+          "stem_overlap_ratio": 0.1429,
+          "blended_ratio": 0.1429,
+          "spec_text_used": "The link will direct the user to an information page, which includes a picture of the restaurant, the restaurant name, address, phone number, e-mail address, type of food, average price, restaurant de",
+          "evidence_text_used": "The information link was visually distinct and all testers identified it as interactive without prompting. A single tap consistently opened the information page in both list and map views. No issues w",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-QR5-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0,
+          "stem_overlap_ratio": 1.0,
+          "blended_ratio": 1.0,
+          "spec_text_used": "The information link should be prominent and it should be evident that it is a usable link.",
+          "evidence_text_used": "The information link was visually distinct and all testers identified it as interactive without prompting. A single tap consistently opened the information page in both list and map views. No issues w",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-QR5-02",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0,
+          "stem_overlap_ratio": 1.0,
+          "blended_ratio": 1.0,
+          "spec_text_used": "Selecting the information link should only take one click.",
+          "evidence_text_used": "The information link was visually distinct and all testers identified it as interactive without prompting. A single tap consistently opened the information page in both list and map views. No issues w",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
         "classification": "FULL_COVERAGE",
         "cru_count": 4,
         "test_case_count": 58,
         "unmatched_req_ids": [],
         "summary": "UAT PASS. 4 CRU(s) and 58 test case(s) linked."
-      }
+      },
+      "coverage_classification": "FULL_COVERAGE"
     },
     {
       "cau_id": "CAU-UC1-12",
@@ -4171,7 +4898,9 @@
           "actor": "System",
           "action": null,
           "type": "performance",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5
         }
       ],
       "linked_test_cases": [
@@ -4200,13 +4929,27 @@
           "test_title": "Response Time: Search Restaurants by Distance and Price with Integration to Payment Gateway"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-QR6-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5,
+          "stem_overlap_ratio": 0.5,
+          "blended_ratio": 0.5,
+          "spec_text_used": "The fastness of the search",
+          "evidence_text_used": "Measurements obtained over the testing period showed that all searches completed within the two-second threshold. The majority of searches resolved within one second under normal network conditions. A",
+          "negation_found": false,
+          "spec_field_used": "description"
+        }
+      ],
       "coverage": {
         "classification": "FULL_COVERAGE",
         "cru_count": 1,
         "test_case_count": 4,
         "unmatched_req_ids": [],
         "summary": "UAT PASS. 1 CRU(s) and 4 test case(s) linked."
-      }
+      },
+      "coverage_classification": "FULL_COVERAGE"
     },
     {
       "cau_id": "CAU-UC1-13",
@@ -4239,7 +4982,9 @@
           "actor": "System",
           "action": "inform user about connection loss",
           "type": "performance",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0
         },
         {
           "cru_id": "CRU-QR8-02",
@@ -4247,7 +4992,9 @@
           "actor": "System",
           "action": "inform user about strange input",
           "type": "performance",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.75
         }
       ],
       "linked_test_cases": [
@@ -4300,13 +5047,38 @@
           "test_title": "Test integration with restaurant details page"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-QR8-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0,
+          "stem_overlap_ratio": 1.0,
+          "blended_ratio": 1.0,
+          "spec_text_used": "inform user about connection loss",
+          "evidence_text_used": "1. Disable the Internet connection on the device while the application is active and observe the application response. 2. Disable the GPS signal and observe the application response. 3. Re-enable conn",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-QR8-02",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.75,
+          "stem_overlap_ratio": 0.75,
+          "blended_ratio": 0.75,
+          "spec_text_used": "inform user about strange input",
+          "evidence_text_used": "1. Disable the Internet connection on the device while the application is active and observe the application response. 2. Disable the GPS signal and observe the application response. 3. Re-enable conn",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
         "classification": "FULL_COVERAGE",
         "cru_count": 2,
         "test_case_count": 8,
         "unmatched_req_ids": [],
         "summary": "UAT PASS. 2 CRU(s) and 8 test case(s) linked."
-      }
+      },
+      "coverage_classification": "FULL_COVERAGE"
     },
     {
       "cau_id": "CAU-UC1-14",
@@ -4341,7 +5113,9 @@
           "actor": "System",
           "action": null,
           "type": "constraint",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "PARTIAL",
+          "overlap_ratio": 0.2
         }
       ],
       "linked_test_cases": [
@@ -4370,13 +5144,27 @@
           "test_title": "Hard drive space: Integration testing with restaurant management feature"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-QR10-01",
+          "verdict": "PARTIAL",
+          "overlap_ratio": 0.2,
+          "stem_overlap_ratio": 0.25,
+          "blended_ratio": 0.215,
+          "spec_text_used": "The application’s need of hard drive space.",
+          "evidence_text_used": "The installed application size was measured at approximately twelve megabytes across all test handsets, satisfying both the MUST threshold and the PLAN target. No issues were reported. The application",
+          "negation_found": false,
+          "spec_field_used": "description"
+        }
+      ],
       "coverage": {
         "classification": "FULL_COVERAGE",
         "cru_count": 1,
         "test_case_count": 4,
         "unmatched_req_ids": [],
         "summary": "UAT PASS. 1 CRU(s) and 4 test case(s) linked."
-      }
+      },
+      "coverage_classification": "FULL_COVERAGE"
     },
     {
       "cau_id": "CAU-UC1-15",
@@ -4407,7 +5195,9 @@
           "actor": "System",
           "action": null,
           "type": "constraint",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0
         }
       ],
       "linked_test_cases": [
@@ -4436,20 +5226,34 @@
           "test_title": "Application memory usage: Integration with search feature"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-QR11-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0,
+          "stem_overlap_ratio": 1.0,
+          "blended_ratio": 1.0,
+          "spec_text_used": "The amount of Operating System memory occupied by the application.",
+          "evidence_text_used": "The amount of operating system memory occupied by the application while running should not exceed twenty megabytes. The mobile application is running on the test handset with no other applications con",
+          "negation_found": false,
+          "spec_field_used": "description"
+        }
+      ],
       "coverage": {
         "classification": "FULL_COVERAGE",
         "cru_count": 1,
         "test_case_count": 4,
         "unmatched_req_ids": [],
         "summary": "UAT PASS. 1 CRU(s) and 4 test case(s) linked."
-      }
+      },
+      "coverage_classification": "FULL_COVERAGE"
     },
     {
       "cau_id": "CAU-UC1-16",
       "uat_id": "UAT-UC1-16",
       "title": "Download of Updated Application Releases",
       "actor_class": "",
-      "status": "NOT TESTED – SCHEDULED FOR NEXT RELEASE CYCLE",
+      "status": "NOT_TESTED",
       "req_ids": [
         "FR2"
       ],
@@ -4473,7 +5277,9 @@
           "actor": "User",
           "action": "When a new/updated version or release of the software is released, the user should check for these manually.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5
         },
         {
           "cru_id": "CRU-FR2-02",
@@ -4481,7 +5287,9 @@
           "actor": "User",
           "action": "The download of the new release should be done through the mobile phone in the same way as downloading the mobile application.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.6667
         }
       ],
       "linked_test_cases": [
@@ -4786,13 +5594,38 @@
           "test_title": "Session Timeout Handling: Download Notification"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-FR2-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5,
+          "stem_overlap_ratio": 0.5,
+          "blended_ratio": 0.5,
+          "spec_text_used": "When a new/updated version or release of the software is released, the user should check for these manually.",
+          "evidence_text_used": "When an updated version of the mobile application is published to the application store, the user should be able to download and install the update through the same application store mechanism used fo",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR2-02",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.6667,
+          "stem_overlap_ratio": 0.7143,
+          "blended_ratio": 0.681,
+          "spec_text_used": "The download of the new release should be done through the mobile phone in the same way as downloading the mobile application.",
+          "evidence_text_used": "When an updated version of the mobile application is published to the application store, the user should be able to download and install the update through the same application store mechanism used fo",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
-        "classification": "FULL_COVERAGE",
+        "classification": "NOT_TESTED",
         "cru_count": 2,
         "test_case_count": 50,
         "unmatched_req_ids": [],
-        "summary": "UAT NOT TESTED – SCHEDULED FOR NEXT RELEASE CYCLE. 2 CRU(s) and 50 test case(s) linked."
-      }
+        "summary": "UAT NOT_TESTED. 2 CRU(s) and 50 test case(s) linked."
+      },
+      "coverage_classification": "NOT_TESTED"
     },
     {
       "cau_id": "CAU-UC1-17",
@@ -4823,7 +5656,9 @@
           "actor": "User",
           "action": "A user should be able to switch between a map view and a list view for all search options.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.8889
         }
       ],
       "linked_test_cases": [
@@ -4978,20 +5813,34 @@
           "test_title": "Session Timeout Handling: Data Persistence Across Crashes"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-FR10-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.8889,
+          "stem_overlap_ratio": 0.875,
+          "blended_ratio": 0.8847,
+          "spec_text_used": "A user should be able to switch between a map view and a list view for all search options.",
+          "evidence_text_used": "A user viewing search results should be able to switch between the map view and the list view at any point without losing the current result set or applied filters. The user is logged in. A search has",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
         "classification": "FULL_COVERAGE",
         "cru_count": 1,
         "test_case_count": 25,
         "unmatched_req_ids": [],
         "summary": "UAT UNKNOWN. 1 CRU(s) and 25 test case(s) linked."
-      }
+      },
+      "coverage_classification": "FULL_COVERAGE"
     },
     {
       "cau_id": "CAU-UC1-18",
       "uat_id": "UAT-UC1-18",
       "title": "Behaviour When Search Returns No Results",
       "actor_class": "",
-      "status": "NOT TESTED – MUST BE EXECUTED BEFORE NEXT RELEASE",
+      "status": "NOT_TESTED",
       "req_ids": [
         "FR18"
       ],
@@ -5017,7 +5866,9 @@
           "actor": "User",
           "action": "If no match is found the user should be informed but kept on the search page in order to get the possibility to conduct a new search right away.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.3571
         }
       ],
       "linked_test_cases": [
@@ -5166,13 +6017,27 @@
           "test_title": "Data Persistence Across Crashes: Session Recovery"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-FR18-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.3571,
+          "stem_overlap_ratio": 0.4167,
+          "blended_ratio": 0.375,
+          "spec_text_used": "If no match is found the user should be informed but kept on the search page in order to get the possibility to conduct a new search right away.",
+          "evidence_text_used": "NOT TESTED in v1.1. The original UAT sessions did not include a scenario specifically designed to produce an empty result set. This test case is added in v1.2 and must be executed and signed off befor",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
-        "classification": "FULL_COVERAGE",
+        "classification": "NOT_TESTED",
         "cru_count": 1,
         "test_case_count": 24,
         "unmatched_req_ids": [],
-        "summary": "UAT NOT TESTED – MUST BE EXECUTED BEFORE NEXT RELEASE. 1 CRU(s) and 24 test case(s) linked."
-      }
+        "summary": "UAT NOT_TESTED. 1 CRU(s) and 24 test case(s) linked."
+      },
+      "coverage_classification": "NOT_TESTED"
     },
     {
       "cau_id": "CAU-UC1-19",
@@ -5205,7 +6070,9 @@
           "actor": "User",
           "action": "Given that a user has registered, then the user should be able to retrieve his/her password by e- mail.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5556
         }
       ],
       "linked_test_cases": [
@@ -5234,13 +6101,27 @@
           "test_title": "Retrieve password with existing user account"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-FR5-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5556,
+          "stem_overlap_ratio": 0.7143,
+          "blended_ratio": 0.6032,
+          "spec_text_used": "Given that a user has registered, then the user should be able to retrieve his/her password by e- mail.",
+          "evidence_text_used": "1. Open the login screen of the mobile application. 2. Select the forgotten password option. 3. Enter the registered e-mail address and submit the request. A registered user who has forgotten their pa",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
         "classification": "FULL_COVERAGE",
         "cru_count": 1,
         "test_case_count": 4,
         "unmatched_req_ids": [],
         "summary": "UAT UNKNOWN. 1 CRU(s) and 4 test case(s) linked."
-      }
+      },
+      "coverage_classification": "FULL_COVERAGE"
     },
     {
       "cau_id": "CAU-UC1-20",
@@ -5273,7 +6154,9 @@
           "actor": "User",
           "action": "Integers should be accepted as input when a user searches by price or destination.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.7143
         },
         {
           "cru_id": "CRU-FR14-02",
@@ -5281,7 +6164,9 @@
           "actor": "User",
           "action": "If the system receives an invalid input the user should be informed and prompted to insert an accepted input.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "PARTIAL",
+          "overlap_ratio": 0.2222
         }
       ],
       "linked_test_cases": [
@@ -5568,13 +6453,38 @@
           "test_title": "Session Timeout Handling: Price Search"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-FR14-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.7143,
+          "stem_overlap_ratio": 0.7143,
+          "blended_ratio": 0.7143,
+          "spec_text_used": "Integers should be accepted as input when a user searches by price or destination.",
+          "evidence_text_used": "1. Enter a non-numeric value in the price search field and attempt to search. 2. Enter a value below zero in the price field and attempt to search. 3. Enter a destination string consisting entirely of",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR14-02",
+          "verdict": "PARTIAL",
+          "overlap_ratio": 0.2222,
+          "stem_overlap_ratio": 0.3333,
+          "blended_ratio": 0.2556,
+          "spec_text_used": "If the system receives an invalid input the user should be informed and prompted to insert an accepted input.",
+          "evidence_text_used": "1. Enter a non-numeric value in the price search field and attempt to search. 2. Enter a value below zero in the price field and attempt to search. 3. Enter a destination string consisting entirely of",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
         "classification": "FULL_COVERAGE",
         "cru_count": 2,
         "test_case_count": 47,
         "unmatched_req_ids": [],
         "summary": "UAT UNKNOWN. 2 CRU(s) and 47 test case(s) linked."
-      }
+      },
+      "coverage_classification": "FULL_COVERAGE"
     },
     {
       "cau_id": "CAU-RO-01",
@@ -5613,7 +6523,9 @@
           "actor": "Restaurant Owner",
           "action": "registers on the web-portal by providing user-name And password And address And e-mail address And phone number And mobile number",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.3333
         },
         {
           "cru_id": "CRU-FR22-02",
@@ -5621,7 +6533,9 @@
           "actor": "Restaurant Owner",
           "action": "applies for verification",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5
         },
         {
           "cru_id": "CRU-FR22-03",
@@ -5629,7 +6543,9 @@
           "actor": "Restaurant Owner",
           "action": "receives a confirmation e-mail",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0
         },
         {
           "cru_id": "CRU-FR27-01",
@@ -5637,7 +6553,9 @@
           "actor": "Administrator",
           "action": "log in",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0
         },
         {
           "cru_id": "CRU-FR27-02",
@@ -5645,7 +6563,9 @@
           "actor": "Administrator",
           "action": "verify a restaurant owner",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0
         },
         {
           "cru_id": "CRU-FR27-03",
@@ -5653,7 +6573,9 @@
           "actor": "Administrator",
           "action": "reject a restaurant owner",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.6667
         }
       ],
       "linked_test_cases": [
@@ -5904,6 +6826,74 @@
           "test_title": "Verify restaurant owner login with JWT token"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-FR22-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.3333,
+          "stem_overlap_ratio": 0.3636,
+          "blended_ratio": 0.3424,
+          "spec_text_used": "registers on the web-portal by providing user-name And password And address And e-mail address And phone number And mobile number",
+          "evidence_text_used": "A restaurant owner should be able to register on the web-portal by providing required information and subsequently receive a confirmation e-mail once the account has been verified by an administrator.",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR22-02",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5,
+          "stem_overlap_ratio": 0.5,
+          "blended_ratio": 0.5,
+          "spec_text_used": "applies for verification",
+          "evidence_text_used": "A restaurant owner should be able to register on the web-portal by providing required information and subsequently receive a confirmation e-mail once the account has been verified by an administrator.",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR22-03",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0,
+          "stem_overlap_ratio": 1.0,
+          "blended_ratio": 1.0,
+          "spec_text_used": "receives a confirmation e-mail",
+          "evidence_text_used": "A restaurant owner should be able to register on the web-portal by providing required information and subsequently receive a confirmation e-mail once the account has been verified by an administrator.",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR27-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0,
+          "stem_overlap_ratio": 0.0,
+          "blended_ratio": 0.7,
+          "spec_text_used": "log in",
+          "evidence_text_used": "A restaurant owner should be able to register on the web-portal by providing required information and subsequently receive a confirmation e-mail once the account has been verified by an administrator.",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR27-02",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0,
+          "stem_overlap_ratio": 1.0,
+          "blended_ratio": 1.0,
+          "spec_text_used": "verify a restaurant owner",
+          "evidence_text_used": "A restaurant owner should be able to register on the web-portal by providing required information and subsequently receive a confirmation e-mail once the account has been verified by an administrator.",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR27-03",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.6667,
+          "stem_overlap_ratio": 0.6667,
+          "blended_ratio": 0.6667,
+          "spec_text_used": "reject a restaurant owner",
+          "evidence_text_used": "A restaurant owner should be able to register on the web-portal by providing required information and subsequently receive a confirmation e-mail once the account has been verified by an administrator.",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
         "classification": "FULL_COVERAGE",
         "cru_count": 6,
@@ -5913,7 +6903,8 @@
           "QR18"
         ],
         "summary": "UAT PASS. 6 CRU(s) and 41 test case(s) linked. Unmatched req_ids: QR13, QR18."
-      }
+      },
+      "coverage_classification": "FULL_COVERAGE"
     },
     {
       "cau_id": "CAU-RO-02",
@@ -5955,7 +6946,9 @@
           "actor": "User",
           "action": "Given that a user has registered, then the user should be able to retrieve his/her password by e- mail.",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.3333
         },
         {
           "cru_id": "CRU-FR23-01",
@@ -5963,7 +6956,9 @@
           "actor": "Restaurant Owner",
           "action": "logs in with his/her account",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.25
         },
         {
           "cru_id": "CRU-FR23-02",
@@ -5971,7 +6966,9 @@
           "actor": "Restaurant Owner",
           "action": "enters his/her email address in the “Retrieve password” form",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "PARTIAL",
+          "overlap_ratio": 0.25
         },
         {
           "cru_id": "CRU-FR23-03",
@@ -5979,7 +6976,9 @@
           "actor": "Restaurant Owner",
           "action": "submits the form",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MISSING",
+          "overlap_ratio": 0.0
         }
       ],
       "linked_test_cases": [
@@ -6080,6 +7079,52 @@
           "test_title": "Restaurant owner logs in and sees correct dashboard content"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-FR5-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.3333,
+          "stem_overlap_ratio": 0.4286,
+          "blended_ratio": 0.3619,
+          "spec_text_used": "Given that a user has registered, then the user should be able to retrieve his/her password by e- mail.",
+          "evidence_text_used": "A verified restaurant owner should be able to log in to the web-portal. After three failed login attempts, the account and associated IP address should be locked for thirty minutes. A restaurant owner",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR23-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.25,
+          "stem_overlap_ratio": 0.5,
+          "blended_ratio": 0.325,
+          "spec_text_used": "logs in with his/her account",
+          "evidence_text_used": "A verified restaurant owner should be able to log in to the web-portal. After three failed login attempts, the account and associated IP address should be locked for thirty minutes. A restaurant owner",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR23-02",
+          "verdict": "PARTIAL",
+          "overlap_ratio": 0.25,
+          "stem_overlap_ratio": 0.3333,
+          "blended_ratio": 0.275,
+          "spec_text_used": "enters his/her email address in the “Retrieve password” form",
+          "evidence_text_used": "A verified restaurant owner should be able to log in to the web-portal. After three failed login attempts, the account and associated IP address should be locked for thirty minutes. A restaurant owner",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR23-03",
+          "verdict": "MISSING",
+          "overlap_ratio": 0.0,
+          "stem_overlap_ratio": 0.0,
+          "blended_ratio": 0.0,
+          "spec_text_used": "submits the form",
+          "evidence_text_used": "A verified restaurant owner should be able to log in to the web-portal. After three failed login attempts, the account and associated IP address should be locked for thirty minutes. A restaurant owner",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
         "classification": "FULL_COVERAGE",
         "cru_count": 4,
@@ -6088,7 +7133,8 @@
           "QR15"
         ],
         "summary": "UAT UNKNOWN. 4 CRU(s) and 16 test case(s) linked. Unmatched req_ids: QR15."
-      }
+      },
+      "coverage_classification": "FULL_COVERAGE"
     },
     {
       "cau_id": "CAU-RO-03",
@@ -6123,7 +7169,9 @@
           "actor": "Restaurant Owner",
           "action": "log in",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MISSING",
+          "overlap_ratio": 0.0
         },
         {
           "cru_id": "CRU-FR24-02",
@@ -6131,7 +7179,9 @@
           "actor": "Restaurant Owner",
           "action": "manage information",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0
         },
         {
           "cru_id": "CRU-FR24-03",
@@ -6139,7 +7189,9 @@
           "actor": "Restaurant Owner",
           "action": "fill in mandatory fields",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.6667
         },
         {
           "cru_id": "CRU-FR24-04",
@@ -6147,7 +7199,9 @@
           "actor": "Restaurant Owner",
           "action": "fill in optional fields",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.6667
         },
         {
           "cru_id": "CRU-FR24-05",
@@ -6155,7 +7209,9 @@
           "actor": "Restaurant Owner",
           "action": "add information",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0
         },
         {
           "cru_id": "CRU-FR24-06",
@@ -6163,7 +7219,9 @@
           "actor": "Restaurant Owner",
           "action": "delete information",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0
         },
         {
           "cru_id": "CRU-FR24-07",
@@ -6171,7 +7229,9 @@
           "actor": "Restaurant Owner",
           "action": "edit information",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0
         }
       ],
       "linked_test_cases": [
@@ -6302,13 +7362,93 @@
           "test_title": "Edit Information: Integration with Search Feature"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-FR24-01",
+          "verdict": "MISSING",
+          "overlap_ratio": 0.0,
+          "stem_overlap_ratio": 0.0,
+          "blended_ratio": 0.0,
+          "spec_text_used": "log in",
+          "evidence_text_used": "Add, edit, and delete operations all functioned correctly. Menu management was straightforward and intuitive for testers. Restaurant owners strongly requested the ability to upload multiple photograph",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR24-02",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0,
+          "stem_overlap_ratio": 1.0,
+          "blended_ratio": 1.0,
+          "spec_text_used": "manage information",
+          "evidence_text_used": "Add, edit, and delete operations all functioned correctly. Menu management was straightforward and intuitive for testers. Restaurant owners strongly requested the ability to upload multiple photograph",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR24-03",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.6667,
+          "stem_overlap_ratio": 0.6667,
+          "blended_ratio": 0.6667,
+          "spec_text_used": "fill in mandatory fields",
+          "evidence_text_used": "Add, edit, and delete operations all functioned correctly. Menu management was straightforward and intuitive for testers. Restaurant owners strongly requested the ability to upload multiple photograph",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR24-04",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.6667,
+          "stem_overlap_ratio": 0.6667,
+          "blended_ratio": 0.6667,
+          "spec_text_used": "fill in optional fields",
+          "evidence_text_used": "Add, edit, and delete operations all functioned correctly. Menu management was straightforward and intuitive for testers. Restaurant owners strongly requested the ability to upload multiple photograph",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR24-05",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0,
+          "stem_overlap_ratio": 1.0,
+          "blended_ratio": 1.0,
+          "spec_text_used": "add information",
+          "evidence_text_used": "Add, edit, and delete operations all functioned correctly. Menu management was straightforward and intuitive for testers. Restaurant owners strongly requested the ability to upload multiple photograph",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR24-06",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0,
+          "stem_overlap_ratio": 1.0,
+          "blended_ratio": 1.0,
+          "spec_text_used": "delete information",
+          "evidence_text_used": "Add, edit, and delete operations all functioned correctly. Menu management was straightforward and intuitive for testers. Restaurant owners strongly requested the ability to upload multiple photograph",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR24-07",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0,
+          "stem_overlap_ratio": 1.0,
+          "blended_ratio": 1.0,
+          "spec_text_used": "edit information",
+          "evidence_text_used": "Add, edit, and delete operations all functioned correctly. Menu management was straightforward and intuitive for testers. Restaurant owners strongly requested the ability to upload multiple photograph",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
         "classification": "PARTIAL_COVERAGE",
         "cru_count": 7,
         "test_case_count": 21,
         "unmatched_req_ids": [],
         "summary": "UAT PARTIAL. 7 CRU(s) and 21 test case(s) linked."
-      }
+      },
+      "coverage_classification": "PARTIAL_COVERAGE"
     },
     {
       "cau_id": "CAU-RO-04",
@@ -6343,7 +7483,9 @@
           "actor": "Restaurant Owner",
           "action": "selects a preferred language",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0
         }
       ],
       "linked_test_cases": [
@@ -6372,13 +7514,27 @@
           "test_title": "Language selection with other features"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-FR25-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0,
+          "stem_overlap_ratio": 1.0,
+          "blended_ratio": 1.0,
+          "spec_text_used": "selects a preferred language",
+          "evidence_text_used": "Language selection worked correctly for all four languages. No untranslated text strings were observed. No issues were reported. A restaurant owner should be able to select a preferred language for th",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
         "classification": "FULL_COVERAGE",
         "cru_count": 1,
         "test_case_count": 4,
         "unmatched_req_ids": [],
         "summary": "UAT PASS. 1 CRU(s) and 4 test case(s) linked."
-      }
+      },
+      "coverage_classification": "FULL_COVERAGE"
     },
     {
       "cau_id": "CAU-AD-01",
@@ -6415,7 +7571,9 @@
           "actor": "Administrator",
           "action": "logs in",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MISSING",
+          "overlap_ratio": 0.0
         }
       ],
       "linked_test_cases": [
@@ -6444,6 +7602,19 @@
           "test_title": "Administrator logs in and accesses restaurant list"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-FR26-01",
+          "verdict": "MISSING",
+          "overlap_ratio": 0.0,
+          "stem_overlap_ratio": 0.0,
+          "blended_ratio": 0.0,
+          "spec_text_used": "logs in",
+          "evidence_text_used": "Login and lockout mechanisms functioned as specified. Administrator testers noted that distinguishing the administrator login from the restaurant owner login on the shared portal page was clear and pr",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
         "classification": "FULL_COVERAGE",
         "cru_count": 1,
@@ -6453,7 +7624,8 @@
           "QR16"
         ],
         "summary": "UAT PASS. 1 CRU(s) and 4 test case(s) linked. Unmatched req_ids: QR14, QR16."
-      }
+      },
+      "coverage_classification": "FULL_COVERAGE"
     },
     {
       "cau_id": "CAU-AD-02",
@@ -6487,7 +7659,9 @@
           "actor": "Administrator",
           "action": "log in",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MISSING",
+          "overlap_ratio": 0.0
         },
         {
           "cru_id": "CRU-FR27-02",
@@ -6495,7 +7669,9 @@
           "actor": "Administrator",
           "action": "verify a restaurant owner",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MISSING",
+          "overlap_ratio": 0.0
         },
         {
           "cru_id": "CRU-FR27-03",
@@ -6503,7 +7679,9 @@
           "actor": "Administrator",
           "action": "reject a restaurant owner",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.3333
         }
       ],
       "linked_test_cases": [
@@ -6556,13 +7734,49 @@
           "test_title": "Verify restaurant owner login with JWT token"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-FR27-01",
+          "verdict": "MISSING",
+          "overlap_ratio": 0.0,
+          "stem_overlap_ratio": 0.0,
+          "blended_ratio": 0.0,
+          "spec_text_used": "log in",
+          "evidence_text_used": "Both verification and rejection workflows functioned correctly. E-mail notifications were sent and received within acceptable timeframes. Administrators requested a consolidated view of all pending ve",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR27-02",
+          "verdict": "MISSING",
+          "overlap_ratio": 0.0,
+          "stem_overlap_ratio": 0.3333,
+          "blended_ratio": 0.1,
+          "spec_text_used": "verify a restaurant owner",
+          "evidence_text_used": "Both verification and rejection workflows functioned correctly. E-mail notifications were sent and received within acceptable timeframes. Administrators requested a consolidated view of all pending ve",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR27-03",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.3333,
+          "stem_overlap_ratio": 0.3333,
+          "blended_ratio": 0.3333,
+          "spec_text_used": "reject a restaurant owner",
+          "evidence_text_used": "Both verification and rejection workflows functioned correctly. E-mail notifications were sent and received within acceptable timeframes. Administrators requested a consolidated view of all pending ve",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
         "classification": "FULL_COVERAGE",
         "cru_count": 3,
         "test_case_count": 8,
         "unmatched_req_ids": [],
         "summary": "UAT PASS. 3 CRU(s) and 8 test case(s) linked."
-      }
+      },
+      "coverage_classification": "FULL_COVERAGE"
     },
     {
       "cau_id": "CAU-AD-03",
@@ -6603,7 +7817,9 @@
           "actor": "Administrator",
           "action": "logs in",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MISSING",
+          "overlap_ratio": 0.0
         },
         {
           "cru_id": "CRU-FR28-02",
@@ -6611,7 +7827,9 @@
           "actor": "Administrator",
           "action": "creates a new restaurant type",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "PARTIAL",
+          "overlap_ratio": 0.25
         },
         {
           "cru_id": "CRU-FR28-03",
@@ -6619,7 +7837,9 @@
           "actor": "Administrator",
           "action": "edits an existing restaurant type",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5
         },
         {
           "cru_id": "CRU-FR28-04",
@@ -6627,7 +7847,9 @@
           "actor": "Administrator",
           "action": "deletes a restaurant type",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.6667
         },
         {
           "cru_id": "CRU-FR29-01",
@@ -6635,7 +7857,9 @@
           "actor": "Administrator",
           "action": "logs in",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MISSING",
+          "overlap_ratio": 0.0
         },
         {
           "cru_id": "CRU-FR29-02",
@@ -6643,7 +7867,9 @@
           "actor": "Administrator",
           "action": "creates a new dish",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.3333
         },
         {
           "cru_id": "CRU-FR29-03",
@@ -6651,7 +7877,9 @@
           "actor": "Administrator",
           "action": "edits an existing dish",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.6667
         },
         {
           "cru_id": "CRU-FR29-04",
@@ -6659,7 +7887,9 @@
           "actor": "Administrator",
           "action": "deletes a dish",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0
         }
       ],
       "linked_test_cases": [
@@ -6796,13 +8026,104 @@
           "test_title": "Delete a dish with dependent menu items"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-FR28-01",
+          "verdict": "MISSING",
+          "overlap_ratio": 0.0,
+          "stem_overlap_ratio": 0.0,
+          "blended_ratio": 0.0,
+          "spec_text_used": "logs in",
+          "evidence_text_used": "All operations completed successfully. Changes were reflected in the mobile application search options following a search page refresh. No issues reported. Administrators requested a confirmation dial",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR28-02",
+          "verdict": "PARTIAL",
+          "overlap_ratio": 0.25,
+          "stem_overlap_ratio": 0.3333,
+          "blended_ratio": 0.275,
+          "spec_text_used": "creates a new restaurant type",
+          "evidence_text_used": "All operations completed successfully. Changes were reflected in the mobile application search options following a search page refresh. No issues reported. Administrators requested a confirmation dial",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR28-03",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5,
+          "stem_overlap_ratio": 0.5,
+          "blended_ratio": 0.5,
+          "spec_text_used": "edits an existing restaurant type",
+          "evidence_text_used": "All operations completed successfully. Changes were reflected in the mobile application search options following a search page refresh. No issues reported. Administrators requested a confirmation dial",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR28-04",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.6667,
+          "stem_overlap_ratio": 0.6667,
+          "blended_ratio": 0.6667,
+          "spec_text_used": "deletes a restaurant type",
+          "evidence_text_used": "All operations completed successfully. Changes were reflected in the mobile application search options following a search page refresh. No issues reported. Administrators requested a confirmation dial",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR29-01",
+          "verdict": "MISSING",
+          "overlap_ratio": 0.0,
+          "stem_overlap_ratio": 0.0,
+          "blended_ratio": 0.0,
+          "spec_text_used": "logs in",
+          "evidence_text_used": "All operations completed successfully. Changes were reflected in the mobile application search options following a search page refresh. No issues reported. Administrators requested a confirmation dial",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR29-02",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.3333,
+          "stem_overlap_ratio": 0.5,
+          "blended_ratio": 0.3833,
+          "spec_text_used": "creates a new dish",
+          "evidence_text_used": "All operations completed successfully. Changes were reflected in the mobile application search options following a search page refresh. No issues reported. Administrators requested a confirmation dial",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR29-03",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.6667,
+          "stem_overlap_ratio": 0.6667,
+          "blended_ratio": 0.6667,
+          "spec_text_used": "edits an existing dish",
+          "evidence_text_used": "All operations completed successfully. Changes were reflected in the mobile application search options following a search page refresh. No issues reported. Administrators requested a confirmation dial",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR29-04",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0,
+          "stem_overlap_ratio": 1.0,
+          "blended_ratio": 1.0,
+          "spec_text_used": "deletes a dish",
+          "evidence_text_used": "All operations completed successfully. Changes were reflected in the mobile application search options following a search page refresh. No issues reported. Administrators requested a confirmation dial",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
         "classification": "FULL_COVERAGE",
         "cru_count": 8,
         "test_case_count": 22,
         "unmatched_req_ids": [],
         "summary": "UAT PASS. 8 CRU(s) and 22 test case(s) linked."
-      }
+      },
+      "coverage_classification": "FULL_COVERAGE"
     },
     {
       "cau_id": "CAU-AD-04",
@@ -6842,7 +8163,9 @@
           "actor": "Administrator",
           "action": "edits an existing user",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MISSING",
+          "overlap_ratio": 0.0
         },
         {
           "cru_id": "CRU-FR31-02",
@@ -6850,7 +8173,9 @@
           "actor": "Administrator",
           "action": "deletes an existing user",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.3333
         },
         {
           "cru_id": "CRU-FR32-01",
@@ -6858,7 +8183,9 @@
           "actor": "Administrator",
           "action": "creates a new restaurant owner",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5
         },
         {
           "cru_id": "CRU-FR32-02",
@@ -6866,7 +8193,9 @@
           "actor": "Administrator",
           "action": "edits an existing restaurant owner",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5
         },
         {
           "cru_id": "CRU-FR32-03",
@@ -6874,7 +8203,9 @@
           "actor": "Administrator",
           "action": "deletes an existing restaurant owner",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.75
         }
       ],
       "linked_test_cases": [
@@ -6993,13 +8324,71 @@
           "test_title": "Delete existing restaurant owner with authentication"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-FR31-01",
+          "verdict": "MISSING",
+          "overlap_ratio": 0.0,
+          "stem_overlap_ratio": 0.0,
+          "blended_ratio": 0.0,
+          "spec_text_used": "edits an existing user",
+          "evidence_text_used": "All operations completed successfully. The cascading deletion of restaurant information upon removal of a restaurant owner account functioned correctly. No issues were reported.",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR31-02",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.3333,
+          "stem_overlap_ratio": 0.3333,
+          "blended_ratio": 0.3333,
+          "spec_text_used": "deletes an existing user",
+          "evidence_text_used": "All operations completed successfully. The cascading deletion of restaurant information upon removal of a restaurant owner account functioned correctly. No issues were reported.",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR32-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5,
+          "stem_overlap_ratio": 0.6667,
+          "blended_ratio": 0.55,
+          "spec_text_used": "creates a new restaurant owner",
+          "evidence_text_used": "All operations completed successfully. The cascading deletion of restaurant information upon removal of a restaurant owner account functioned correctly. No issues were reported.",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR32-02",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.5,
+          "stem_overlap_ratio": 0.5,
+          "blended_ratio": 0.5,
+          "spec_text_used": "edits an existing restaurant owner",
+          "evidence_text_used": "All operations completed successfully. The cascading deletion of restaurant information upon removal of a restaurant owner account functioned correctly. No issues were reported.",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR32-03",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.75,
+          "stem_overlap_ratio": 0.75,
+          "blended_ratio": 0.75,
+          "spec_text_used": "deletes an existing restaurant owner",
+          "evidence_text_used": "All operations completed successfully. The cascading deletion of restaurant information upon removal of a restaurant owner account functioned correctly. No issues were reported.",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
         "classification": "FULL_COVERAGE",
         "cru_count": 5,
         "test_case_count": 19,
         "unmatched_req_ids": [],
         "summary": "UAT PASS. 5 CRU(s) and 19 test case(s) linked."
-      }
+      },
+      "coverage_classification": "FULL_COVERAGE"
     },
     {
       "cau_id": "CAU-AD-05",
@@ -7032,7 +8421,9 @@
           "actor": "Administrator",
           "action": "adds restaurant information",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.6667
         },
         {
           "cru_id": "CRU-FR30-02",
@@ -7040,7 +8431,9 @@
           "actor": "Administrator",
           "action": "deletes the information",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0
         },
         {
           "cru_id": "CRU-FR30-03",
@@ -7048,7 +8441,9 @@
           "actor": "Administrator",
           "action": "edits the information",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0
         }
       ],
       "linked_test_cases": [
@@ -7125,13 +8520,49 @@
           "test_title": "Edit restaurant information with dependent features"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-FR30-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 0.6667,
+          "stem_overlap_ratio": 0.6667,
+          "blended_ratio": 0.6667,
+          "spec_text_used": "adds restaurant information",
+          "evidence_text_used": "1. Navigate to the restaurant management section of the web-portal. 2. Add new information to an existing restaurant record. 3. Edit the information that was just added. 4. Delete the information and ",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR30-02",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0,
+          "stem_overlap_ratio": 1.0,
+          "blended_ratio": 1.0,
+          "spec_text_used": "deletes the information",
+          "evidence_text_used": "1. Navigate to the restaurant management section of the web-portal. 2. Add new information to an existing restaurant record. 3. Edit the information that was just added. 4. Delete the information and ",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR30-03",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0,
+          "stem_overlap_ratio": 1.0,
+          "blended_ratio": 1.0,
+          "spec_text_used": "edits the information",
+          "evidence_text_used": "1. Navigate to the restaurant management section of the web-portal. 2. Add new information to an existing restaurant record. 3. Edit the information that was just added. 4. Delete the information and ",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
         "classification": "FULL_COVERAGE",
         "cru_count": 3,
         "test_case_count": 12,
         "unmatched_req_ids": [],
         "summary": "UAT PASS. 3 CRU(s) and 12 test case(s) linked."
-      }
+      },
+      "coverage_classification": "FULL_COVERAGE"
     },
     {
       "cau_id": "CAU-AD-06",
@@ -7164,7 +8595,9 @@
           "actor": "Administrator",
           "action": "selects English",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0
         },
         {
           "cru_id": "CRU-FR33-02",
@@ -7172,7 +8605,9 @@
           "actor": "Administrator",
           "action": "selects Swedish",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0
         },
         {
           "cru_id": "CRU-FR33-03",
@@ -7180,7 +8615,9 @@
           "actor": "Administrator",
           "action": "selects French",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0
         },
         {
           "cru_id": "CRU-FR33-04",
@@ -7188,7 +8625,9 @@
           "actor": "Administrator",
           "action": "selects Spanish",
           "type": "functional",
-          "match_method": "direct_req_id"
+          "match_method": "direct_req_id",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0
         }
       ],
       "linked_test_cases": [
@@ -7289,13 +8728,60 @@
           "test_title": "Administrator selects preferred language on web-portal (integration test)"
         }
       ],
+      "cru_verdicts": [
+        {
+          "cru_id": "CRU-FR33-01",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0,
+          "stem_overlap_ratio": 1.0,
+          "blended_ratio": 1.0,
+          "spec_text_used": "selects English",
+          "evidence_text_used": "1. Locate the language selection control on the web-portal. 2. Select each of the four available languages in turn: English, Swedish, French, and Spanish. 3. After each selection, verify that all visi",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR33-02",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0,
+          "stem_overlap_ratio": 1.0,
+          "blended_ratio": 1.0,
+          "spec_text_used": "selects Swedish",
+          "evidence_text_used": "1. Locate the language selection control on the web-portal. 2. Select each of the four available languages in turn: English, Swedish, French, and Spanish. 3. After each selection, verify that all visi",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR33-03",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0,
+          "stem_overlap_ratio": 1.0,
+          "blended_ratio": 1.0,
+          "spec_text_used": "selects French",
+          "evidence_text_used": "1. Locate the language selection control on the web-portal. 2. Select each of the four available languages in turn: English, Swedish, French, and Spanish. 3. After each selection, verify that all visi",
+          "negation_found": false,
+          "spec_field_used": "action"
+        },
+        {
+          "cru_id": "CRU-FR33-04",
+          "verdict": "MATCH",
+          "overlap_ratio": 1.0,
+          "stem_overlap_ratio": 1.0,
+          "blended_ratio": 1.0,
+          "spec_text_used": "selects Spanish",
+          "evidence_text_used": "1. Locate the language selection control on the web-portal. 2. Select each of the four available languages in turn: English, Swedish, French, and Spanish. 3. After each selection, verify that all visi",
+          "negation_found": false,
+          "spec_field_used": "action"
+        }
+      ],
       "coverage": {
         "classification": "FULL_COVERAGE",
         "cru_count": 4,
         "test_case_count": 16,
         "unmatched_req_ids": [],
         "summary": "UAT PASS. 4 CRU(s) and 16 test case(s) linked."
-      }
+      },
+      "coverage_classification": "FULL_COVERAGE"
     },
     {
       "cau_id": "CAU-AD-07",
@@ -7315,6 +8801,7 @@
       "linked_requirements": [],
       "linked_crus": [],
       "linked_test_cases": [],
+      "cru_verdicts": [],
       "coverage": {
         "classification": "NO_CRU_MATCH",
         "cru_count": 0,
@@ -7323,7 +8810,8 @@
           "QR7"
         ],
         "summary": "UAT PASS. No CRUs matched. Unmatched req_ids: QR7."
-      }
+      },
+      "coverage_classification": "NO_CRU_MATCH"
     }
   ],
   "traceability_gaps": {
