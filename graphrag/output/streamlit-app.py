@@ -12,7 +12,7 @@ import streamlit as st
 
 ROOT = Path(r"C:/Users/Bhoomi/Autopilot-QA")
 
-DB_PATH = ROOT / "Traceability_GraphRAG.duckdb"
+DB_PATH = ROOT / "graphrag"/ "output" / "graphrag.duckdb"
 REQ_PATH = ROOT / "02_Requirement_Understanding" / "output" / "requirements.json"
 CRU_PATH = ROOT / "03_CRU_Normalization" / "output" / "cru_units.json"
 CHUNK_PATH = ROOT / "04_Semantic_Chunking_and_Domain_Tagging" / "output" / "chunked_crus_with_domain.json"
