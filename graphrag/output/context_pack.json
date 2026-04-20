@@ -19,6 +19,7 @@
         "page": 11,
         "para": 13
       },
+      "doc_type": "SRS",
       "module": "UNKNOWN",
       "version": "2.1",
       "score": 0.855,
@@ -38,10 +39,11 @@
         "page": 9,
         "para": 18
       },
+      "doc_type": "SRS",
       "module": "UNKNOWN",
       "version": "2.1",
-      "score": 0.21763581037521362,
-      "confidence": 0.21763581037521362,
+      "score": 0.21763582527637482,
+      "confidence": 0.21763582527637482,
       "provenance": "vector",
       "similarity_score": null,
       "needs_confirmation": true
@@ -57,6 +59,7 @@
         "page": 10,
         "para": 18
       },
+      "doc_type": "SRS",
       "module": "UNKNOWN",
       "version": "2.1",
       "score": 0.21635925769805908,
@@ -76,10 +79,11 @@
         "page": 9,
         "para": 18
       },
+      "doc_type": "SRS",
       "module": "UNKNOWN",
       "version": "2.1",
-      "score": 0.19623318314552307,
-      "confidence": 0.19623318314552307,
+      "score": 0.19623315334320068,
+      "confidence": 0.19623315334320068,
       "provenance": "vector",
       "similarity_score": null,
       "needs_confirmation": true
@@ -95,10 +99,11 @@
         "page": 14,
         "para": 11
       },
+      "doc_type": "SRS",
       "module": "UNKNOWN",
       "version": "2.1",
-      "score": 0.18401175737380981,
-      "confidence": 0.18401175737380981,
+      "score": 0.1840117871761322,
+      "confidence": 0.1840117871761322,
       "provenance": "vector",
       "similarity_score": null,
       "needs_confirmation": true
@@ -114,10 +119,11 @@
         "page": 14,
         "para": 18
       },
+      "doc_type": "SRS",
       "module": "UNKNOWN",
       "version": "2.1",
-      "score": 0.1771673858165741,
-      "confidence": 0.1771673858165741,
+      "score": 0.1771673709154129,
+      "confidence": 0.1771673709154129,
       "provenance": "vector",
       "similarity_score": null,
       "needs_confirmation": true
@@ -133,10 +139,31 @@
         "page": 21,
         "para": 1
       },
+      "doc_type": "SRS",
       "module": "UNKNOWN",
       "version": "2.1",
-      "score": 0.1593899130821228,
-      "confidence": 0.1593899130821228,
+      "score": 0.159389927983284,
+      "confidence": 0.159389927983284,
+      "provenance": "vector",
+      "similarity_score": null,
+      "needs_confirmation": true
+    },
+    {
+      "chunk_id": "CH_db7e578f3e27c8ea381f35fb0089b8293d1af3d2349c5ed6de440b8c465b033c",
+      "chunk_type": "child",
+      "text": "User When a new/updated version or release of the software is released, the user should check for these manually.",
+      "doc_id": "DOC-SRS_EXAMPLE",
+      "section_path": "3.2.1.2",
+      "source_locator": {
+        "section": "3.2.1.2",
+        "page": 9,
+        "para": 12
+      },
+      "doc_type": "SRS",
+      "module": "UNKNOWN",
+      "version": "2.1",
+      "score": 0.1553216278553009,
+      "confidence": 0.1553216278553009,
       "provenance": "vector",
       "similarity_score": null,
       "needs_confirmation": true
@@ -154,9 +181,10 @@
         "page": 11,
         "para": 13
       },
-      "module": null,
-      "version": null,
-      "score": 0.8,
+      "doc_type": "SRS",
+      "module": "UNKNOWN",
+      "version": "2.1",
+      "score": 1.0,
       "confidence": 1.0,
       "provenance": "graph",
       "similarity_score": null,
@@ -173,9 +201,10 @@
         "page": 9,
         "para": 18
       },
-      "module": null,
-      "version": null,
-      "score": 0.8,
+      "doc_type": "SRS",
+      "module": "UNKNOWN",
+      "version": "2.1",
+      "score": 1.0,
       "confidence": 1.0,
       "provenance": "graph",
       "similarity_score": null,
@@ -192,9 +221,10 @@
         "page": 10,
         "para": 18
       },
-      "module": null,
-      "version": null,
-      "score": 0.8,
+      "doc_type": "SRS",
+      "module": "UNKNOWN",
+      "version": "2.1",
+      "score": 1.0,
       "confidence": 1.0,
       "provenance": "graph",
       "similarity_score": null,
@@ -211,9 +241,10 @@
         "page": 14,
         "para": 11
       },
-      "module": null,
-      "version": null,
-      "score": 0.8,
+      "doc_type": "SRS",
+      "module": "UNKNOWN",
+      "version": "2.1",
+      "score": 1.0,
       "confidence": 1.0,
       "provenance": "graph",
       "similarity_score": null,
@@ -230,9 +261,10 @@
         "page": 14,
         "para": 18
       },
-      "module": null,
-      "version": null,
-      "score": 0.8,
+      "doc_type": "SRS",
+      "module": "UNKNOWN",
+      "version": "2.1",
+      "score": 1.0,
       "confidence": 1.0,
       "provenance": "graph",
       "similarity_score": null,
@@ -249,9 +281,30 @@
         "page": 21,
         "para": 1
       },
-      "module": null,
-      "version": null,
-      "score": 0.8,
+      "doc_type": "SRS",
+      "module": "UNKNOWN",
+      "version": "2.1",
+      "score": 1.0,
+      "confidence": 1.0,
+      "provenance": "graph",
+      "similarity_score": null,
+      "needs_confirmation": false
+    },
+    {
+      "chunk_id": "P_dfdb64568037ad199851dbd97152c70c6ea67db627f452fc71024b67042cbac4",
+      "chunk_type": "parent",
+      "text": "Section 3.2.1.2",
+      "doc_id": "DOC-SRS_EXAMPLE",
+      "section_path": "3.2.1.2",
+      "source_locator": {
+        "section": "3.2.1.2",
+        "page": 9,
+        "para": 12
+      },
+      "doc_type": "SRS",
+      "module": "UNKNOWN",
+      "version": "2.1",
+      "score": 1.0,
       "confidence": 1.0,
       "provenance": "graph",
       "similarity_score": null,
@@ -277,12 +330,142 @@
       "node_type": "CHUNK",
       "node_id": "CH_720d5cc3b2978d902989c8239a11d588816c4b3315cc6034fcbfe8d7fed8055a",
       "relation": "SUPPORTED_BY"
+    },
+    {
+      "node_type": "TEST",
+      "node_id": "TC_CRU-FR10-01_001",
+      "relation": "TESTS"
+    },
+    {
+      "node_type": "TEST",
+      "node_id": "TC_CRU-FR10-01_002",
+      "relation": "TESTS"
+    },
+    {
+      "node_type": "TEST",
+      "node_id": "TC_CRU-FR10-01_003",
+      "relation": "TESTS"
+    },
+    {
+      "node_type": "TEST",
+      "node_id": "TC_CRU-FR10-01_004",
+      "relation": "TESTS"
+    },
+    {
+      "node_type": "TEST",
+      "node_id": "TC_CRU-FR10-01_405",
+      "relation": "TESTS"
+    },
+    {
+      "node_type": "TEST",
+      "node_id": "TC_CRU-FR10-01_406",
+      "relation": "TESTS"
+    },
+    {
+      "node_type": "TEST",
+      "node_id": "TC_CRU-FR10-01_407",
+      "relation": "TESTS"
+    },
+    {
+      "node_type": "TEST",
+      "node_id": "TC_CRU-FR10-01_408",
+      "relation": "TESTS"
+    },
+    {
+      "node_type": "TEST",
+      "node_id": "TC_CRU-FR10-01_409",
+      "relation": "TESTS"
+    },
+    {
+      "node_type": "TEST",
+      "node_id": "TC_CRU-FR10-01_410",
+      "relation": "TESTS"
+    },
+    {
+      "node_type": "TEST",
+      "node_id": "TC_CRU-FR10-01_411",
+      "relation": "TESTS"
+    },
+    {
+      "node_type": "TEST",
+      "node_id": "TC_CRU-FR10-01_412",
+      "relation": "TESTS"
+    },
+    {
+      "node_type": "TEST",
+      "node_id": "TC_CRU-FR10-01_413",
+      "relation": "TESTS"
+    },
+    {
+      "node_type": "TEST",
+      "node_id": "TC_CRU-FR10-01_414",
+      "relation": "TESTS"
+    },
+    {
+      "node_type": "TEST",
+      "node_id": "TC_CRU-FR10-01_415",
+      "relation": "TESTS"
+    },
+    {
+      "node_type": "TEST",
+      "node_id": "TC_CRU-FR10-01_416",
+      "relation": "TESTS"
+    },
+    {
+      "node_type": "TEST",
+      "node_id": "TC_CRU-FR10-01_417",
+      "relation": "TESTS"
+    },
+    {
+      "node_type": "TEST",
+      "node_id": "TC_CRU-FR10-01_418",
+      "relation": "TESTS"
+    },
+    {
+      "node_type": "TEST",
+      "node_id": "TC_CRU-FR10-01_419",
+      "relation": "TESTS"
     }
   ],
   "warnings": [
     {
-      "type": "MISSING_EVIDENCE",
-      "message": "No evidence chunks found; downstream generation must produce open questions rather than guessed expected results.",
+      "type": "LOW_CONFIDENCE_VECTOR",
+      "message": "Chunk CH_e31bd39f866f43e3671937a2a5c39a84f97a2bd780202a9c04d2f12227c96e9d came from vector fallback with confidence 0.22 (below threshold 0.65).",
+      "chunk_id": "CH_e31bd39f866f43e3671937a2a5c39a84f97a2bd780202a9c04d2f12227c96e9d"
+    },
+    {
+      "type": "LOW_CONFIDENCE_VECTOR",
+      "message": "Chunk CH_e6d86063d294ad016743e413e7e562fb2acaf0318eeeb2927937d24c85927673 came from vector fallback with confidence 0.22 (below threshold 0.65).",
+      "chunk_id": "CH_e6d86063d294ad016743e413e7e562fb2acaf0318eeeb2927937d24c85927673"
+    },
+    {
+      "type": "LOW_CONFIDENCE_VECTOR",
+      "message": "Chunk CH_40f42380455ea6638913cb810fcc981b4540958f9bd3c7d26af7101951dab500 came from vector fallback with confidence 0.20 (below threshold 0.65).",
+      "chunk_id": "CH_40f42380455ea6638913cb810fcc981b4540958f9bd3c7d26af7101951dab500"
+    },
+    {
+      "type": "LOW_CONFIDENCE_VECTOR",
+      "message": "Chunk CH_732ee9ba565bc7375c2980b917cdb9cd88b34a13d51e381a10bc928ded36f559 came from vector fallback with confidence 0.18 (below threshold 0.65).",
+      "chunk_id": "CH_732ee9ba565bc7375c2980b917cdb9cd88b34a13d51e381a10bc928ded36f559"
+    },
+    {
+      "type": "LOW_CONFIDENCE_VECTOR",
+      "message": "Chunk CH_a1b3b69e4a4ba0175b329dad03b720d871605d666f9e40f0a7f5e39a3637368d came from vector fallback with confidence 0.18 (below threshold 0.65).",
+      "chunk_id": "CH_a1b3b69e4a4ba0175b329dad03b720d871605d666f9e40f0a7f5e39a3637368d"
+    },
+    {
+      "type": "LOW_CONFIDENCE_VECTOR",
+      "message": "Chunk CH_a081e971fc84015c4b3ba4cbf40f0382276743d1ce5587332c64a6769b546fe3 came from vector fallback with confidence 0.16 (below threshold 0.65).",
+      "chunk_id": "CH_a081e971fc84015c4b3ba4cbf40f0382276743d1ce5587332c64a6769b546fe3"
+    },
+    {
+      "type": "LOW_CONFIDENCE_VECTOR",
+      "message": "Chunk CH_db7e578f3e27c8ea381f35fb0089b8293d1af3d2349c5ed6de440b8c465b033c came from vector fallback with confidence 0.16 (below threshold 0.65).",
+      "chunk_id": "CH_db7e578f3e27c8ea381f35fb0089b8293d1af3d2349c5ed6de440b8c465b033c"
+    },
+    {
+      "type": "VECTOR_FALLBACK_TRIGGERED",
+      "message": "vector fallback was used",
       "chunk_id": null
     }
   ],
