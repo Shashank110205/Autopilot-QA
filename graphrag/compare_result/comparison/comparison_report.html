@@ -8,20 +8,25 @@
   @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap');
 
   :root {
-    --bg:       #0d1117;
-    --surface:  #161b22;
-    --surface2: #1e2530;
-    --border:   #30363d;
-    --text:     #e6edf3;
-    --muted:    #8b949e;
-    --before:   #58a6ff;
-    --after:    #3fb950;
-    --pos:      #3fb950;
-    --neg:      #f85149;
-    --neu:      #8b949e;
-    --accent:   #f0883e;
-    --mono:     'IBM Plex Mono', monospace;
-    --sans:     'IBM Plex Sans', sans-serif;
+    --bg:       #f8fafc;   /* page background */
+    --surface:  #ffffff;   /* cards */
+    --surface2: #f1f5f9;   /* table headers / subtle blocks */
+    --border:   #e2e8f0;
+
+    --text:     #0f172a;
+    --muted:    #64748b;
+
+    --before:   #2563eb;   /* blue */
+    --after:    #16a34a;   /* green */
+
+    --pos:      #16a34a;
+    --neg:      #dc2626;
+    --neu:      #64748b;
+
+    --accent:   #ea580c;
+
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
   }
 
   * { box-sizing:border-box; margin:0; padding:0; }
@@ -35,7 +40,7 @@
 
   /* ── Header ── */
   .header {
-    background: linear-gradient(135deg, #0d1117 0%, #1a2332 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
     border-bottom: 1px solid var(--border);
     padding: 40px 48px 32px;
     position: relative;
@@ -175,7 +180,7 @@
   .prov-graph  { background:rgba(63,185,80,.15);  color:var(--pos); }
   .prov-vector { background:rgba(240,136,62,.15); color:var(--accent); }
   .chunk-sec { font-size: 11px; color: var(--muted); margin-bottom: 6px; }
-  .chunk-text { font-size: 13px; line-height:1.55; color: #cdd5e0; margin-bottom: 10px; }
+  .chunk-text { font-size: 13px; line-height:1.55; color: #334155; margin-bottom: 10px; }
   .chunk-meta { display:flex; align-items:center; gap:10px; font-family:var(--mono); font-size:11px; color:var(--muted); }
   .conf-bar-wrap { flex:1; height:4px; background:var(--border); border-radius:2px; }
   .conf-bar { display:block; height:100%; background: var(--after); border-radius:2px; }
